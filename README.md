@@ -1,5 +1,9 @@
 # System Tweaker <b><i>FREE</i></b>
 
+### <i>Download APK (FREE version):</i> [MediaFire](http://www.mediafire.com/download/hxj400djkcinxs5/System_Tweaker_FREE_1.0.0.apk)
+
+
+
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
 ##PRO version (0,99 $): [Google Play](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
