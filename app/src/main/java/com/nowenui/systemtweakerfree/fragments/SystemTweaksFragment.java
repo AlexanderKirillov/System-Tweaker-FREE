@@ -27,6 +27,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeoutException;
 
 public class SystemTweaksFragment extends Fragment {
@@ -783,28 +784,50 @@ public class SystemTweaksFragment extends Fragment {
         spinner6.setAdapter(adapter3);
         String fucks = "/system/etc/init.d/ram_gaming";
         if (new File(fucks).exists()) {
-            int spinnerPosition1 = adapter3.getPosition("Gaming");
-            spinner6.setSelection(spinnerPosition1);
-            int spinnerPosition2 = adapter3.getPosition("Игровой");
-            spinner6.setSelection(spinnerPosition2);
+            boolean isLangRU = Locale.getDefault().getLanguage().equals("ru");
+            boolean isLangBE = Locale.getDefault().getLanguage().equals("be");
+            boolean isLangUK = Locale.getDefault().getLanguage().equals("uk");
+            if (isLangRU || isLangBE || isLangUK) {
+                int spinnerPosition2 = adapter3.getPosition("Игровой");
+                spinner6.setSelection(spinnerPosition2);
+            }
+            else
+            {
+                int spinnerPosition1 = adapter3.getPosition("Gaming");
+                spinner6.setSelection(spinnerPosition1);
+            }
+
 
         }
         String fucks10 = "/system/etc/init.d/ram_balanced";
         if (new File(fucks10).exists()) {
-            int spinnerPosition3 = adapter3.getPosition("Balanced");
-            spinner6.setSelection(spinnerPosition3);
-            int spinnerPosition4 = adapter3.getPosition("Сбалансированный");
-            spinner6.setSelection(spinnerPosition4);
+            boolean isLangRU = Locale.getDefault().getLanguage().equals("ru");
+            boolean isLangBE = Locale.getDefault().getLanguage().equals("be");
+            boolean isLangUK = Locale.getDefault().getLanguage().equals("uk");
+            if (isLangRU || isLangBE || isLangUK) {
+                int spinnerPosition4 = adapter3.getPosition("Сбалансированный");
+                spinner6.setSelection(spinnerPosition4);
+            } else {
+                int spinnerPosition3 = adapter3.getPosition("Balanced");
+                spinner6.setSelection(spinnerPosition3);
+            }
         }
 
         String fucks2 = "/system/etc/init.d/ram_multitasking";
+        boolean isLangRU = Locale.getDefault().getLanguage().equals("ru");
+        boolean isLangBE = Locale.getDefault().getLanguage().equals("be");
+        boolean isLangUK = Locale.getDefault().getLanguage().equals("uk");
         if (new File(fucks2).exists()) {
-            int spinnerPosition1 = adapter3.getPosition("Multitasking");
-            spinner6.setSelection(spinnerPosition1);
-            int spinnerPosition2 = adapter3.getPosition("Многозадачность");
-            spinner6.setSelection(spinnerPosition2);
+            if (isLangRU || isLangBE || isLangUK) {
+                int spinnerPosition2 = adapter3.getPosition("Многозадачность");
+                spinner6.setSelection(spinnerPosition2);
+            } else {
+                int spinnerPosition1 = adapter3.getPosition("Multitasking");
+                spinner6.setSelection(spinnerPosition1);
+            }
 
         }
+
 
         spinner6.post(new Runnable() {
             @Override
