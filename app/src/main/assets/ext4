@@ -1,0 +1,17 @@
+#!/sbin/sh
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+mount -o remount,rw /data
+mount -o remount,rw /cache
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+busybox mount -o remount,rw /data
+busybox mount -o remount,rw /cache
+
+/system/xbin/tune2fs -o journal_data_writeback $(cat /etc/fstab | grep system | awk '{print $1}')
+/system/xbin/tune2fs -o journal_data_writeback $(cat /etc/fstab | grep data | awk '{print $1}')
+/system/xbin/tune2fs -o journal_data_writeback $(cat /etc/fstab | grep cache | awk '{print $1}')
+

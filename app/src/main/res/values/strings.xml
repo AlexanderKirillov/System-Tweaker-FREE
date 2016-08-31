@@ -1,0 +1,207 @@
+<resources>
+    <string name="app_name">System Tweaker FREE</string>
+
+    <string name="root">ROOT WORKING!</string>
+    <string name="initd">INIT.D WORKING!</string>
+    <string name="busybox">BUSYBOX INSTALLED!</string>
+    <string name="xposed">XPOSED INSTALLED!</string>
+    <string name="rootbad">NO ROOT</string>
+    <string name="initdbad">NO INIT.D </string>
+    <string name="busyboxbad">NO BUSYBOX</string>
+    <string name="xposedbad">NO XPOSED</string>
+    <string name="hello">Welcome to\nSystem Tweaker FREE!!!\n</string>
+    <string name="vozmozhonosti">With this programm you can speed up your device and improve powersaving!\n</string>
+    <string name="before">Before using this programm:</string>
+    <string name="beforewarning">1) Make system and data backups using custom recovery (if you can make it)\n
+        2) Make build.prop file and init.d folder backups using utility, which presents in this programm\n
+        3)You must understand that tweaks should be installed with the mind, because many installed tweaks can cause conflicts!</string>
+    <string name="cauton">Understand, that you solely responsible for any damage device!</string>
+    <string name="whatneed">ROOT, BUSYBOX, INIT.D SUPPORT IS REQUIRED!\n</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="cal">CALIBRATE</string>
+    <string name="calinfo">If button "CALIBRATE" not active, verify the implementation of both the calibration terms (100% battery level and connected power).\n\nCalibrate process includes deleting files from /data/system/:\n- batterystats.bin\n- batterystats-daily.xml\n- batterystats-checkin.bin</string>
+    <string name="batterylevel">Battery Level</string>
+    <string name="charger">Charger connected?</string>
+    <string name="need">Root, busybox is required</string>
+    <string name="cautonbattery">ATTENTION! CALIBRATION MAY DAMAGE THE BATTERY OR THE DEVICE!  DO ONLY AT YOUR OWN RISK</string>
+    <string name="calibrate">You can make battery calibration only if you have problems with low energy efficiency devices without objective reasons (e.g., battery swelling), incorrectly shows the battery level. Also you can make calibrate when you reinstalled ROM on your device. \nPlease do not make battery calibration just like that, because you can damage your device or battery\n\nBut if you do decide to do the calibration (of course, at your own risk), follow the instructions below:\n1) Fully charge your device\n2) Without stopping to charge the device, perform the calibration by pressing the appropriate button below.</string>
+    <string name="calsucess">Calibration successful!</string>
+    <string name="reboot">Reboot</string>
+    <string name="rebootdialog">It is recommended to reboot now. \n\nDo you want to reboot your device? \n\n</string>
+    <string name="errordev">ERROR! PLEASE CONNECT WITH DEVELOPER</string>
+    <string name="erroroot">ERROR! YOU HAVENT ROOT!</string>
+    <string name="errobusybox">ERROR! BUSYBOX IS NEEDED!</string>
+    <string name="rebootdialogoneclick">It is recommended to reboot now.\n\n
+
+Do you want to reboot your device? \n\n
+
+It is also recommended after the reboot to go to the this speed-up utility and click on the optimize button. The system is fully optimized and will work well and smoothly!</string>
+    <string name="delettweaks">Tweaks deleted!</string>
+    <string name="backupsucc">Backup successfully created!</string>
+    <string name="error">Error!</string>
+    <string name="lastbackup">Last backup was created: </string>
+    <string name="vosst">Successfully restored!</string>
+    <string name="backupfuck">Backup not found :(</string>
+    <string name="yasno">I understand</string>
+    <string name="backup">Backup</string>
+    <string name="buildpropbackup">build.prop backup</string>
+    <string name="cautonbackup">Please note, that the dates are updated only after the page is refreshing. That is, if you did backup - refresh the page and the date is set to the correct!</string>
+    <string name="initdbackup">Init.d folder backup</string>
+    <string name="restore">Restore</string>
+    <string name="restorebuildprop">Restore build.prop</string>
+    <string name="restoreinit.d">Restore init.d folder</string>
+    <string name="foundbackup">You can found backup files in: /sdcard/SystemTweaker/backups</string>
+    <string name="batterysection">This section contains tweaks that can help you increase the battery life of the device.\n</string>
+    <string name="secondbatterytweak">Improve powersaving\nFixes VM overuse</string>
+    <string name="thirdbatterytweak">Increase WiFi autoscan time\nThis tweak improves powersaving</string>
+    <string name="fourhbatterytweak">Wifi powersaving mode\n</string>
+    <string name="fifthbatterytweak">Enable Power Collapse\nThis option allows system to go into a deep sleep when the screen is off</string>
+    <string name="sixthbatterytweak">Enable Power Supply</string>
+    <string name="sevenbatterytweak">Enable better management of sensors during deepsleep</string>
+    <string name="eithtbatterytweak">Disable system logging\n</string>
+    <string name="tweakenabled">Tweak Enabled!</string>
+    <string name="tweakdisabled">Tweak Disabled</string>
+    <string name="internettweakswelcome">This section contains tweaks that can help you increase the speed and stability of internet.\n</string>
+    <string name="firstinternettweak">Internet Tweaks\nImproving WiFi/3G/2G/4G tweaks, increasing download speed, improving stability</string>
+    <string name="secondinternettweak">Improving internet speed\nChanging the TCP values for the better</string>
+    <string name="thirdinternettweak">Google DNS\nChange DNS to Google (8.8.8.8, 8.8.4.4)</string>
+    <string name="forthinternettweak">Fast Dormancy\nEnabling this feature can increase the speed of the internet, but also reduce powersaving</string>
+    <string name="fifthinternettweaks">IPv6 support</string>
+    <string name="sixinternettweaks">IPv4 support</string>
+    <string name="glavnays">Home</string>
+    <string name="soglasenie">Agreement</string>
+    <string name="infoabout">Device Information</string>
+    <string name="calbattery">Battery Calibration</string>
+    <string name="backupandrestore">Backup and restore</string>
+    <string name="batterytweaks">Battery Tweaks</string>
+    <string name="internettweaks">Internet Tweaks</string>
+    <string name="systemtweaks">System Tweaks</string>
+    <string name="mediatweaks">Media Tweaks</string>
+    <string name="varioustweaks">Other Tweaks</string>
+    <string name="connect">Connect with developer</string>
+    <string name="aboutapp">About program</string>
+    <string name="exit">Exit</string>
+    <string name="main">Main</string>
+    <string name="tweaks">Tweaks and utilities</string>
+    <string name="prochee">Other</string>
+    <string name="yourdevice">• Your device: </string>
+    <string name="model">• Model: </string>
+    <string name="serial">• Serial number:</string>
+    <string name="cod">• Device codename: </string>
+    <string name="android">• Android version: </string>
+    <string name="boot">• Bootloader: </string>
+    <string name="radio">• Radio: </string>
+    <string name="rom">• ROM version: </string>
+    <string name="csc">• Active CSC-code: </string>
+    <string name="language">• Active language: </string>
+    <string name="rootprava">• Root: </string>
+    <string name="sdk">• SDK version:</string>
+    <string name="processor">• Processor: </string>
+    <string name="processortype">• Processor type: </string>
+    <string name="batthealth">• Battery health:</string>
+    <string name="chargerconn">• Charger Connected: </string>
+    <string name="batterytype">• Battery type: </string>
+    <string name="voltage">• Voltage: </string>
+    <string name="batterytemp">• Battery temperature: </string>
+    <string name="levelbatt">• Battery level: </string>
+    <string name="resolution">• Screen resolution: </string>
+    <string name="goodbatterystatus">good</string>
+    <string name="problems">having issues</string>
+    <string name="processorwo">Processor</string>
+    <string name="memory">Memory</string>
+    <string name="batt">Battery</string>
+    <string name="screen">Screen</string>
+    <string name="excist">YES</string>
+    <string name="noexcist">NO</string>
+    <string name="warn">These tweaks may not work on all devices!\n</string>
+    <string name="variostweaks">This section includes the different other tweaks\n</string>
+    <string name="disableboot">Disable bootanimation</string>
+    <string name="adb">Remove adb debug icon from statusbar</string>
+    <string name="onnectwithdev">On this page you can send an email to the developer. I can help you if you have problems or questions \n\nTo contact me, please write your message in the field "Text of message" and then click "Send". Your device prompts you to select the mail application to send a message, select the  application, send me an email. If you have not e-mail app on your device, you can contact me with this e-mail: NowenUI@bk.ru</string>
+    <string name="text">Text of message</string>
+    <string name="sendletter">Send</string>
+    <string name="openemailapp">Opening e-mail app...</string>
+    <string name="noemail">The message can not be sent, no installed e-mail clients. </string>
+    <string name="thanks">\nThank you very much for purchasing the professional version of this program!\n</string>
+    <string name="aboutappinfo">This program allows you to customize your device, will help to get the maximum performance and help to increase the battery life of your device\n</string>
+    <string name="author">The author: Alexander Kirillov (NowenUI)\n</string>
+    <string name="libraries">Used libraries: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n</string>
+    <string name="site">Official Site: NowenUI.com</string>
+    <string name="opensite">Click to open site</string>
+    <string name="agreement">Before using the program, you should read agreement\n\n
+        1) Program developer is not responsible for unpredictable results using the program\n\n
+        2) Yes, you should understand that developer not responsible for the broken devices, dead batteries, etc\n\n
+        3) All the features of the program is for information only, their presence does not mean their using\n\n
+        4) You can not use the program for their own purposes, or any part of the code of the program without the consent of the developer, but bear in mind paragraph 5\n\n
+        5) All of the features, presented in the program (tweaks, battery calibration technology, speed-up technology with one click and etc.), are available to the public, you can use them for their own purposes (for example, commercial purposes)</string>
+    <string name="systemteweaks">This section contains tweaks that can be used to increase the stability and speed of the system and customize it\n</string>
+    <string name="systemone">Force home launcher into memory (use light launchers only)\nUse only if your phone have many free RAM</string>
+    <string name="systemtwo">Fixing some error in applications</string>
+    <string name="systemthree">Render UI with GPU, improving smooth of scrolling\nEnabling this tweak may improve performance and smooth, but only if your GPU is powerful</string>
+    <string name="systemfour">Improving smooth and speed of scrolling</string>
+    <string name="systemfive">Auto-zipalign every boot and every week\nThis tweak improving speed and performance of your phone</string>
+    <string name="systemsix">Auto optimize SQLite every boot and every week\nThis tweak improving speed and performance of your phone</string>
+    <string name="fstrim">FSTRIM- special utility that accelerates the operation of the device by performing the TRIM operation on the memory device\n</string>
+    <string name="beforestrim">Firstly, install a library to work with FSTRIM, then make FSTRIM, select the partition(s) and press &quot;FSTRIM&quot;\n\n</string>
+    <string name="installfstrim">Install fstrim library\n</string>
+    <string name="statusinfo">Button status is updated only after reloading the page</string>
+    <string name="fstrimboot">Make auto-FSTRIM at boot</string>
+    <string name="fstrimlibok">Required libraries are already installed. \nNo installation required, just use</string>
+    <string name="fileinstall">Required files are installed!</string>
+    <string name="ok">Applied!</string>
+    <string name="delete">Disabled!</string>
+    <string name="enable">Enabled</string>
+    <string name="disable">Disabled</string>
+    <string name="stopedservice">Service stopped</string>
+    <string name="startedservice">Service started</string>
+    <string name="mediaserver">MediaServer - it is a system service that scans the external memory (if available), and the internal memory of the presence of media. Please make service shutdown only when you have problems with performance or powersave.</string>
+    <string name="stopmediascanner">Stop MediaScanner</string>
+    <string name="startmediascanner">Start MediaScanner</string>
+    <string name="stopmediaserver">Stop MediaServer</string>
+    <string name="bootmediaserver">Disable MediaServer on boot (init.d support is required)</string>
+    <string name="bootmediascanner">Disable MediaScanner on boot (init.d support is required)</string>
+    <string name="sttoppedmediaserver">MediaServer stopped!</string>
+    <string name="sttoppedmediascanner">MediaScanner stopped!</string>
+    <string name="startpedmediaserver">MediaScannner started!</string>
+    <string name="mediatweakshello">This section contains tweaks that can be used to improve photo and video quality\n</string>
+    <string name="mediaone">Improving photo quality up to 100%</string>
+    <string name="mediatwo">Improving the quality of the photo shoot and video up to 100%</string>
+    <string name="mediathree">Increase the quality of receive and transmit speech in mobile networks by including AMR WIDEBAND functions</string>
+    <string name="mediafour">Improve Video Streaming quality</string>
+    <string name="mediafive">Improving flashlight quality </string>
+    <string name="delstrim">Delete FSTRIM library</string>
+    <string name="helloatr">Hello!</string>
+    <string name="ponatno">Understand</string>
+    <string name="rebootactionbar">Reboot device?)</string>
+    <string name="close">Please click BACK again to exit</string>
+    <string name="rebootmanager">Reboot manager</string>
+    <string name="reboothello">On this page you can  shutdown or reboot your device in the selected by you mode\n</string>
+    <string name="hotreboot">Hot reboot</string>
+    <string name="shutdown">Shutdown</string>
+    <string name="rebootrec">Reboot into recovery</string>
+    <string name="rebootbottloader">Reboot into bootloader</string>
+    <string name="shutdownconf">Are you sure want to turn off your device?)</string>
+    <string name="hotrebootconf">Are you sure want to make hot reboot?)</string>
+    <string name="rebootrecovconf">Are you sure want to reboot info recovery?)</string>
+    <string name="rebootbootloaderdialog">Are you sure want to reboot info bootloader?)</string>
+    <string name="rootbusybox">This app need working root, busybox and init.d! You can activate init.d support with Init.d toogler program\n\nYou can install busybox using Busybox app\n\nAll this apps present in Google Play!</string>
+    <string name="okinstall">Ok, i understand</string>
+    <string name="dpi1">On this page you can change your device\'s DPI. \n\nDPI - Dots Per Inch. It is used to determine the screen resolution. By changing the DPI you can increase or decrease the items on the screen</string>
+    <string name="licensecheckbox">You agree with the Agreement</string>
+    <string name="openvpnsupport">OpenVPN support</string>
+    <string name="ext4tweak">Optimize EXT4 file system every boot (use only if your device have EXT4 file system)</string>
+    <string-array name="ramlist">
+        <item>(standart)</item>
+        <item>Gaming</item>
+        <item>Balanced</item>
+        <item>Multitasking</item>
+    </string-array>
+    <string name="ram">RAM Mode</string>
+    <string name="jjj">Root, busybox and init.d support are needed!</string>
+    <string name="var1">Improve system boot</string>
+    <string name="reboot1dialog">Are you sure want to fully reboot your device?)</string>
+    <string name="otherapps">Our other apps:</string>
+    <string name="displayfix">Improve display image quality\nImplemented by the system calibration </string>
+    <string name="pro">PRO version</string>
+</resources>
