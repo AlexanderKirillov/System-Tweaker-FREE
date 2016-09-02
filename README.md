@@ -1,7 +1,8 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i>Download APK (FREE version):</i> [MediaFire](http://www.mediafire.com/download/hxj400djkcinxs5/System_Tweaker_FREE_1.0.0.apk)
+### <i><b>Current version: 1.0.0</b></i>
 
+### <i>Download APK (FREE version):</i> [MediaFire](https://www.mediafire.com/?npafj46uk3jr3rs)
 
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
@@ -38,7 +39,7 @@ Speeding up your device has never been so easy! With this program you can really
 And send all to NowenUI@bk.ru
 
 
-##Video Review
+##Video Review (PRO version)
 
 [![Review [russian]](http://img.youtube.com/vi/fQhEU1_3jJw/0.jpg)](https://www.youtube.com/watch?v=fQhEU1_3jJw)
 
