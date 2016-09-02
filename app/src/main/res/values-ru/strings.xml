@@ -178,7 +178,6 @@
     <string name="rootbusybox">Приложению требуются Root права, рабочий busybox и поддержка init.d!\n\nУстановить Busybox Вы можете с помощью программы Busybox\n\nАктивировать поддержку Init.d Вы можете с помощью программы Init.d Toogler\n\nВсе эти программы Вы можете найти в Google Play</string>
     <string name="okinstall">Ясно, сейчас установлю</string>
     <string name="licensecheckbox">Вы согласны с соглашением</string>
-    <string name="openvpnsupport">Поддержка OpenVPN</string>
     <string name="ext4tweak">Оптимизировать работу файловой системы EXT4 при каждой загрузке  (используйте только если Ваше устройство имет соответствующую файловую систему)</string>
     <string-array name="ramlist">
         <item>(стандарт)</item>

@@ -189,7 +189,6 @@ It is also recommended after the reboot to go to the this speed-up utility and c
     <string name="okinstall">Ok, i understand</string>
     <string name="dpi1">On this page you can change your device\'s DPI. \n\nDPI - Dots Per Inch. It is used to determine the screen resolution. By changing the DPI you can increase or decrease the items on the screen</string>
     <string name="licensecheckbox">You agree with the Agreement</string>
-    <string name="openvpnsupport">OpenVPN support</string>
     <string name="ext4tweak">Optimize EXT4 file system every boot (use only if your device have EXT4 file system)</string>
     <string-array name="ramlist">
         <item>(standart)</item>

@@ -10,12 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jaredrummler.android.device.DeviceName;
 import com.nowenui.systemtweakerfree.R;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import github.nisrulz.easydeviceinfo.EasyBatteryMod;
+import github.nisrulz.easydeviceinfo.EasyDeviceMod;
+import github.nisrulz.easydeviceinfo.EasyDisplayMod;
+import github.nisrulz.easydeviceinfo.EasyIdMod;
 
 public class AboutFragment extends Fragment {
 
@@ -37,14 +43,14 @@ public class AboutFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.about_device, parent, false);
 
-        BatteryInfo easyBatteryMod = new BatteryInfo(getContext());
+        EasyBatteryMod easyBatteryMod = new EasyBatteryMod(getContext());
         int battery_health = easyBatteryMod.getBatteryHealth();
         Resources res = getResources();
         switch (battery_health) {
-            case BatteryInfo.HEALTH_GOOD:
+            case EasyBatteryMod.HEALTH_GOOD:
                 BatteryHealth = res.getString(R.string.goodbatterystatus);
                 break;
-            case BatteryInfo.HEALTH_HAVING_ISSUES:
+            case EasyBatteryMod.HEALTH_HAVING_ISSUES:
                 BatteryHealth = res.getString(R.string.problems);
                 break;
             default:
@@ -97,11 +103,12 @@ public class AboutFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        BatteryInfo easyBatteryMod = new BatteryInfo(getContext());
-        DeviceInfo easyDeviceMod = new DeviceInfo(getContext());
-        IdInfo easyIdMod = new IdInfo(getContext());
-        DisplayInfo easyDisplayMod = new DisplayInfo(getContext());
+        EasyBatteryMod easyBatteryMod = new EasyBatteryMod(getContext());
+
+        EasyIdMod easyIdMod = new EasyIdMod(getContext());
+        EasyDisplayMod easyDisplayMod = new EasyDisplayMod(getContext());
         MemInfo easyMemoryMod = new MemInfo(getContext());
+        EasyDeviceMod easydevicemod = new EasyDeviceMod(getContext());
         TextView tv1 = (TextView) view.findViewById(R.id.textviewabout1);
         TextView tv2 = (TextView) view.findViewById(R.id.textviewabout2);
         TextView tv3 = (TextView) view.findViewById(R.id.textviewabout3);
@@ -139,16 +146,16 @@ public class AboutFragment extends Fragment {
         tv1.setText(res.getString(R.string.yourdevice) + " "
                 + DeviceName.getDeviceName() + "\n" + res.getString(R.string.model) + " " + android.os.Build.MODEL
                 + "\n" + res.getString(R.string.serial) + " " + android.os.Build.SERIAL + "\n"
-                + res.getString(R.string.cod) + " " + easyDeviceMod.getDevice() + "\n" + "\n"
+                + res.getString(R.string.cod) + " " + easydevicemod.getDevice() + "\n" + "\n"
                 + res.getString(R.string.android) + " " + android.os.Build.VERSION.RELEASE + " "
-                + easyDeviceMod.getOSCodename() + "\n" + res.getString(R.string.boot)
+                + easydevicemod.getOSCodename() + "\n" + res.getString(R.string.boot)
                 + android.os.Build.BOOTLOADER + " " + "\n" + res.getString(R.string.radio)
-                + " " + easyDeviceMod.getRadioVer() + "\n" + res.getString(R.string.rom) + " "
-                + easyDeviceMod.getBuildVersionIncremental() + "\n" + res.getString(R.string.language) + " " + easyDeviceMod.getLanguage().toUpperCase()
+                + " " + easydevicemod.getRadioVer() + "\n" + res.getString(R.string.rom) + " "
+                + easydevicemod.getBuildVersionIncremental() + "\n" + res.getString(R.string.language) + " " + easydevicemod.getLanguage().toUpperCase()
                 + "\n" + "• Android ID: " + easyIdMod.getAndroidID() + "\n" + "• PseudoID: "
                 + easyIdMod.getPseudoUniqueID() + "\n" + "• GSF ID: " + easyIdMod.getGSFID()
                 + "\n"
-                + res.getString(R.string.sdk) + " " + easyDeviceMod.getBuildVersionSDK() + "\n");
+                + res.getString(R.string.sdk) + " " + easydevicemod.getBuildVersionSDK() + "\n");
         tv2.setText(res.getString(R.string.processor) + " " + getCPUName() + "\n"
                 + res.getString(R.string.processortype) + " " + android.os.Build.CPU_ABI + "\n");
         tv3.setText("• RAM: " + easyMemoryMod.getTotalRAM() + " Mb"

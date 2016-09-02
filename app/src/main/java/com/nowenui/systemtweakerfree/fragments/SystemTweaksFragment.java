@@ -790,9 +790,7 @@ public class SystemTweaksFragment extends Fragment {
             if (isLangRU || isLangBE || isLangUK) {
                 int spinnerPosition2 = adapter3.getPosition("Игровой");
                 spinner6.setSelection(spinnerPosition2);
-            }
-            else
-            {
+            } else {
                 int spinnerPosition1 = adapter3.getPosition("Gaming");
                 spinner6.setSelection(spinnerPosition1);
             }
