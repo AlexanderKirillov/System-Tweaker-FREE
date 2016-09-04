@@ -2,7 +2,6 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,8 +101,8 @@ public class HomeFragment extends Fragment {
     }
 
     public int isInitdSupport() {
-        File f = new File(Environment.getRootDirectory() + "/etc/init.d");
-        File f1 = new File(Environment.getRootDirectory() + "/su.d");
+        File f = new File("/system/etc/init.d");
+        File f1 = new File("/system/su.d");
         File f2 = new File("/su/su.d");
         if ((f.exists()) && (f.isDirectory()) || (f1.exists()) && (f1.isDirectory()) || (f2.exists()) && (f2.isDirectory())) {
             return R.string.initd;

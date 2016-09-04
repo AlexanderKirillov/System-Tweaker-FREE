@@ -1,8 +1,8 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 1.0.0</b></i>
+### <i><b>Current version: 1.0.2</b></i>
 
-### <i>Download APK (FREE version):</i> [MediaFire](https://www.mediafire.com/?npafj46uk3jr3rs)
+### <i>Download APK (FREE version):</i> [MediaFire](https://www.mediafire.com/?quhg8cknc877wr7)
 
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)

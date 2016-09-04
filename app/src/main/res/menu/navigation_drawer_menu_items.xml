@@ -66,6 +66,14 @@
                 android:title="@string/varioustweaks" />
         </menu>
     </item>
+    <item android:title="Советы">
+        <menu>
+            <item
+                android:id="@+id/navigation_drawer_item30"
+                android:icon="@drawable/faq"
+                android:title="FAQ и решение проблем" />
+        </menu>
+    </item>
     <item android:title="@string/prochee">
         <menu>
             <item

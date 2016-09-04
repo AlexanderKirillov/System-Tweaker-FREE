@@ -32,6 +32,7 @@ import com.nowenui.systemtweakerfree.fragments.BatteryTweaksEnFragment;
 import com.nowenui.systemtweakerfree.fragments.BatteryTweaksFragment;
 import com.nowenui.systemtweakerfree.fragments.CautonFragment;
 import com.nowenui.systemtweakerfree.fragments.ConnectWithDeveloperFragment;
+import com.nowenui.systemtweakerfree.fragments.FAQFragment;
 import com.nowenui.systemtweakerfree.fragments.FstrimFragment;
 import com.nowenui.systemtweakerfree.fragments.HomeFragment;
 import com.nowenui.systemtweakerfree.fragments.InternetTweaksFragment;
@@ -408,6 +409,14 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 int pid = android.os.Process.myPid();
                                 android.os.Process.killProcess(pid);
+                                break;
+                            case R.id.navigation_drawer_item30:
+                                fragmentTitle = "FAQ и решение проблем";
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
+                                        .replace(R.id.content, FAQFragment.newInstance(bundle))
+                                        .commit();
                                 break;
                         }
 

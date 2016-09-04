@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -114,8 +113,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public int isInitdSupport() {
-        File f = new File(Environment.getRootDirectory() + "/etc/init.d");
-        File f1 = new File(Environment.getRootDirectory() + "/su.d");
+        File f = new File("/system/etc/init.d");
+        File f1 = new File("/system/su.d");
         File f2 = new File("/su/su.d");
         if ((f.exists()) && (f.isDirectory()) || (f1.exists()) && (f1.isDirectory()) || (f2.exists()) && (f2.isDirectory())) {
             return 1;

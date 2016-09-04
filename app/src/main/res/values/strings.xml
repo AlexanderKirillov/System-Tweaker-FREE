@@ -32,11 +32,6 @@
     <string name="errordev">ERROR! PLEASE CONNECT WITH DEVELOPER</string>
     <string name="erroroot">ERROR! YOU HAVENT ROOT!</string>
     <string name="errobusybox">ERROR! BUSYBOX IS NEEDED!</string>
-    <string name="rebootdialogoneclick">It is recommended to reboot now.\n\n
-
-Do you want to reboot your device? \n\n
-
-It is also recommended after the reboot to go to the this speed-up utility and click on the optimize button. The system is fully optimized and will work well and smoothly!</string>
     <string name="delettweaks">Tweaks deleted!</string>
     <string name="backupsucc">Backup successfully created!</string>
     <string name="error">Error!</string>
@@ -153,8 +148,6 @@ It is also recommended after the reboot to go to the this speed-up utility and c
     <string name="delete">Disabled!</string>
     <string name="enable">Enabled</string>
     <string name="disable">Disabled</string>
-    <string name="stopedservice">Service stopped</string>
-    <string name="startedservice">Service started</string>
     <string name="mediaserver">MediaServer - it is a system service that scans the external memory (if available), and the internal memory of the presence of media. Please make service shutdown only when you have problems with performance or powersave.</string>
     <string name="stopmediascanner">Stop MediaScanner</string>
     <string name="startmediascanner">Start MediaScanner</string>
@@ -187,7 +180,6 @@ It is also recommended after the reboot to go to the this speed-up utility and c
     <string name="rebootbootloaderdialog">Are you sure want to reboot info bootloader?)</string>
     <string name="rootbusybox">This app need working root, busybox and init.d! You can activate init.d support with Init.d toogler program\n\nYou can install busybox using Busybox app\n\nAll this apps present in Google Play!</string>
     <string name="okinstall">Ok, i understand</string>
-    <string name="dpi1">On this page you can change your device\'s DPI. \n\nDPI - Dots Per Inch. It is used to determine the screen resolution. By changing the DPI you can increase or decrease the items on the screen</string>
     <string name="licensecheckbox">You agree with the Agreement</string>
     <string name="ext4tweak">Optimize EXT4 file system every boot (use only if your device have EXT4 file system)</string>
     <string-array name="ramlist">
@@ -203,4 +195,5 @@ It is also recommended after the reboot to go to the this speed-up utility and c
     <string name="otherapps">Our other apps:</string>
     <string name="displayfix">Improve display image quality\nImplemented by the system calibration </string>
     <string name="pro">PRO version</string>
+    <string name="firstbatterytweak">-</string>
 </resources>
