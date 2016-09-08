@@ -112,12 +112,28 @@ public class MediaTweaksFragment extends Fragment {
         } else {
             checkbox17.setChecked(false);
         }
+        checkbox17.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.med1)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         checkbox17.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
+
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -189,13 +205,27 @@ public class MediaTweaksFragment extends Fragment {
         } else {
             checkbox18.setChecked(false);
         }
+        checkbox18.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.med2)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         checkbox18.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
-
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -269,6 +299,21 @@ public class MediaTweaksFragment extends Fragment {
         } else {
             checkbox19.setChecked(false);
         }
+        checkbox19.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.med3)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         checkbox19.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -350,6 +395,21 @@ public class MediaTweaksFragment extends Fragment {
         } else {
             ch21.setChecked(false);
         }
+        ch21.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.med4)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         ch21.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -444,6 +504,21 @@ public class MediaTweaksFragment extends Fragment {
         } else {
             ch22.setChecked(false);
         }
+        ch22.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.med5)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         ch22.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -527,5 +602,6 @@ public class MediaTweaksFragment extends Fragment {
 
         return view;
     }
+
 
 }

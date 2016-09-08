@@ -195,5 +195,150 @@
     <string name="otherapps">Our other apps:</string>
     <string name="displayfix">Improve display image quality\nImplemented by the system calibration </string>
     <string name="pro">PRO version</string>
-    <string name="firstbatterytweak">-</string>
+    <string name="firstbatterytweak">Google Services tweak\nFixes overuse battery of Google services</string>
+      <string name="inet1">[BUILD.PROP TWEAK: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
+                \n\nnet.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
+                \n\nnet.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576
+                \n\nnet.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576 ]\n\nThis item allows you to increase the speed and stability of the internet through the applying of enhanced buffers</string>
+   <string name="inet2">[BUILD.PROP TWEAK:\n\nro.ril.hsxpa=2
+\n\nro.ril.hep=1
+\n\nro.ril.enable.dtm=1
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a53=1
+\n\nro.ril.enable.3g.prefix=1
+\n\nro.ril.gprsclass=10
+\n\nro.ril.hsupa.category=7
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a52=1
+\n\nro.ril.set.mtu1472=1
+\n\npersist.cust.tel.eons=1\n\nINIT.D TWEAK: 05InternetTweak.\n\nCONTAINS:\n\necho "0" > /proc/sys/net/ipv4/tcp_timestamps;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_reuse;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_sack;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_recycle;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_window_scaling;
+\n\necho "5" > /proc/sys/net/ipv4/tcp_keepalive_probes;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_keepalive_intvl;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_fin_timeout;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_dsack
+\n\necho "1" > /proc/sys/net/ipv4/tcp_moderate_rcvbuf
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
+\n\necho "1" > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses\n\nIf you apply this tweak, it will be located in /system/etc/init.d ]\n\nIt allows you to configure the current TCP mode by optimal settings for all devices and apply build.prop special tweaks for improved performance 3G and 4G!</string>
+  <string name="inet3">[BUILD.PROP TWEAK: \nnet.dns2=8.8.4.4
+               \n\nnet.rmnet0.dns1=8.8.8.8
+                 \n\nnet.rmnet0.dns2=8.8.4.4
+               \n\nnet.ppp0.dns1=8.8.8.8
+                \n\nnet.ppp0.dns2=8.8.4.4
+               \n\nnet.wlan0.dns1=8.8.8.8
+                \n\nnet.wlan0.dns2=8.8.4.4
+               \n\nnet.eth0.dns1=8.8.8.8
+               \n\nnet.eth0.dns2=8.8.4.4
+                \n\nnet.gprs.dns1=8.8.8.8
+               \n\nnet.gprs.dns2=8.8.4.4 ]\n\nIt applies the following DNS servers: 8.8.8.8 и 8.8.4.4. It allows you to increase the speed of opening web pages and improve the stability!</string>
+
+    <string name="inet4">[BUILD.PROP TWEAK: \nro.config.hw_fast_dormancy=1]\n\nThis tweak enabling Fast Dormancy! If the operator\'s network supports it, then (theoretically) it saves your battery and smaller loads operator\'s towers. But if the network operator does not support or supports incorrectly, the battery is not saves, plus there may be problems with data transmission</string>
+    <string name="inet5">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv6=1]\n\nForce enable IPv6 data communication protocol</string>
+    <string name="inet6">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv4=1]\n\nForce enable IPv data communication protocol</string>
+    <string name="inet7">[TCP MODE: \ninstalling chosen TCP mode in /proc/sys/net/ipv4/tcp_congestion_control ]</string>
+    <string name="battery1">[INIT.D TWEAK: 05FixGoogleServicedrain\n\nINCLUDES:\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateActivity"
+\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService"
+\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$ActiveReceiver"
+\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$Receiver"
+\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$SecretCodeReceiver"
+\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateActivity"
+\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity"
+\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService"
+\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$Receiver"
+\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$SecretCodeReceiver"\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\n Tweak may fix Google Services wakelocks.. by turning on the same Google services. Yes, a paradox, but the tweak does work and can increase the energy efficiency of your device!</string>
+ <string name="battery2">[INIT.D TWEAK: 00BatteryTweak\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
+\n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows you to increase the battery lifetime by adjusting the individual settings for delayed "dirty" buffers VM.</string>
+    <string name="battery3">[BUILD.PROP TWEAK:\nwifi.supplicant_scan_interval=220 ] \n\nTweek allows you to increase the battery lifetime by increasing the interval of auto scan Wifi networks (to 220 ms). Note that auto-connect to the saved Wifi networks in the background may be a little longer.</string>
+    <string name="battery4">[BUILD.PROP TWEAK:\nro.ril.disable.power.collapse=0\n\nro.vold.umsdirtyratio=20\n\npm.sleep_mode=1 ] \n\nTweek allows you to increase the battery lifetime by enabling Power Collapse mode and setting the sleep mode.</string>
+    <string name="battery5">[BUILD.PROP TWEAK:\npower_supply.wakeup=enable ] \n\nTweek allows you to increase the battery lifetime by activate controls and to prevent sifting device technology Power Supply. \n\nATTENTION! You may have problems with background music playback (but not only) when the screen off!</string>
+    <string name="battery6">[BUILD.PROP TWEAK:\nro.ril.sensor.sleep.control=1 ] \n\nTweek allows you to increase the battery lifetime by enable sleep mode for device sensors, when the device is in sleep</string>
+    <string name="battery7">[BUILD.PROP TWEAK:\nro.mot.eri.losalert.delay=1000 ] \n\nTweek allows you to increase the battery lifetime by increase the delay interrupt service alerts</string>
+    <string name="battery8">[BUILD.PROP TWEAK:\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1 ] \n\nTweek allows you to increase the battery lifetime by disabling background logcats</string>
+    <string name="sys1">[BUILD.PROP TWEAK:\nro.HOME_APP_ADJ=1] \n\nTweek allows to fix launcher in memory, eliminating repainting, restart launcher. Use only if your device have RAM> 1GB</string>
+    <string name="sys2">[INIT.D TWEAK: display\n\nINCLUDES:\n\nsetprop ro.qcom.ad 1
+\n\nsetprop ro.qcom.ad.calib.data /system/etc/ad_calib.cfg ]\n\nIf you apply this tweak, it will be located in /system/etc/init.d. \nAlso applying new file ad_calib.cfg, and which contains the display settings] \n\nTweek allows you to increase the image quality on the display through the applying of a special screen profile</string>
+    <string name="sys3">[BUILD.PROP TWEAK:\nro.kernel.android.checkjni=0 ] \n\nTweek allows you to fix some bugs in applications by disabling their detection</string>
+    <string name="sys4">[BUILD.PROP TWEAK:\n\ndebug.composition.type=gpu\n\ndebug.sf.hw=1\n\ndebug.performance.tuning=1\n\ndebug.egl.profiler=1\n\ndebug.egl.hw=1\n\ndebug.enabletr=true
+                                                                             \n\ndebug.overlayui.enable=1
+                                                                              \n\ndebug.qctwa.preservebuf=1
+                                                                              \n\ndev.pm.dyn_samplingrate=1
+                                                                              \n\nro.fb.mode=1
+                                                                              \n\nro.sf.compbypass.enable=0
+                                                                              \n\nro.vold.umsdirtyratio=20\n\nINIT.D TWEAK: 81GPU_rendering\n\nINCLUDES:\n\nsysrw
+\n\nrm /system/lib/egl/libGLES_android.so
+\n\nbusybox sed -i \'/0 0 android/d\' /system/lib/egl/egl.cfg
+\n\nsysro ] \n\nTweek allows force using the GPU for rendering operations, this improves the smoothness, improves the quality of the video playing, but can cause battery drain. Use only if your device has a powerful GPU! Otherwise, you may have lags!</string>
+    <string name="sys5">[BUILD.PROP TWEAKS:\n\nwindowsmgr.max_events_per_sec=150 \n\nro.min_pointer_dur=8\n\nro.max.fling_velocity=12000\n\nro.min.fling_velocity=8000] \n\nTweek allows to increase the smoothness of scrolling lists, by setting the corresponding parameter</string>
+    <string name="sys6">[INIT.D TWEAK: 93zipalign\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak optimize applications on every boot, and every week, it will increase the speed of opening and smooth operation of all application</string>
+    <string name="sys7">[INIT.D TWEAK: 11sqlite\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak optimize SQLITE on every boot and each week, this will increase the speed of the system and the applications that use SQLite</string>
+    <string name="sys8">[INIT.D TWEAK: ext4\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak optimizes EXT4 filesystem by varios optimization using tune2fs utility. Use your device only has a FS EXT4, otherwise problems can occur!</string>
+    <string name="sys9">[INIT.D TWEAK: ram_balanced, ram_multitasking, ram_gaming (depending on the selected mode)\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak allows you to optimize memory, depending on the mode selected through the application of optimal parameters MinFree, Debug Values, LowMemoryKiller!</string>
+    <string name="sys10">[INIT.D TWEAK: oom_enable и oom_disable (depending on the selected mode)\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nOOM Killer — It is a way to solve the problem of the nucleus when memory is insufficient. It is known that the virtual memory may be an infinite number (within the addressing), but the physical - it is a finite number. Sometimes the system processes consume it all, and we have a system to kill someone in order to continue working. The current implementation OOM Killer in Linux / Android tends to choose the least important process. He chooses among all processes except init and kernel threads, the most waste (badness) and kills him, freeing up memory.</string>
+    <string name="med1">[BUILD.PROP TWEAK:\nro.media.enc.jpeg.quality=100 ] \n\nTweak improves JPEG quality to 100%</string>
+    <string name="med2">[BUILD.PROP TWEAK:\n\nro.media.dec.jpeg.memcap=8000000\n\nro.media.enc.hprof.vid.bps=8000000 ] \n\n
+Tweak sets the maximum threshold of quality shooting photos and videos</string>
+    <string name="med3">[BUILD.PROP TWEAK:\nro.ril.enable.amr.wideband=1 ] \n\nThis tweak enabling AMR WideBand. E.g improves the quality of the transmitted and received voice during a call, e.g removes the noise. It may not be supported by all operators!</string>
+    <string name="med4">[BUILD.PROP TWEAK:\n\nmedia.stagefright.enable-player=true\n\nmedia.stagefright.enable-meta=true\n\nmedia.stagefright.enable-scan=true\n\nmedia.stagefright.enable-http=true\n\nmedia.stagefright.enable-rtsp=true\n\nmedia.stagefright.enable-record=false ] \n\nTweak allows to increase the quality of streaming video by incorporating various parameters StageFright</string>
+    <string name="med5">[BUILD.PROP TWEAK:\n\nro.media.capture.flash=led\n\nro.media.capture.flashMinV=3300000\n\nro.media.capture.torchIntensity=65\n\nro.media.capture.flashIntensity=100 ] \n\nTweak directly affects the parameters of the flash module.
+In this case- it increases the intensity and minimum illumination threshold
+(flash- sets the intensity of the 100, and for flashlight - 65)</string>
+
+    <string name="al1">[BUILD.PROP TWEAK:\ndebug.sf.nobootanimation=1 ] \n\nThis tweak disabling bootanimation.</string>
+    <string name="al2">[BUILD.PROP TWEAK:\npersist.adb.notify=0 ] \n\nTweak removes ADB debug icon from statusbar</string>
+    <string name="al3">[INIT.D TWEAK: quick_power\n\INCLUDES:\n\nsetprop ro.config.hw_quickpoweron true\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak speeding up system boot!</string>
+    <string name="ker1">[INIT.D TWEAK: sdcard_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak speeding up sdcard by increasing the read/write buffers</string>
+    <string name="ker2">[INIT.D TWEAK: flags \n\nINCLUDES:\n\nsetprop ENFORCE_PROCESS_LIMIT false
+\n\nsetprop MAX_SERVICE_INACTIVITY false
+\n\nsetprop MIN_HIDDEN_APPS false
+\n\nsetprop CONTENT_APP_IDLE_OFFSET false
+\n\nsetprop EMPTY_APP_IDLE_OFFSET false
+\n\nsetprop ACTIVITY_INACTIVITY_RESET_TIME false
+\n\nsetprop MIN_RECENT_TASKS false
+\n\nsetprop APP_SWITCH_DELAY_TIME false
+\n\nsetprop PROC_START_TIMEOUT false
+\n\nsetprop CPU_MIN_CHECK_DURATION false
+\n\nsetprop GC_TIMEOUT false
+\n\nsetprop SERVICE_TIMEOUT false
+\n\nsetprop MIN_CRASH_INTERVAL false\n\n\n\nIf you apply this tweak, it will be located in /system/etc/init.d ]\n\Tweak configures the kernel flags by assigning them special options</string>
+    <string name="ker3">[INIT.D TWEAK: io_extend_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows separate I/O threads by assigning the value of the variable 1024 in nr_requests</string>
+    <string name="ker4">[INIT.D TWEAK: io_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak speeding up I/O system by changing the values in the variables rq_affinity,rotational,iostats,nomerges</string>
+    <string name="ker5">[INIT.D TWEAK: kernel_panning\n\nINCLUDES: \n\nbusybox sysctl -w vm.panic_on_oom=0
+\n\nbusybox sysctl -w kernel.softlockup_panic=0
+\n\nbusybox sysctl -w kernel.panic_on_oops=0
+\n\nbusybox sysctl -w kernel.panic=0\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak disabling Kernel Panic mode that can increase stability and performance</string>
+    <string name="ker6">[INIT.D TWEAK: 11NSTweak\n\nINCLUDES:\n\necho NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak can disable NORMALIZE SLEEPER</string>
+    <string name="ker7">[INIT.D TWEAK: kernel_sleeper\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves Sleeper\'s values, which can increase the energy efficiency and performance!</string>
+    <string name="ker8">[INIT.D TWEAK: cpu_optimize\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis item allows you to apply basic kernel tweaks that will reduce the percentage of CPU usage by applications, speed up system, increase values such as /dev/cpuctl/cpu.shares, /dev/cpuctl/cpu.rt_runtime_us, /dev/cpuctl/cpu.rt_period_us и др.</string>
+    <string name="ker9">[INIT.D TWEAK: zram\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nZRam is a Linux/ANDROID kernel feature that provides a form of virtual memory compression. zram increases performance by avoiding paging to disk and using a compressed block device in RAM instead, inside which paging takes place until it is necessary to use the swap space on a hard disk drive. Since using zram is an alternative way to provide swapping on RAM, zram allows Linux/ANDROID to make a better use of RAM when swapping/paging is required, especially on older computers with less RAM installed</string>
+    <string name="ker10">[INIT.D TWEAK: ksm\n\nINCLUDES: \n\nbusybox chmod 644 /sys/kernel/mm/ksm/*
+\nbusybox echo "1" > /sys/kernel/mm/ksm/run
+\nbusybox echo "64" > /sys/kernel/mm/ksm/pages_to_scan
+\nbusybox echo "500" > /sys/kernel/mm/ksm/sleep_millisecs\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nKSM is a kernel feature that makes it possible for a hypervisor system to share identical memory pages amongst different processes or virtualized guests. While not directly linked, Kernel-based Virtual Machine (KVM) can use KSM to merge memory pages occupied by virtual machines.</string>
+    <string name="ker11">[INIT.D TWEAK: mpcs\n\nINCLUDES: \n\nbusybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings;\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this feature can increase the battery life by sheduler-setting. Use only if your device has two or more cores!</string>
+    <string name="ker12">[INIT.D TWEAK: fastcharge\n\nINCLUDES: \n\nbusybox echo "1" > /sys/kernel/fast_charge/force_fast_charge\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this function can speed up the process of charging the device, but it may harm the battery!</string>
+    <string name="arttext">ART Fix\nImproves system speed</string>
+    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=interpret-only\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nTweak increase system and applications speed by changing the dex2oat mode , also on your device will no longer disappear memory, and it is possible to reduce the time to optimize the application after cleaning caches!</string>
+    <string name="att">ATTENTION!</string>
+    <string name="atttext">Dalvik cache will be cleared. Continue?</string>
+    <string name="perftweak">Performance tweak</string>
+     <string name="perf">[BUILD.PROP TWEAK:\n\ndebug.performance.tuning=1
+\n\npersist.sys.use_dithering=0
+\n\npersist.sys.use_16bpp_alpha=1
+\n\nro.min.fling_velocity=8000
+\n\nro.mot.eri.losalert.delay=1000 \n\nINIT.D :TWEAK BOOST\n\nINCLUDES:\n\nsync
+busybox sysctl -w vm.drop_caches=3
+busybox sysctl -w vm.dirty_ratio = 1
+busybox sysctl -w vm.dirty_background_ratio = 1\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves system speed by disabling Dithering, improving scroling speed (Fling Velocity) and etc.</string>
+    <string name="tweakabout">About tweak</string>
+    <string name="rebootdalvik">Tweak applied and we cleared Dalvik cache\n\nReboot device required!</string>
+    <string name="rebootdalvikdis">Tweak disabled and we cleared Dalvik cache\n\nReboot device required!</string>
+    <string name="touchtweak">Touchscreen tweak\nImproves touch quality</string>
+    <string name="tw">[INIT.D TWEAK touch\n\nINCLUDES: \n\necho 7025 > /sys/class/touch/switch/set_touchscreen\n\necho 8002 > /sys/class/touch/switch/set_touchscreen\n\necho 11001 > /sys/class/touch/switch/set_touchscreen\n\necho 13030 > /sys/class/touch/switch/set_touchscreen\n\necho 14005 > /sys/class/touch/switch/set_touchscreen\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this feauture can improve touchscreen speed and quality</string>
+    <string name="sucessreboot">Successful!We recommend to reboot your device!</string>
 </resources>

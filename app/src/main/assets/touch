@@ -1,0 +1,32 @@
+#!/system/bin/sh
+
+mount -o remount,rw / 2>/dev/null
+mount -o remount,rw / / 2>/dev/null
+mount -o remount,rw rootfs 2>/dev/null
+mount -o remount,rw /system 2>/dev/null
+mount -o remount,rw /system /system 2>/dev/null
+busybox mount -o remount,rw / 2>/dev/null
+busybox mount -o remount,rw / / 2>/dev/null
+busybox mount -o remount,rw rootfs 2>/dev/null
+busybox mount -o remount,rw /system 2>/dev/null
+busybox mount -o remount,rw /system /system 2>/dev/null
+
+if [ -e /sys/class/touch/switch/set_touchscreen ]; then
+	 echo 7025 > /sys/class/touch/switch/set_touchscreen
+	 echo 8002 > /sys/class/touch/switch/set_touchscreen
+	 echo 11001 > /sys/class/touch/switch/set_touchscreen
+	 echo 13030 > /sys/class/touch/switch/set_touchscreen
+	 echo 14005 > /sys/class/touch/switch/set_touchscreen
+fi
+
+mount -o remount,ro / 2>/dev/null
+mount -o remount,ro / / 2>/dev/null
+mount -o remount,ro rootfs 2>/dev/null
+mount -o remount,ro /system 2>/dev/null
+mount -o remount,ro /system /system 2>/dev/null
+busybox mount -o remount,ro / 2>/dev/null
+busybox mount -o remount,ro / / 2>/dev/null
+busybox mount -o remount,ro rootfs 2>/dev/null
+busybox mount -o remount,ro /system 2>/dev/null
+busybox mount -o remount,ro /system /system 2>/dev/null
+

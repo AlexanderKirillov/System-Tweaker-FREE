@@ -1,17 +1,22 @@
 package com.nowenui.systemtweakerfree;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -51,6 +56,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_WRITE_STORAGE = 112;
     DrawerLayout androidDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -133,8 +139,31 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
 
+        boolean hasPermission = (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        if (!hasPermission) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_WRITE_STORAGE);
+        }
+
         copyAssets();
 
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_WRITE_STORAGE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    copyAssets();
+                } else {
+                    Toast.makeText(this, "Для работы приложения Вы должны предоставить доступ!", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
 
     }
 
@@ -443,9 +472,16 @@ public class MainActivity extends AppCompatActivity {
             OutputStream out = null;
             try {
                 in = assetManager.open(filename);
-                File outFile = new File(this.getExternalFilesDir(null), filename);
+                File folder = new File(Environment.getExternalStorageDirectory() +
+                        File.separator + "SystemTweakerFREE");
+                if (!folder.exists()) {
+                    folder.mkdir();
+                }
+                File outFile = new File(folder, filename);
                 out = new FileOutputStream(outFile);
                 copyFile(in, out);
+
+
             } catch (IOException e) {
             } finally {
                 if (in != null) {

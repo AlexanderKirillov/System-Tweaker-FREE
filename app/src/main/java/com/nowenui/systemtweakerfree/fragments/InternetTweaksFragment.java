@@ -3,8 +3,8 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,16 +21,23 @@ import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
 
-    private CheckBox checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15, tcpboot, openvpnsupport;
-    private SwitchCompat switch1;
-
+    private static final String PRE_PATH = "/proc/sys/net/ipv4/";
+    private final static int BUFFER_SIZE = 2048;
+    private CheckBox checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15;
+    private Scanner file_scanner;
 
     public static InternetTweaksFragment newInstance(Bundle bundle) {
         InternetTweaksFragment messagesFragment = new InternetTweaksFragment();
@@ -40,6 +47,43 @@ public class InternetTweaksFragment extends Fragment {
         }
 
         return messagesFragment;
+    }
+
+    private static String readString(String filename) {
+        try {
+            File f = new File(filename);
+            if (f.exists()) {
+                InputStream is = null;
+                if (f.canRead()) {
+                    is = new FileInputStream(f);
+                } else {
+                    String[] commands = {
+                            "cat " + filename + "\n", "exit\n"
+                    };
+                    Process p = Runtime.getRuntime().exec("su");
+                    DataOutputStream dos = new DataOutputStream(p.getOutputStream());
+                    for (String command : commands) {
+                        dos.writeBytes(command);
+                        dos.flush();
+                    }
+                    if (p.waitFor() == 0) {
+                        is = p.getInputStream();
+                    } else {
+                        return null;
+                    }
+                }
+                BufferedReader br = new BufferedReader(new InputStreamReader(is), BUFFER_SIZE);
+                String line = br.readLine();
+                br.close();
+                return line;
+            } else {
+                return null;
+            }
+        } catch (InterruptedException iex) {
+            return null;
+        } catch (IOException ioex) {
+            return null;
+        }
     }
 
     @Override
@@ -82,25 +126,38 @@ public class InternetTweaksFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public String[] readAvailablecong() throws Exception {
+        String file_path = PRE_PATH + "tcp_available_congestion_control";
+        File scalingAvailableFrequenciesFile = new File(file_path);
+        ArrayList<String> availableFrequencies = new ArrayList<String>();
+        file_scanner = new Scanner(scalingAvailableFrequenciesFile);
+        while (file_scanner.hasNext()) {
+            availableFrequencies.add(file_scanner.next());
+        }
+        String[] availableFrequenciesArray = new String[availableFrequencies.size()];
+        availableFrequenciesArray = availableFrequencies.toArray(availableFrequenciesArray);
+
+        return availableFrequenciesArray;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 
         RootTools.debugMode = false;
 
-        final View view = inflater.inflate(R.layout.fragment_internettweaks, parent, false);
+        View view = inflater.inflate(R.layout.fragment_internettweaks, parent, false);
 
         File file = new File("/proc/sys/net/ipv4/tcp_congestion_control");
 
-        StringBuilder text = new StringBuilder();
+        final StringBuilder text5 = new StringBuilder();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
 
             while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+                text5.append(line);
             }
             br.close();
         } catch (IOException e) {
@@ -122,6 +179,7 @@ public class InternetTweaksFragment extends Fragment {
         } catch (IOException e) {
         }
 
+
         checkbox10 = (CheckBox) view.findViewById(R.id.checkBox10);
         if (text2.toString().contains("net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960")
                 && text2.toString().contains("net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960")
@@ -136,13 +194,27 @@ public class InternetTweaksFragment extends Fragment {
         } else {
             checkbox10.setChecked(false);
         }
+        checkbox10.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet1)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
-
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -232,12 +304,40 @@ public class InternetTweaksFragment extends Fragment {
         );
 
         checkbox11 = (CheckBox) view.findViewById(R.id.checkBox11);
-        String check6 = "/system/etc/init.d/05InternetTweak";
-        if (new File(check6).exists()) {
+        String check6 = "/etc/init.d/05InternetTweak";
+        String check6a = "/system/etc/init.d/05InternetTweak";
+        if ((new File(Environment.getRootDirectory() + check6).exists() || new File(check6a).exists() || new File(Environment.getRootDirectory() + check6a).exists()) &&
+                text2.toString().contains("ro.ril.hsxpa=2")
+                && text2.toString().contains("ro.ril.hep=1")
+                && text2.toString().contains("ro.ril.enable.dtm=1")
+                && text2.toString().contains("ro.ril.hsdpa.category=10")
+                && text2.toString().contains("ro.ril.enable.a53=1")
+                && text2.toString().contains("ro.ril.enable.3g.prefix=1")
+                && text2.toString().contains("ro.ril.gprsclass=10")
+                && text2.toString().contains("ro.ril.hsupa.category=7")
+                && text2.toString().contains("ro.ril.hsdpa.category=10") &&
+                text2.toString().contains("ro.ril.enable.a52=1")
+                && text2.toString().contains("ro.ril.set.mtu1472=1")
+                && text2.toString().contains("persist.cust.tel.eons=1")) {
             checkbox11.setChecked(true);
         } else {
             checkbox11.setChecked(false);
         }
+        checkbox11.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet2)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -251,7 +351,32 @@ public class InternetTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/05InternetTweak /system/etc/init.d/",
+                                                                              "busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hep/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
+                                                                              "busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
+                                                                              "echo \"ro.ril.hsxpa=2\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.hep=1\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.enable.dtm=1\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.enable.a53=1\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.enable.3g.prefix=1\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.gprsclass=10\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.hsupa.category=7\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.enable.a52=1\" >> /system/build.prop",
+                                                                              "echo \"ro.ril.set.mtu1472=1\" >> /system/build.prop",
+                                                                              "echo \"persist.cust.tel.eons=1\" >> /system/build.prop",
+                                                                              "cp  /sdcard/SystemTweakerFREE/05InternetTweak /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/05InternetTweak",
                                                                               "dos2unix /system/etc/init.d/05InternetTweak",
                                                                               "sh /system/etc/init.d/05InternetTweak",
@@ -282,6 +407,19 @@ public class InternetTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
+                                                                              "busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hep/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
+                                                                              "busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
                                                                               "rm -f /system/etc/init.d/05InternetTweak",
                                                                               "busybox mount -o ro,remount /proc /system"
                                                                       );
@@ -327,6 +465,23 @@ public class InternetTweaksFragment extends Fragment {
         } else {
             checkbox12.setChecked(false);
         }
+
+        checkbox12.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet3)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
+
         checkbox12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -437,13 +592,28 @@ public class InternetTweaksFragment extends Fragment {
         } else {
             checkbox13.setChecked(false);
         }
+
+        checkbox13.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet4)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox13.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
-
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -514,12 +684,28 @@ public class InternetTweaksFragment extends Fragment {
         } else {
             checkbox14.setChecked(false);
         }
+        checkbox14.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet5)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
+
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -590,13 +776,27 @@ public class InternetTweaksFragment extends Fragment {
         } else {
             checkbox15.setChecked(false);
         }
+        checkbox15.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.inet6)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox15.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
-
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {

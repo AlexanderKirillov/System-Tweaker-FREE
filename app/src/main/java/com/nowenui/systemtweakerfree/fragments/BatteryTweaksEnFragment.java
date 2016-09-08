@@ -3,6 +3,7 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeoutException;
 
 public class BatteryTweaksEnFragment extends Fragment {
 
-    private CheckBox checkbox2, checkbox3, checkbox4, checkbox5, checkbox8, checkbox7, checkbox6;
+    private CheckBox checkbox, checkbox2, checkbox3, checkbox4, checkbox5, checkbox8, checkbox7, checkbox6;
 
 
     public static BatteryTweaksEnFragment newInstance(Bundle bundle) {
@@ -109,12 +110,28 @@ public class BatteryTweaksEnFragment extends Fragment {
         }
 
         checkbox2 = (CheckBox) view.findViewById(R.id.checkBox2);
-        String check3 = "/system/etc/init.d/00BatteryImprove";
-        if (new File(check3).exists()) {
+        String check2 = "/etc/init.d/00BatteryImprove";
+        String check2a = "/system/etc/init.d/00BatteryImprove";
+        if (new File(Environment.getRootDirectory() + check2).exists() || new File(check2a).exists() || new File(Environment.getRootDirectory() + check2a).exists()) {
             checkbox2.setChecked(true);
         } else {
             checkbox2.setChecked(false);
         }
+        checkbox2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery2)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -128,7 +145,7 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                             "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/00BatteryImprove /system/etc/init.d/",
+                                                                             "cp /sdcard/SystemTweakerFREE/00BatteryImprove /system/etc/init.d/",
                                                                              "chmod 777 /system/etc/init.d/00BatteryImprove",
                                                                              "dos2unix /system/etc/init.d/00BatteryImprove",
                                                                              "sh /system/etc/init.d/00BatteryImprove",
@@ -193,6 +210,21 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox3.setChecked(false);
         }
+        checkbox3.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery3)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -271,12 +303,28 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox4.setChecked(false);
         }
+        checkbox4.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery4)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                  @Override
                                                  public void onCheckedChanged(CompoundButton buttonView,
                                                                               boolean isChecked) {
+
                                                      if (isChecked) {
 
                                                          if (RootTools.isBusyboxAvailable()) {
@@ -353,6 +401,21 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox5.setChecked(false);
         }
+        checkbox5.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery5)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -429,6 +492,21 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox6.setChecked(false);
         }
+        checkbox6.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery6)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -505,6 +583,21 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox8.setChecked(false);
         }
+        checkbox8.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery7)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -583,13 +676,27 @@ public class BatteryTweaksEnFragment extends Fragment {
         } else {
             checkbox7.setChecked(false);
         }
+        checkbox7.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.battery8)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
         checkbox7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                  @Override
                                                  public void onCheckedChanged(CompoundButton buttonView,
                                                                               boolean isChecked) {
-
                                                      if (isChecked) {
 
                                                          if (RootTools.isBusyboxAvailable()) {
@@ -662,5 +769,4 @@ public class BatteryTweaksEnFragment extends Fragment {
 
 
     }
-
 }

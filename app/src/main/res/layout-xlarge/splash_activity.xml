@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/splashactivityTextView1"
             android:gravity="center_horizontal"
-            android:text="V1.0.2"
+            android:text="V1.1.0"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#ffffff" />
 

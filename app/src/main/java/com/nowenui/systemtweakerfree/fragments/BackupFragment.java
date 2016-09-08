@@ -111,11 +111,11 @@ public class BackupFragment extends Fragment {
                 if (RootTools.isBusyboxAvailable()) {
                     if (RootTools.isRootAvailable()) {
                         if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweaker/backups");
+                            File f = new File("/sdcard/SystemTweakerFREE/backups");
                             if (f.exists() && f.isDirectory()) {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "cp /system/build.prop /sdcard/SystemTweaker/backups/buildprop.backup",
+                                        "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
                                     Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
@@ -127,9 +127,9 @@ public class BackupFragment extends Fragment {
                             } else {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "mkdir /sdcard/SystemTweaker",
-                                        "mkdir /sdcard/SystemTweaker/backups",
-                                        "cp /system/build.prop /sdcard/SystemTweaker/backups/buildprop.backup",
+                                        "mkdir /sdcard/SystemTweakerFREE/",
+                                        "mkdir /sdcard/SystemTweakerFREE/backups",
+                                        "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
                                     Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
@@ -174,16 +174,16 @@ public class BackupFragment extends Fragment {
                 if (RootTools.isBusyboxAvailable()) {
                     if (RootTools.isRootAvailable()) {
                         if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweaker/backups/init.d");
+                            File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
                             if (f.exists() && f.isDirectory()) {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "rm -r /sdcard/SystemTweaker/backups/init.d",
-                                        "mkdir /sdcard/SystemTweaker",
-                                        "mkdir /sdcard/SystemTweaker/backups",
-                                        "mkdir /sdcard/SystemTweaker/backups/init.d",
-                                        "cp /system/etc/init.d/* /sdcard/SystemTweaker/backups/init.d",
-                                        "dos2unix /sdcard/SystemTweaker/backups/init.d/*",
+                                        "rm -r /sdcard/SystemTweakerFREE/backups/init.d",
+                                        "mkdir /sdcard/SystemTweakerFREE/",
+                                        "mkdir /sdcard/SystemTweakerFREE/backups",
+                                        "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
+                                        "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
+                                        "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
 
@@ -196,11 +196,11 @@ public class BackupFragment extends Fragment {
                             } else {
                                 Command command2 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "mkdir /sdcard/SystemTweaker",
-                                        "mkdir /sdcard/SystemTweaker/backups",
-                                        "mkdir /sdcard/SystemTweaker/backups/init.d",
-                                        "cp /system/etc/init.d/* /sdcard/SystemTweaker/backups/init.d",
-                                        "dos2unix /sdcard/SystemTweaker/backups/init.d/*",
+                                        "mkdir /sdcard/SystemTweakerFREE/",
+                                        "mkdir /sdcard/SystemTweakerFREE/backups",
+                                        "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
+                                        "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
+                                        "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
                                     RootTools.getShell(true).add(command2);
@@ -227,7 +227,7 @@ public class BackupFragment extends Fragment {
         String gettext = getResources().getString(R.string.lastbackup);
 
 
-        File file = new File("/sdcard/SystemTweaker/backups/buildprop.backup");
+        File file = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 
         textViewbackupbuild = (TextView) view.findViewById(R.id.textViewbackupbuild);
@@ -235,7 +235,7 @@ public class BackupFragment extends Fragment {
         textViewbackupbuild.setText(gettext + " " + sdf.format(file.lastModified()));
 
 
-        File file1 = new File("/sdcard/SystemTweaker/backups/init.d");
+        File file1 = new File("/sdcard/SystemTweakerFREE/backups/init.d");
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 
         textViewbackupinitd = (TextView) view.findViewById(R.id.textViewbackupinitd);
@@ -266,12 +266,12 @@ public class BackupFragment extends Fragment {
                 if (RootTools.isBusyboxAvailable()) {
                     if (RootTools.isRootAvailable()) {
                         if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweaker/backups/buildprop.backup");
+                            File f = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
                             if (f.exists()) {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
                                         "rm /system/build.prop",
-                                        "cp /sdcard/SystemTweaker/backups/buildprop.backup /system/build.prop",
+                                        "cp /sdcard/SystemTweakerFREE/backups/buildprop.backup /system/build.prop",
                                         "chmod 644 /system/build.prop",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
@@ -365,12 +365,12 @@ public class BackupFragment extends Fragment {
                 if (RootTools.isBusyboxAvailable()) {
                     if (RootTools.isRootAvailable()) {
                         if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweaker/backups/init.d");
+                            File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
                             if (f.exists() && f.isDirectory()) {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
                                         "rm /system/etc/init.d/*",
-                                        "cp /sdcard/SystemTweaker/backups/init.d/* /system/etc/init.d/",
+                                        "cp /sdcard/SystemTweakerFREE/backups/init.d/* /system/etc/init.d/",
                                         "chmod 755 /system/etc/init.d",
                                         "chmod 777 /system/etc/init.d/*",
                                         "busybox mount -o ro,remount /proc /system"

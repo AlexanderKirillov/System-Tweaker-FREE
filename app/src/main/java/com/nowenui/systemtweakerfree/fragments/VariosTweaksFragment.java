@@ -3,6 +3,7 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -113,13 +114,27 @@ public class VariosTweaksFragment extends Fragment {
         } else {
             checkbox24.setChecked(false);
         }
+        checkbox24.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.al1)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         checkbox24.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
-
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -183,12 +198,28 @@ public class VariosTweaksFragment extends Fragment {
         );
 
         quickboot = (CheckBox) view.findViewById(R.id.quickboot);
-        String check16 = "/system/etc/init.d/quick_power";
-        if (new File(check16).exists()) {
+        String check16 = "/etc/init.d/quick_power";
+        String check16a = "/system/etc/init.d/quick_power";
+        if (new File(Environment.getRootDirectory() + check16).exists() || new File(check16a).exists() || new File(Environment.getRootDirectory() + check16a).exists()) {
             quickboot.setChecked(true);
         } else {
             quickboot.setChecked(false);
         }
+        quickboot.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.al3)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         quickboot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 
@@ -202,7 +233,7 @@ public class VariosTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                             "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/quick_power /system/etc/init.d/",
+                                                                             "cp  /sdcard/SystemTweakerFREE/quick_power /system/etc/init.d/",
                                                                              "chmod 777 /system/etc/init.d/quick_power",
                                                                              "dos2unix /system/etc/init.d/quick_power",
                                                                              "sh /system/etc/init.d/quick_power",
@@ -266,6 +297,21 @@ public class VariosTweaksFragment extends Fragment {
         } else {
             checkbox25.setChecked(false);
         }
+        checkbox25.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.al2)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
         checkbox25.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 

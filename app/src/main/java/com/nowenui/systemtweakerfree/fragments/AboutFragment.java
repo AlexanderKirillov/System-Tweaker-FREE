@@ -18,10 +18,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import github.nisrulz.easydeviceinfo.EasyBatteryMod;
-import github.nisrulz.easydeviceinfo.EasyDeviceMod;
-import github.nisrulz.easydeviceinfo.EasyDisplayMod;
-import github.nisrulz.easydeviceinfo.EasyIdMod;
+import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
+import github.nisrulz.easydeviceinfo.base.EasyDeviceMod;
+import github.nisrulz.easydeviceinfo.base.EasyDisplayMod;
+import github.nisrulz.easydeviceinfo.base.EasyIdMod;
+
 
 public class AboutFragment extends Fragment {
 

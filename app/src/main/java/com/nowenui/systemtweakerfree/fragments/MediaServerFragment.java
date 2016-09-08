@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -92,8 +93,9 @@ public class MediaServerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mediascanner, parent, false);
 
         checkbox31 = (CheckBox) view.findViewById(R.id.checkBox31);
-        String check17 = "/system/etc/init.d/01MediaServelKilling";
-        if (new File(check17).exists()) {
+        String check17 = "/etc/init.d/01MediaServelKilling";
+        String check17a = "/system/etc/init.d/01MediaServelKilling";
+        if (new File(Environment.getRootDirectory() + check17).exists() || new File(check17a).exists() || new File(Environment.getRootDirectory() + check17a).exists()) {
             checkbox31.setChecked(true);
         } else {
             checkbox31.setChecked(false);
@@ -104,6 +106,7 @@ public class MediaServerFragment extends Fragment {
                                                   @Override
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
+
                                                       if (isChecked) {
 
                                                           if (RootTools.isBusyboxAvailable()) {
@@ -111,7 +114,7 @@ public class MediaServerFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/01MediaServelKilling /system/etc/init.d/",
+                                                                              "cp  /sdcard/SystemTweakerFREE/01MediaServelKilling /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/01MediaServelKilling",
                                                                               "dos2unix /system/etc/init.d/01MediaServelKilling",
                                                                               "busybox mount -o ro,remount /proc /system");
@@ -170,8 +173,9 @@ public class MediaServerFragment extends Fragment {
         );
 
         checkbox32 = (CheckBox) view.findViewById(R.id.checkBox32);
-        String check18 = "/system/etc/init.d/01MediaScannerKilling";
-        if (new File(check18).exists()) {
+        String check18 = "/etc/init.d/01MediaScannerKilling";
+        String check18a = "/system/etc/init.d/01MediaScannerKilling";
+        if (new File(Environment.getRootDirectory() + check18).exists() || new File(check18a).exists() || new File(Environment.getRootDirectory() + check18a).exists()) {
             checkbox32.setChecked(true);
         } else {
             checkbox32.setChecked(false);
@@ -189,7 +193,7 @@ public class MediaServerFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
+                                                                              "cp  /sdcard/SystemTweakerFREE/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
                                                                               "chmod 777 /system/etc/init.d/01MediaScannerKilling",
                                                                               "dos2unix /system/etc/init.d/01MediaScannerKilling",
                                                                               "busybox mount -o ro,remount /proc /system"
@@ -411,6 +415,5 @@ public class MediaServerFragment extends Fragment {
 
         super.onPause();
     }
-
 
 }

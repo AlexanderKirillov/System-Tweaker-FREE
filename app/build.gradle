@@ -7,8 +7,8 @@ android {
         applicationId "com.nowenui.systemtweakerfree"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.1.0"
         useLibrary 'org.apache.http.legacy'
     }
 }
@@ -18,8 +18,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile 'com.jaredrummler:android-device-names:1.1.0'
-    compile 'com.github.nisrulz:easydeviceinfo:2.1.1'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.0'
+    compile 'com.github.nisrulz:easydeviceinfo:2.2.0'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
 }
 
 

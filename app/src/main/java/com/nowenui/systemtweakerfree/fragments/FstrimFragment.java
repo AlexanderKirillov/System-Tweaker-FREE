@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -126,7 +127,7 @@ public class FstrimFragment extends Fragment {
 
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/fstrim /system/bin/fstrim",
+                                        "cp  /sdcard/SystemTweakerFREE/fstrim /system/bin/fstrim",
                                         "chmod 777 /system/bin/fstrim",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
@@ -437,8 +438,9 @@ public class FstrimFragment extends Fragment {
 
 
         bootfstrim = (CheckBox) view.findViewById(R.id.bootfstrim);
-        String check20 = "/system/etc/init.d/70fstrim";
-        if (new File(check20).exists()) {
+        String check20 = "/etc/init.d/70fstrim";
+        String check20a = "/system/etc/init.d/70fstrim";
+        if (new File(Environment.getRootDirectory() + check20).exists() || new File(check20a).exists() || new File(Environment.getRootDirectory() + check20a).exists()) {
             bootfstrim.setChecked(true);
         } else {
             bootfstrim.setChecked(false);
@@ -456,7 +458,7 @@ public class FstrimFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/Android/data/com.nowenui.systemtweaker/files/70fstrim /system/etc/init.d/70fstrim",
+                                                                              "cp  /sdcard/SystemTweakerFREE/70fstrim /system/etc/init.d/70fstrim",
                                                                               "chmod 777 /system/etc/init.d/70fstrim",
                                                                               "dos2unix /system/etc/init.d/70fstrim",
                                                                               "busybox mount -o ro,remount /proc /system");

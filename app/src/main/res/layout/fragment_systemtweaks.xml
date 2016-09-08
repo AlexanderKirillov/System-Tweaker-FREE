@@ -57,6 +57,16 @@
             android:background="@android:color/darker_gray" />
 
         <CheckBox
+            android:id="@+id/perfomance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/perftweak" />
+
+        <CheckBox
             android:id="@+id/checkBox16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,9 +86,20 @@
             android:id="@+id/checkBox21"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemthree" />
+
+        <CheckBox
+            android:id="@+id/artfix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/arttext" />
 
         <CheckBox
             android:id="@+id/display_cal"
@@ -97,6 +118,15 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemfour" />
+
+        <CheckBox
+            android:id="@+id/touchtweak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/touchtweak" />
 
         <CheckBox
             android:id="@+id/checkBox23"
