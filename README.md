@@ -4,7 +4,6 @@
 
 ### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/f3NR4BQwvFoSp)
 
-
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
 ##PRO version (0,99 $): [Google Play](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
