@@ -58,16 +58,18 @@
     <string name="eithtbatterytweak">Отключить логгирование системы \nОтключение логгирования позволит сэкономить заряд аккумулятора, так как система не будет постоянно собирать логи\n</string>
     <string name="tweakenabled">Твик применен!</string>
     <string name="tweakdisabled">Твик отключен!</string>
+    <string name="var1">Ускорить загрузку системы</string>
     <string name="internettweakswelcome">В данном разделе содержатся твики, с помощью которых можно увеличить стабильность и скорость работы интернета.\n</string>
     <string name="firstinternettweak">Твики интернета\nУлучшение работы сетей WiFi/3G/2G/4G, повышение скорости загрузки файлов, улучшение стабильности</string>
-    <string name="secondinternettweak">Увеличение скорости интернета\nИзменение значений TCP в лучшую сторону</string>
+    <string name="secondinternettweak">Увеличение скорости интернета\nУскорение работы 3G/4G, изменение значений TCP в лучшую сторону</string>
     <string name="thirdinternettweak">Google DNS\nИзменение DNS серверов на гугловские (8.8.8.8, 8.8.4.4)</string>
-    <string name="forthinternettweak">Fast Dormancy\nВключение данной функции может увеличить скорость работы интернета, но и существенно увеличить энергопотребление</string>
+    <string name="forthinternettweak">Fast Dormancy\nВключение данной функции может съэкономить заряд батареи устройства и будет меньше загружать вышки оператора. Включайте только если Ваш оператор поддерживает эту функцию!</string>
     <string name="fifthinternettweaks">Поддержка IPv6</string>
     <string name="sixinternettweaks">Поддержка IPv4</string>
     <string name="glavnays">Главная страница</string>
     <string name="soglasenie">Соглашение</string>
-    <string name="infoabout">Информация об устройстве</string>
+    <string name="infoabout">Информация об устрой.</string>
+    <string name="speedup">Ускорение в один клик</string>
     <string name="calbattery">Калибровка батареи</string>
     <string name="backupandrestore">Центр резерв. и восст.</string>
     <string name="batterytweaks">Твики батареи</string>
@@ -75,7 +77,7 @@
     <string name="systemtweaks">Системные твики</string>
     <string name="mediatweaks">Твики медиа</string>
     <string name="varioustweaks">Прочие твики</string>
-    <string name="connect">Связаться с разработчиком</string>
+    <string name="connect">Сообщить об ошибке</string>
     <string name="aboutapp">О программе</string>
     <string name="exit">Выход</string>
     <string name="main">Основное</string>
@@ -113,12 +115,7 @@
     <string name="variostweaks">В данном разделе содержатся различные прочие твики.\n</string>
     <string name="disableboot">Отключение загрузочной анимации</string>
     <string name="adb">Убрать иконку откладки в статусбаре</string>
-    <string name="onnectwithdev">На этой странице Вы можете отправить письмо разработчику. Я смогу Вам помочь в случае неудачного использования функций программы, могу проконсультировать и обьяснить значение твиков\n\nЧтобы связаться со мной, заполните поле "Текст письма" и нажмите кнопку "Отправить". Ваше устройство предложит выбрать почтовое приложение для отправки письма, выберите нужное приложение и отправьте мне письмо. Если у Вас на устройстве не установлен почтовый клиент, то Вы можете связаться со мной с любого устройства по почтовому адресу: NowenUI@bk.ru</string>
-    <string name="text">Текст письма</string>
     <string name="sendletter">Отправить</string>
-    <string name="openemailapp">Открытие почтового приложения...</string>
-    <string name="noemail">Письмо отправить невозможно, нет установленных почтовых клиентов. </string>
-    <string name="thanks">\nБольшое спасибо за покупку профессиональной версии данной программы!\n</string>
     <string name="aboutappinfo">Данная программа позволит настроить Ваше устройство под себя, поможет развить максимальную производительность и в то же время поможет увеличить время автономной работы Вашего девайса\n</string>
     <string name="author">Автором программы является независимый разработчик Александр Кириллов (NowenUI)\n</string>
     <string name="libraries">Использованные библиотеки: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n</string>
@@ -128,7 +125,7 @@
     <string name="systemteweaks">В данном разделе содержатся твики, с помощью которых можно увеличить стабильность и скорость работы системы, а также настроить ее по своему вкусу.\n</string>
     <string name="systemone">Фиксированное внесение лаунчера в память\nПри включении этой опции лаунчер перестанет делать постоянные перерисовки, будет работать быстро и плавно (если Ваше устройство имеет достаточное кол-во ОЗУ</string>
     <string name="systemtwo">Устранение некоторых ошибок в приложениях</string>
-    <string name="systemthree">Акселерация интерфейса за счет GPU устройства, улучшение реакции сенсора дисплея\nИнтерфейс прорисовывается не с помощью CPU, а с помощью GPU. Если Ваше устройство имеет мощный GPU, то включение этой опции может существенно повысить плавность и производительность интерфейса</string>
+    <string name="systemthree">Аппаратное ускорение отрисовки интерфейса, улучшение реакции сенсора дисплея\nИнтерфейс прорисовывается не с помощью CPU, а с помощью GPU. Если Ваше устройство имеет мощный GPU, то включение этой опции может существенно повысить плавность и производительность интерфейса</string>
     <string name="systemfour">Увеличение скорости/отзывчивости при прокрутке</string>
     <string name="systemfive">Оптимизация разделов (zipalign) при загрузке и каждую неделю\nПовышает производительность системы и приложений</string>
     <string name="systemsix">Оптимизация базы данных SQLite при загрузке и каждую неделю\nПовышает производительность системы и приложений</string>
@@ -163,7 +160,7 @@
     <string name="ponatno">Понятно!</string>
     <string name="rebootactionbar">Перезагрузить устройство?)</string>
     <string name="close">Нажите кнопку "назад" еще раз для выхода из приложения</string>
-    <string name="rebootmanager">Менеджер выкл. и перез.</string>
+    <string name="rebootmanager">Менеджер выкл./перез.</string>
     <string name="reboot1dialog">Вы точно хотите сделать полную перезагрузку Вашего устройства?)</string>
     <string name="reboothello">На данной странице Вы можете выключить или перезагрузить Ваше устройство в нужном режиме\n</string>
     <string name="hotreboot">Быстрая перезагрузка</string>
@@ -178,18 +175,9 @@
     <string name="okinstall">Ясно, сейчас установлю</string>
     <string name="licensecheckbox">Вы согласны с соглашением</string>
     <string name="ext4tweak">Оптимизировать работу файловой системы EXT4 при каждой загрузке  (используйте только если Ваше устройство имет соответствующую файловую систему)</string>
-    <string-array name="ramlist">
-        <item>(стандарт)</item>
-        <item>Игровой</item>
-        <item>Сбалансированный</item>
-        <item>Многозадачность</item>
-    </string-array>
-    <string name="ram">Режим\n использ.\nRAM</string>
+    <string name="ram">Режим\n использов. \nRAM</string>
     <string name="displayfix">Улучшить качество изображения на дисплее\nОсуществляется путем системной калибровки </string>
-    <string name="jjj">Необходимы рабочие Root права, busybox и поддержка init.d</string>
-    <string name="var1">Ускорить загрузку системы</string>
     <string name="otherapps">Другие наши приложения:</string>
-    <string name="pro">PRO версия</string>
     <string name="tweakabout">Информация о твике</string>
     <string name="inet1">[ТВИКИ BUILD.PROP: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
                 \n\nnet.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
@@ -237,17 +225,8 @@
     <string name="inet5">[ТВИК BUILD.PROP: \npersist.telephony.support.ipv6=1]\n\nПринудительно включает поддержку IPv6 протокола передачи данных</string>
     <string name="inet6">[ТВИК BUILD.PROP: \npersist.telephony.support.ipv4=1]\n\nПринудительно включает поддержку IPv4 протокола передачи данных</string>
     <string name="inet7">[РЕЖИМ TCP: \nустанавливает нужный режим TCP в файл /proc/sys/net/ipv4/tcp_congestion_control ] \n\nТвик позволяет изменять стандартный алгоритм контроля насыщения TCP (TCP Congrestion control), который регулирует размер TCP-окна на основе множества параметров, чтобы сделать поток пакетов более ровным и достичь наивысшей скорости передачи данных. Начиная с версии 2.6.19, ядро Linux  по умолчанию использует эффективный алгоритм CUBIC, который также обычно применяется и в стандартных ядрах Android. Проблема только в том, что CUBIC эффективен в проводных сетях с высокой скоростью передачи данных, тогда как для 3G- и Wi-Fi-сетей гораздо лучшим выбором будет алгоритм Westwood(+). Также сущетвуют другие режимы, например reno, которые тоже намного эффективней стандартного cubic</string>
-    <string name="battery1">[ТВИК INIT.D ПОД НАЗВАНИЕМ 05FixGoogleServicedrain\n\nСодержит в себе следующий код:\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateActivity"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$ActiveReceiver"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$Receiver"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$SecretCodeReceiver"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateActivity"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$Receiver"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$SecretCodeReceiver"\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет избавиться от вэйклоков устройства сервисами Google путем... включения тех-же сервисов Google. Да, парадокс, но твик действительно работает и позволяет увеличить энергоэффективность Вашего устройства!</string>
- <string name="battery2">[ТВИК INIT.D ПОД НАЗВАНИЕМ 05FixGoogleServicedrain\n\nСодержит в себе следующий код:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
+    <string name="battery1">[ТВИК INIT.D ПОД НАЗВАНИЕМ 05FixGoogleServicedrain\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет избавиться от вэйклоков устройства сервисами Google путем... включения тех-же сервисов Google. Да, парадокс, но твик действительно работает и позволяет увеличить энергоэффективность Вашего устройства!</string>
+ <string name="battery2">[ТВИК INIT.D ПОД НАЗВАНИЕМ 00BatteryImprove\n\nСодержит в себе следующий код:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
 \n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем настройки отдельных параметров для отложенного сброса «грязных» буферов VM.</string>
     <string name="battery3">[ТВИК BUILD.PROP:\nwifi.supplicant_scan_interval=220 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем увеличения интервала автосканирования Wifi сетей (до 220 ms). Учтите, что автоподключение к Wifi сети в фоне может происходить чуть дольше.</string>
     <string name="battery4">[ТВИК BUILD.PROP:\nro.ril.disable.power.collapse=0\n\nro.vold.umsdirtyratio=20\n\npm.sleep_mode=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения режима Power Collapse и настройки режима сна. Т.е эти параметры принудительно переводят телефон в режиме ожидания в глубокий сон, что позволяет съэкономить заряд батареи</string>
@@ -265,7 +244,7 @@
                                                                               \n\ndev.pm.dyn_samplingrate=1
                                                                               \n\nro.fb.mode=1
                                                                               \n\nro.sf.compbypass.enable=0
-                                                                              \n\nro.vold.umsdirtyratio=20\n\nА ТАКЖЕ ТВИК INIT.D ПОД НАЗВАНИЕМ 81GPU_rendering ] \n\nТвик позволяет принудительно использовать GPU для операций отрисовки, улучшает плавность, отзывчивость тача, улучшает качество воспроизводимого видео, но может садить батарею активнее. Используйте только если Ваше устройство имеет мощный GPU! Иначе могут возникнуть лаги!</string>
+                                                                             \n\nА ТАКЖЕ ТВИК INIT.D ПОД НАЗВАНИЕМ 81GPU_rendering ] \n\nТвик позволяет принудительно использовать GPU для операций отрисовки, улучшает плавность, отзывчивость тача, улучшает качество воспроизводимого видео, но может садить батарею активнее. Используйте только если Ваше устройство имеет мощный GPU! Иначе могут возникнуть лаги!</string>
     <string name="sys5">[ТВИК BUILD.PROP:\n\nwindowsmgr.max_events_per_sec=150\n\nro.min_pointer_dur=8\n\nro.max.fling_velocity=12000\n\nro.min.fling_velocity=8000 ] \n\nТвик позволяет увеличить плавность скроллинга списков, путем настройки соответствующих параметров</string>
     <string name="sys6">[ТВИК INIT.D ПОД НАЗВАНИЕМ 93zipalign\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать приложения при каждой загрузке и каждую неделю, это позволит увеличить скорость открытия и плавность работы всех приложений</string>
     <string name="sys7">[ТВИК INIT.D ПОД НАЗВАНИЕМ 11sqlite\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать базы данных при каждой загрузке и каждую неделю, это позволит увеличить скорость работы системы и приложений, использующих SQLite</string>
@@ -274,7 +253,7 @@
     <string name="sys10">[ТВИК INIT.D ПОД НАЗВАНИЯМИ: oom_enable и oom_disable (в зависимости от выбранного параметра)\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nOOM Killer — это способ ядра решить проблему, когда памяти недостаточно. Известно, что виртуальной памяти может быть бесконечно много (в пределах адресации), а вот физической — вполне конечное число. Иногда процессы системы съедают ее всю, и системе надо кого‑то убить, чтобы продолжить работу. Текущая реализация OOM Killer в Linux/ Android стремится выбрать наименее важный процесс. Он выбирает среди всех процессов, кроме init и kernel threads, самый негодный (badness) и убивает его, освобождая память.</string>
     <string name="med1">[ТВИК BUILD.PROP:\nro.media.enc.jpeg.quality=100 ] \n\nТвик позволяет принудительно установить качество JPEG 100%</string>
     <string name="med2">[ТВИК BUILD.PROP:\n\nro.media.dec.jpeg.memcap=8000000\n\nro.media.enc.hprof.vid.bps=8000000 ] \n\nТвик устанавливает максимальный порог качества съемки фото и видео, которое только и может выжать из себя камера</string>
-    <string name="med3">[ТВИК BUILD.PROP:\nro.ril.enable.amr.wideband=1 ] \n\nТвик включает функцию AMR WideBand. Т.е улучшает качество передаваемой и принимаемой речи во время разговора, т.е убирает шумы. Может поддерживаться не всеми операторами!</string>
+    <string name="med3">[ТВИК BUILD.PROP:\nro.ril.enable.amr.wideband=1 ] \n\nТвик включает функцию AMR WideBand. Т.е улучшает качество передаваемой и принимаемой речи во время разговора, т.е убирает шумы и эхо. Может поддерживаться не всеми устройствами!</string>
     <string name="med4">[ТВИК BUILD.PROP:\n\nmedia.stagefright.enable-player=true\n\nmedia.stagefright.enable-meta=true\n\nmedia.stagefright.enable-scan=true\n\nmedia.stagefright.enable-http=true\n\nmedia.stagefright.enable-rtsp=true\n\nmedia.stagefright.enable-record=false ] \n\nТвик позволяет увеличить качество воспроизведения потокового видео путем включения различных параметров StageFright</string>
     <string name="med5">[ТВИК BUILD.PROP:\n\nro.media.capture.flash=led\n\nro.media.capture.flashMinV=3300000\n\nro.media.capture.torchIntensity=65\n\nro.media.capture.flashIntensity=100 ] \n\nТвик непосредственно воздействует на параметры работы модуля вспышки.
 В данном случае- увеличивает интенсивность и минимальный порог свечения
@@ -283,52 +262,43 @@
     <string name="al1">[ТВИК BUILD.PROP:\ndebug.sf.nobootanimation=1 ] \n\nТвик отключает загрузочную анимацию. Работает не на всех устройствах.</string>
     <string name="al2">[ТВИК BUILD.PROP:\npersist.adb.notify=0 ] \n\nТвик убирает иконку отладки ADB из статусбара. Работает не на всех устройствах.</string>
     <string name="al3">[ТВИК INIT.D ПОД НАЗВАНИЕМ quick_power\n\nСодержит в себе следующий код:\n\nsetprop ro.config.hw_quickpoweron true\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик ускоряет загрузку системы</string>
-    <string name="ker1">[ТВИК INIT.D ПОД НАЗВАНИЕМ sdcard_tweak\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик ускоряет работу карты памяти путем увеличения буферов чтения/записи</string>
-    <string name="ker2">[ТВИК INIT.D ПОД НАЗВАНИЕМ flags\n\nСодержит в себе следующий код:\n\nsetprop ENFORCE_PROCESS_LIMIT false
-\n\nsetprop MAX_SERVICE_INACTIVITY false
-\n\nsetprop MIN_HIDDEN_APPS false
-\n\nsetprop CONTENT_APP_IDLE_OFFSET false
-\n\nsetprop EMPTY_APP_IDLE_OFFSET false
-\n\nsetprop ACTIVITY_INACTIVITY_RESET_TIME false
-\n\nsetprop MIN_RECENT_TASKS false
-\n\nsetprop APP_SWITCH_DELAY_TIME false
-\n\nsetprop PROC_START_TIMEOUT false
-\n\nsetprop CPU_MIN_CHECK_DURATION false
-\n\nsetprop GC_TIMEOUT false
-\n\nsetprop SERVICE_TIMEOUT false
-\n\nsetprop MIN_CRASH_INTERVAL false\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ]\n\nТвик настраивает флаги ядра, присваивая им специальные параметры</string>
-    <string name="ker3">[ТВИК INIT.D ПОД НАЗВАНИЕМ io_extend_tweak\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет разделять I/O потоки путем присваивания значения 1024 переменной nr_requests, что позволяет увеличить производительность</string>
-    <string name="ker4">[ТВИК INIT.D ПОД НАЗВАНИЕМ io_tweak\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет ускорить работу системы ввода/вывода путем изменения значений у переменных rq_affinity,rotational,iostats,nomerges</string>
-    <string name="ker5">[ТВИК INIT.D ПОД НАЗВАНИЕМ kernel_panning\n\nСодержит в себе следующий код: \n\nbusybox sysctl -w vm.panic_on_oom=0
-\n\nbusybox sysctl -w kernel.softlockup_panic=0
-\n\nbusybox sysctl -w kernel.panic_on_oops=0
-\n\nbusybox sysctl -w kernel.panic=0\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик отключает режим KernelPanic, что может увеличить стабильность и производительность</string>
-    <string name="ker6">[ТВИК INIT.D ПОД НАЗВАНИЕМ 11NSTweak\n\nСодержит в себе следующий код:\n\necho NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет отключить NORMALIZE SLEEPER</string>
-    <string name="ker7">[ТВИК INIT.D ПОД НАЗВАНИЕМ kernel_sleeper\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет улучшить значения Sleeper-ов ядра, что может увеличить энергоэффективность и производительность!</string>
-    <string name="ker8">[ТВИК INIT.D ПОД НАЗВАНИЕМ cpu_optimize\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nДанный пункт позволяет применить основные твики ядра, которые уменьшат процент использования процессора приложениями, ускорят систему, увеличат такие значения, как /dev/cpuctl/cpu.shares, /dev/cpuctl/cpu.rt_runtime_us, /dev/cpuctl/cpu.rt_period_us и др.</string>
-    <string name="ker9">[ТВИК INIT.D ПОД НАЗВАНИЕМ zram\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nzRam — модуль ядра Linux увеличивается производительность путем предотвращения подкачки страниц на диск, используя сжатое блочное устройство в оперативной памяти, пока не появится необходимость использовать файл подкачки на жестком диске. Скорость обмена с оперативной памятью быстрее, чем с жестким диском, следовательно zRam позволяет Linux/Android производить большее число операций подкачки.</string>
-    <string name="ker10">[ТВИК INIT.D ПОД НАЗВАНИЕМ ksm\n\nСодержит в себе следующий код: \n\nbusybox chmod 644 /sys/kernel/mm/ksm/*
-\nbusybox echo "1" > /sys/kernel/mm/ksm/run
-\nbusybox echo "64" > /sys/kernel/mm/ksm/pages_to_scan
-\nbusybox echo "500" > /sys/kernel/mm/ksm/sleep_millisecs\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nKSM — технология ядра Linux/Android, которая позволяет ядру объединять одинаковые страницы памяти между различными процессами или виртуальными гостевыми системами в одну для совместного использования; реализация дедупликации данных для оперативной памяти. Технология предусматривает сканирование памяти в целях поиска дубликатов страниц, каждая пара дубликатов объединяется в одну страницу, помечаемую как подлежащую копированию при записи, таким образом ядро будет автоматически разделять страницы памяти, как только один процесс изменит данные.</string>
-    <string name="ker11">[ТВИК INIT.D ПОД НАЗВАНИЕМ mpcs\n\nСодержит в себе следующий код: \n\nbusybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings;\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nВключение данной функции может увеличить время работы от батареи путем настройки sheduler-а. Используйте только если Ваше устройство имеет 2 и более ядра!</string>
-    <string name="ker12">[ТВИК INIT.D ПОД НАЗВАНИЕМ fastcharge\n\nСодержит в себе следующий код: \n\nbusybox echo "1" > /sys/kernel/fast_charge/force_fast_charge\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nВключение данной функции может ускорить процесс зарядки устройства, но может нанести вред батарее!</string>
     <string name="arttext">ART Fix\nУвеличивает скорость работы системы и приложений</string>
-    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=interpret-only\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nТвик увеличивает скорость работы системы и приложений путем изменения режима dex2oat, также на Вашем устройстве больше не будет исчезать память, и возможно уменьшение времени оптимизации приложений после очистки кешей!</string>
+    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=speed\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nТвик увеличивает скорость работы системы и приложений путем изменения режима dex2oat, также на Вашем устройстве больше не будет исчезать память, и возможно уменьшение времени оптимизации приложений после очистки кешей!</string>
     <string name="att">ВНИМАНИЕ!</string>
     <string name="atttext">Dalvik cache будет очищен. Продолжить?</string>
-    <string name="perftweak">Улучшение производительности системы</string>
-    <string name="perf">[ТВИК BUILD.PROP:\n\ndebug.performance.tuning=1
-\n\npersist.sys.use_dithering=0
+    <string name="perftweak">Улучшение отзывчивости системы</string>
+    <string name="perf">[ТВИК BUILD.PROP:\n\npersist.sys.use_dithering=0
 \n\npersist.sys.use_16bpp_alpha=1
-\n\nro.mot.eri.losalert.delay=1000\n\n ТВИК INIT.D ПОД НАЗВАНИЕМ BOOST\n\nСодержит в себе следующий код:\n\nsync
-busybox sysctl -w vm.drop_caches=3
-busybox sysctl -w vm.dirty_ratio = 1
-busybox sysctl -w vm.dirty_background_ratio = 1\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик увеличивает производительность системы путем отключения Dithering, увеличения скорости скроллинга (Fling Velocity) и пр. Также повышает отзывчивость системы при длительных операциях записи на диск (данные сбрасываются понемногу и почти сразу, позволяя дисковому планировщику чаще обрабатывать запросы записи других приложений), позволяет использовать больше ОЗУ приложениям (освобождается место, занимаемое дисковыми буферами. Да, процессы могут использовать память, выделенную под грязные данные и без этого, но эти данные сперва всё равно надо сбрасывать на диск, на что уйдёт время). Также повысит сохранность данных при неожиданном выключении устройства. \n\nВНИМАНИЕ! Твик не рекомендуется владельцам медленных карт памяти. Также повысится нагрузка на карту памяти.\n\nЗа твик и его описание спасибо\n A$teroid!</string>
+\n\npersist.service.lgospd.enable=0\n\npersist.service.pcsync.enable=0\n\nro.vold.umsdirtyratio=1\n\n
+        touch.pressure.scale=0.001\n\n ТВИК INIT.D ПОД НАЗВАНИЕМ BOOST\n\nСодержит в себе следующий код:
+\n\nbusybox sysctl -w vm.drop_caches=3
+\n\nbusybox sysctl -w vm.dirty_ratio = 1
+\n\nbusybox sysctl -w vm.dirty_background_ratio = 1 \n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик увеличивает производительность системы путем отключения сглаживания, происходит увеличения скорости скроллинга (Fling Velocity) и пр. Также повышает отзывчивость системы при длительных операциях записи на диск (данные сбрасываются понемногу и почти сразу, позволяя дисковому планировщику чаще обрабатывать запросы записи других приложений), позволяет использовать больше ОЗУ приложениям (освобождается место, занимаемое дисковыми буферами. Да, процессы могут использовать память, выделенную под грязные данные и без этого, но эти данные сперва всё равно надо сбрасывать на диск, на что уйдёт время). Также повысит сохранность данных при неожиданном выключении устройства. \n\nВНИМАНИЕ! Твик не рекомендуется владельцам медленных карт памяти. Также повысится нагрузка на карту памяти.\n\nЗа твик и его описание спасибо\n A$teroid!</string>
     <string name="rebootdalvik">Твик применен! \n\nНам пришлось очистить Dalvik cache.\n\nТребуется перезагрузить устройство!</string>
     <string name="rebootdalvikdis">Твик отключен\n\nНам пришлось очистить Dalvik cache.\n\nТребуется перезагрузить устройство!</string>
     <string name="touchtweak">Твик тачскрина\nУлучшение работы тачскрина путем настройки специальных параметров</string>
     <string name="tw">[ТВИК INIT.D ПОД НАЗВАНИЕМ touch\n\nСодержит в себе следующий код: \n\necho 7025 > /sys/class/touch/switch/set_touchscreen\n\necho 8002 > /sys/class/touch/switch/set_touchscreen\n\necho 11001 > /sys/class/touch/switch/set_touchscreen\n\necho 13030 > /sys/class/touch/switch/set_touchscreen\n\necho 14005 > /sys/class/touch/switch/set_touchscreen\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nВключение данной функции увеличит качество и скорость работы тачскрина</string>
 
     <string name="sucessreboot">Успешно! Рекомендуется перезагрузить устройство!</string>
+
+    <string-array name="rom">
+        <item>(не выбрано)</item>
+        <item>Стоковая</item>
+        <item>Кастомная</item>
+    </string-array>
+    <string name="context">На данной странице Вы можете напрямую сообщить разработчику о наличии проблемы, или же можете предложить идею для совершенствования программы!</string>
+    <string name="androidversion">Версия Android:</string>
+    <string name="roma">Кастомная или стоковая прошивка?</string>
+    <string name="textbug">Текст письма (подробное описание проблемы или предложения):</string>
+    <string name="sentsucess">Успешно отправлено!</string>
+    <string name="senterror">ОШИБКА! СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ!</string>
+    <string name="pola">НЕОБХОДИМО ЗАПОЛНИТЬ ВСЕ ПОЛЯ!</string>
+
+    <string-array name="ramlist">
+        <item>(стандарт)</item>
+        <item>Игровой</item>
+        <item>Сбалансированный</item>
+        <item>Многозадачность</item>
+    </string-array>
+    <string name="pro">PRO версия</string>
 </resources>

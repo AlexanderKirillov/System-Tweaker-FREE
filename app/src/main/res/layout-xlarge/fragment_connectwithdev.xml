@@ -16,14 +16,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:text="@string/onnectwithdev"
+            android:text="@string/context"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.11">
+
+            <EditText
+                android:id="@+id/android"
+                android:layout_width="162dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="@string/androidversion"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.11">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="@string/roma"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner12"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text"
+            android:paddingTop="15dp"
+            android:text="@string/textbug"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText

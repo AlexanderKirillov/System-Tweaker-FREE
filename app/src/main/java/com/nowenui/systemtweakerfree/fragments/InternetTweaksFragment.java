@@ -21,23 +21,14 @@ import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
 
-    private static final String PRE_PATH = "/proc/sys/net/ipv4/";
-    private final static int BUFFER_SIZE = 2048;
     private CheckBox checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15;
-    private Scanner file_scanner;
 
     public static InternetTweaksFragment newInstance(Bundle bundle) {
         InternetTweaksFragment messagesFragment = new InternetTweaksFragment();
@@ -49,42 +40,6 @@ public class InternetTweaksFragment extends Fragment {
         return messagesFragment;
     }
 
-    private static String readString(String filename) {
-        try {
-            File f = new File(filename);
-            if (f.exists()) {
-                InputStream is = null;
-                if (f.canRead()) {
-                    is = new FileInputStream(f);
-                } else {
-                    String[] commands = {
-                            "cat " + filename + "\n", "exit\n"
-                    };
-                    Process p = Runtime.getRuntime().exec("su");
-                    DataOutputStream dos = new DataOutputStream(p.getOutputStream());
-                    for (String command : commands) {
-                        dos.writeBytes(command);
-                        dos.flush();
-                    }
-                    if (p.waitFor() == 0) {
-                        is = p.getInputStream();
-                    } else {
-                        return null;
-                    }
-                }
-                BufferedReader br = new BufferedReader(new InputStreamReader(is), BUFFER_SIZE);
-                String line = br.readLine();
-                br.close();
-                return line;
-            } else {
-                return null;
-            }
-        } catch (InterruptedException iex) {
-            return null;
-        } catch (IOException ioex) {
-            return null;
-        }
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,20 +81,6 @@ public class InternetTweaksFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public String[] readAvailablecong() throws Exception {
-        String file_path = PRE_PATH + "tcp_available_congestion_control";
-        File scalingAvailableFrequenciesFile = new File(file_path);
-        ArrayList<String> availableFrequencies = new ArrayList<String>();
-        file_scanner = new Scanner(scalingAvailableFrequenciesFile);
-        while (file_scanner.hasNext()) {
-            availableFrequencies.add(file_scanner.next());
-        }
-        String[] availableFrequenciesArray = new String[availableFrequencies.size()];
-        availableFrequenciesArray = availableFrequencies.toArray(availableFrequenciesArray);
-
-        return availableFrequenciesArray;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -147,21 +88,6 @@ public class InternetTweaksFragment extends Fragment {
         RootTools.debugMode = false;
 
         View view = inflater.inflate(R.layout.fragment_internettweaks, parent, false);
-
-        File file = new File("/proc/sys/net/ipv4/tcp_congestion_control");
-
-        final StringBuilder text5 = new StringBuilder();
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text5.append(line);
-            }
-            br.close();
-        } catch (IOException e) {
-        }
 
         File file2 = new File("/system/build.prop");
 
@@ -376,7 +302,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                               "echo \"ro.ril.enable.a52=1\" >> /system/build.prop",
                                                                               "echo \"ro.ril.set.mtu1472=1\" >> /system/build.prop",
                                                                               "echo \"persist.cust.tel.eons=1\" >> /system/build.prop",
-                                                                              "cp  /sdcard/SystemTweakerFREE/05InternetTweak /system/etc/init.d/",
+                                                                              "cp /sdcard/SystemTweakerFREE/05InternetTweak /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/05InternetTweak",
                                                                               "dos2unix /system/etc/init.d/05InternetTweak",
                                                                               "sh /system/etc/init.d/05InternetTweak",

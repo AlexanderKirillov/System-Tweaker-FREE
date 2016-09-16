@@ -41,7 +41,7 @@ public class Remounter {
     /**
      * This will take a path, which can contain the file name as well,
      * and attempt to remount the underlying partition.
-     * <p/>
+     * <p>
      * For example, passing in the following string:
      * "/system/bin/some/directory/that/really/would/never/exist"
      * will result in /system ultimately being remounted.

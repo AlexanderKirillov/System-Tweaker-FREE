@@ -15,3 +15,7 @@ busybox mount -o remount,rw /cache
 /system/xbin/tune2fs -o journal_data_writeback $(cat /etc/fstab | grep data | awk '{print $1}')
 /system/xbin/tune2fs -o journal_data_writeback $(cat /etc/fstab | grep cache | awk '{print $1}')
 
+/system/xbin/tune2fs -o journal_data_writeback $(cat /fstab.qcom | grep system | awk '{print $1}')
+/system/xbin/tune2fs -o journal_data_writeback $(cat /fstab.qcom | grep data | awk '{print $1}')
+/system/xbin/tune2fs -o journal_data_writeback $(cat /fstab.qcom | grep cache | awk '{print $1}')
+

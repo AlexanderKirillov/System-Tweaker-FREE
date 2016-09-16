@@ -1,14 +1,6 @@
 #!/system/bin/sh
-# ========================================
-# init.d script for PhoeniX Rom
-# ========================================
-
-# Enable GPU rendering for 2D operations
 
 sysrw
 rm /system/lib/egl/libGLES_android.so
 busybox sed -i '/0 0 android/d' /system/lib/egl/egl.cfg
 sysro
-
-# End of the script
-# Credit to mike1986.

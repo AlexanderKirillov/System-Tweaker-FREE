@@ -78,7 +78,7 @@
         <menu>
             <item
                 android:id="@+id/navigation_drawer_item11"
-                android:icon="@drawable/email"
+                android:icon="@drawable/bug"
                 android:title="@string/connect" />
 
             <item

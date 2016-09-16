@@ -51,7 +51,7 @@ public final class RootTools {
     /**
      * Setting this to false will disable the handler that is used
      * by default for the 3 callback methods for Command.
-     * <p/>
+     * <p>
      * By disabling this all callbacks will be called from a thread other than
      * the main UI thread.
      */
@@ -62,7 +62,7 @@ public final class RootTools {
     // --------------------
     /**
      * Setting this will change the default command timeout.
-     * <p/>
+     * <p>
      * The default is 20000ms
      */
     public static int default_Command_Timeout = 20000;
@@ -71,9 +71,9 @@ public final class RootTools {
      * should only have access to this class and this class only.This means that this class should
      * be the only one to be public.The rest of the classes within this library must not have the
      * public modifier.
-     * <p/>
+     * <p>
      * All methods and Variables that the developer may need to have access to should be here.
-     * <p/>
+     * <p>
      * If a method, or a specific functionality, requires a fair amount of code, or work to be done,
      * then that functionality should probably be moved to its own class and the call to it done
      * here.For examples of this being done, look at the remount functionality.
@@ -247,7 +247,7 @@ public final class RootTools {
 
     /**
      * This will return an List of Strings. Each string represents an applet available from BusyBox.
-     * <p/>
+     * <p>
      *
      * @return <code>null</code> If we cannot return the list of applets.
      */
@@ -257,7 +257,7 @@ public final class RootTools {
 
     /**
      * This will return an List of Strings. Each string represents an applet available from BusyBox.
-     * <p/>
+     * <p>
      *
      * @param path Path to the busybox binary that you want the list of applets from.
      * @return <code>null</code> If we cannot return the list of applets.
@@ -317,7 +317,7 @@ public final class RootTools {
     /**
      * This will return an ArrayList of the class Mount. The class mount contains the following
      * property's: device mountPoint type flags
-     * <p/>
+     * <p>
      * These will provide you with any information you need to work with the mount points.
      *
      * @return <code>ArrayList<Mount></code> an ArrayList of the class Mount.
@@ -329,7 +329,7 @@ public final class RootTools {
 
     /**
      * This will tell you how the specified mount is mounted. rw, ro, etc...
-     * <p/>
+     * <p>
      *
      * @param path The mount you want to check
      * @return <code>String</code> What the mount is mounted as.
@@ -434,7 +434,7 @@ public final class RootTools {
 
     /**
      * This will return a String that represent the symlink for a specified file.
-     * <p/>
+     * <p>
      *
      * @param file path to the file to get the Symlink for. (must have absolute path)
      * @return <code>String</code> a String that represent the symlink for a specified file or an
@@ -447,7 +447,7 @@ public final class RootTools {
     /**
      * This will return an ArrayList of the class Symlink. The class Symlink contains the following
      * property's: path SymplinkPath
-     * <p/>
+     * <p>
      * These will provide you with any Symlinks in the given path.
      *
      * @param path path to search for Symlinks.
@@ -538,7 +538,7 @@ public final class RootTools {
 
     /**
      * This will let you know if an applet is available from BusyBox
-     * <p/>
+     * <p>
      *
      * @param applet The applet to check for.
      * @param path   Path to the busybox binary that you want to check. (do not include binary name)
@@ -550,7 +550,7 @@ public final class RootTools {
 
     /**
      * This will let you know if an applet is available from BusyBox
-     * <p/>
+     * <p>
      *
      * @param applet The applet to check for.
      * @return <code>true</code> if applet is available, false otherwise.
@@ -653,7 +653,7 @@ public final class RootTools {
     /**
      * This will take a path, which can contain the file name as well, and attempt to remount the
      * underlying partition.
-     * <p/>
+     * <p>
      * For example, passing in the following string:
      * "/system/bin/some/directory/that/really/would/never/exist" will result in /system ultimately
      * being remounted. However, keep in mind that the longer the path you supply, the more work
@@ -699,7 +699,7 @@ public final class RootTools {
     /**
      * Executes a given command with root access or without depending on the value of the boolean passed.
      * This will also start a root shell or a standard shell without you having to open it specifically.
-     * <p/>
+     * <p>
      * You will still need to close the shell after you are done using the shell.
      *
      * @param shell   The shell to execute the command on, this can be a root shell or a standard shell.
@@ -715,7 +715,7 @@ public final class RootTools {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p/>
+     * <p>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootTools.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -731,7 +731,7 @@ public final class RootTools {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p/>
+     * <p>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootTools.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -748,7 +748,7 @@ public final class RootTools {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p/>
+     * <p>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootTools.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -767,7 +767,7 @@ public final class RootTools {
      * After all writing logging calls should be painless.
      * This method exists to save Android going through the various Java layers
      * that are traversed any time a string is created (i.e. what you are logging)
-     * <p/>
+     * <p>
      * Example usage:
      * if(islog) {
      * StrinbBuilder sb = new StringBuilder();
@@ -788,7 +788,7 @@ public final class RootTools {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p/>
+     * <p>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootTools.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.

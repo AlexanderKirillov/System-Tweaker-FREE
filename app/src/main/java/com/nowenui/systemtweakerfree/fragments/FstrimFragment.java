@@ -127,7 +127,7 @@ public class FstrimFragment extends Fragment {
 
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "cp  /sdcard/SystemTweakerFREE/fstrim /system/bin/fstrim",
+                                        "cp /sdcard/SystemTweakerFREE/fstrim /system/bin/fstrim",
                                         "chmod 777 /system/bin/fstrim",
                                         "busybox mount -o ro,remount /proc /system");
                                 try {
@@ -458,7 +458,7 @@ public class FstrimFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/70fstrim /system/etc/init.d/70fstrim",
+                                                                              "cp /sdcard/SystemTweakerFREE/70fstrim /system/etc/init.d/70fstrim",
                                                                               "chmod 777 /system/etc/init.d/70fstrim",
                                                                               "dos2unix /system/etc/init.d/70fstrim",
                                                                               "busybox mount -o ro,remount /proc /system");

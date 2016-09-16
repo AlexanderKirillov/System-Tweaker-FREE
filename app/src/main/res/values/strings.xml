@@ -46,8 +46,9 @@
     <string name="restore">Restore</string>
     <string name="restorebuildprop">Restore build.prop</string>
     <string name="restoreinit.d">Restore init.d folder</string>
-    <string name="foundbackup">You can found backup files in: /sdcard/SystemTweaker/backups</string>
+    <string name="foundbackup">You can found backup files in: /sdcard/SystemTweakerFREE/backups</string>
     <string name="batterysection">This section contains tweaks that can help you increase the battery life of the device.\n</string>
+    <string name="firstbatterytweak">Google Services tweak\nFixes overuse battery of Google services</string>
     <string name="secondbatterytweak">Improve powersaving\nFixes VM overuse</string>
     <string name="thirdbatterytweak">Increase WiFi autoscan time\nThis tweak improves powersaving</string>
     <string name="fourhbatterytweak">Wifi powersaving mode\n</string>
@@ -59,7 +60,7 @@
     <string name="tweakdisabled">Tweak Disabled</string>
     <string name="internettweakswelcome">This section contains tweaks that can help you increase the speed and stability of internet.\n</string>
     <string name="firstinternettweak">Internet Tweaks\nImproving WiFi/3G/2G/4G tweaks, increasing download speed, improving stability</string>
-    <string name="secondinternettweak">Improving internet speed\nChanging the TCP values for the better</string>
+    <string name="secondinternettweak">Improving internet speed\nChanging the TCP  an other values for the better</string>
     <string name="thirdinternettweak">Google DNS\nChange DNS to Google (8.8.8.8, 8.8.4.4)</string>
     <string name="forthinternettweak">Fast Dormancy\nEnabling this feature can increase the speed of the internet, but also reduce powersaving</string>
     <string name="fifthinternettweaks">IPv6 support</string>
@@ -67,6 +68,7 @@
     <string name="glavnays">Home</string>
     <string name="soglasenie">Agreement</string>
     <string name="infoabout">Device Information</string>
+    <string name="speedup">Speed up in one click</string>
     <string name="calbattery">Battery Calibration</string>
     <string name="backupandrestore">Backup and restore</string>
     <string name="batterytweaks">Battery Tweaks</string>
@@ -74,7 +76,8 @@
     <string name="systemtweaks">System Tweaks</string>
     <string name="mediatweaks">Media Tweaks</string>
     <string name="varioustweaks">Other Tweaks</string>
-    <string name="connect">Connect with developer</string>
+    <string name="var1">Improve system boot speed</string>
+    <string name="connect">Report a bug</string>
     <string name="aboutapp">About program</string>
     <string name="exit">Exit</string>
     <string name="main">Main</string>
@@ -113,12 +116,7 @@
     <string name="variostweaks">This section includes the different other tweaks\n</string>
     <string name="disableboot">Disable bootanimation</string>
     <string name="adb">Remove adb debug icon from statusbar</string>
-    <string name="onnectwithdev">On this page you can send an email to the developer. I can help you if you have problems or questions \n\nTo contact me, please write your message in the field "Text of message" and then click "Send". Your device prompts you to select the mail application to send a message, select the  application, send me an email. If you have not e-mail app on your device, you can contact me with this e-mail: NowenUI@bk.ru</string>
-    <string name="text">Text of message</string>
     <string name="sendletter">Send</string>
-    <string name="openemailapp">Opening e-mail app...</string>
-    <string name="noemail">The message can not be sent, no installed e-mail clients. </string>
-    <string name="thanks">\nThank you very much for purchasing the professional version of this program!\n</string>
     <string name="aboutappinfo">This program allows you to customize your device, will help to get the maximum performance and help to increase the battery life of your device\n</string>
     <string name="author">The author: Alexander Kirillov (NowenUI)\n</string>
     <string name="libraries">Used libraries: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n</string>
@@ -189,14 +187,10 @@
         <item>Multitasking</item>
     </string-array>
     <string name="ram">RAM Mode</string>
-    <string name="jjj">Root, busybox and init.d support are needed!</string>
-    <string name="var1">Improve system boot</string>
+    <string name="displayfix">Improve display quality\nImplemented by the system display calibration </string>
     <string name="reboot1dialog">Are you sure want to fully reboot your device?)</string>
     <string name="otherapps">Our other apps:</string>
-    <string name="displayfix">Improve display image quality\nImplemented by the system calibration </string>
-    <string name="pro">PRO version</string>
-    <string name="firstbatterytweak">Google Services tweak\nFixes overuse battery of Google services</string>
-      <string name="inet1">[BUILD.PROP TWEAK: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+     <string name="inet1">[BUILD.PROP TWEAK: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
                 \n\nnet.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
                 \n\nnet.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
                 \n\nnet.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
@@ -242,18 +236,7 @@
     <string name="inet5">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv6=1]\n\nForce enable IPv6 data communication protocol</string>
     <string name="inet6">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv4=1]\n\nForce enable IPv data communication protocol</string>
     <string name="inet7">[TCP MODE: \ninstalling chosen TCP mode in /proc/sys/net/ipv4/tcp_congestion_control ]</string>
-    <string name="battery1">[INIT.D TWEAK: 05FixGoogleServicedrain\n\nINCLUDES:\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateActivity"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$ActiveReceiver"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$Receiver"
-\n\nsu -c "pm enable com.google.android.gms/.update.SystemUpdateService$SecretCodeReceiver"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateActivity"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$Receiver"
-\n\nsu -c "pm enable com.google.android.gsf/.update.SystemUpdateService$SecretCodeReceiver"\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\n Tweak may fix Google Services wakelocks.. by turning on the same Google services. Yes, a paradox, but the tweak does work and can increase the energy efficiency of your device!</string>
- <string name="battery2">[INIT.D TWEAK: 00BatteryTweak\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
-\n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows you to increase the battery lifetime by adjusting the individual settings for delayed "dirty" buffers VM.</string>
+    <string name="battery1">[INIT.D TWEAK: 05FixGoogleServicedrain\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows you to increase the battery lifetime by adjusting the individual settings for delayed "dirty" buffers VM.</string>
     <string name="battery3">[BUILD.PROP TWEAK:\nwifi.supplicant_scan_interval=220 ] \n\nTweek allows you to increase the battery lifetime by increasing the interval of auto scan Wifi networks (to 220 ms). Note that auto-connect to the saved Wifi networks in the background may be a little longer.</string>
     <string name="battery4">[BUILD.PROP TWEAK:\nro.ril.disable.power.collapse=0\n\nro.vold.umsdirtyratio=20\n\npm.sleep_mode=1 ] \n\nTweek allows you to increase the battery lifetime by enabling Power Collapse mode and setting the sleep mode.</string>
     <string name="battery5">[BUILD.PROP TWEAK:\npower_supply.wakeup=enable ] \n\nTweek allows you to increase the battery lifetime by activate controls and to prevent sifting device technology Power Supply. \n\nATTENTION! You may have problems with background music playback (but not only) when the screen off!</string>
@@ -292,53 +275,38 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="al1">[BUILD.PROP TWEAK:\ndebug.sf.nobootanimation=1 ] \n\nThis tweak disabling bootanimation.</string>
     <string name="al2">[BUILD.PROP TWEAK:\npersist.adb.notify=0 ] \n\nTweak removes ADB debug icon from statusbar</string>
     <string name="al3">[INIT.D TWEAK: quick_power\n\INCLUDES:\n\nsetprop ro.config.hw_quickpoweron true\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak speeding up system boot!</string>
-    <string name="ker1">[INIT.D TWEAK: sdcard_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak speeding up sdcard by increasing the read/write buffers</string>
-    <string name="ker2">[INIT.D TWEAK: flags \n\nINCLUDES:\n\nsetprop ENFORCE_PROCESS_LIMIT false
-\n\nsetprop MAX_SERVICE_INACTIVITY false
-\n\nsetprop MIN_HIDDEN_APPS false
-\n\nsetprop CONTENT_APP_IDLE_OFFSET false
-\n\nsetprop EMPTY_APP_IDLE_OFFSET false
-\n\nsetprop ACTIVITY_INACTIVITY_RESET_TIME false
-\n\nsetprop MIN_RECENT_TASKS false
-\n\nsetprop APP_SWITCH_DELAY_TIME false
-\n\nsetprop PROC_START_TIMEOUT false
-\n\nsetprop CPU_MIN_CHECK_DURATION false
-\n\nsetprop GC_TIMEOUT false
-\n\nsetprop SERVICE_TIMEOUT false
-\n\nsetprop MIN_CRASH_INTERVAL false\n\n\n\nIf you apply this tweak, it will be located in /system/etc/init.d ]\n\Tweak configures the kernel flags by assigning them special options</string>
-    <string name="ker3">[INIT.D TWEAK: io_extend_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows separate I/O threads by assigning the value of the variable 1024 in nr_requests</string>
-    <string name="ker4">[INIT.D TWEAK: io_tweak\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak speeding up I/O system by changing the values in the variables rq_affinity,rotational,iostats,nomerges</string>
-    <string name="ker5">[INIT.D TWEAK: kernel_panning\n\nINCLUDES: \n\nbusybox sysctl -w vm.panic_on_oom=0
-\n\nbusybox sysctl -w kernel.softlockup_panic=0
-\n\nbusybox sysctl -w kernel.panic_on_oops=0
-\n\nbusybox sysctl -w kernel.panic=0\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak disabling Kernel Panic mode that can increase stability and performance</string>
-    <string name="ker6">[INIT.D TWEAK: 11NSTweak\n\nINCLUDES:\n\necho NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak can disable NORMALIZE SLEEPER</string>
-    <string name="ker7">[INIT.D TWEAK: kernel_sleeper\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves Sleeper\'s values, which can increase the energy efficiency and performance!</string>
-    <string name="ker8">[INIT.D TWEAK: cpu_optimize\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis item allows you to apply basic kernel tweaks that will reduce the percentage of CPU usage by applications, speed up system, increase values such as /dev/cpuctl/cpu.shares, /dev/cpuctl/cpu.rt_runtime_us, /dev/cpuctl/cpu.rt_period_us и др.</string>
-    <string name="ker9">[INIT.D TWEAK: zram\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nZRam is a Linux/ANDROID kernel feature that provides a form of virtual memory compression. zram increases performance by avoiding paging to disk and using a compressed block device in RAM instead, inside which paging takes place until it is necessary to use the swap space on a hard disk drive. Since using zram is an alternative way to provide swapping on RAM, zram allows Linux/ANDROID to make a better use of RAM when swapping/paging is required, especially on older computers with less RAM installed</string>
-    <string name="ker10">[INIT.D TWEAK: ksm\n\nINCLUDES: \n\nbusybox chmod 644 /sys/kernel/mm/ksm/*
-\nbusybox echo "1" > /sys/kernel/mm/ksm/run
-\nbusybox echo "64" > /sys/kernel/mm/ksm/pages_to_scan
-\nbusybox echo "500" > /sys/kernel/mm/ksm/sleep_millisecs\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nKSM is a kernel feature that makes it possible for a hypervisor system to share identical memory pages amongst different processes or virtualized guests. While not directly linked, Kernel-based Virtual Machine (KVM) can use KSM to merge memory pages occupied by virtual machines.</string>
-    <string name="ker11">[INIT.D TWEAK: mpcs\n\nINCLUDES: \n\nbusybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings;\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this feature can increase the battery life by sheduler-setting. Use only if your device has two or more cores!</string>
-    <string name="ker12">[INIT.D TWEAK: fastcharge\n\nINCLUDES: \n\nbusybox echo "1" > /sys/kernel/fast_charge/force_fast_charge\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this function can speed up the process of charging the device, but it may harm the battery!</string>
     <string name="arttext">ART Fix\nImproves system speed</string>
-    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=interpret-only\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nTweak increase system and applications speed by changing the dex2oat mode , also on your device will no longer disappear memory, and it is possible to reduce the time to optimize the application after cleaning caches!</string>
+    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=speed\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nTweak increase system and applications speed by changing the dex2oat mode , also on your device will no longer disappear memory, and it is possible to reduce the time to optimize the application after cleaning caches!</string>
     <string name="att">ATTENTION!</string>
     <string name="atttext">Dalvik cache will be cleared. Continue?</string>
     <string name="perftweak">Performance tweak</string>
-     <string name="perf">[BUILD.PROP TWEAK:\n\ndebug.performance.tuning=1
+     <string name="perf">[BUILD.PROP TWEAK:
 \n\npersist.sys.use_dithering=0
 \n\npersist.sys.use_16bpp_alpha=1
-\n\nro.min.fling_velocity=8000
-\n\nro.mot.eri.losalert.delay=1000 \n\nINIT.D :TWEAK BOOST\n\nINCLUDES:\n\nsync
-busybox sysctl -w vm.drop_caches=3
-busybox sysctl -w vm.dirty_ratio = 1
-busybox sysctl -w vm.dirty_background_ratio = 1\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves system speed by disabling Dithering, improving scroling speed (Fling Velocity) and etc.</string>
+\n\npersist.service.lgospd.enable=0\n\npersist.service.pcsync.enable=0\n\n
+         touch.pressure.scale=0.001\n\n \n\nINIT.D :TWEAK BOOST\n\nINCLUDES:
+\n\nbusybox sysctl -w vm.drop_caches=3
+\n\nbusybox sysctl -w vm.dirty_ratio = 1
+\n\nbusybox sysctl -w vm.dirty_background_ratio = 1\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves system speed by disabling Dithering, improving scroling speed (Fling Velocity) and etc.</string>
     <string name="tweakabout">About tweak</string>
     <string name="rebootdalvik">Tweak applied and we cleared Dalvik cache\n\nReboot device required!</string>
     <string name="rebootdalvikdis">Tweak disabled and we cleared Dalvik cache\n\nReboot device required!</string>
     <string name="touchtweak">Touchscreen tweak\nImproves touch quality</string>
     <string name="tw">[INIT.D TWEAK touch\n\nINCLUDES: \n\necho 7025 > /sys/class/touch/switch/set_touchscreen\n\necho 8002 > /sys/class/touch/switch/set_touchscreen\n\necho 11001 > /sys/class/touch/switch/set_touchscreen\n\necho 13030 > /sys/class/touch/switch/set_touchscreen\n\necho 14005 > /sys/class/touch/switch/set_touchscreen\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this feauture can improve touchscreen speed and quality</string>
     <string name="sucessreboot">Successful!We recommend to reboot your device!</string>
+    <string-array name="rom">
+        <item>(not chosen)</item>
+        <item>Stock</item>
+        <item>Custom</item>
+    </string-array>
+    <string name="context">On this page you can directly report a bug or suggest an idea !</string>
+    <string name="androidversion">Android version:</string>
+    <string name="roma">Stock or custom rom?</string>
+    <string name="textbug">Message Text (a detailed description of the problem and suggestions):</string>
+    <string name="sentsucess">E-mail sent sucessful!</string>
+    <string name="senterror">ERROR! CONNECT WITH DEVELOPER!</string>
+    <string name="pola">Please complete all fields!</string>
+     <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
+\n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
+    <string name="pro">PRO version</string>
 </resources>

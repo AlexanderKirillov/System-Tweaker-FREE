@@ -114,7 +114,7 @@ public class MediaServerFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/01MediaServelKilling /system/etc/init.d/",
+                                                                              "cp /sdcard/SystemTweakerFREE/01MediaServelKilling /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/01MediaServelKilling",
                                                                               "dos2unix /system/etc/init.d/01MediaServelKilling",
                                                                               "busybox mount -o ro,remount /proc /system");
@@ -193,7 +193,7 @@ public class MediaServerFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
+                                                                              "cp /sdcard/SystemTweakerFREE/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
                                                                               "chmod 777 /system/etc/init.d/01MediaScannerKilling",
                                                                               "dos2unix /system/etc/init.d/01MediaScannerKilling",
                                                                               "busybox mount -o ro,remount /proc /system"

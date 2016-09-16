@@ -466,7 +466,7 @@ public final class RootToolsInternalMethods {
 
     /**
      * This will return an List of Strings. Each string represents an applet available from BusyBox.
-     * <p/>
+     * <p>
      *
      * @param path Path to the busybox binary that you want the list of applets from.
      * @return <code>null</code> If we cannot return the list of applets.
@@ -716,7 +716,7 @@ public final class RootToolsInternalMethods {
     /**
      * This will return an ArrayList of the class Mount. The class mount contains the following
      * property's: device mountPoint type flags
-     * <p/>
+     * <p>
      * These will provide you with any information you need to work with the mount points.
      *
      * @return <code>ArrayList<Mount></code> an ArrayList of the class Mount.
@@ -774,7 +774,7 @@ public final class RootToolsInternalMethods {
 
     /**
      * This will tell you how the specified mount is mounted. rw, ro, etc...
-     * <p/>
+     * <p>
      *
      * @param path mount you want to check
      * @return <code>String</code> What the mount is mounted as.
@@ -881,7 +881,7 @@ public final class RootToolsInternalMethods {
 
     /**
      * This will return a String that represent the symlink for a specified file.
-     * <p/>
+     * <p>
      *
      * @param file file to get the Symlink for. (must have absolute path)
      * @return <code>String</code> a String that represent the symlink for a specified file or an
@@ -944,7 +944,7 @@ public final class RootToolsInternalMethods {
     /**
      * This will return an ArrayList of the class Symlink. The class Symlink contains the following
      * property's: path SymplinkPath
-     * <p/>
+     * <p>
      * These will provide you with any Symlinks in the given path.
      *
      * @param path path to search for Symlinks.
@@ -1125,7 +1125,7 @@ public final class RootToolsInternalMethods {
 
     /**
      * This will let you know if an applet is available from BusyBox
-     * <p/>
+     * <p>
      *
      * @param applet The applet to check for.
      * @return <code>true</code> if applet is available, false otherwise.

@@ -233,7 +233,7 @@ public class VariosTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                             "cp  /sdcard/SystemTweakerFREE/quick_power /system/etc/init.d/",
+                                                                             "cp /sdcard/SystemTweakerFREE/quick_power /system/etc/init.d/",
                                                                              "chmod 777 /system/etc/init.d/quick_power",
                                                                              "dos2unix /system/etc/init.d/quick_power",
                                                                              "sh /system/etc/init.d/quick_power",

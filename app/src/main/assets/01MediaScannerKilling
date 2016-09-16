@@ -7,6 +7,4 @@ busybox mount -o remount,rw /
 busybox mount -o remount,rw rootfs
 busybox mount -o remount,rw /system
 
-busybox sleep 40
-
 pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver

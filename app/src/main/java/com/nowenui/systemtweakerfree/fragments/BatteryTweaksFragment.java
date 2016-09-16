@@ -154,7 +154,7 @@ public class BatteryTweaksFragment extends Fragment {
                                                                 if (RootTools.isAccessGiven()) {
                                                                     Command command1 = new Command(0,
                                                                             "busybox mount -o rw,remount /proc /system",
-                                                                            "cp  /sdcard/SystemTweakerFREE/05FixGoogleServicedrain /system/etc/init.d/",
+                                                                            "cp /sdcard/SystemTweakerFREE/05FixGoogleServicedrain /system/etc/init.d/",
                                                                             "chmod 777 /system/etc/init.d/05FixGoogleServicedrain",
                                                                             "dos2unix /system/etc/init.d/05FixGoogleServicedrain",
                                                                             "sh /system/etc/init.d/05FixGoogleServicedrain",
@@ -238,7 +238,7 @@ public class BatteryTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                             "cp  /sdcard/SystemTweakerFREE/00BatteryImprove /system/etc/init.d/",
+                                                                             "cp /sdcard/SystemTweakerFREE/00BatteryImprove /system/etc/init.d/",
                                                                              "chmod 777 /system/etc/init.d/00BatteryImprove",
                                                                              "dos2unix /system/etc/init.d/00BatteryImprove",
                                                                              "sh /system/etc/init.d/00BatteryImprove",

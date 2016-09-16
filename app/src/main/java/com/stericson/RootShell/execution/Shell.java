@@ -77,10 +77,10 @@ public class Shell {
     private boolean isCleaning = false;
     /**
      * Runnable to write commands to the open shell.
-     * <p/>
+     * <p>
      * When writing commands we stay in a loop and wait for new
      * commands to added to "commands"
-     * <p/>
+     * <p>
      * The notification of a new command is handled by the method add in this class
      */
     private Runnable input = new Runnable() {
@@ -156,7 +156,7 @@ public class Shell {
     };
     /**
      * Runnable to monitor the responses from the open shell.
-     * <p/>
+     * <p>
      * This include the output and error stream
      */
     private Runnable output = new Runnable() {
@@ -786,7 +786,7 @@ public class Shell {
 
     /**
      * From libsuperuser.
-     * <p/>
+     * <p>
      * Detect if SELinux is set to enforcing, caches result
      *
      * @return true if SELinux set to enforcing, or false in the case of

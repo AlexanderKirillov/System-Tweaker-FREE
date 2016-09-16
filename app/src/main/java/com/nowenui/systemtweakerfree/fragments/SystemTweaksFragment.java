@@ -2,6 +2,7 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -203,11 +204,16 @@ public class SystemTweaksFragment extends Fragment {
         );
 
         artfix = (CheckBox) view.findViewById(R.id.artfix);
-        if (text.toString().contains("dalvik.vm.dex2oat-filter=interpret-only") &&
+        if (text.toString().contains("dalvik.vm.dex2oat-filter=speed") &&
                 text.toString().contains("dalvik.vm.image-dex2oat-filter=speed")) {
             artfix.setChecked(true);
         } else {
             artfix.setChecked(false);
+        }
+        if ((Build.VERSION.SDK_INT >= 21)) {
+            artfix.setEnabled(true);
+        } else {
+            artfix.setEnabled(false);
         }
         artfix.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {
@@ -221,7 +227,7 @@ public class SystemTweaksFragment extends Fragment {
                         })
                         .setIcon(R.drawable.warning)
                         .show();
-                return true;    // <- set to true
+                return true;
             }
         });
         artfix.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -236,7 +242,7 @@ public class SystemTweaksFragment extends Fragment {
                             if (RootTools.isAccessGiven()) {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
-                                        "cp  /sdcard/SystemTweakerFREE/art_fix /system/etc/",
+                                        "cp /sdcard/SystemTweakerFREE/art_fix /system/etc/",
                                         "chmod 777 /system/etc/art_fix",
                                         "dos2unix /system/etc/art_fix",
                                         "sh /system/etc/art_fix",
@@ -284,7 +290,7 @@ public class SystemTweaksFragment extends Fragment {
                                 Command command1 = new Command(0,
                                         "busybox mount -o rw,remount /proc /system",
                                         "busybox mount -o rw,remount /proc /data",
-                                        "busybox sed -i '/dalvik.vm.dex2oat-filter=interpret-only/d' /system/build.prop",
+                                        "busybox sed -i '/dalvik.vm.dex2oat-filter=speed/d' /system/build.prop",
                                         "busybox sed -i '/dalvik.vm.image-dex2oat-filter=speed/d' /system/build.prop",
                                         "rm -rf /data/dalvik-cache",
                                         "busybox mount -o ro,remount /proc /data",
@@ -365,10 +371,10 @@ public class SystemTweaksFragment extends Fragment {
                                                                    if (RootTools.isAccessGiven()) {
                                                                        Command command1 = new Command(0,
                                                                                "busybox mount -o rw,remount /proc /system",
-                                                                               "cp  /sdcard/SystemTweakerFREE/display /system/etc/init.d/",
+                                                                               "cp /sdcard/SystemTweakerFREE/display /system/etc/init.d/",
                                                                                "chmod 777 /system/etc/init.d/display",
                                                                                "dos2unix /system/etc/init.d/display",
-                                                                               "cp  /sdcard/SystemTweakerFREE/ad_calib.cfg /system/etc/",
+                                                                               "cp /sdcard/SystemTweakerFREE/ad_calib.cfg /system/etc/",
                                                                                "chmod 755 /system/etc/ad_calib.cfg",
                                                                                "sh /system/etc/init.d/display",
                                                                                "busybox mount -o ro,remount /proc /system");
@@ -532,8 +538,6 @@ public class SystemTweaksFragment extends Fragment {
                 && text.toString().contains("dev.pm.dyn_samplingrate=1")
                 && text.toString().contains("ro.fb.mode=1")
                 && text.toString().contains("ro.sf.compbypass.enable=0")
-                && text.toString().contains("ro.vold.umsdirtyratio=20")
-
                 && new File(ch21).exists()) {
             checkbox21.setChecked(true);
         } else {
@@ -567,7 +571,7 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/81GPU_rendering /system/etc/init.d/",
+                                                                              "cp /sdcard/SystemTweakerFREE/81GPU_rendering /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/81GPU_rendering",
                                                                               "dos2unix /system/etc/init.d/81GPU_rendering",
                                                                               "busybox sed -i '/debug.sf.hw/d' /system/build.prop",
@@ -582,7 +586,6 @@ public class SystemTweaksFragment extends Fragment {
                                                                               "busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
                                                                               "busybox sed -i '/ro.fb.mode/d' /system/build.prop",
                                                                               "busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
                                                                               "echo \"debug.sf.hw=1\" >> /system/build.prop",
                                                                               "echo \"debug.performance.tuning=1\" >> /system/build.prop",
                                                                               "echo \"video.accelerate.hw=1\" >> /system/build.prop",
@@ -595,7 +598,6 @@ public class SystemTweaksFragment extends Fragment {
                                                                               "echo \"dev.pm.dyn_samplingrate=1\" >> /system/build.prop",
                                                                               "echo \"ro.fb.mode=1\" >> /system/build.prop",
                                                                               "echo \"ro.sf.compbypass.enable=0\" >> /system/build.prop",
-                                                                              "echo \"ro.vold.umsdirtyratio=20\" >> /system/build.prop",
                                                                               "sh /system/etc/init.d/81GPU_rendering",
                                                                               "busybox mount -o ro,remount /proc /system");
                                                                       try {
@@ -637,7 +639,6 @@ public class SystemTweaksFragment extends Fragment {
                                                                               "busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
                                                                               "busybox sed -i '/ro.fb.mode/d' /system/build.prop",
                                                                               "busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
                                                                               "busybox mount -o ro,remount /proc /system"
                                                                       );
                                                                       try {
@@ -808,7 +809,7 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/touch /system/etc/init.d/",
+                                                                              "cp /sdcard/SystemTweakerFREE/touch /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/touch",
                                                                               "dos2unix /system/etc/init.d/touch",
                                                                               "sh /system/etc/init.d/touch",
@@ -871,12 +872,12 @@ public class SystemTweaksFragment extends Fragment {
         CheckBox perfomance = (CheckBox) view.findViewById(R.id.perfomance);
         String check64 = "/etc/init.d/boost";
         String check64a = "/system/etc/init.d/boost";
-        if (text.toString().contains("debug.performance.tuning=1") &&
-                text.toString().contains("persist.service.lgospd.enable=0")
+        if (text.toString().contains("persist.service.lgospd.enable=0")
                 && text.toString().contains("persist.service.pcsync.enable=0") &&
                 text.toString().contains("touch.pressure.scale=0.001") &&
                 text.toString().contains("persist.sys.use_dithering=0")
-                && text.toString().contains("persist.sys.use_16bpp_alpha=1") &&
+                && text.toString().contains("persist.sys.use_16bpp_alpha=1")
+                && text.toString().contains("ro.vold.umsdirtyratio=1") &&
                 new File(Environment.getRootDirectory() + check64).exists() || new File(check64a).exists() || new File(Environment.getRootDirectory() + check64a).exists()) {
             perfomance.setChecked(true);
         } else {
@@ -911,13 +912,13 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
                                                                               "busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
-                                                                              "echo \"debug.performance.tuning=1\" >> /system/build.prop",
+                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
+                                                                              "echo \"ro.vold.umsdirtyratio=1\" >> /system/build.prop",
                                                                               "echo \"persist.sys.use_dithering=0\" >> /system/build.prop",
                                                                               "echo \"persist.sys.use_16bpp_alpha=1\" >> /system/build.prop",
                                                                               "echo \"persist.service.lgospd.enable=0\" >> /system/build.prop",
@@ -925,7 +926,7 @@ public class SystemTweaksFragment extends Fragment {
                                                                               "echo \"touch.pressure.scale=0.001\" >> /system/build.prop",
                                                                               "setprop persist.service.lgospd.enable 0",
                                                                               "setprop persist.service.pcsync.enable 0",
-                                                                              "cp  /sdcard/SystemTweakerFREE/boost /system/etc/init.d/",
+                                                                              "cp /sdcard/SystemTweakerFREE/boost /system/etc/init.d/",
                                                                               "chmod 777 /system/etc/init.d/boost",
                                                                               "dos2unix /system/etc/init.d/boost",
                                                                               "sh /system/etc/init.d/boost",
@@ -957,12 +958,12 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
                                                                               "busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
                                                                               "busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
+                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
                                                                               "rm -f /system/etc/init.d/boost",
                                                                               "busybox mount -o ro,remount /proc /system"
                                                                       );
@@ -1027,9 +1028,9 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/zipalign /system/xbin/zipalign",
+                                                                              "cp /sdcard/SystemTweakerFREE/zipalign /system/xbin/zipalign",
                                                                               "chmod 755 /system/xbin/zipalign",
-                                                                              "cp  /sdcard/SystemTweakerFREE/93zipalign /system/etc/init.d/93zipalign",
+                                                                              "cp /sdcard/SystemTweakerFREE/93zipalign /system/etc/init.d/93zipalign",
                                                                               "chmod 777 /system/etc/init.d/93zipalign",
                                                                               "dos2unix /system/etc/init.d/93zipalign",
                                                                               "sh /system/etc/init.d/93zipalign",
@@ -1126,9 +1127,9 @@ public class SystemTweaksFragment extends Fragment {
                                                                   if (RootTools.isAccessGiven()) {
                                                                       Command command1 = new Command(0,
                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                              "cp  /sdcard/SystemTweakerFREE/sqlite3 /system/xbin/sqlite3",
+                                                                              "cp /sdcard/SystemTweakerFREE/sqlite3 /system/xbin/sqlite3",
                                                                               "chmod 755 /system/xbin/sqlite3",
-                                                                              "cp  /sdcard/SystemTweakerFREE/11sqlite /system/etc/init.d/11sqlite",
+                                                                              "cp /sdcard/SystemTweakerFREE/11sqlite /system/etc/init.d/11sqlite",
                                                                               "chmod 777 /system/etc/init.d/11sqlite",
                                                                               "dos2unix /system/etc/init.d/11sqlite",
                                                                               "sh /system/etc/init.d/11sqlite",
@@ -1225,10 +1226,10 @@ public class SystemTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                             "cp  /sdcard/SystemTweakerFREE/ext4 /system/etc/init.d/",
+                                                                             "cp /sdcard/SystemTweakerFREE/ext4 /system/etc/init.d/",
                                                                              "chmod 777 /system/etc/init.d/ext4",
                                                                              "dos2unix /system/etc/init.d/ext4",
-                                                                             "cp  /sdcard/SystemTweakerFREE/tune2fs /system/xbin/",
+                                                                             "cp /sdcard/SystemTweakerFREE/tune2fs /system/xbin/",
                                                                              "chmod 777 /system/xbin/tune2fs",
                                                                              "sh /system/etc/init.d/ext4",
                                                                              "busybox mount -o ro,remount /proc /system");
@@ -1303,6 +1304,7 @@ public class SystemTweaksFragment extends Fragment {
                 return true;    // <- set to true
             }
         });
+
 
         final Spinner spinner6 = (Spinner) view.findViewById(R.id.spinner6);
 
@@ -1437,7 +1439,7 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp  /sdcard/SystemTweakerFREE/ram_gaming /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_gaming /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
@@ -1464,7 +1466,7 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp  /sdcard/SystemTweakerFREE/ram_balanced /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_balanced /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_balanced\n");
                                 outputStream.flush();
@@ -1491,7 +1493,7 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp  /sdcard/SystemTweakerFREE/ram_multitasking /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_multitasking /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();

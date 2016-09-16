@@ -7,7 +7,6 @@ busybox mount -o remount,rw /
 busybox mount -o remount,rw rootfs
 busybox mount -o remount,rw /system
 
-busybox sleep 40
 if [ "`pgrep media`" ] && [ "`pgrep mediaserver`" ]; then
 	busybox killall -9 android.process.media
 	busybox killall -9 mediaserver

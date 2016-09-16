@@ -7,6 +7,5 @@ busybox mount -o remount,rw /
 busybox mount -o remount,rw rootfs
 busybox mount -o remount,rw /system
 
-busybox sleep 40
 echo "500" > /proc/sys/vm/dirty_expire_centisecs
 echo "1000" > /proc/sys/vm/dirty_writeback_centisecs
