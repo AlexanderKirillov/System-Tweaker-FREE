@@ -1,11 +1,13 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 mount -o remount,rw /
 mount -o remount,rw rootfs
 mount -o remount,rw /system
-busybox mount -o remount,rw /
-busybox mount -o remount,rw rootfs
-busybox mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
 
 echo "0" > /proc/sys/net/ipv4/tcp_timestamps;
 echo "1" > /proc/sys/net/ipv4/tcp_tw_reuse;

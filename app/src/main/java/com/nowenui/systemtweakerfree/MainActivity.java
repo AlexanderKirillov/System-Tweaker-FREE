@@ -11,7 +11,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -46,6 +45,9 @@ import com.nowenui.systemtweakerfree.fragments.MediaTweaksFragment;
 import com.nowenui.systemtweakerfree.fragments.RebootManagerFragment;
 import com.nowenui.systemtweakerfree.fragments.SystemTweaksFragment;
 import com.nowenui.systemtweakerfree.fragments.VariosTweaksFragment;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,6 +55,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
+import java.util.concurrent.TimeoutException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
 
         boolean isLang = Locale.getDefault().getLanguage().equals("ru");
         if (isLang) {
@@ -94,27 +96,16 @@ public class MainActivity extends AppCompatActivity {
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (url.contains("hello_ru.html")) {
-                        view.loadUrl(url);
-                    } else {
-                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        startActivity(i);
-                    }
+                    view.loadUrl(url);
                     return true;
                 }
             });
         } else {
-
             myWebView.loadUrl("file:///android_asset/hello_en.html");
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (url.contains("hello_en.html")) {
-                        view.loadUrl(url);
-                    } else {
-                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        startActivity(i);
-                    }
+                    view.loadUrl(url);
                     return true;
                 }
             });
@@ -139,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
 
+
         boolean hasPermission = (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
         if (!hasPermission) {
@@ -149,8 +141,22 @@ public class MainActivity extends AppCompatActivity {
 
         copyAssets();
 
+        if (RootTools.isRootAvailable()) {
+            if (RootTools.isAccessGiven()) {
+                Command command1 = new Command(0,
+                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                        "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/*",
+                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
+                try {
+                    RootTools.getShell(true).add(command1);
+                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -159,8 +165,19 @@ public class MainActivity extends AppCompatActivity {
             case REQUEST_WRITE_STORAGE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     copyAssets();
-                } else {
-                    Toast.makeText(this, "Для работы приложения Вы должны предоставить доступ!", Toast.LENGTH_LONG).show();
+                    if (RootTools.isRootAvailable()) {
+                        if (RootTools.isAccessGiven()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                    "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/*",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
+                            try {
+                                RootTools.getShell(true).add(command1);
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -279,7 +296,6 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, AboutFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
                             case R.id.navigation_drawer_item4:
                                 boolean isLang = Locale.getDefault().getLanguage().equals("ru");
                                 if (isLang) {
@@ -323,14 +339,6 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, BatteryFragment.newInstance(bundle))
                                         .commit();
                                 break;
-                            case R.id.navigation_drawer_item13:
-                                fragmentTitle = "FSTRIM";
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
-                                        .replace(R.id.content, FstrimFragment.newInstance(bundle))
-                                        .commit();
-                                break;
                             case R.id.navigation_drawer_item8:
                                 fragmentTitle = res.getString(R.string.mediatweaks);
                                 getSupportFragmentManager()
@@ -371,7 +379,6 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, AboutProgramFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
                             case R.id.navigation_drawer_item15:
                                 fragmentTitle = res.getString(R.string.varioustweaks);
                                 getSupportFragmentManager()
@@ -388,6 +395,23 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, RebootManagerFragment.newInstance(bundle))
                                         .commit();
                                 break;
+                            case R.id.navigation_drawer_item30:
+                                fragmentTitle = "FAQ";
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
+                                        .replace(R.id.content, FAQFragment.newInstance(bundle))
+                                        .commit();
+                                break;
+
+                            case R.id.navigation_drawer_item13:
+                                fragmentTitle = "FSTRIM";
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
+                                        .replace(R.id.content, FstrimFragment.newInstance(bundle))
+                                        .commit();
+                                break;
 
                             case R.id.navigation_drawer_item20:
                                 fragmentTitle = "MediaServer | MediaScanner";
@@ -397,8 +421,6 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, MediaServerFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
-
                             case R.id.navigation_drawer_item24:
                                 fragmentTitle = "System Tweaker FREE";
                                 Handler handler = new Handler();
@@ -439,14 +461,6 @@ public class MainActivity extends AppCompatActivity {
                                 int pid = android.os.Process.myPid();
                                 android.os.Process.killProcess(pid);
                                 break;
-                            case R.id.navigation_drawer_item30:
-                                fragmentTitle = "FAQ и решение проблем";
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
-                                        .replace(R.id.content, FAQFragment.newInstance(bundle))
-                                        .commit();
-                                break;
                         }
 
                         if (getSupportActionBar() != null) {
@@ -472,8 +486,7 @@ public class MainActivity extends AppCompatActivity {
             OutputStream out = null;
             try {
                 in = assetManager.open(filename);
-                File folder = new File(Environment.getExternalStorageDirectory() +
-                        File.separator + "SystemTweakerFREE");
+                File folder = new File("/data/data/com.nowenui.systemtweakerfree/files/");
                 if (!folder.exists()) {
                     folder.mkdir();
                 }
@@ -498,6 +511,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
     }
 
     private void copyFile(InputStream in, OutputStream out) throws IOException {

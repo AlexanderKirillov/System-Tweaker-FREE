@@ -1,8 +1,8 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 1.1.1</b></i>
+### <i><b>Current version: 2.0.0</b></i>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/f3NR4BQwvFoSp)
+### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/lOkKQwXCvemse)
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
@@ -30,6 +30,7 @@ Speeding up your device has never been so easy! With this program you can really
 * jaredrummler: [AndroidDeviceNames](https://github.com/jaredrummler/AndroidDeviceNames)
 * nisrulz: [EasyDeviceInfo](https://github.com/nisrulz/easydeviceinfo)
 * akexorcist: [DeviceInformation](https://github.com/akexorcist/DeviceInformation)
+* castorflex: [SmoothProgressBar] (https://github.com/castorflex/SmoothProgressBar)
 
 ## How to report a bug
 * A detailed description of the bug

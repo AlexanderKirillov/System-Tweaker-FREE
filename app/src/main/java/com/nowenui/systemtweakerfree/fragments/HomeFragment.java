@@ -1,9 +1,11 @@
 package com.nowenui.systemtweakerfree.fragments;
 
-import android.content.pm.PackageManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -57,6 +59,32 @@ public class HomeFragment extends Fragment {
             textview2.setBackgroundResource(R.color.textview1good);
             textview2.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
+            textview2.setOnTouchListener(new View.OnTouchListener() {
+                long oldTime = 0;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        if (System.currentTimeMillis() - oldTime < 300) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle(R.string.busy1)
+                                    .setMessage(R.string.busy2)
+                                    .setIcon(R.drawable.info).setCancelable(true)
+                                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                        oldTime = System.currentTimeMillis();
+
+                    }
+                    return true;
+                }
+            });
         } else {
             textview2.setText(R.string.busyboxbad);
             textview2.setBackgroundResource(R.color.textview1bad);
@@ -64,40 +92,43 @@ public class HomeFragment extends Fragment {
                     R.drawable.bad, 0, 0, 0);
         }
 
-        boolean installed = xposedappInstalledOrNot("de.robv.android.xposed.installer");
 
-        textview10.setText(isXposedSupport());
-        if (textview10.getText().toString().contains("XPOSED INSTALLED!") || textview10.getText().toString().contains("XPOSED УСТАНОВЛЕН!") || installed) {
-            textview10.setBackgroundResource(R.color.textview1good);
-            textview10.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.successs, 0, 0, 0);
-        } else {
-            textview10.setBackgroundResource(R.color.textview1bad);
-            textview10.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.bad, 0, 0, 0);
-        }
         textview11.setText(isInitdSupport());
         if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("INIT.D РАБОТАЕТ!")) {
             textview11.setBackgroundResource(R.color.textview1good);
             textview11.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
+            textview11.setOnTouchListener(new View.OnTouchListener() {
+                long oldTime = 0;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        if (System.currentTimeMillis() - oldTime < 300) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle(R.string.init1)
+                                    .setMessage(R.string.init2)
+                                    .setIcon(R.drawable.info).setCancelable(true)
+                                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                        oldTime = System.currentTimeMillis();
+
+                    }
+                    return true;
+                }
+            });
         } else {
             textview11.setBackgroundResource(R.color.textview1bad);
             textview11.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.bad, 0, 0, 0);
         }
-    }
-
-    public int isXposedSupport() {
-        String xposed = "XposedBridge.jar";
-        String[] locations = {"/system/framework/", "/magisk/xposed/system/framework/"};
-        boolean installed2 = xposedappInstalledOrNot("de.robv.android.xposed.installer");
-        for (String location : locations) {
-            if (new File(location + xposed).exists() || installed2) {
-                return R.string.xposed;
-            }
-        }
-        return R.string.xposedbad;
     }
 
     public int isInitdSupport() {
@@ -110,15 +141,4 @@ public class HomeFragment extends Fragment {
         return R.string.initdbad;
     }
 
-    private boolean xposedappInstalledOrNot(String uri) {
-        PackageManager pm = getActivity().getPackageManager();
-        boolean app_installed;
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            app_installed = false;
-        }
-        return app_installed;
-    }
 }

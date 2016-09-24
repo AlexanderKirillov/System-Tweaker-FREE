@@ -1,29 +1,32 @@
 #!/system/bin/sh
+
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 mount -o rw,remount / 2>/dev/null
 mount -o rw,remount / / 2>/dev/null
 mount -o rw,remount rootfs 2>/dev/null
 mount -o rw,remount /system 2>/dev/null
 mount -o rw,remount /system /system 2>/dev/null
-busybox mount -o rw,remount / 2>/dev/null
-busybox mount -o rw,remount / / 2>/dev/null
-busybox mount -o rw,remount rootfs 2>/dev/null
-busybox mount -o rw,remount /system 2>/dev/null
-busybox mount -o rw,remount /system /system 2>/dev/null
+$busybox mount -o rw,remount / 2>/dev/null
+$busybox mount -o rw,remount / / 2>/dev/null
+$busybox mount -o rw,remount rootfs 2>/dev/null
+$busybox mount -o rw,remount /system 2>/dev/null
+$busybox mount -o rw,remount /system /system 2>/dev/null
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "48" > /sys/module/lowmemorykiller/parameters/cost
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+$busybox echo "48" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Debug level
 if [ -e /sys/module/lowmemorykiller/parameters/debug_level ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
-busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
+$busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
 fi
 
 # Minfree Values 
-mem=`busybox awk '/MemTotal/{print $2}' /proc/meminfo`
+mem=`$busybox awk '/MemTotal/{print $2}' /proc/meminfo`
 
 #512 and less
 oom11=8
@@ -131,24 +134,24 @@ lmk57=$(($oom57*1024/4));
 lmk67=$(($oom67*1024/4));
 
 if [ "$mem" -lt 524288 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk11,$lmk21,$lmk31,$lmk41,$lmk51,$lmk61" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk11,$lmk21,$lmk31,$lmk41,$lmk51,$lmk61" > /sys/module/lowmemorykiller/parameters/minfree
 elif [ "$mem" -lt 786432 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk12,$lmk22,$lmk32,$lmk42,$lmk52,$lmk62" >/sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk12,$lmk22,$lmk32,$lmk42,$lmk52,$lmk62" >/sys/module/lowmemorykiller/parameters/minfree
 elif [ "$mem" -lt 1048576 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk13,$lmk23,$lmk33,$lmk43,$lmk53,$lmk63" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk13,$lmk23,$lmk33,$lmk43,$lmk53,$lmk63" > /sys/module/lowmemorykiller/parameters/minfree
 elif [ "$mem" -lt 1572864 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk14,$lmk24,$lmk34,$lmk44,$lmk54,$lmk64" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk14,$lmk24,$lmk34,$lmk44,$lmk54,$lmk64" > /sys/module/lowmemorykiller/parameters/minfree
 elif [ "$mem" -lt 2097152 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk15,$lmk25,$lmk35,$lmk45,$lmk55,$lmk65" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk15,$lmk25,$lmk35,$lmk45,$lmk55,$lmk65" > /sys/module/lowmemorykiller/parameters/minfree
 elif [ "$mem" -lt 3145728 ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk16,$lmk26,$lmk36,$lmk46,$lmk56,$lmk66" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk16,$lmk26,$lmk36,$lmk46,$lmk56,$lmk66" > /sys/module/lowmemorykiller/parameters/minfree
 else 
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
-busybox echo "$lmk17,$lmk27,$lmk37,$lmk47,$lmk57,$lmk67" > /sys/module/lowmemorykiller/parameters/minfree
+$busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
+$busybox echo "$lmk17,$lmk27,$lmk37,$lmk47,$lmk57,$lmk67" > /sys/module/lowmemorykiller/parameters/minfree
 fi

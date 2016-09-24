@@ -24,9 +24,9 @@ public class FAQFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sovets, parent, false);
+        View view = inflater.inflate(R.layout.fragment_sovets_powersaving, parent, false);
 
-        WebView webView = (WebView) view.findViewById(R.id.webView_perfomance);
+        WebView webView = (WebView) view.findViewById(R.id.webView_power);
         webView.loadUrl("file:///android_asset/fixes.html");
 
         return view;

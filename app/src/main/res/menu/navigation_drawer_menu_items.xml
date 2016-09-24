@@ -14,7 +14,6 @@
                 android:id="@+id/navigation_drawer_item2"
                 android:icon="@drawable/phone"
                 android:title="@string/infoabout" />
-
             <item
                 android:id="@+id/navigation_drawer_item5"
                 android:icon="@drawable/battery"
@@ -66,7 +65,7 @@
                 android:title="@string/varioustweaks" />
         </menu>
     </item>
-    <item android:title="Советы">
+    <item android:title="@string/sovets">
         <menu>
             <item
                 android:id="@+id/navigation_drawer_item30"

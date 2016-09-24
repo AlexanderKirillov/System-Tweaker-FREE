@@ -26,7 +26,7 @@ import java.util.concurrent.CountDownLatch;
 public class ConnectWithDeveloperFragment extends Fragment {
 
     String androidversion;
-    String rom, connecttext;
+    String rom, connecttext, emailtext;
     private EditText connect;
     private Button send;
     private boolean isClicked;
@@ -74,8 +74,9 @@ public class ConnectWithDeveloperFragment extends Fragment {
                     }
                 }, 1000);
                 EditText android = (EditText) view.findViewById(R.id.android);
+                EditText email = (EditText) view.findViewById(R.id.email);
                 EditText connect = (EditText) view.findViewById(R.id.connect);
-                if ((android.getText().toString().matches("")) || (spinner12.getSelectedItem().toString().matches("(не выбрано)")) || (connect.getText().toString().matches(""))) {
+                if ((android.getText().toString().matches("")) || (email.getText().toString().matches("")) || (spinner12.getSelectedItem().toString().matches("(не выбрано)")) || (connect.getText().toString().matches(""))) {
                     new AlertDialog.Builder(getContext())
                             .setTitle(R.string.error)
                             .setMessage(R.string.pola)
@@ -124,6 +125,9 @@ public class ConnectWithDeveloperFragment extends Fragment {
             EditText android = (EditText) rootView.findViewById(R.id.android);
             androidversion = "Версия Android: " + android.getText().toString() + "\n";
 
+            EditText email = (EditText) rootView.findViewById(R.id.email);
+            emailtext = "E-mail для обратной связи: " + email.getText().toString() + "\n";
+
             Spinner spinner12 = (Spinner) rootView.findViewById(R.id.spinner12);
             rom = "Прошивка: " + spinner12.getSelectedItem().toString() + "\n";
 
@@ -138,13 +142,13 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
             final CountDownLatch latch = new CountDownLatch(1);
 
-            MailSend m = new MailSend("tehnowenui@gmail.com", "kirillov13");
+            MailSend m = new MailSend("хххх@gmail.com", "password");
             String[] toArr = {"NowenUI@bk.ru"};
             m.setTo(toArr);
             m.setFrom("User");
-            m.setSubject("System Tweaker PRO (HELP)");
+            m.setSubject("System Tweaker FREE (HELP)");
 
-            m.setBody(androidversion + rom + connecttext);
+            m.setBody(androidversion + emailtext + rom + connecttext);
 
             try {
                 boolean i = m.send();

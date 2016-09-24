@@ -17,12 +17,11 @@
             android:text="@string/systemteweaks"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="@android:color/darker_gray" />
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -66,21 +65,36 @@
             android:paddingTop="10dp"
             android:text="@string/perftweak" />
 
-        <CheckBox
-            android:id="@+id/checkBox16"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/systemone" />
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <CheckBox
-            android:id="@+id/checkBox20"
+            android:id="@+id/lowram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/systemtwo" />
+            android:text="@string/ramflag" />
+
+        <CheckBox
+            android:id="@+id/lowrameffects"
+            android:layout_width="262dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/ramflageffect" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <CheckBox
             android:id="@+id/checkBox21"

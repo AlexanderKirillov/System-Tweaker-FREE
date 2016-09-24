@@ -14,6 +14,7 @@
                 android:id="@+id/navigation_drawer_item2"
                 android:icon="@drawable/phone"
                 android:title="@string/infoabout" />
+
             <item
                 android:id="@+id/navigation_drawer_item5"
                 android:icon="@drawable/battery"
@@ -23,11 +24,6 @@
                 android:id="@+id/navigation_drawer_item9"
                 android:icon="@drawable/backup"
                 android:title="@string/backupandrestore" />
-
-            <item
-                android:id="@+id/navigation_drawer_item22"
-                android:icon="@drawable/reboot_command"
-                android:title="@string/rebootmanager" />
         </menu>
     </item>
 
@@ -58,7 +54,6 @@
                 android:id="@+id/navigation_drawer_item8"
                 android:icon="@drawable/media_tweaks"
                 android:title="@string/mediatweaks" />
-
             <item
                 android:id="@+id/navigation_drawer_item15"
                 android:icon="@drawable/varios"

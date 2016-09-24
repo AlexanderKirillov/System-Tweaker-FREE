@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 #Zipalign /Data 
 RUN_EVERY=604800
 
@@ -13,11 +15,11 @@ if [ ! -f $ZIPALIGNDB ]; then
 	touch $ZIPALIGNDB
 fi
 
-busybox echo "" | tee -a $TD
-busybox echo "" | tee -a $TD
-busybox echo "Starting Automatic ZipAlign $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $TD
+$busybox echo "" | tee -a $TD
+$busybox echo "" | tee -a $TD
+$busybox echo "Starting Automatic ZipAlign $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $TD
 
-busybox sleep 10
+$busybox sleep 10
 
 for DIR in /data/app/*; do
   cd $DIR
@@ -32,10 +34,10 @@ for DIR in /data/app/*; do
       else
         echo "Now aligning: $DIR/$APK" | tee -a $TD
         /system/xbin/zipalign -f 4 $APK /cache/$APK
-        busybox mount -o rw,remount /system
+        $busybox mount -o rw,remount /system
         cp -f -p /cache/$APK $APK
 		chmod 644 $APK
-        busybox rm -f /cache/$APK
+        $busybox rm -f /cache/$APK
         grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
       fi
     fi
@@ -57,10 +59,10 @@ for DIR in /system/app/*; do
       else
         echo "Now aligning: $DIR/$APK" | tee -a $TD
         /system/xbin/zipalign -f 4 $APK /cache/$APK
-        busybox mount -o rw,remount /system
+        $busybox mount -o rw,remount /system
         cp -f -p /cache/$APK $APK
 		chmod 644 $APK
-        busybox rm -f /cache/$APK
+        $busybox rm -f /cache/$APK
         grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
       fi
     fi
@@ -80,10 +82,10 @@ for DIR in /system/priv-app/*; do
       else
         echo "Now aligning: $DIR/$APK" | tee -a $TD
         /system/xbin/zipalign -f 4 $APK /cache/$APK
-        busybox mount -o rw,remount /system
+        $busybox mount -o rw,remount /system
         cp -f -p /cache/$APK $APK
 		chmod 644 $APK
-        busybox rm -f /cache/$APK
+        $busybox rm -f /cache/$APK
         grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
       fi
     fi
@@ -103,10 +105,10 @@ for DIR in /system/framework; do
       else
         echo "Now aligning: $DIR/$APK" | tee -a $TD
         /system/xbin/zipalign -f 4 $APK /cache/$APK
-        busybox mount -o rw,remount /system
+        $busybox mount -o rw,remount /system
         cp -f -p /cache/$APK $APK
 		chmod 644 $APK
-        busybox rm -f /cache/$APK
+        $busybox rm -f /cache/$APK
         grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
       fi
     fi
@@ -114,4 +116,4 @@ for DIR in /system/framework; do
 done
 
 touch $ZIPALIGNDB
-busybox echo "Automatic ZipAlign finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $TD
+$busybox echo "Automatic ZipAlign finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $TD

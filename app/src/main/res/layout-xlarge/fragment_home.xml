@@ -32,32 +32,12 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_alignEnd="@+id/textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/textView"
             android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:paddingLeft="20dip"
-            android:paddingRight="40dip"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
-
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignEnd="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"

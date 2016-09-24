@@ -48,7 +48,7 @@ public class RootShell {
     /**
      * Setting this to false will disable the handler that is used
      * by default for the 3 callback methods for Command.
-     * <p>
+     * <p/>
      * By disabling this all callbacks will be called from a thread other than
      * the main UI thread.
      */
@@ -57,7 +57,7 @@ public class RootShell {
 
     /**
      * Setting this will change the default command timeout.
-     * <p>
+     * <p/>
      * The default is 20000ms
      */
     public static int defaultCommandTimeout = 20000;
@@ -393,7 +393,7 @@ public class RootShell {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p>
+     * <p/>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootShell.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -409,7 +409,7 @@ public class RootShell {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p>
+     * <p/>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootShell.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -426,7 +426,7 @@ public class RootShell {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p>
+     * <p/>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootShell.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.
@@ -445,7 +445,7 @@ public class RootShell {
      * After all writing logging calls should be painless.
      * This method exists to save Android going through the various Java layers
      * that are traversed any time a string is created (i.e. what you are logging)
-     * <p>
+     * <p/>
      * Example usage:
      * if(islog) {
      * StrinbBuilder sb = new StringBuilder();
@@ -466,7 +466,7 @@ public class RootShell {
      * you to add a debug option to your app, which by default can be left off for performance.
      * However, when you need debugging information, a simple switch can enable it and provide you
      * with detailed logging.
-     * <p>
+     * <p/>
      * This method handles whether or not to log the information you pass it depending whether or
      * not RootShell.debugMode is on. So you can use this and not have to worry about handling it
      * yourself.

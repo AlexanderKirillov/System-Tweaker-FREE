@@ -30,12 +30,16 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.concurrent.TimeoutException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SystemTweaksFragment extends Fragment {
 
-    private CheckBox checkbox16, checkbox20, checkbox21, checkbox22, checkbox23, checkbox30, ext4tweak, display_cal, artfix;
+    private CheckBox checkbox21, checkbox22, checkbox23, checkbox30, ext4tweak, display_cal, artfix;
 
 
     public static SystemTweaksFragment newInstance(Bundle bundle) {
@@ -112,96 +116,6 @@ public class SystemTweaksFragment extends Fragment {
             br.close();
         } catch (IOException e) {
         }
-        checkbox16 = (CheckBox) view.findViewById(R.id.checkBox16);
-        if (text.toString().contains("ro.HOME_APP_ADJ=1")) {
-            checkbox16.setChecked(true);
-        } else {
-            checkbox16.setChecked(false);
-        }
-        checkbox16.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View arg0) {
-                new AlertDialog.Builder(getContext())
-                        .setTitle(R.string.tweakabout)
-                        .setMessage(R.string.sys1)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setIcon(R.drawable.warning)
-                        .show();
-                return true;    // <- set to true
-            }
-        });
-        checkbox16.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-
-                                                  @Override
-                                                  public void onCheckedChanged(CompoundButton buttonView,
-                                                                               boolean isChecked) {
-                                                      if (isChecked) {
-
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.HOME_APP_ADJ/d' /system/build.prop",
-                                                                              "echo \"ro.HOME_APP_ADJ=1\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                                  }
-
-                                                              } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                              }
-                                                          } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
-                                                          }
-
-
-                                                      } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.HOME_APP_ADJ/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                                  }
-
-                                                              } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                              }
-                                                          } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
-                                                          }
-                                                      }
-
-                                                  }
-                                              }
-
-        );
 
         artfix = (CheckBox) view.findViewById(R.id.artfix);
         if (text.toString().contains("dalvik.vm.dex2oat-filter=speed") &&
@@ -237,99 +151,88 @@ public class SystemTweaksFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
                 if (isChecked) {
-                    if (RootTools.isBusyboxAvailable()) {
-                        if (RootTools.isRootAvailable()) {
-                            if (RootTools.isAccessGiven()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "cp /sdcard/SystemTweakerFREE/art_fix /system/etc/",
-                                        "chmod 777 /system/etc/art_fix",
-                                        "dos2unix /system/etc/art_fix",
-                                        "sh /system/etc/art_fix",
-                                        "rm -f /system/etc/art_fix",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    RootTools.getShell(true).add(command1);
-                                    Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                    new AlertDialog.Builder(getContext())
-                                            .setTitle(R.string.reboot)
-                                            .setMessage(R.string.rebootdalvik)
-                                            .setCancelable(false)
-                                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    try {
-                                                        Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
-                                                        proc.waitFor();
-                                                    } catch (Exception ex) {
-                                                        Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
-                                                    }
+                    if (RootTools.isRootAvailable()) {
+                        if (RootTools.isAccessGiven()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "cp /data/data/com.nowenui.systemtweakerfree/files/art_fix /system/etc/",
+                                    "chmod 777 /system/etc/art_fix",
+                                    "dos2unix /system/etc/art_fix",
+                                    "sh /system/etc/art_fix",
+                                    "rm -f /system/etc/art_fix",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                RootTools.getShell(true).add(command1);
+                                Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle(R.string.reboot)
+                                        .setMessage(R.string.rebootdalvik)
+                                        .setCancelable(false)
+                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                try {
+                                                    Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
+                                                    proc.waitFor();
+                                                } catch (Exception ex) {
+                                                    Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
                                                 }
-                                            })
-                                            .setIcon(R.drawable.warning)
-                                            .show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setIcon(R.drawable.warning)
+                                        .show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
+
                     } else {
-                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                        RootTools.offerBusyBox(getActivity());
+                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    if (RootTools.isBusyboxAvailable()) {
-                        if (RootTools.isRootAvailable()) {
-                            if (RootTools.isAccessGiven()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "busybox mount -o rw,remount /proc /data",
-                                        "busybox sed -i '/dalvik.vm.dex2oat-filter=speed/d' /system/build.prop",
-                                        "busybox sed -i '/dalvik.vm.image-dex2oat-filter=speed/d' /system/build.prop",
-                                        "rm -rf /data/dalvik-cache",
-                                        "busybox mount -o ro,remount /proc /data",
-                                        "busybox mount -o ro,remount /proc /system"
-                                );
-                                try {
-                                    RootTools.getShell(true).add(command1);
-                                    Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                    new AlertDialog.Builder(getContext())
-                                            .setTitle(R.string.reboot)
-                                            .setMessage(R.string.rebootdalvikdis)
-                                            .setCancelable(false)
-                                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    try {
-                                                        Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
-                                                        proc.waitFor();
-                                                    } catch (Exception ex) {
-                                                        Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
-                                                    }
+                    if (RootTools.isRootAvailable()) {
+                        if (RootTools.isAccessGiven()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.dex2oat-filter=speed/d' /system/build.prop",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.image-dex2oat-filter=speed/d' /system/build.prop",
+                                    "rm -rf /data/dalvik-cache",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                            );
+                            try {
+                                RootTools.getShell(true).add(command1);
+                                Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle(R.string.reboot)
+                                        .setMessage(R.string.rebootdalvikdis)
+                                        .setCancelable(false)
+                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                try {
+                                                    Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
+                                                    proc.waitFor();
+                                                } catch (Exception ex) {
+                                                    Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
                                                 }
-                                            })
-                                            .setIcon(R.drawable.warning)
-                                            .show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setIcon(R.drawable.warning)
+                                        .show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                        RootTools.offerBusyBox(getActivity());
 
+                    } else {
+                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -366,64 +269,54 @@ public class SystemTweaksFragment extends Fragment {
                                                                                 boolean isChecked) {
                                                        if (isChecked) {
 
-                                                           if (RootTools.isBusyboxAvailable()) {
-                                                               if (RootTools.isRootAvailable()) {
-                                                                   if (RootTools.isAccessGiven()) {
-                                                                       Command command1 = new Command(0,
-                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                               "cp /sdcard/SystemTweakerFREE/display /system/etc/init.d/",
-                                                                               "chmod 777 /system/etc/init.d/display",
-                                                                               "dos2unix /system/etc/init.d/display",
-                                                                               "cp /sdcard/SystemTweakerFREE/ad_calib.cfg /system/etc/",
-                                                                               "chmod 755 /system/etc/ad_calib.cfg",
-                                                                               "sh /system/etc/init.d/display",
-                                                                               "busybox mount -o ro,remount /proc /system");
-                                                                       try {
-                                                                           RootTools.getShell(true).add(command1);
-                                                                           Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                       } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                           ex.printStackTrace();
-                                                                           Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                       }
-                                                                   } else {
-                                                                       Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           if (RootTools.isRootAvailable()) {
+                                                               if (RootTools.isAccessGiven()) {
+                                                                   Command command1 = new Command(0,
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/display /system/etc/init.d/",
+                                                                           "chmod 777 /system/etc/init.d/display",
+                                                                           "dos2unix /system/etc/init.d/display",
+                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/ad_calib.cfg /system/etc/",
+                                                                           "chmod 755 /system/etc/ad_calib.cfg",
+                                                                           "sh /system/etc/init.d/display",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                   try {
+                                                                       RootTools.getShell(true).add(command1);
+                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                       ex.printStackTrace();
+                                                                       Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                    }
-
                                                                } else {
                                                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                                }
+
                                                            } else {
-                                                               Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                               RootTools.offerBusyBox(getActivity());
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                            }
 
 
                                                        } else {
-                                                           if (RootTools.isBusyboxAvailable()) {
-                                                               if (RootTools.isRootAvailable()) {
-                                                                   if (RootTools.isAccessGiven()) {
-                                                                       Command command1 = new Command(0,
-                                                                               "busybox mount -o rw,remount /proc /system",
-                                                                               "rm -f /system/etc/init.d/display",
-                                                                               "busybox mount -o ro,remount /proc /system"
-                                                                       );
-                                                                       try {
-                                                                           RootTools.getShell(true).add(command1);
-                                                                           Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                       } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                           ex.printStackTrace();
-                                                                           Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                       }
-                                                                   } else {
-                                                                       Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           if (RootTools.isRootAvailable()) {
+                                                               if (RootTools.isAccessGiven()) {
+                                                                   Command command1 = new Command(0,
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                           "rm -f /system/etc/init.d/display",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                   );
+                                                                   try {
+                                                                       RootTools.getShell(true).add(command1);
+                                                                       Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                       ex.printStackTrace();
+                                                                       Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                    }
-
                                                                } else {
                                                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                                }
+
                                                            } else {
-                                                               Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                               RootTools.offerBusyBox(getActivity());
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                            }
                                                        }
 
@@ -432,97 +325,6 @@ public class SystemTweaksFragment extends Fragment {
 
         );
 
-
-        checkbox20 = (CheckBox) view.findViewById(R.id.checkBox20);
-        if (text.toString().contains("ro.kernel.android.checkjni=0")) {
-            checkbox20.setChecked(true);
-        } else {
-            checkbox20.setChecked(false);
-        }
-        checkbox20.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View arg0) {
-                new AlertDialog.Builder(getContext())
-                        .setTitle(R.string.tweakabout)
-                        .setMessage(R.string.sys3)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setIcon(R.drawable.warning)
-                        .show();
-                return true;    // <- set to true
-            }
-        });
-        checkbox20.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-
-                                                  @Override
-                                                  public void onCheckedChanged(CompoundButton buttonView,
-                                                                               boolean isChecked) {
-                                                      if (isChecked) {
-
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.kernel.android.checkjni/d' /system/build.prop",
-                                                                              "echo \"ro.kernel.android.checkjni=0\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                                  }
-
-                                                              } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                              }
-                                                          } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
-                                                          }
-
-
-                                                      } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.kernel.android.checkjni/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                                  }
-
-                                                              } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                                              }
-                                                          } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
-                                                          }
-                                                      }
-
-                                                  }
-                                              }
-
-        );
 
         checkbox21 = (CheckBox) view.findViewById(R.id.checkBox21);
         String ch21 = "/system/etc/init.d/81GPU_rendering";
@@ -566,98 +368,88 @@ public class SystemTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/81GPU_rendering /system/etc/init.d/",
-                                                                              "chmod 777 /system/etc/init.d/81GPU_rendering",
-                                                                              "dos2unix /system/etc/init.d/81GPU_rendering",
-                                                                              "busybox sed -i '/debug.sf.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
-                                                                              "busybox sed -i '/video.accelerate.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.egl.profiler/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.egl.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.composition.type/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.enabletr/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.overlayui.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.qctwa.preservebuf/d' /system/build.prop",
-                                                                              "busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.fb.mode/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
-                                                                              "echo \"debug.sf.hw=1\" >> /system/build.prop",
-                                                                              "echo \"debug.performance.tuning=1\" >> /system/build.prop",
-                                                                              "echo \"video.accelerate.hw=1\" >> /system/build.prop",
-                                                                              "echo \"debug.egl.profiler=1\" >> /system/build.prop",
-                                                                              "echo \"debug.egl.hw=1\" >> /system/build.prop",
-                                                                              "echo \"debug.composition.type=gpu\" >> /system/build.prop",
-                                                                              "echo \"debug.enabletr=true\" >> /system/build.prop",
-                                                                              "echo \"debug.overlayui.enable=1\" >> /system/build.prop",
-                                                                              "echo \"debug.qctwa.preservebuf=1\" >> /system/build.prop",
-                                                                              "echo \"dev.pm.dyn_samplingrate=1\" >> /system/build.prop",
-                                                                              "echo \"ro.fb.mode=1\" >> /system/build.prop",
-                                                                              "echo \"ro.sf.compbypass.enable=0\" >> /system/build.prop",
-                                                                              "sh /system/etc/init.d/81GPU_rendering",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/81GPU_rendering /system/etc/init.d/",
+                                                                          "chmod 777 /system/etc/init.d/81GPU_rendering",
+                                                                          "dos2unix /system/etc/init.d/81GPU_rendering",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/video.accelerate.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.egl.profiler/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.egl.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.composition.type/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.enabletr/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.overlayui.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.qctwa.preservebuf/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.fb.mode/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
+                                                                          "echo \"debug.sf.hw=1\" >> /system/build.prop",
+                                                                          "echo \"debug.performance.tuning=1\" >> /system/build.prop",
+                                                                          "echo \"video.accelerate.hw=1\" >> /system/build.prop",
+                                                                          "echo \"debug.egl.profiler=1\" >> /system/build.prop",
+                                                                          "echo \"debug.egl.hw=1\" >> /system/build.prop",
+                                                                          "echo \"debug.composition.type=gpu\" >> /system/build.prop",
+                                                                          "echo \"debug.enabletr=true\" >> /system/build.prop",
+                                                                          "echo \"debug.overlayui.enable=1\" >> /system/build.prop",
+                                                                          "echo \"debug.qctwa.preservebuf=1\" >> /system/build.prop",
+                                                                          "echo \"dev.pm.dyn_samplingrate=1\" >> /system/build.prop",
+                                                                          "echo \"ro.fb.mode=1\" >> /system/build.prop",
+                                                                          "echo \"ro.sf.compbypass.enable=0\" >> /system/build.prop",
+                                                                          "sh /system/etc/init.d/81GPU_rendering",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/etc/init.d/81GPU_rendering",
-                                                                              "busybox sed -i '/debug.sf.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
-                                                                              "busybox sed -i '/video.accelerate.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.egl.profiler/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.egl.hw/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.composition.type/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.enabletr/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.overlayui.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/debug.qctwa.preservebuf/d' /system/build.prop",
-                                                                              "busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.fb.mode/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/etc/init.d/81GPU_rendering",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/video.accelerate.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.egl.profiler/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.egl.hw/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.composition.type/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.enabletr/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.overlayui.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.qctwa.preservebuf/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.fb.mode/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -699,70 +491,60 @@ public class SystemTweaksFragment extends Fragment {
 
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.min.fling_velocity/d' /system/build.prop",
-                                                                              "echo \"ro.min_pointer_dur=8\" >> /system/build.prop",
-                                                                              "echo \"ro.max.fling_velocity=12000\" >> /system/build.prop",
-                                                                              "echo \"ro.min.fling_velocity=8000\" >> /system/build.prop",
-                                                                              "echo \"windowsmgr.max_events_per_sec=150\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min.fling_velocity/d' /system/build.prop",
+                                                                          "echo \"ro.min_pointer_dur=8\" >> /system/build.prop",
+                                                                          "echo \"ro.max.fling_velocity=12000\" >> /system/build.prop",
+                                                                          "echo \"ro.min.fling_velocity=8000\" >> /system/build.prop",
+                                                                          "echo \"windowsmgr.max_events_per_sec=150\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.min.fling_velocity/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min.fling_velocity/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -804,63 +586,52 @@ public class SystemTweaksFragment extends Fragment {
 
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/touch /system/etc/init.d/",
-                                                                              "chmod 777 /system/etc/init.d/touch",
-                                                                              "dos2unix /system/etc/init.d/touch",
-                                                                              "sh /system/etc/init.d/touch",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/touch /system/etc/init.d/",
+                                                                          "chmod 777 /system/etc/init.d/touch",
+                                                                          "dos2unix /system/etc/init.d/touch",
+                                                                          "sh /system/etc/init.d/touch",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
-
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/etc/init.d/touch",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/etc/init.d/touch",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -907,83 +678,73 @@ public class SystemTweaksFragment extends Fragment {
 
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
-                                                                              "busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
-                                                                              "echo \"ro.vold.umsdirtyratio=1\" >> /system/build.prop",
-                                                                              "echo \"persist.sys.use_dithering=0\" >> /system/build.prop",
-                                                                              "echo \"persist.sys.use_16bpp_alpha=1\" >> /system/build.prop",
-                                                                              "echo \"persist.service.lgospd.enable=0\" >> /system/build.prop",
-                                                                              "echo \"persist.service.pcsync.enable=0\" >> /system/build.prop",
-                                                                              "echo \"touch.pressure.scale=0.001\" >> /system/build.prop",
-                                                                              "setprop persist.service.lgospd.enable 0",
-                                                                              "setprop persist.service.pcsync.enable 0",
-                                                                              "cp /sdcard/SystemTweakerFREE/boost /system/etc/init.d/",
-                                                                              "chmod 777 /system/etc/init.d/boost",
-                                                                              "dos2unix /system/etc/init.d/boost",
-                                                                              "sh /system/etc/init.d/boost",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
+                                                                          "echo \"ro.vold.umsdirtyratio=1\" >> /system/build.prop",
+                                                                          "echo \"persist.sys.use_dithering=0\" >> /system/build.prop",
+                                                                          "echo \"persist.sys.use_16bpp_alpha=1\" >> /system/build.prop",
+                                                                          "echo \"persist.service.lgospd.enable=0\" >> /system/build.prop",
+                                                                          "echo \"persist.service.pcsync.enable=0\" >> /system/build.prop",
+                                                                          "echo \"touch.pressure.scale=0.001\" >> /system/build.prop",
+                                                                          "setprop persist.service.lgospd.enable 0",
+                                                                          "setprop persist.service.pcsync.enable 0",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/boost /system/etc/init.d/",
+                                                                          "chmod 777 /system/etc/init.d/boost",
+                                                                          "dos2unix /system/etc/init.d/boost",
+                                                                          "sh /system/etc/init.d/boost",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
-                                                                              "busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
-                                                                              "rm -f /system/etc/init.d/boost",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.service.pcsync.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
+                                                                          "rm -f /system/etc/init.d/boost",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -991,6 +752,183 @@ public class SystemTweaksFragment extends Fragment {
                                               }
 
         );
+
+        CheckBox ramflag = (CheckBox) view.findViewById(R.id.lowram);
+        if ((getTotalRAM() <= 1024) && (Build.VERSION.SDK_INT >= 19)) {
+            ramflag.setEnabled(true);
+        } else {
+            ramflag.setEnabled(false);
+        }
+        if (text.toString().contains("ro.config.low_ram=true")) {
+            ramflag.setChecked(true);
+        } else {
+            ramflag.setChecked(false);
+        }
+        ramflag.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.sys12)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
+        ramflag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+                                               @Override
+                                               public void onCheckedChanged(CompoundButton buttonView,
+                                                                            boolean isChecked) {
+
+                                                   if (isChecked) {
+
+                                                       if (RootTools.isRootAvailable()) {
+                                                           if (RootTools.isAccessGiven()) {
+                                                               Command command1 = new Command(0,
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.low_ram/d' /system/build.prop",
+                                                                       "echo \"ro.config.low_ram=true\" >> /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                               );
+                                                               try {
+                                                                   RootTools.getShell(true).add(command1);
+                                                                   Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                               } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                   ex.printStackTrace();
+                                                                   Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                               }
+                                                           } else {
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           }
+
+                                                       } else {
+                                                           Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                       }
+
+
+                                                   } else {
+                                                       if (RootTools.isRootAvailable()) {
+                                                           if (RootTools.isAccessGiven()) {
+                                                               Command command1 = new Command(0,
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.low_ram/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                               );
+                                                               try {
+                                                                   RootTools.getShell(true).add(command1);
+                                                                   Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                               } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                   ex.printStackTrace();
+                                                                   Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                               }
+                                                           } else {
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           }
+
+                                                       } else {
+                                                           Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                       }
+                                                   }
+
+                                               }
+                                           }
+
+        );
+
+        CheckBox ramflageffect = (CheckBox) view.findViewById(R.id.lowrameffects);
+        if ((getTotalRAM() <= 1024) && (Build.VERSION.SDK_INT >= 19) && ramflag.isChecked()) {
+            ramflageffect.setEnabled(true);
+        } else {
+            ramflageffect.setEnabled(false);
+        }
+        if (text.toString().contains("persist.sys.force_highendgfx=true")) {
+            ramflageffect.setChecked(true);
+        } else {
+            ramflageffect.setChecked(false);
+        }
+        ramflageffect.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.sys13)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;
+            }
+        });
+        ramflageffect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+                                                     @Override
+                                                     public void onCheckedChanged(CompoundButton buttonView,
+                                                                                  boolean isChecked) {
+
+                                                         if (isChecked) {
+
+                                                             if (RootTools.isRootAvailable()) {
+                                                                 if (RootTools.isAccessGiven()) {
+                                                                     Command command1 = new Command(0,
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.force_highendgfx/d' /system/build.prop",
+                                                                             "echo \"persist.sys.force_highendgfx=true\" >> /system/build.prop",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                     );
+                                                                     try {
+                                                                         RootTools.getShell(true).add(command1);
+                                                                         Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                     } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                         ex.printStackTrace();
+                                                                         Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                     }
+                                                                 } else {
+                                                                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                 }
+
+                                                             } else {
+                                                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                             }
+
+
+                                                         } else {
+                                                             if (RootTools.isRootAvailable()) {
+                                                                 if (RootTools.isAccessGiven()) {
+                                                                     Command command1 = new Command(0,
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.force_highendgfx/d' /system/build.prop",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                     );
+                                                                     try {
+                                                                         RootTools.getShell(true).add(command1);
+                                                                         Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                     } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                         ex.printStackTrace();
+                                                                         Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                     }
+                                                                 } else {
+                                                                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                 }
+
+                                                             } else {
+                                                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                             }
+                                                         }
+
+                                                     }
+                                                 }
+
+        );
+
 
         checkbox23 = (CheckBox) view.findViewById(R.id.checkBox23);
         String check11 = "/etc/init.d/93zipalign";
@@ -1022,67 +960,56 @@ public class SystemTweaksFragment extends Fragment {
                                                   public void onCheckedChanged(CompoundButton buttonView,
                                                                                boolean isChecked) {
                                                       if (isChecked) {
-
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/zipalign /system/xbin/zipalign",
-                                                                              "chmod 755 /system/xbin/zipalign",
-                                                                              "cp /sdcard/SystemTweakerFREE/93zipalign /system/etc/init.d/93zipalign",
-                                                                              "chmod 777 /system/etc/init.d/93zipalign",
-                                                                              "dos2unix /system/etc/init.d/93zipalign",
-                                                                              "sh /system/etc/init.d/93zipalign",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/zipalign /system/xbin/zipalign",
+                                                                          "chmod 755 /system/xbin/zipalign",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/93zipalign /system/etc/init.d/93zipalign",
+                                                                          "chmod 777 /system/etc/init.d/93zipalign",
+                                                                          "dos2unix /system/etc/init.d/93zipalign",
+                                                                          "sh /system/etc/init.d/93zipalign",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/xbin/zipalign",
-                                                                              "rm -f /system/etc/init.d/93zipalign",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/xbin/zipalign",
+                                                                          "rm -f /system/etc/init.d/93zipalign",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -1122,66 +1049,56 @@ public class SystemTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/sqlite3 /system/xbin/sqlite3",
-                                                                              "chmod 755 /system/xbin/sqlite3",
-                                                                              "cp /sdcard/SystemTweakerFREE/11sqlite /system/etc/init.d/11sqlite",
-                                                                              "chmod 777 /system/etc/init.d/11sqlite",
-                                                                              "dos2unix /system/etc/init.d/11sqlite",
-                                                                              "sh /system/etc/init.d/11sqlite",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/sqlite3 /system/xbin/sqlite3",
+                                                                          "chmod 755 /system/xbin/sqlite3",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/11sqlite /system/etc/init.d/11sqlite",
+                                                                          "chmod 777 /system/etc/init.d/11sqlite",
+                                                                          "dos2unix /system/etc/init.d/11sqlite",
+                                                                          "sh /system/etc/init.d/11sqlite",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/xbin/sqlite3",
-                                                                              "rm -f /system/etc/init.d/11sqlite",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/xbin/sqlite3",
+                                                                          "rm -f /system/etc/init.d/11sqlite",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -1221,65 +1138,55 @@ public class SystemTweaksFragment extends Fragment {
                                                                               boolean isChecked) {
                                                      if (isChecked) {
 
-                                                         if (RootTools.isBusyboxAvailable()) {
-                                                             if (RootTools.isRootAvailable()) {
-                                                                 if (RootTools.isAccessGiven()) {
-                                                                     Command command1 = new Command(0,
-                                                                             "busybox mount -o rw,remount /proc /system",
-                                                                             "cp /sdcard/SystemTweakerFREE/ext4 /system/etc/init.d/",
-                                                                             "chmod 777 /system/etc/init.d/ext4",
-                                                                             "dos2unix /system/etc/init.d/ext4",
-                                                                             "cp /sdcard/SystemTweakerFREE/tune2fs /system/xbin/",
-                                                                             "chmod 777 /system/xbin/tune2fs",
-                                                                             "sh /system/etc/init.d/ext4",
-                                                                             "busybox mount -o ro,remount /proc /system");
-                                                                     try {
-                                                                         RootTools.getShell(true).add(command1);
-                                                                         Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                     } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                         ex.printStackTrace();
-                                                                         Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                     }
-                                                                 } else {
-                                                                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                         if (RootTools.isRootAvailable()) {
+                                                             if (RootTools.isAccessGiven()) {
+                                                                 Command command1 = new Command(0,
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "cp /data/data/com.nowenui.systemtweakerfree/files/ext4 /system/etc/init.d/",
+                                                                         "chmod 777 /system/etc/init.d/ext4",
+                                                                         "dos2unix /system/etc/init.d/ext4",
+                                                                         "cp /data/data/com.nowenui.systemtweakerfree/files/tune2fs /system/xbin/",
+                                                                         "chmod 777 /system/xbin/tune2fs",
+                                                                         "sh /system/etc/init.d/ext4",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                 try {
+                                                                     RootTools.getShell(true).add(command1);
+                                                                     Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                 } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                     ex.printStackTrace();
+                                                                     Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                  }
-
                                                              } else {
                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                              }
+
                                                          } else {
-                                                             Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                             RootTools.offerBusyBox(getActivity());
+                                                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                          }
 
 
                                                      } else {
-                                                         if (RootTools.isBusyboxAvailable()) {
-                                                             if (RootTools.isRootAvailable()) {
-                                                                 if (RootTools.isAccessGiven()) {
-                                                                     Command command1 = new Command(0,
-                                                                             "busybox mount -o rw,remount /proc /system",
-                                                                             "rm -f /system/etc/init.d/ext4",
-                                                                             "rm -f /system/xbin/tune2fs",
-                                                                             "busybox mount -o ro,remount /proc /system"
-                                                                     );
-                                                                     try {
-                                                                         RootTools.getShell(true).add(command1);
-                                                                         Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                     } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                         ex.printStackTrace();
-                                                                         Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                     }
-                                                                 } else {
-                                                                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                         if (RootTools.isRootAvailable()) {
+                                                             if (RootTools.isAccessGiven()) {
+                                                                 Command command1 = new Command(0,
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "rm -f /system/etc/init.d/ext4",
+                                                                         "rm -f /system/xbin/tune2fs",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                 );
+                                                                 try {
+                                                                     RootTools.getShell(true).add(command1);
+                                                                     Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                 } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                     ex.printStackTrace();
+                                                                     Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                  }
-
                                                              } else {
                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                              }
+
                                                          } else {
-                                                             Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                             RootTools.offerBusyBox(getActivity());
+                                                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                          }
                                                      }
 
@@ -1416,7 +1323,7 @@ public class SystemTweaksFragment extends Fragment {
                             try {
                                 Process su = Runtime.getRuntime().exec("su");
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-                                outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
@@ -1424,7 +1331,7 @@ public class SystemTweaksFragment extends Fragment {
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("busybox mount -o ro,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1437,9 +1344,9 @@ public class SystemTweaksFragment extends Fragment {
                             try {
                                 Process su = Runtime.getRuntime().exec("su");
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-                                outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_gaming /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_gaming /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
@@ -1451,7 +1358,7 @@ public class SystemTweaksFragment extends Fragment {
                                 outputStream.flush();
                                 outputStream.writeBytes("sh /system/etc/init.d/ram_gaming");
                                 outputStream.flush();
-                                outputStream.writeBytes("busybox mount -o ro,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1464,9 +1371,9 @@ public class SystemTweaksFragment extends Fragment {
                             try {
                                 Process su = Runtime.getRuntime().exec("su");
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-                                outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_balanced /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_balanced /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_balanced\n");
                                 outputStream.flush();
@@ -1478,7 +1385,7 @@ public class SystemTweaksFragment extends Fragment {
                                 outputStream.flush();
                                 outputStream.writeBytes("sh /system/etc/init.d/ram_balanced");
                                 outputStream.flush();
-                                outputStream.writeBytes("busybox mount -o ro,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1491,9 +1398,9 @@ public class SystemTweaksFragment extends Fragment {
                             try {
                                 Process su = Runtime.getRuntime().exec("su");
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-                                outputStream.writeBytes("busybox mount -o rw,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("cp /sdcard/SystemTweakerFREE/ram_multitasking /system/etc/init.d/\n");
+                                outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_multitasking /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
@@ -1505,7 +1412,7 @@ public class SystemTweaksFragment extends Fragment {
                                 outputStream.flush();
                                 outputStream.writeBytes("sh /system/etc/init.d/ram_multitasking");
                                 outputStream.flush();
-                                outputStream.writeBytes("busybox mount -o ro,remount /proc /system\n");
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1525,6 +1432,43 @@ public class SystemTweaksFragment extends Fragment {
 
 
         return view;
+    }
+
+    public Double getTotalRAM() {
+
+        RandomAccessFile reader = null;
+        String load = null;
+        double mb = 0;
+        DecimalFormat twoDecimalForm = new DecimalFormat("#.##");
+        double totRam = 0;
+        String lastValue = "";
+        try {
+            reader = new RandomAccessFile("/proc/meminfo", "r");
+            load = reader.readLine();
+
+            // Get the Number value from the string
+            Pattern p = Pattern.compile("(\\d+)");
+            Matcher m = p.matcher(load);
+            String value = "";
+            while (m.find()) {
+                value = m.group(1);
+                // System.out.println("Ram : " + value);
+            }
+            reader.close();
+
+            totRam = Double.parseDouble(value);
+            // totRam = totRam / 1024;
+
+            mb = totRam / 1024.0;
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            // Streams.close(reader);
+        }
+
+        return mb;
     }
 
 }

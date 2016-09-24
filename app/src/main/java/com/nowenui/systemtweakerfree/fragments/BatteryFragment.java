@@ -69,72 +69,61 @@ public class BatteryFragment extends Fragment {
                             }, 1000);
                             if (pct == 100) {
                                 calibrate.setBackgroundResource(R.drawable.roundbuttoncal);
-                                if (RootTools.isBusyboxAvailable()) {
-                                    if (RootTools.isRootAvailable()) {
-                                        if (RootTools.isAccessGiven()) {
-                                            Command command1 = new Command(0,
-                                                    "busybox mount -o rw,remount /proc /data",
-                                                    "rm -f /data/system/batterystats.bin",
-                                                    "rm -f /data/system/batterystats-checkin.bin",
-                                                    "rm -f /data/system/batterystats-daily.xml",
-                                                    "busybox mount -o ro,remount /proc /data"
-                                            );
-                                            try {
-                                                RootTools.getShell(true).add(command1);
-                                                Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
-                                                new AlertDialog.Builder(v.getContext())
-                                                        .setTitle(R.string.reboot)
-                                                        .setMessage(R.string.rebootdialog)
-                                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                if (RootTools.isBusyboxAvailable()) {
-                                                                    if (RootTools.isRootAvailable()) {
-                                                                        if (RootTools.isAccessGiven()) {
-                                                                            Command command1 = new Command(0,
-                                                                                    "reboot");
-                                                                            try {
-                                                                                Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
-                                                                                RootTools.getShell(true).add(command1);
-                                                                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                                ex.printStackTrace();
-                                                                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                        } else {
-                                                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                                                        }
-
-                                                                    } else {
-                                                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                if (RootTools.isRootAvailable()) {
+                                    if (RootTools.isAccessGiven()) {
+                                        Command command1 = new Command(0,
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                                "rm -f /data/system/batterystats.bin",
+                                                "rm -f /data/system/batterystats-checkin.bin",
+                                                "rm -f /data/system/batterystats-daily.xml",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data"
+                                        );
+                                        try {
+                                            RootTools.getShell(true).add(command1);
+                                            Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
+                                            new AlertDialog.Builder(v.getContext())
+                                                    .setTitle(R.string.reboot)
+                                                    .setMessage(R.string.rebootdialog)
+                                                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            if (RootTools.isRootAvailable()) {
+                                                                if (RootTools.isAccessGiven()) {
+                                                                    Command command1 = new Command(0,
+                                                                            "reboot");
+                                                                    try {
+                                                                        Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                                        RootTools.getShell(true).add(command1);
+                                                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                        ex.printStackTrace();
+                                                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 } else {
-                                                                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                                    RootTools.offerBusyBox(getActivity());
+                                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                                 }
-                                                            }
-                                                        })
-                                                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                dialog.dismiss();
-                                                            }
-                                                        })
-                                                        .setIcon(R.drawable.warning)
-                                                        .show();
-                                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                ex.printStackTrace();
-                                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                        }
 
+                                                            } else {
+                                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    })
+                                                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    })
+                                                    .setIcon(R.drawable.warning)
+                                                    .show();
+                                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                            ex.printStackTrace();
+                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                        }
                                     } else {
                                         Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                     }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                    RootTools.offerBusyBox(getActivity());
-                                }
 
+                                } else {
+                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                }
 
                             } else
                                 calibrate.setEnabled(false);
@@ -170,71 +159,60 @@ public class BatteryFragment extends Fragment {
                                 }, 1000);
                                 if (pct == 100) {
                                     calibrate.setBackgroundResource(R.drawable.roundbuttoncal);
-                                    if (RootTools.isBusyboxAvailable()) {
-                                        if (RootTools.isRootAvailable()) {
-                                            if (RootTools.isAccessGiven()) {
-                                                Command command1 = new Command(0,
-                                                        "busybox mount -o rw,remount /proc /data",
-                                                        "rm -f /data/system/batterystats.bin",
-                                                        "rm -f /data/system/batterystats-checkin.bin",
-                                                        "rm -f /data/system/batterystats-daily.xml",
-                                                        "busybox mount -o ro,remount /proc /data");
-                                                try {
-                                                    RootTools.getShell(true).add(command1);
-                                                    Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
-                                                    new AlertDialog.Builder(v.getContext())
-                                                            .setTitle(R.string.reboot)
-                                                            .setMessage(R.string.rebootdialog)
-                                                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                    if (RootTools.isBusyboxAvailable()) {
-                                                                        if (RootTools.isRootAvailable()) {
-                                                                            if (RootTools.isAccessGiven()) {
-                                                                                Command command1 = new Command(0,
-                                                                                        "reboot");
-                                                                                try {
-                                                                                    Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
-                                                                                    RootTools.getShell(true).add(command1);
-                                                                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                                    ex.printStackTrace();
-                                                                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                                }
-                                                                            } else {
-                                                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                                                            }
-
-                                                                        } else {
-                                                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                    if (RootTools.isRootAvailable()) {
+                                        if (RootTools.isAccessGiven()) {
+                                            Command command1 = new Command(0,
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                                    "rm -f /data/system/batterystats.bin",
+                                                    "rm -f /data/system/batterystats-checkin.bin",
+                                                    "rm -f /data/system/batterystats-daily.xml",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
+                                            try {
+                                                RootTools.getShell(true).add(command1);
+                                                Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
+                                                new AlertDialog.Builder(v.getContext())
+                                                        .setTitle(R.string.reboot)
+                                                        .setMessage(R.string.rebootdialog)
+                                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                if (RootTools.isRootAvailable()) {
+                                                                    if (RootTools.isAccessGiven()) {
+                                                                        Command command1 = new Command(0,
+                                                                                "reboot");
+                                                                        try {
+                                                                            Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                                            RootTools.getShell(true).add(command1);
+                                                                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                            ex.printStackTrace();
+                                                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                         }
                                                                     } else {
-                                                                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                                        RootTools.offerBusyBox(getActivity());
+                                                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                                     }
-                                                                }
-                                                            })
-                                                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                    dialog.dismiss();
-                                                                }
-                                                            })
-                                                            .setIcon(R.drawable.warning)
-                                                            .show();
-                                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                    ex.printStackTrace();
-                                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                }
-                                            } else {
-                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                            }
 
+                                                                } else {
+                                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        })
+                                                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        })
+                                                        .setIcon(R.drawable.warning)
+                                                        .show();
+                                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                ex.printStackTrace();
+                                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                            }
                                         } else {
                                             Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                         }
-                                    } else {
-                                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                        RootTools.offerBusyBox(getActivity());
-                                    }
 
+                                    } else {
+                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                    }
 
                                 } else {
                                     calibrate.setEnabled(false);

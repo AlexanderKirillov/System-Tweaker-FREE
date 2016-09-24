@@ -1,30 +1,32 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
 mount -o remount,rw /system 2>/dev/null
 mount -o remount,rw /system /system 2>/dev/null
-busybox mount -o remount,rw / 2>/dev/null
-busybox mount -o remount,rw / / 2>/dev/null
-busybox mount -o remount,rw rootfs 2>/dev/null
-busybox mount -o remount,rw /system 2>/dev/null
-busybox mount -o remount,rw /system /system 2>/dev/null
+$busybox mount -o remount,rw / 2>/dev/null
+$busybox mount -o remount,rw / / 2>/dev/null
+$busybox mount -o remount,rw rootfs 2>/dev/null
+$busybox mount -o remount,rw /system 2>/dev/null
+$busybox mount -o remount,rw /system /system 2>/dev/null
 
 
-busybox echo "Activating faster boot..." 
+$busybox echo "Activating faster boot..." 
 
 setprop ro.config.hw_quickpoweron true
 
-busybox echo "Faster boot is activated"
+$busybox echo "Faster boot is activated"
 
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
 mount -o remount,ro /system 2>/dev/null
 mount -o remount,ro /system /system 2>/dev/null
-busybox mount -o remount,ro / 2>/dev/null
-busybox mount -o remount,ro / / 2>/dev/null
-busybox mount -o remount,ro rootfs 2>/dev/null
-busybox mount -o remount,ro /system 2>/dev/null
-busybox mount -o remount,ro /system /system 2>/dev/null
+$busybox mount -o remount,ro / 2>/dev/null
+$busybox mount -o remount,ro / / 2>/dev/null
+$busybox mount -o remount,ro rootfs 2>/dev/null
+$busybox mount -o remount,ro /system 2>/dev/null
+$busybox mount -o remount,ro /system /system 2>/dev/null

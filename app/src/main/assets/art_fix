@@ -1,22 +1,24 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 mount -o rw,remount /system
 mount -o rw,remount /data
-busybox mount -o remount,rw /
-busybox mount -o remount,rw rootfs
-busybox mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
 
-busybox sed -i '/dalvik.vm.dex2oat-filter/d' /system/build.prop
-busybox sed -i '/dalvik.vm.image-dex2oat-filter/d' /system/build.prop
+$busybox sed -i '/dalvik.vm.dex2oat-filter/d' /system/build.prop
+$busybox sed -i '/dalvik.vm.image-dex2oat-filter/d' /system/build.prop
 
 echo "dalvik.vm.dex2oat-filter=speed" >> /system/build.prop
 echo "dalvik.vm.image-dex2oat-filter=speed" >> /system/build.prop
 
 rm -rf /data/dalvik-cache
 
-busybox mount -o remount,ro /
-busybox mount -o remount,ro rootfs
-busybox mount -o remount,ro /system
+$busybox mount -o remount,ro /
+$busybox mount -o remount,ro rootfs
+$busybox mount -o remount,ro /system
 mount -o ro,remount /system
 mount -o ro,remount /data
 

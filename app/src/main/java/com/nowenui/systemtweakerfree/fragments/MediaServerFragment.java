@@ -108,62 +108,51 @@ public class MediaServerFragment extends Fragment {
                                                                                boolean isChecked) {
 
                                                       if (isChecked) {
-
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/01MediaServelKilling /system/etc/init.d/",
-                                                                              "chmod 777 /system/etc/init.d/01MediaServelKilling",
-                                                                              "dos2unix /system/etc/init.d/01MediaServelKilling",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaServelKilling /system/etc/init.d/",
+                                                                          "chmod 777 /system/etc/init.d/01MediaServelKilling",
+                                                                          "dos2unix /system/etc/init.d/01MediaServelKilling",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/etc/init.d/01MediaServelKilling",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.disable, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/etc/init.d/01MediaServelKilling",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.disable, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -188,62 +177,52 @@ public class MediaServerFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
-                                                                              "chmod 777 /system/etc/init.d/01MediaScannerKilling",
-                                                                              "dos2unix /system/etc/init.d/01MediaScannerKilling",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
+                                                                          "chmod 777 /system/etc/init.d/01MediaScannerKilling",
+                                                                          "dos2unix /system/etc/init.d/01MediaScannerKilling",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/etc/init.d/01MediaScannerKilling",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/etc/init.d/01MediaScannerKilling",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -276,32 +255,27 @@ public class MediaServerFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "busybox mount -o rw,remount /proc /system",
-                                    "busybox killall -9 android.process.media",
-                                    "busybox killall -9 mediaserver",
-                                    "busybox mount -o ro,remount /proc /system"
-                            );
-                            try {
-                                RootTools.getShell(true).add(command1);
-                                Toast.makeText(getActivity(), R.string.sttoppedmediaserver, Toast.LENGTH_SHORT).show();
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 android.process.media",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 mediaserver",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                        );
+                        try {
+                            RootTools.getShell(true).add(command1);
+                            Toast.makeText(getActivity(), R.string.sttoppedmediaserver, Toast.LENGTH_SHORT).show();
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
-                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                    RootTools.offerBusyBox(getActivity());
+                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -321,31 +295,26 @@ public class MediaServerFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "busybox mount -o rw,remount /proc /system",
-                                    "pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
-                                    "busybox mount -o ro,remount /proc /system"
-                            );
-                            try {
-                                RootTools.getShell(true).add(command1);
-                                Toast.makeText(getActivity(), R.string.sttoppedmediascanner, Toast.LENGTH_SHORT).show();
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                        );
+                        try {
+                            RootTools.getShell(true).add(command1);
+                            Toast.makeText(getActivity(), R.string.sttoppedmediascanner, Toast.LENGTH_SHORT).show();
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
-                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                    RootTools.offerBusyBox(getActivity());
+                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -365,31 +334,26 @@ public class MediaServerFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "busybox mount -o rw,remount /proc /system",
-                                    "pm enable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
-                                    "busybox mount -o ro,remount /proc /system"
-                            );
-                            try {
-                                RootTools.getShell(true).add(command1);
-                                Toast.makeText(getActivity(), R.string.startpedmediaserver, Toast.LENGTH_SHORT).show();
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "pm enable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                        );
+                        try {
+                            RootTools.getShell(true).add(command1);
+                            Toast.makeText(getActivity(), R.string.startpedmediaserver, Toast.LENGTH_SHORT).show();
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
-                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                    RootTools.offerBusyBox(getActivity());
+                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
             }
 

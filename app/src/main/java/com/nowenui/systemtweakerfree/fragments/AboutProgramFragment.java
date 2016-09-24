@@ -220,31 +220,6 @@ public class AboutProgramFragment extends Fragment {
             }
         });
 
-
-        TextView prolink = (TextView) view.findViewById(R.id.prolink);
-
-
-        prolink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.systemtweaker");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
         return view;
     }
 

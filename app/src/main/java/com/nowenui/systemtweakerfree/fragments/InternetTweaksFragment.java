@@ -21,14 +21,23 @@ import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
 
+    private static final String PRE_PATH = "/proc/sys/net/ipv4/";
+    private final static int BUFFER_SIZE = 2048;
     private CheckBox checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15;
+    private Scanner file_scanner;
 
     public static InternetTweaksFragment newInstance(Bundle bundle) {
         InternetTweaksFragment messagesFragment = new InternetTweaksFragment();
@@ -40,6 +49,42 @@ public class InternetTweaksFragment extends Fragment {
         return messagesFragment;
     }
 
+    private static String readString(String filename) {
+        try {
+            File f = new File(filename);
+            if (f.exists()) {
+                InputStream is = null;
+                if (f.canRead()) {
+                    is = new FileInputStream(f);
+                } else {
+                    String[] commands = {
+                            "cat " + filename + "\n", "exit\n"
+                    };
+                    Process p = Runtime.getRuntime().exec("su");
+                    DataOutputStream dos = new DataOutputStream(p.getOutputStream());
+                    for (String command : commands) {
+                        dos.writeBytes(command);
+                        dos.flush();
+                    }
+                    if (p.waitFor() == 0) {
+                        is = p.getInputStream();
+                    } else {
+                        return null;
+                    }
+                }
+                BufferedReader br = new BufferedReader(new InputStreamReader(is), BUFFER_SIZE);
+                String line = br.readLine();
+                br.close();
+                return line;
+            } else {
+                return null;
+            }
+        } catch (InterruptedException iex) {
+            return null;
+        } catch (IOException ioex) {
+            return null;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +124,20 @@ public class InternetTweaksFragment extends Fragment {
                         .show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public String[] readAvailablecong() throws Exception {
+        String file_path = PRE_PATH + "tcp_available_congestion_control";
+        File scalingAvailableFrequenciesFile = new File(file_path);
+        ArrayList<String> availableFrequencies = new ArrayList<String>();
+        file_scanner = new Scanner(scalingAvailableFrequenciesFile);
+        while (file_scanner.hasNext()) {
+            availableFrequencies.add(file_scanner.next());
+        }
+        String[] availableFrequenciesArray = new String[availableFrequencies.size()];
+        availableFrequenciesArray = availableFrequencies.toArray(availableFrequenciesArray);
+
+        return availableFrequenciesArray;
     }
 
 
@@ -143,84 +202,74 @@ public class InternetTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.gprs/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.edge/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.hspa/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.lte/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576\" >> /system/build.prop",
-                                                                              "echo \"net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.gprs/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.edge/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hspa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.lte/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576\" >> /system/build.prop",
+                                                                          "echo \"net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.gprs/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.edge/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.hspa/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.lte/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.gprs/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.edge/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hspa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.lte/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -272,100 +321,90 @@ public class InternetTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hep/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
-                                                                              "echo \"ro.ril.hsxpa=2\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.hep=1\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.enable.dtm=1\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.enable.a53=1\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.enable.3g.prefix=1\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.gprsclass=10\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.hsupa.category=7\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.enable.a52=1\" >> /system/build.prop",
-                                                                              "echo \"ro.ril.set.mtu1472=1\" >> /system/build.prop",
-                                                                              "echo \"persist.cust.tel.eons=1\" >> /system/build.prop",
-                                                                              "cp /sdcard/SystemTweakerFREE/05InternetTweak /system/etc/init.d/",
-                                                                              "chmod 777 /system/etc/init.d/05InternetTweak",
-                                                                              "dos2unix /system/etc/init.d/05InternetTweak",
-                                                                              "sh /system/etc/init.d/05InternetTweak",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
+                                                                          "echo \"ro.ril.hsxpa=2\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.hep=1\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.enable.dtm=1\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.enable.a53=1\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.enable.3g.prefix=1\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.gprsclass=10\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.hsupa.category=7\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.hsdpa.category=10\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.enable.a52=1\" >> /system/build.prop",
+                                                                          "echo \"ro.ril.set.mtu1472=1\" >> /system/build.prop",
+                                                                          "echo \"persist.cust.tel.eons=1\" >> /system/build.prop",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/05InternetTweak /system/etc/init.d/",
+                                                                          "chmod 777 /system/etc/init.d/05InternetTweak",
+                                                                          "dos2unix /system/etc/init.d/05InternetTweak",
+                                                                          "sh /system/etc/init.d/05InternetTweak",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hep/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
-                                                                              "busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
-                                                                              "busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
-                                                                              "rm -f /system/etc/init.d/05InternetTweak",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.a53/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.gprsclass/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsupa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsdpa.category/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.3g.prefix/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.a52/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
+                                                                          "rm -f /system/etc/init.d/05InternetTweak",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -417,93 +456,83 @@ public class InternetTweaksFragment extends Fragment {
 
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/net.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.rmnet0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.ppp0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.ppp0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.wlan0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.wlan0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.eth0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.eth0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
-                                                                              "echo \"net.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "echo \"net.rmnet0.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.rmnet0.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "echo \"net.ppp0.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.ppp0.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "echo \"net.wlan0.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.wlan0.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "echo \"net.eth0.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.eth0.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "echo \"net.gprs.dns1=8.8.8.8\" >> /system/build.prop",
-                                                                              "echo \"net.gprs.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.ppp0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.ppp0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.wlan0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.wlan0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.eth0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.eth0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
+                                                                          "echo \"net.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "echo \"net.rmnet0.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.rmnet0.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "echo \"net.ppp0.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.ppp0.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "echo \"net.wlan0.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.wlan0.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "echo \"net.eth0.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.eth0.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "echo \"net.gprs.dns1=8.8.8.8\" >> /system/build.prop",
+                                                                          "echo \"net.gprs.dns2=8.8.4.4\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/net.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.rmnet0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.ppp0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.ppp0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.wlan0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.wlan0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.eth0.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.eth0.dns2/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
-                                                                              "busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.ppp0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.ppp0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.wlan0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.wlan0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.eth0.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.eth0.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -542,60 +571,50 @@ public class InternetTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
-                                                                              "echo \"ro.config.hw_fast_dormancy=1\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
+                                                                          "echo \"ro.config.hw_fast_dormancy=1\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -634,60 +653,50 @@ public class InternetTweaksFragment extends Fragment {
 
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
-                                                                              "echo \"persist.telephony.support.ipv6=1\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
+                                                                          "echo \"persist.telephony.support.ipv6=1\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -725,60 +734,50 @@ public class InternetTweaksFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
-                                                                              "echo \"persist.telephony.support.ipv4=1\" >> /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
+                                                                          "echo \"persist.telephony.support.ipv4=1\" >> /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
 
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 

@@ -108,44 +108,40 @@ public class BackupFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweakerFREE/backups");
-                            if (f.exists() && f.isDirectory()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
-                                    RootTools.getShell(true).add(command1);
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "mkdir /sdcard/SystemTweakerFREE/",
-                                        "mkdir /sdcard/SystemTweakerFREE/backups",
-                                        "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
-                                    RootTools.getShell(true).add(command1);
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        File f = new File("/sdcard/SystemTweakerFREE/backups");
+                        if (f.exists() && f.isDirectory()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
+                                RootTools.getShell(true).add(command1);
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "mkdir /sdcard/SystemTweakerFREE",
+                                    "mkdir /sdcard/SystemTweakerFREE/backups",
+                                    "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
+                                RootTools.getShell(true).add(command1);
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                            }
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
@@ -171,55 +167,50 @@ public class BackupFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
-                            if (f.exists() && f.isDirectory()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "rm -r /sdcard/SystemTweakerFREE/backups/init.d",
-                                        "mkdir /sdcard/SystemTweakerFREE/",
-                                        "mkdir /sdcard/SystemTweakerFREE/backups",
-                                        "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
-                                        "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
-                                        "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
+                        if (f.exists() && f.isDirectory()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "rm -r /sdcard/SystemTweakerFREE/backups/init.d",
+                                    "mkdir /sdcard/SystemTweakerFREE",
+                                    "mkdir /sdcard/SystemTweakerFREE/backups",
+                                    "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
+                                    "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
+                                    "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
 
-                                    RootTools.getShell(true).add(command1);
-                                    Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Command command2 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "mkdir /sdcard/SystemTweakerFREE/",
-                                        "mkdir /sdcard/SystemTweakerFREE/backups",
-                                        "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
-                                        "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
-                                        "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    RootTools.getShell(true).add(command2);
-                                    Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
+                                RootTools.getShell(true).add(command1);
+                                Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                            Command command2 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "mkdir /sdcard/SystemTweakerFREE",
+                                    "mkdir /sdcard/SystemTweakerFREE/backups",
+                                    "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
+                                    "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
+                                    "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                RootTools.getShell(true).add(command2);
+                                Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                            }
                         }
+
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                    RootTools.offerBusyBox(getActivity());
+                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -263,80 +254,71 @@ public class BackupFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
-                            if (f.exists()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "rm /system/build.prop",
-                                        "cp /sdcard/SystemTweakerFREE/backups/buildprop.backup /system/build.prop",
-                                        "chmod 644 /system/build.prop",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();
-                                    RootTools.getShell(true).add(command1);
-                                    new AlertDialog.Builder(v.getContext())
-                                            .setTitle(R.string.reboot)
-                                            .setMessage(R.string.rebootdialog)
-                                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    if (RootTools.isBusyboxAvailable()) {
-                                                        if (RootTools.isRootAvailable()) {
-                                                            if (RootTools.isAccessGiven()) {
-                                                                Command command1 = new Command(0,
-                                                                        "reboot");
-                                                                try {
-                                                                    Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
-                                                                    RootTools.getShell(true).add(command1);
-                                                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                    ex.printStackTrace();
-                                                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            } else {
-                                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                                            }
-
-                                                        } else {
-                                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        File f = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
+                        if (f.exists()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "rm /system/build.prop",
+                                    "cp /sdcard/SystemTweakerFREE/backups/buildprop.backup /system/build.prop",
+                                    "chmod 644 /system/build.prop",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();
+                                RootTools.getShell(true).add(command1);
+                                new AlertDialog.Builder(v.getContext())
+                                        .setTitle(R.string.reboot)
+                                        .setMessage(R.string.rebootdialog)
+                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                if (RootTools.isRootAvailable()) {
+                                                    if (RootTools.isAccessGiven()) {
+                                                        Command command1 = new Command(0,
+                                                                "reboot");
+                                                        try {
+                                                            Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                            RootTools.getShell(true).add(command1);
+                                                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                            ex.printStackTrace();
+                                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                         }
                                                     } else {
-                                                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                        RootTools.offerBusyBox(getActivity());
+                                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                     }
+
+                                                } else {
+                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                 }
-                                            })
-                                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.dismiss();
-                                                }
-                                            })
-                                            .setIcon(R.drawable.warning)
-                                            .show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                new AlertDialog.Builder(v.getContext())
-                                        .setTitle(R.string.error)
-                                        .setMessage(R.string.backupfuck)
-                                        .setNegativeButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                            }
+                                        })
+                                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.dismiss();
                                             }
                                         })
                                         .setIcon(R.drawable.warning)
                                         .show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle(R.string.error)
+                                    .setMessage(R.string.backupfuck)
+                                    .setNegativeButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setIcon(R.drawable.warning)
+                                    .show();
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }
@@ -362,82 +344,73 @@ public class BackupFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
-                            if (f.exists() && f.isDirectory()) {
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "rm /system/etc/init.d/*",
-                                        "cp /sdcard/SystemTweakerFREE/backups/init.d/* /system/etc/init.d/",
-                                        "chmod 755 /system/etc/init.d",
-                                        "chmod 777 /system/etc/init.d/*",
-                                        "busybox mount -o ro,remount /proc /system"
-                                );
-                                try {
-                                    Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();
-                                    RootTools.getShell(true).add(command1);
-                                    new AlertDialog.Builder(v.getContext())
-                                            .setTitle(R.string.reboot)
-                                            .setMessage(R.string.rebootdialog)
-                                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    if (RootTools.isBusyboxAvailable()) {
-                                                        if (RootTools.isRootAvailable()) {
-                                                            if (RootTools.isAccessGiven()) {
-                                                                Command command1 = new Command(0,
-                                                                        "reboot");
-                                                                try {
-                                                                    Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
-                                                                    RootTools.getShell(true).add(command1);
-                                                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                    ex.printStackTrace();
-                                                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            } else {
-                                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
-                                                            }
-
-                                                        } else {
-                                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        File f = new File("/sdcard/SystemTweakerFREE/backups/init.d");
+                        if (f.exists() && f.isDirectory()) {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "rm /system/etc/init.d/*",
+                                    "cp /sdcard/SystemTweakerFREE/backups/init.d/* /system/etc/init.d/",
+                                    "chmod 755 /system/etc/init.d",
+                                    "chmod 777 /system/etc/init.d/*",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                            );
+                            try {
+                                Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();
+                                RootTools.getShell(true).add(command1);
+                                new AlertDialog.Builder(v.getContext())
+                                        .setTitle(R.string.reboot)
+                                        .setMessage(R.string.rebootdialog)
+                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                if (RootTools.isRootAvailable()) {
+                                                    if (RootTools.isAccessGiven()) {
+                                                        Command command1 = new Command(0,
+                                                                "reboot");
+                                                        try {
+                                                            Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                            RootTools.getShell(true).add(command1);
+                                                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                            ex.printStackTrace();
+                                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                         }
                                                     } else {
-                                                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                        RootTools.offerBusyBox(getActivity());
+                                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                     }
+
+                                                } else {
+                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
                                                 }
-                                            })
-                                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.dismiss();
-                                                }
-                                            })
-                                            .setIcon(R.drawable.warning)
-                                            .show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                new AlertDialog.Builder(v.getContext())
-                                        .setTitle(R.string.error)
-                                        .setMessage(R.string.backupfuck)
-                                        .setNegativeButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                            }
+                                        })
+                                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.dismiss();
                                             }
                                         })
                                         .setIcon(R.drawable.warning)
                                         .show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle(R.string.error)
+                                    .setMessage(R.string.backupfuck)
+                                    .setNegativeButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setIcon(R.drawable.warning)
+                                    .show();
                         }
-
                     } else {
                         Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                 }

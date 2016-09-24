@@ -121,32 +121,27 @@ public class FstrimFragment extends Fragment {
                             isClicked = false;
                         }
                     }, 1000);
-                    if (RootTools.isBusyboxAvailable()) {
-                        if (RootTools.isRootAvailable()) {
-                            if (RootTools.isAccessGiven()) {
+                    if (RootTools.isRootAvailable()) {
+                        if (RootTools.isAccessGiven()) {
 
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "cp /sdcard/SystemTweakerFREE/fstrim /system/bin/fstrim",
-                                        "chmod 777 /system/bin/fstrim",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    RootTools.getShell(true).add(command1);
-                                    Toast.makeText(getActivity(), R.string.fileinstall, Toast.LENGTH_SHORT).show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "cp /data/data/com.nowenui.systemtweakerfree/files/fstrim /system/bin/fstrim",
+                                    "chmod 777 /system/bin/fstrim",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                RootTools.getShell(true).add(command1);
+                                Toast.makeText(getActivity(), R.string.fileinstall, Toast.LENGTH_SHORT).show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
+
                     } else {
-                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                        RootTools.offerBusyBox(getActivity());
+                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -173,31 +168,26 @@ public class FstrimFragment extends Fragment {
                             isClicked = false;
                         }
                     }, 1000);
-                    if (RootTools.isBusyboxAvailable()) {
-                        if (RootTools.isRootAvailable()) {
-                            if (RootTools.isAccessGiven()) {
+                    if (RootTools.isRootAvailable()) {
+                        if (RootTools.isAccessGiven()) {
 
-                                Command command1 = new Command(0,
-                                        "busybox mount -o rw,remount /proc /system",
-                                        "rm -f /system/bin/fstrim",
-                                        "busybox mount -o ro,remount /proc /system");
-                                try {
-                                    RootTools.getShell(true).add(command1);
-                                    Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
-                                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                    ex.printStackTrace();
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
+                            Command command1 = new Command(0,
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "rm -f /system/bin/fstrim",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                            try {
+                                RootTools.getShell(true).add(command1);
+                                Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
+                            } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                ex.printStackTrace();
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
+
                     } else {
-                        Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                        RootTools.offerBusyBox(getActivity());
+                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -229,202 +219,168 @@ public class FstrimFragment extends Fragment {
                         }
                     }, 1000);
                     if (system.isChecked() & data.isChecked() == false & cache.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount /proc /system",
-                                            "busybox fstrim -v /system",
-                                            "busybox mount -o ro,remount /proc /system");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /system... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /system... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
                     } else if (data.isChecked() & system.isChecked() == false & cache.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount data",
-                                            "busybox fstrim -v /data",
-                                            "busybox mount -o ro,remount data");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /data... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /data... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
                     } else if (cache.isChecked() & data.isChecked() == false & system.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount cache",
-                                            "busybox fstrim -v /cache",
-                                            "busybox mount -o ro,remount cache");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /cache... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /cache... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
-                    } else if (system.isChecked() & data.isChecked() & cache.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount /proc /system",
-                                            "busybox mount -o rw,remount data",
-                                            "busybox fstrim -v /system",
-                                            "busybox fstrim -v /data",
-                                            "busybox mount -o ro,remount /proc /system",
-                                            "busybox mount -o ro,remount data");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /data & /system... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
-                                }
 
+                    } else if (system.isChecked() & data.isChecked() & cache.isChecked() == false) {
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /data & /system... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
 
                     } else if (system.isChecked() & cache.isChecked() & data.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount /proc /system",
-                                            "busybox mount -o rw,remount cache",
-                                            "busybox fstrim -v /system",
-                                            "busybox fstrim -v /cache",
-                                            "busybox mount -o ro,remount /proc /system",
-                                            "busybox mount -o ro,remount cache");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /system & /cache... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /system & /cache... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
                     } else if (data.isChecked() & cache.isChecked() & system.isChecked() == false) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount data",
-                                            "busybox mount -o rw,remount cache",
-                                            "busybox fstrim -v /data",
-                                            "busybox fstrim -v /cache",
-                                            "busybox mount -o ro,remount data",
-                                            "busybox mount -o ro,remount cache");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /data & /cache... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /data & /cache... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
                     } else if (system.isChecked() & data.isChecked() & cache.isChecked()) {
-                        if (RootTools.isBusyboxAvailable()) {
-                            if (RootTools.isRootAvailable()) {
-                                if (RootTools.isAccessGiven()) {
-                                    Command command1 = new Command(0,
-                                            "busybox mount -o rw,remount /proc /system",
-                                            "busybox mount -o rw,remount data",
-                                            "busybox mount -o rw,remount cache",
-                                            "busybox fstrim -v /system",
-                                            "busybox fstrim -v /cache",
-                                            "busybox fstrim -v /data",
-                                            "busybox mount -o ro,remount /proc /system",
-                                            "busybox mount -o ro,remount data",
-                                            "busybox mount -o ro,remount cache");
-                                    try {
-                                        RootTools.getShell(true).add(command1);
-                                        Toast.makeText(getActivity(), "fstrim /data & /system & /cache... OK!", Toast.LENGTH_SHORT).show();
-                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                        ex.printStackTrace();
-                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        if (RootTools.isRootAvailable()) {
+                            if (RootTools.isAccessGiven()) {
+                                Command command1 = new Command(0,
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                try {
+                                    RootTools.getShell(true).add(command1);
+                                    Toast.makeText(getActivity(), "fstrim /data & /system & /cache... OK!", Toast.LENGTH_SHORT).show();
+                                } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                    ex.printStackTrace();
+                                    Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                            RootTools.offerBusyBox(getActivity());
+                            Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -453,61 +409,50 @@ public class FstrimFragment extends Fragment {
                                                                                boolean isChecked) {
                                                       if (isChecked) {
 
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "cp /sdcard/SystemTweakerFREE/70fstrim /system/etc/init.d/70fstrim",
-                                                                              "chmod 777 /system/etc/init.d/70fstrim",
-                                                                              "dos2unix /system/etc/init.d/70fstrim",
-                                                                              "busybox mount -o ro,remount /proc /system");
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.ok, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/70fstrim /system/etc/init.d/70fstrim",
+                                                                          "chmod 777 /system/etc/init.d/70fstrim",
+                                                                          "dos2unix /system/etc/init.d/70fstrim",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.ok, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
 
-
                                                       } else {
-                                                          if (RootTools.isBusyboxAvailable()) {
-                                                              if (RootTools.isRootAvailable()) {
-                                                                  if (RootTools.isAccessGiven()) {
-                                                                      Command command1 = new Command(0,
-                                                                              "busybox mount -o rw,remount /proc /system",
-                                                                              "rm -f /system/etc/init.d/70fstrim",
-                                                                              "busybox mount -o ro,remount /proc /system"
-                                                                      );
-                                                                      try {
-                                                                          RootTools.getShell(true).add(command1);
-                                                                          Toast.makeText(getActivity(), R.string.delete, Toast.LENGTH_SHORT).show();
-                                                                      } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                                                          ex.printStackTrace();
-                                                                          Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                          if (RootTools.isRootAvailable()) {
+                                                              if (RootTools.isAccessGiven()) {
+                                                                  Command command1 = new Command(0,
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "rm -f /system/etc/init.d/70fstrim",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                  );
+                                                                  try {
+                                                                      RootTools.getShell(true).add(command1);
+                                                                      Toast.makeText(getActivity(), R.string.delete, Toast.LENGTH_SHORT).show();
+                                                                  } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                      ex.printStackTrace();
+                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                                                                   }
-
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                               }
+
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                                                              RootTools.offerBusyBox(getActivity());
+                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
                                                           }
                                                       }
 
@@ -515,7 +460,6 @@ public class FstrimFragment extends Fragment {
                                               }
 
         );
-
 
         return view;
     }

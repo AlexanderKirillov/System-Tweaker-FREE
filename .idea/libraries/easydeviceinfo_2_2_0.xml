@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="easydeviceinfo-2.2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.nisrulz/easydeviceinfo/2.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.nisrulz/easydeviceinfo/2.2.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.nisrulz/easydeviceinfo/2.2.0/ae8f237a8595037617b610648214f3ed1299ba02/easydeviceinfo-2.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

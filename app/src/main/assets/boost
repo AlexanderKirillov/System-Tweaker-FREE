@@ -1,8 +1,10 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 sync
-busybox sysctl -w vm.drop_caches=3
-busybox sysctl -w vm.dirty_ratio=1
-busybox sysctl -w vm.dirty_background_ratio=1
+$busybox sysctl -w vm.drop_caches=3
+$busybox sysctl -w vm.dirty_ratio=1
+$busybox sysctl -w vm.dirty_background_ratio=1
 
 

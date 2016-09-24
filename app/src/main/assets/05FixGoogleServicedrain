@@ -1,11 +1,13 @@
 #!/system/bin/sh
 
+busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+
 mount -o remount,rw /
 mount -o remount,rw rootfs
 mount -o remount,rw /system
-busybox mount -o remount,rw /
-busybox mount -o remount,rw rootfs
-busybox mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
 
 su -c pm disable com.google.android.gms/.ads.settings.AdsSettingsActivity
 su -c pm disable com.google.android.gms/com.google.android.location.places.ui.aliaseditor.AliasEditorActivity

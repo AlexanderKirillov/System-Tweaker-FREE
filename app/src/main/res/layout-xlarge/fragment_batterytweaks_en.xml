@@ -34,14 +34,6 @@
             android:text="@string/thirdbatterytweak" />
 
         <CheckBox
-            android:id="@+id/checkBox8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/fourhbatterytweak" />
-
-        <CheckBox
             android:id="@+id/checkBox4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

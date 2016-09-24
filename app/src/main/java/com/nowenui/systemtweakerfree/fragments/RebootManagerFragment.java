@@ -136,31 +136,26 @@ public class RebootManagerFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                if (RootTools.isBusyboxAvailable()) {
-                    new AlertDialog.Builder(getContext())
-                            .setTitle(R.string.hotreboot)
-                            .setMessage(R.string.hotrebootconf)
-                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    try {
-                                        Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "busybox killall system_server"});
-                                        proc.waitFor();
-                                    } catch (Exception ex) {
-                                        Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
-                                    }
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.hotreboot)
+                        .setMessage(R.string.hotrebootconf)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "/data/data/com.nowenui.systemtweakerfree/files/busybox killall system_server"});
+                                    proc.waitFor();
+                                } catch (Exception ex) {
+                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
                                 }
-                            })
-                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .setIcon(R.drawable.warning)
-                            .show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.errobusybox, Toast.LENGTH_SHORT).show();
-                    RootTools.offerBusyBox(getActivity());
-                }
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
             }
         });
 
