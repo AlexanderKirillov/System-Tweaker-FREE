@@ -59,7 +59,6 @@ import java.util.concurrent.TimeoutException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_WRITE_STORAGE = 112;
     DrawerLayout androidDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -131,56 +130,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        boolean hasPermission = (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-        if (!hasPermission) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    REQUEST_WRITE_STORAGE);
-        }
-
-        copyAssets();
-
-        if (RootTools.isRootAvailable()) {
-            if (RootTools.isAccessGiven()) {
-                Command command1 = new Command(0,
-                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
-                        "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/*",
-                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
-                try {
-                    RootTools.getShell(true).add(command1);
-                } catch (IOException | RootDeniedException | TimeoutException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_WRITE_STORAGE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    copyAssets();
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
-                                    "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/*",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
-                            try {
-                                RootTools.getShell(true).add(command1);
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
     }
 
@@ -474,51 +423,4 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void copyAssets() {
-        AssetManager assetManager = this.getAssets();
-        String[] files = null;
-        try {
-            files = assetManager.list("");
-        } catch (IOException e) {
-        }
-        if (files != null) for (String filename : files) {
-            InputStream in = null;
-            OutputStream out = null;
-            try {
-                in = assetManager.open(filename);
-                File folder = new File("/data/data/com.nowenui.systemtweakerfree/files/");
-                if (!folder.exists()) {
-                    folder.mkdir();
-                }
-                File outFile = new File(folder, filename);
-                out = new FileOutputStream(outFile);
-                copyFile(in, out);
-
-
-            } catch (IOException e) {
-            } finally {
-                if (in != null) {
-                    try {
-                        in.close();
-                    } catch (IOException e) {
-                    }
-                }
-                if (out != null) {
-                    try {
-                        out.close();
-                    } catch (IOException e) {
-                    }
-                }
-            }
-        }
-
-    }
-
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-        }
-    }
 }

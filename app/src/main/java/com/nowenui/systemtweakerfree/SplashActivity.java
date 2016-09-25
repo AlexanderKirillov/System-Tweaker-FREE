@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -15,7 +16,10 @@ import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.concurrent.TimeoutException;
 
 public class SplashActivity extends AppCompatActivity {
@@ -28,94 +32,41 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        copyAssets();
+
+        Command com5 = new Command(0,
+                "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/*");
+        try {
+            RootTools.getShell(true).add(com5);
+        } catch (IOException | RootDeniedException | TimeoutException ex) {
+        }
         if (RootTools.isAccessGiven()) {
             checksu = 1;
-            String check = "/data/com.nowenui.systemtweaker/files/busybox";
-            String check1 = "/data/data/com.nowenui.systemtweakerfree/files/busybox";
-            if ((new File(Environment.getRootDirectory() + check).exists() || new File(check1).exists() || new File(Environment.getRootDirectory() + check1).exists())) {
-                checkbusy = 1;
-                if (isInitdSupport() == 1) {
-                    startMainActivity();
-                } else {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /rootfs /",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/install-recovery.sh /system/etc/install-recovery.sh",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/sysinit /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
-                            try {
-                                RootTools.getShell(true).add(command1);
-                                startMainActivity();
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                                Toast.makeText(getApplicationContext(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                        }
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                    }
-                }
-
+            checkbusy = 1;
+            if (isInitdSupport() == 1) {
+                startMainActivity();
             } else {
-                if (RootTools.isRootAvailable()) {
-                    if (RootTools.isAccessGiven()) {
-                        Command command1 = new Command(0,
-                                "cp /sdcard/SystemTweaker/busybox /data/data/com.nowenui.systemtweakerfree/files/",
-                                "chmod 777 /data/data/com.nowenui.systemtweakerfree/files/busybox");
-                        try {
-                            RootTools.getShell(true).add(command1);
-                            checkbusy = 1;
-                        } catch (IOException | RootDeniedException | TimeoutException ex) {
-                            ex.printStackTrace();
-                            Toast.makeText(getApplicationContext(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                if (RootTools.isAccessGiven()) {
+                    Command command1 = new Command(0,
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /rootfs /",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/install-recovery.sh /system/etc/install-recovery.sh",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/sysinit /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                    try {
+                        RootTools.getShell(true).add(command1);
+                        startMainActivity();
+                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                        ex.printStackTrace();
+                        Toast.makeText(this, R.string.errordev, Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                }
-                if (isInitdSupport() == 1) {
-                    startMainActivity();
-                } else {
-                    if (RootTools.isRootAvailable()) {
-                        if (RootTools.isAccessGiven()) {
-                            Command command1 = new Command(0,
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /rootfs /",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/install-recovery.sh /system/etc/install-recovery.sh",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /sdcard/SystemTweaker/sysinit /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
-                            try {
-                                RootTools.getShell(true).add(command1);
-                                startMainActivity();
-                            } catch (IOException | RootDeniedException | TimeoutException ex) {
-                                ex.printStackTrace();
-                                Toast.makeText(getApplicationContext(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                        }
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show();
                 }
             }
         } else {
@@ -197,12 +148,58 @@ public class SplashActivity extends AppCompatActivity {
 
     public int isInitdSupport() {
         File f = new File("/system/etc/init.d");
-        File f1 = new File("/system/su.d");
-        File f2 = new File("/su/su.d");
-        if ((f.exists()) && (f.isDirectory()) || (f1.exists()) && (f1.isDirectory()) || (f2.exists()) && (f2.isDirectory())) {
+        if ((f.exists()) && (f.isDirectory())) {
             return 1;
         }
         return 0;
+    }
+
+    private void copyAssets() {
+        AssetManager assetManager = this.getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+        } catch (IOException e) {
+        }
+        if (files != null) for (String filename : files) {
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                in = assetManager.open(filename);
+                File folder = new File("/data/data/com.nowenui.systemtweakerfree/files/");
+                if (!folder.exists()) {
+                    folder.mkdir();
+                }
+                File outFile = new File(folder, filename);
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+
+
+            } catch (IOException e) {
+            } finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                    }
+                }
+                if (out != null) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while ((read = in.read(buffer)) != -1) {
+            out.write(buffer, 0, read);
+        }
     }
 
 }
