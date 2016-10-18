@@ -49,6 +49,4 @@ And send all to NowenUI@bk.ru
 
     Copyright (C) 2016 Alexander Kirillov <NowenUI@bk.ru>
     
-    Custom OnePhone PRO is open source project, but as program 
-    paid (Google Play), you can't use parts of app in your projects 
-    (free or paid) without my permission.
+    System Tweaker FREE is open source project, you can use this sources as you want
