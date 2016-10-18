@@ -40,7 +40,7 @@ Speeding up your device has never been so easy! With this program you can really
 And send all to NowenUI@bk.ru
 
 
-##Video Review (PRO version))](
+##Video Reviews (PRO version)
 
 [![Review [russian]](http://img.youtube.com/vi/fQhEU1_3jJw/0.jpg)](https://www.youtube.com/watch?v=fQhEU1_3jJw)
 [![Review2 [russian]](http://img.youtube.com/vi/x-Zn8sd_ZpA/0.jpg)](https://youtu.be/x-Zn8sd_ZpA)
