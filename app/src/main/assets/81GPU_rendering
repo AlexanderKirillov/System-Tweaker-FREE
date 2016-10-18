@@ -1,8 +1,0 @@
-#!/data/data/com.nowenui.systemtweakerfree/files/ash
-
-busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
-
-sysrw
-rm /system/lib/egl/libGLES_android.so
-$busybox sed -i '/0 0 android/d' /system/lib/egl/egl.cfg
-sysro

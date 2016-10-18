@@ -1,2 +1,0 @@
-include ':app', ':JavaMail', ':JavaAdditionnal', ':JavaActivation'
-

@@ -1,4 +1,0 @@
-#!/data/data/com.nowenui.systemtweakerfree/files/ash
-
-export PATH=/sbin:/system/sbin:/system/bin:/system/xbin
-/system/bin/logwrapper /system/xbin/run-parts /system/etc/init.d 
