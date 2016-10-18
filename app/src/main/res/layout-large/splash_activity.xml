@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/splashactivityTextView1"
             android:gravity="center_horizontal"
-            android:text="V2.0.0"
+            android:text="V2.1.0"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#ffffff" />
 
@@ -43,16 +43,16 @@
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:indeterminate="true"
-        app:cpb_color="#FFFFFF"
-        app:cpb_rotation_speed="3.0"
-        app:cpb_sweep_speed="1.0"
-        app:cpb_stroke_width="8dp"
-        app:cpb_min_sweep_angle="10"
-        app:cpb_max_sweep_angle="300"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:indeterminate="true"
+        app:cpb_color="#FFFFFF"
+        app:cpb_max_sweep_angle="300"
+        app:cpb_min_sweep_angle="10"
+        app:cpb_rotation_speed="3.0"
+        app:cpb_stroke_width="8dp"
+        app:cpb_sweep_speed="1.0" />
 
 </RelativeLayout>
 

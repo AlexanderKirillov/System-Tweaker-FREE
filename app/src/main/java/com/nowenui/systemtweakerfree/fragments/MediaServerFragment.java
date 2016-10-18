@@ -20,9 +20,9 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,10 +112,13 @@ public class MediaServerFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaServelKilling /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/01MediaServelKilling",
-                                                                          "dos2unix /system/etc/init.d/01MediaServelKilling",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
@@ -137,8 +140,12 @@ public class MediaServerFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/etc/init.d/01MediaServelKilling",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -181,10 +188,13 @@ public class MediaServerFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
                                                                           "chmod 777 /system/etc/init.d/01MediaScannerKilling",
-                                                                          "dos2unix /system/etc/init.d/01MediaScannerKilling",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -207,8 +217,12 @@ public class MediaServerFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/etc/init.d/01MediaScannerKilling",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -259,9 +273,13 @@ public class MediaServerFragment extends Fragment {
                     if (RootTools.isAccessGiven()) {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 android.process.media",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 mediaserver",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);
@@ -299,8 +317,12 @@ public class MediaServerFragment extends Fragment {
                     if (RootTools.isAccessGiven()) {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                 "pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);
@@ -338,8 +360,12 @@ public class MediaServerFragment extends Fragment {
                     if (RootTools.isAccessGiven()) {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                 "pm enable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);

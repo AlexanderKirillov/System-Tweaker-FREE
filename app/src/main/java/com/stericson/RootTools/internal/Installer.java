@@ -20,14 +20,14 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools.internal;
+package com.stericson.roottools.internal;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.RootTools;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -125,6 +125,7 @@ class Installer {
                 try {
                     long size = iss.available();
                     while ((pos += ofc.transferFrom(rfc, pos, size - pos)) < size) {
+                        ;
                     }
                 } catch (IOException ex) {
                     if (RootTools.debugMode) {
@@ -197,6 +198,7 @@ class Installer {
             DigestInputStream dis = new DigestInputStream(is, md);
             byte[] buffer = new byte[4096];
             while (-1 != dis.read(buffer)) {
+                ;
             }
             byte[] digest = md.digest();
             StringBuffer sb = new StringBuffer();

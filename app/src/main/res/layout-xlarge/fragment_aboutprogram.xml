@@ -37,7 +37,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_weight="0.09"
-            android:text="V2.0.0"
+            android:text="V2.1.0"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView

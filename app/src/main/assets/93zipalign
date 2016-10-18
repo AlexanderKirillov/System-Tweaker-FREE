@@ -1,6 +1,6 @@
-#!/system/bin/sh
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
 
-busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
 
 #Zipalign /Data 
 RUN_EVERY=604800

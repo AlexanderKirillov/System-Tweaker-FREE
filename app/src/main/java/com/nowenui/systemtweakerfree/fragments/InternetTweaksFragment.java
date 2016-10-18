@@ -16,28 +16,19 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
 
-    private static final String PRE_PATH = "/proc/sys/net/ipv4/";
-    private final static int BUFFER_SIZE = 2048;
     private CheckBox checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15;
-    private Scanner file_scanner;
 
     public static InternetTweaksFragment newInstance(Bundle bundle) {
         InternetTweaksFragment messagesFragment = new InternetTweaksFragment();
@@ -47,43 +38,6 @@ public class InternetTweaksFragment extends Fragment {
         }
 
         return messagesFragment;
-    }
-
-    private static String readString(String filename) {
-        try {
-            File f = new File(filename);
-            if (f.exists()) {
-                InputStream is = null;
-                if (f.canRead()) {
-                    is = new FileInputStream(f);
-                } else {
-                    String[] commands = {
-                            "cat " + filename + "\n", "exit\n"
-                    };
-                    Process p = Runtime.getRuntime().exec("su");
-                    DataOutputStream dos = new DataOutputStream(p.getOutputStream());
-                    for (String command : commands) {
-                        dos.writeBytes(command);
-                        dos.flush();
-                    }
-                    if (p.waitFor() == 0) {
-                        is = p.getInputStream();
-                    } else {
-                        return null;
-                    }
-                }
-                BufferedReader br = new BufferedReader(new InputStreamReader(is), BUFFER_SIZE);
-                String line = br.readLine();
-                br.close();
-                return line;
-            } else {
-                return null;
-            }
-        } catch (InterruptedException iex) {
-            return null;
-        } catch (IOException ioex) {
-            return null;
-        }
     }
 
     @Override
@@ -126,20 +80,6 @@ public class InternetTweaksFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public String[] readAvailablecong() throws Exception {
-        String file_path = PRE_PATH + "tcp_available_congestion_control";
-        File scalingAvailableFrequenciesFile = new File(file_path);
-        ArrayList<String> availableFrequencies = new ArrayList<String>();
-        file_scanner = new Scanner(scalingAvailableFrequenciesFile);
-        while (file_scanner.hasNext()) {
-            availableFrequencies.add(file_scanner.next());
-        }
-        String[] availableFrequenciesArray = new String[availableFrequencies.size()];
-        availableFrequenciesArray = availableFrequencies.toArray(availableFrequenciesArray);
-
-        return availableFrequenciesArray;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -147,6 +87,7 @@ public class InternetTweaksFragment extends Fragment {
         RootTools.debugMode = false;
 
         View view = inflater.inflate(R.layout.fragment_internettweaks, parent, false);
+
 
         File file2 = new File("/system/build.prop");
 
@@ -206,6 +147,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
@@ -224,7 +167,9 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "echo \"net.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152\" >> /system/build.prop",
                                                                           "echo \"net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576\" >> /system/build.prop",
                                                                           "echo \"net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -246,6 +191,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
@@ -255,7 +202,9 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.lte/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -325,6 +274,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
@@ -352,9 +303,10 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "echo \"persist.cust.tel.eons=1\" >> /system/build.prop",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/05InternetTweak /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/05InternetTweak",
-                                                                          "dos2unix /system/etc/init.d/05InternetTweak",
-                                                                          "sh /system/etc/init.d/05InternetTweak",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/system/etc/init.d/05InternetTweak",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -376,6 +328,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
@@ -390,7 +344,9 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.set.mtu1472/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
                                                                           "rm -f /system/etc/init.d/05InternetTweak",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -460,6 +416,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
@@ -484,7 +442,9 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "echo \"net.eth0.dns2=8.8.4.4\" >> /system/build.prop",
                                                                           "echo \"net.gprs.dns1=8.8.8.8\" >> /system/build.prop",
                                                                           "echo \"net.gprs.dns2=8.8.4.4\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -506,6 +466,8 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
@@ -518,7 +480,9 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.eth0.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -575,9 +539,13 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
                                                                           "echo \"ro.config.hw_fast_dormancy=1\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -599,8 +567,12 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -657,9 +629,13 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
                                                                           "echo \"persist.telephony.support.ipv6=1\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -681,8 +657,12 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -738,9 +718,13 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
                                                                           "echo \"persist.telephony.support.ipv4=1\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -762,8 +746,12 @@ public class InternetTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);

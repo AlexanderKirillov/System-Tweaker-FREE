@@ -19,14 +19,14 @@
  * See each License for the specific language governing permissions and
  * limitations under that License.
  */
-package com.stericson.RootShell;
+package com.stericson.rootshell;
 
 
 import android.util.Log;
 
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -337,6 +337,18 @@ public class RootShell {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
+        return isAccessGiven(0, 3);
+    }
+
+    /**
+     * Control how many time of retries should request
+     *
+     * @param timeout The timeout
+     * @param retries The number of retries
+     * @return <code>true</code> if your app has been given root access.
+     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
+     */
+    public static boolean isAccessGiven(int timeout, int retries) {
         final Set<String> ID = new HashSet<String>();
         final int IAG = 158;
 
@@ -375,10 +387,10 @@ public class RootShell {
     }
 
     /**
-     * @return <code>true</code> if BusyBox or Toybox was found.
+     * @return <code>true</code> if BusyBox was found.
      */
     public static boolean isBusyboxAvailable() {
-        return (findBinary("busybox")).size() > 0 || (findBinary("toybox")).size() > 0;
+        return (findBinary("busybox")).size() > 0;
     }
 
     /**
@@ -543,7 +555,7 @@ public class RootShell {
     // # Public Methods #
     // --------------------
 
-    public enum LogLevel {
+    public static enum LogLevel {
         VERBOSE,
         ERROR,
         DEBUG,

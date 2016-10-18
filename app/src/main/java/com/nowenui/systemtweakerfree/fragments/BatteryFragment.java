@@ -21,9 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -73,10 +73,14 @@ public class BatteryFragment extends Fragment {
                                     if (RootTools.isAccessGiven()) {
                                         Command command1 = new Command(0,
                                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                                 "rm -f /data/system/batterystats.bin",
                                                 "rm -f /data/system/batterystats-checkin.bin",
                                                 "rm -f /data/system/batterystats-daily.xml",
-                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data"
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data"
                                         );
                                         try {
                                             RootTools.getShell(true).add(command1);
@@ -163,10 +167,14 @@ public class BatteryFragment extends Fragment {
                                         if (RootTools.isAccessGiven()) {
                                             Command command1 = new Command(0,
                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                                     "rm -f /data/system/batterystats.bin",
                                                     "rm -f /data/system/batterystats-checkin.bin",
                                                     "rm -f /data/system/batterystats-daily.xml",
-                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data");
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data");
                                             try {
                                                 RootTools.getShell(true).add(command1);
                                                 Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();

@@ -1,11 +1,8 @@
 package com.nowenui.systemtweakerfree;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -14,8 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -45,17 +40,8 @@ import com.nowenui.systemtweakerfree.fragments.MediaTweaksFragment;
 import com.nowenui.systemtweakerfree.fragments.RebootManagerFragment;
 import com.nowenui.systemtweakerfree.fragments.SystemTweaksFragment;
 import com.nowenui.systemtweakerfree.fragments.VariosTweaksFragment;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Locale;
-import java.util.concurrent.TimeoutException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -120,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("DIALOGSTART", "46543");
+                            editor.putString("DIALOGSTART", "535335");
                             editor.commit();
                             dialog.dismiss();
                         }
@@ -128,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(R.drawable.warning)
                     .show();
         }
-
-
 
     }
 
@@ -168,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -288,6 +273,14 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, BatteryFragment.newInstance(bundle))
                                         .commit();
                                 break;
+                            case R.id.navigation_drawer_item13:
+                                fragmentTitle = "FSTRIM";
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
+                                        .replace(R.id.content, FstrimFragment.newInstance(bundle))
+                                        .commit();
+                                break;
                             case R.id.navigation_drawer_item8:
                                 fragmentTitle = res.getString(R.string.mediatweaks);
                                 getSupportFragmentManager()
@@ -345,23 +338,13 @@ public class MainActivity extends AppCompatActivity {
                                         .commit();
                                 break;
                             case R.id.navigation_drawer_item30:
-                                fragmentTitle = "FAQ";
+                                fragmentTitle = "FAQ и решение проблем";
                                 getSupportFragmentManager()
                                         .beginTransaction()
                                         .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
                                         .replace(R.id.content, FAQFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
-                            case R.id.navigation_drawer_item13:
-                                fragmentTitle = "FSTRIM";
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
-                                        .replace(R.id.content, FstrimFragment.newInstance(bundle))
-                                        .commit();
-                                break;
-
                             case R.id.navigation_drawer_item20:
                                 fragmentTitle = "MediaServer | MediaScanner";
                                 getSupportFragmentManager()

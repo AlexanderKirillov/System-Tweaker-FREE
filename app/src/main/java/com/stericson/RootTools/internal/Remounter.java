@@ -20,13 +20,13 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools.internal;
+package com.stericson.roottools.internal;
 
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.Constants;
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.containers.Mount;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.Constants;
+import com.stericson.roottools.RootTools;
+import com.stericson.roottools.containers.Mount;
 
 import java.io.File;
 import java.io.IOException;

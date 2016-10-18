@@ -16,9 +16,9 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -144,11 +144,14 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/00BatteryImprove /system/etc/init.d/",
                                                                          "chmod 777 /system/etc/init.d/00BatteryImprove",
-                                                                         "dos2unix /system/etc/init.d/00BatteryImprove",
-                                                                         "sh /system/etc/init.d/00BatteryImprove",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/system/etc/init.d/00BatteryImprove",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
 
                                                                      RootTools.getShell(true).add(command1);
@@ -171,8 +174,12 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "rm -f /system/etc/init.d/00BatteryImprove",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
@@ -227,9 +234,13 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/wifi.supplicant_scan_interval/d' /system/build.prop",
                                                                          "echo \"wifi.supplicant_scan_interval=220\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -250,9 +261,13 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/wifi.supplicant_scan_interval/d' /system/build.prop",
                                                                          "echo \"wifi.supplicant_scan_interval=160\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
@@ -310,6 +325,8 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.power.collapse/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.disable.power.collapse/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/pm.sleep_mode/d' /system/build.prop",
@@ -317,7 +334,9 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                                          "echo \"ro.ril.disable.power.collapse=0\" >> /system/build.prop",
                                                                          "echo \"ro.vold.umsdirtyratio=20\" >> /system/build.prop",
                                                                          "echo \"pm.sleep_mode=1\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -339,10 +358,14 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.disable.power.collapse=0/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/pm.sleep_mode=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
@@ -397,9 +420,13 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/power_supply.wakeup/d' /system/build.prop",
                                                                          "echo \"power_supply.wakeup=enable\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -421,8 +448,12 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/power_supply.wakeup=enable/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
@@ -478,9 +509,13 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.sensor.sleep.control/d' /system/build.prop",
                                                                          "echo \"ro.ril.sensor.sleep.control=1\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -502,8 +537,12 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.sensor.sleep.control=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
@@ -525,6 +564,7 @@ public class BatteryTweaksEnFragment extends Fragment {
                                              }
 
         );
+
         checkbox7 = (CheckBox) view.findViewById(R.id.checkBox7);
         if (text.toString().contains("ro.config.nocheckin=1")
                 && text.toString().contains("profiler.force_disable_err_rpt=1")
@@ -559,13 +599,17 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.nocheckin/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_err_rpt/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_ulog/d' /system/build.prop",
                                                                          "echo \"ro.config.nocheckin=1\" >> /system/build.prop",
                                                                          "echo \"profiler.force_disable_err_rpt=1\" >> /system/build.prop",
                                                                          "echo \"profiler.force_disable_ulog=1\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -587,10 +631,14 @@ public class BatteryTweaksEnFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.nocheckin=1/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_err_rpt=1/d' /system/build.prop",
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_ulog=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);

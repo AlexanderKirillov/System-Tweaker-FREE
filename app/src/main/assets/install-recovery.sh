@@ -1,4 +1,4 @@
-#!/system/bin/sh
+#!/data/data/com.nowenui.systemtweaker/files/ash
 
 # If you're implementing this in a custom kernel/firmware,
 # I suggest you use a different script name, and add a service

@@ -16,9 +16,9 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -141,9 +141,13 @@ public class VariosTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.nobootanimation/d' /system/build.prop",
                                                                           "echo \"debug.sf.nobootanimation=1\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -164,8 +168,12 @@ public class VariosTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.nobootanimation/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
@@ -222,11 +230,14 @@ public class VariosTweaksFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/quick_power /system/etc/init.d/",
                                                                          "chmod 777 /system/etc/init.d/quick_power",
-                                                                         "dos2unix /system/etc/init.d/quick_power",
-                                                                         "sh /system/etc/init.d/quick_power",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/system/etc/init.d/quick_power",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -247,8 +258,12 @@ public class VariosTweaksFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "rm -f /system/etc/init.d/quick_power",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
@@ -304,9 +319,13 @@ public class VariosTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.adb.notify/d' /system/build.prop",
                                                                           "echo \"persist.adb.notify=0\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -327,8 +346,12 @@ public class VariosTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.adb.notify=0/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();

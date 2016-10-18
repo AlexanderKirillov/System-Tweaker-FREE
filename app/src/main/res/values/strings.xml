@@ -116,7 +116,7 @@
     <string name="sendletter">Send</string>
     <string name="aboutappinfo">This program allows you to customize your device, will help to get the maximum performance and help to increase the battery life of your device\n</string>
     <string name="author">The author: Alexander Kirillov (NowenUI)\n</string>
-    <string name="libraries">Used libraries: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- SmoothProgressBar by castorflex\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n</string>
+    <string name="libraries">Used libraries: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- SmoothProgressBar by castorflex\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n- Spinner2 by scijoker\n</string>
     <string name="site">Official Site: NowenUI.com</string>
     <string name="opensite">Click to open site</string>
     <string name="agreement">Before using the program, you should read agreement\n\n
@@ -317,4 +317,14 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="disable">Disabled!</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="heapoptomize">Heap and runtime optimization</string>
+     <string name="heaptizer">[BUILD.PROP TWEAK:\n\ndalvik.vm.heapsize={}
+\n\ndalvik.vm.heaptargetutilization=0.75
+\n\ndalvik.vm.heapgrowthlimit={}\n\ndalvik.vm.check-dex-sum=false\n\ndalvik.vm.checkjni=false\n\n
+        dalvik.vm.execution-mode=jit] \n\nTweek increases system performance and applications through the use of HEAP-SIZE optimal values for your device. Various tweaks runtime also performed, namely disconnected various scan settings, the JIT mode is activated forcibly. ATTENTION! DANGEROUS TWEAK! On some devices, you may receive various problems! Use with caution!</string>
+    <string name="andr7">Android 7.X.X TWEAKS\nImprove performance through applying optimized JIT values </string>
+     <string name="and7tizer">[BUILD.PROP TWEAK:\n\ndalvik.vm.jitthreshold=15000
+\n\ndalvik.vm.usejitprofiles=true
+\n\ndalvik.vm.jitprithreadweight=750\n\ndalvik.vm.jittransitionweight=1500] \n\nTweak improves system performance and stability through applying optimized JIT values (working only on Android 7.X)</string>
+    <string name="fs">File systems</string>
 </resources>

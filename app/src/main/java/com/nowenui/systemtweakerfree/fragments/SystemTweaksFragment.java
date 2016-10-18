@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,20 +17,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.onebit.spinner2.Spinner2;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
 import java.util.Locale;
@@ -39,8 +41,10 @@ import java.util.regex.Pattern;
 
 public class SystemTweaksFragment extends Fragment {
 
+    public Integer heap, grow;
     private CheckBox checkbox21, checkbox22, checkbox23, checkbox30, ext4tweak, display_cal, artfix;
-
+    private String k;
+    private boolean suc1, suc2, suc3;
 
     public static SystemTweaksFragment newInstance(Bundle bundle) {
         SystemTweaksFragment messagesFragment = new SystemTweaksFragment();
@@ -50,6 +54,28 @@ public class SystemTweaksFragment extends Fragment {
         }
 
         return messagesFragment;
+    }
+
+    public static String getFileSystem(File path) {
+        try {
+            Process mount = Runtime.getRuntime().exec("mount");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+            mount.waitFor();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] split = line.split("\\s+");
+                for (int i = 0; i < split.length - 1; i++) {
+                    if (!split[i].equals("/") && path.getAbsolutePath().startsWith(split[i]))
+                        return split[i + 1];
+                }
+            }
+            reader.close();
+            mount.destroy();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -91,7 +117,6 @@ public class SystemTweaksFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -155,12 +180,15 @@ public class SystemTweaksFragment extends Fragment {
                         if (RootTools.isAccessGiven()) {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "cp /data/data/com.nowenui.systemtweakerfree/files/art_fix /system/etc/",
                                     "chmod 777 /system/etc/art_fix",
-                                    "dos2unix /system/etc/art_fix",
-                                    "sh /system/etc/art_fix",
+                                    "/system/etc/art_fix",
                                     "rm -f /system/etc/art_fix",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 RootTools.getShell(true).add(command1);
                                 Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -198,11 +226,19 @@ public class SystemTweaksFragment extends Fragment {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.dex2oat-filter=speed/d' /system/build.prop",
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.image-dex2oat-filter=speed/d' /system/build.prop",
                                     "rm -rf /data/dalvik-cache",
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data"
                             );
                             try {
                                 RootTools.getShell(true).add(command1);
@@ -237,6 +273,142 @@ public class SystemTweaksFragment extends Fragment {
                 }
             }
         });
+
+        CheckBox heapopt = (CheckBox) view.findViewById(R.id.heaptweak);
+        if (getTotalRAM() <= 256) {
+            heap = 64;
+            grow = 24;
+        }
+        if ((getTotalRAM() <= 512) && (getTotalRAM() > 256)) {
+            heap = 128;
+            grow = 48;
+        }
+        if ((getTotalRAM() <= 1024) && (getTotalRAM() > 512)) {
+            heap = 256;
+            grow = 96;
+        }
+        if ((getTotalRAM() <= 2048) && (getTotalRAM() > 1024)) {
+            heap = 512;
+            grow = 256;
+        }
+        if ((getTotalRAM() <= 3072) && (getTotalRAM() > 2048)) {
+            heap = 1024;
+            grow = 512;
+        }
+        if ((getTotalRAM() <= 4096) && (getTotalRAM() > 3072)) {
+            heap = 2048;
+            grow = 1024;
+        }
+        if (text.toString().contains("dalvik.vm.heapsize=" + heap + "m") &&
+                text.toString().contains("dalvik.vm.heaptargetutilization=0.75")
+                && text.toString().contains("dalvik.vm.heapgrowthlimit=" + grow + "m") &&
+                text.toString().contains("dalvik.vm.check-dex-sum=false") &&
+                text.toString().contains("dalvik.vm.checkjni=false") &&
+                text.toString().contains("dalvik.vm.execution-mode=jit")) {
+            heapopt.setChecked(true);
+        } else {
+            heapopt.setChecked(false);
+        }
+        heapopt.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View arg0) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.tweakabout)
+                        .setMessage(R.string.heaptizer)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.warning)
+                        .show();
+                return true;    // <- set to true
+            }
+        });
+        heapopt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+                                               @Override
+                                               public void onCheckedChanged(CompoundButton buttonView,
+                                                                            boolean isChecked) {
+
+                                                   if (isChecked) {
+
+                                                       if (RootTools.isRootAvailable()) {
+                                                           if (RootTools.isAccessGiven()) {
+                                                               Command command1 = new Command(0,
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heapsize/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heaptargetutilization/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heapgrowthlimit/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.check-dex-sum/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.checkjni=false/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.execution-mode=jit/d' /system/build.prop",
+                                                                       "echo \"dalvik.vm.heapsize=" + heap + "m\" >> /system/build.prop",
+                                                                       "echo \"dalvik.vm.heaptargetutilization=0.75\" >> /system/build.prop",
+                                                                       "echo \"dalvik.vm.heapgrowthlimit=" + grow + "m\" >> /system/build.prop",
+                                                                       "echo \"dalvik.vm.check-dex-sum=false\" >> /system/build.prop",
+                                                                       "echo \"dalvik.vm.checkjni=false\" >> /system/build.prop",
+                                                                       "echo \"dalvik.vm.execution-mode=jit\" >> /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                               );
+                                                               try {
+                                                                   RootTools.getShell(true).add(command1);
+                                                                   Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                               } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                   ex.printStackTrace();
+                                                                   Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                               }
+                                                           } else {
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           }
+
+                                                       } else {
+                                                           Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                       }
+
+
+                                                   } else {
+                                                       if (RootTools.isRootAvailable()) {
+                                                           if (RootTools.isAccessGiven()) {
+                                                               Command command1 = new Command(0,
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heapsize/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heaptargetutilization/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.heapgrowthlimit/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.check-dex-sum/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.checkjni=false/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dalvik.vm.execution-mode=jit/d' /system/build.prop",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                               );
+                                                               try {
+                                                                   RootTools.getShell(true).add(command1);
+                                                                   Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                               } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                   ex.printStackTrace();
+                                                                   Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                               }
+                                                           } else {
+                                                               Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                           }
+
+                                                       } else {
+                                                           Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                       }
+                                                   }
+
+                                               }
+                                           }
+
+        );
+
 
         display_cal = (CheckBox) view.findViewById(R.id.display_cal);
         String check10 = "/etc/init.d/display";
@@ -273,13 +445,16 @@ public class SystemTweaksFragment extends Fragment {
                                                                if (RootTools.isAccessGiven()) {
                                                                    Command command1 = new Command(0,
                                                                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                            "cp /data/data/com.nowenui.systemtweakerfree/files/display /system/etc/init.d/",
                                                                            "chmod 777 /system/etc/init.d/display",
-                                                                           "dos2unix /system/etc/init.d/display",
                                                                            "cp /data/data/com.nowenui.systemtweakerfree/files/ad_calib.cfg /system/etc/",
                                                                            "chmod 755 /system/etc/ad_calib.cfg",
-                                                                           "sh /system/etc/init.d/display",
-                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                           "/system/etc/init.d/display",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                    try {
                                                                        RootTools.getShell(true).add(command1);
                                                                        Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -301,8 +476,12 @@ public class SystemTweaksFragment extends Fragment {
                                                                if (RootTools.isAccessGiven()) {
                                                                    Command command1 = new Command(0,
                                                                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                            "rm -f /system/etc/init.d/display",
-                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                    );
                                                                    try {
                                                                        RootTools.getShell(true).add(command1);
@@ -372,9 +551,10 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/81GPU_rendering /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/81GPU_rendering",
-                                                                          "dos2unix /system/etc/init.d/81GPU_rendering",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.hw/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/video.accelerate.hw/d' /system/build.prop",
@@ -399,8 +579,10 @@ public class SystemTweaksFragment extends Fragment {
                                                                           "echo \"dev.pm.dyn_samplingrate=1\" >> /system/build.prop",
                                                                           "echo \"ro.fb.mode=1\" >> /system/build.prop",
                                                                           "echo \"ro.sf.compbypass.enable=0\" >> /system/build.prop",
-                                                                          "sh /system/etc/init.d/81GPU_rendering",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/system/etc/init.d/81GPU_rendering",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -422,6 +604,8 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/etc/init.d/81GPU_rendering",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.sf.hw/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/debug.performance.tuning/d' /system/build.prop",
@@ -435,7 +619,9 @@ public class SystemTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/dev.pm.dyn_samplingrate/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.fb.mode/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.sf.compbypass.enable/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -495,6 +681,8 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
@@ -503,7 +691,9 @@ public class SystemTweaksFragment extends Fragment {
                                                                           "echo \"ro.max.fling_velocity=12000\" >> /system/build.prop",
                                                                           "echo \"ro.min.fling_velocity=8000\" >> /system/build.prop",
                                                                           "echo \"windowsmgr.max_events_per_sec=150\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -526,11 +716,15 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/windowsmgr.max_events_per_sec/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min_pointer_dur/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.max.fling_velocity/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.min.fling_velocity/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -590,11 +784,14 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/touch /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/touch",
-                                                                          "dos2unix /system/etc/init.d/touch",
-                                                                          "sh /system/etc/init.d/touch",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/system/etc/init.d/touch",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -616,8 +813,12 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/etc/init.d/touch",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -682,6 +883,8 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
@@ -698,9 +901,10 @@ public class SystemTweaksFragment extends Fragment {
                                                                           "setprop persist.service.pcsync.enable 0",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/boost /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/boost",
-                                                                          "dos2unix /system/etc/init.d/boost",
-                                                                          "sh /system/etc/init.d/boost",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/system/etc/init.d/boost",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -723,6 +927,8 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_dithering/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.use_16bpp_alpha/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/touch.pressure.scale=0.001/d' /system/build.prop",
@@ -730,7 +936,9 @@ public class SystemTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.service.lgospd.enable/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.vold.umsdirtyratio/d' /system/build.prop",
                                                                           "rm -f /system/etc/init.d/boost",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -792,9 +1000,13 @@ public class SystemTweaksFragment extends Fragment {
                                                            if (RootTools.isAccessGiven()) {
                                                                Command command1 = new Command(0,
                                                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.low_ram/d' /system/build.prop",
                                                                        "echo \"ro.config.low_ram=true\" >> /system/build.prop",
-                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                );
                                                                try {
                                                                    RootTools.getShell(true).add(command1);
@@ -817,8 +1029,12 @@ public class SystemTweaksFragment extends Fragment {
                                                            if (RootTools.isAccessGiven()) {
                                                                Command command1 = new Command(0,
                                                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.low_ram/d' /system/build.prop",
-                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                       "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                );
                                                                try {
                                                                    RootTools.getShell(true).add(command1);
@@ -880,9 +1096,13 @@ public class SystemTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                              "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.force_highendgfx/d' /system/build.prop",
                                                                              "echo \"persist.sys.force_highendgfx=true\" >> /system/build.prop",
-                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                      );
                                                                      try {
                                                                          RootTools.getShell(true).add(command1);
@@ -905,8 +1125,12 @@ public class SystemTweaksFragment extends Fragment {
                                                                  if (RootTools.isAccessGiven()) {
                                                                      Command command1 = new Command(0,
                                                                              "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                              "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.sys.force_highendgfx/d' /system/build.prop",
-                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                      );
                                                                      try {
                                                                          RootTools.getShell(true).add(command1);
@@ -964,13 +1188,16 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/zipalign /system/xbin/zipalign",
                                                                           "chmod 755 /system/xbin/zipalign",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/93zipalign /system/etc/init.d/93zipalign",
                                                                           "chmod 777 /system/etc/init.d/93zipalign",
-                                                                          "dos2unix /system/etc/init.d/93zipalign",
-                                                                          "sh /system/etc/init.d/93zipalign",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/system/etc/init.d/93zipalign",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -993,9 +1220,13 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/xbin/zipalign",
                                                                           "rm -f /system/etc/init.d/93zipalign",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -1053,13 +1284,16 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/sqlite3 /system/xbin/sqlite3",
                                                                           "chmod 755 /system/xbin/sqlite3",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/11sqlite /system/etc/init.d/11sqlite",
                                                                           "chmod 777 /system/etc/init.d/11sqlite",
-                                                                          "dos2unix /system/etc/init.d/11sqlite",
-                                                                          "sh /system/etc/init.d/11sqlite",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/system/etc/init.d/11sqlite",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -1082,9 +1316,13 @@ public class SystemTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/xbin/sqlite3",
                                                                           "rm -f /system/etc/init.d/11sqlite",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -1106,7 +1344,6 @@ public class SystemTweaksFragment extends Fragment {
                                               }
 
         );
-
         ext4tweak = (CheckBox) view.findViewById(R.id.ext4tweak);
         String check13 = "/etc/init.d/ext4";
         String check13a = "/system/etc/init.d/ext4";
@@ -1115,6 +1352,52 @@ public class SystemTweaksFragment extends Fragment {
         } else {
             ext4tweak.setChecked(false);
         }
+        final Handler handler2 = new Handler();
+        handler2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Process mount = Runtime.getRuntime().exec("mount");
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+                    mount.waitFor();
+
+                    String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        String[] split = line.split("\\s+");
+                        for (int i = 0; i < split.length - 1; i++) {
+                            if (split[i].contentEquals(extPath) ||
+                                    split[i].contains("system") ||
+                                    split[i].contains("_system")) {
+                                String strMount = split[i];
+                                String strFileSystem = split[i + 1];
+                                k = strFileSystem;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (getFileSystem(Environment.getDataDirectory()).contains("ext4")) {
+                    suc1 = true;
+                }
+                if (getFileSystem(Environment.getDownloadCacheDirectory()).contains("ext4")) {
+                    suc2 = true;
+                }
+                if (k.contains("ext4")) {
+                    suc3 = true;
+                }
+
+                if (suc1 && suc2 && suc3) {
+                    ext4tweak.setEnabled(true);
+                } else {
+                    ext4tweak.setEnabled(false);
+                }
+            }
+        }, 900);
         ext4tweak.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {
                 new AlertDialog.Builder(getContext())
@@ -1142,13 +1425,16 @@ public class SystemTweaksFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/ext4 /system/etc/init.d/",
                                                                          "chmod 777 /system/etc/init.d/ext4",
-                                                                         "dos2unix /system/etc/init.d/ext4",
                                                                          "cp /data/data/com.nowenui.systemtweakerfree/files/tune2fs /system/xbin/",
                                                                          "chmod 777 /system/xbin/tune2fs",
-                                                                         "sh /system/etc/init.d/ext4",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                         "/system/etc/init.d/ext4",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -1170,9 +1456,13 @@ public class SystemTweaksFragment extends Fragment {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                          "rm -f /system/etc/init.d/ext4",
                                                                          "rm -f /system/xbin/tune2fs",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
@@ -1213,13 +1503,13 @@ public class SystemTweaksFragment extends Fragment {
         });
 
 
-        final Spinner spinner6 = (Spinner) view.findViewById(R.id.spinner6);
+        final Spinner2 spinner6 = (Spinner2) view.findViewById(R.id.spinner6);
 
         ArrayAdapter adapter3 =
                 ArrayAdapter.createFromResource(getActivity(), R.array.ramlist, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner6.setAdapter(adapter3);
+        spinner6.setAdapter(adapter3, false);
 
         String fucks = "/etc/init.d/ram_gaming";
         String fucksa = "/system/etc/init.d/ram_gaming";
@@ -1232,9 +1522,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition2, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition2);
                     }
                 });
             } else {
@@ -1242,9 +1530,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition1, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition1);
                     }
                 });
             }
@@ -1262,9 +1548,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition4, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition4);
                     }
                 });
             } else {
@@ -1272,9 +1556,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition3, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition3);
                     }
                 });
             }
@@ -1291,9 +1573,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition2, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition2);
                     }
                 });
             } else {
@@ -1301,9 +1581,7 @@ public class SystemTweaksFragment extends Fragment {
                 spinner6.post(new Runnable() {
                     @Override
                     public void run() {
-                        spinner6.setEnabled(false);
-                        spinner6.setSelection(spinnerPosition1, false);
-                        spinner6.setEnabled(true);
+                        spinner6.setSelection(false, spinnerPosition1);
                     }
                 });
             }
@@ -1313,7 +1591,7 @@ public class SystemTweaksFragment extends Fragment {
         spinner6.post(new Runnable() {
             @Override
             public void run() {
-                spinner6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                spinner6.setOnItemSelectedSpinner2Listener(new Spinner2.OnItemSelectedSpinner2Listener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -1325,6 +1603,10 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system\n");
+                                outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_balanced\n");
@@ -1332,6 +1614,10 @@ public class SystemTweaksFragment extends Fragment {
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1346,19 +1632,25 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system\n");
+                                outputStream.flush();
                                 outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_gaming /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_gaming\n");
-                                outputStream.flush();
-                                outputStream.writeBytes("dos2unix /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_balanced\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("sh /system/etc/init.d/ram_gaming");
+                                outputStream.writeBytes("/system/etc/init.d/ram_gaming");
                                 outputStream.flush();
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1373,19 +1665,25 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system\n");
+                                outputStream.flush();
                                 outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_balanced /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_balanced\n");
-                                outputStream.flush();
-                                outputStream.writeBytes("dos2unix /system/etc/init.d/ram_balanced\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("sh /system/etc/init.d/ram_balanced");
+                                outputStream.writeBytes("/system/etc/init.d/ram_balanced");
                                 outputStream.flush();
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1400,19 +1698,25 @@ public class SystemTweaksFragment extends Fragment {
                                 DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system\n");
                                 outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system\n");
+                                outputStream.flush();
                                 outputStream.writeBytes("cp /data/data/com.nowenui.systemtweakerfree/files/ram_multitasking /system/etc/init.d/\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("chmod 777 /system/etc/init.d/ram_multitasking\n");
-                                outputStream.flush();
-                                outputStream.writeBytes("dos2unix /system/etc/init.d/ram_multitasking\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_gaming\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("rm -f /system/etc/init.d/ram_balanced\n");
                                 outputStream.flush();
-                                outputStream.writeBytes("sh /system/etc/init.d/ram_multitasking");
+                                outputStream.writeBytes("/system/etc/init.d/ram_multitasking");
                                 outputStream.flush();
                                 outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system\n");
+                                outputStream.flush();
+                                outputStream.writeBytes("/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system\n");
                                 outputStream.flush();
                                 outputStream.writeBytes("exit\n");
                                 outputStream.flush();
@@ -1421,10 +1725,6 @@ public class SystemTweaksFragment extends Fragment {
                                 Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
                             }
                         }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
             }
@@ -1446,18 +1746,15 @@ public class SystemTweaksFragment extends Fragment {
             reader = new RandomAccessFile("/proc/meminfo", "r");
             load = reader.readLine();
 
-            // Get the Number value from the string
             Pattern p = Pattern.compile("(\\d+)");
             Matcher m = p.matcher(load);
             String value = "";
             while (m.find()) {
                 value = m.group(1);
-                // System.out.println("Ram : " + value);
             }
             reader.close();
 
             totRam = Double.parseDouble(value);
-            // totRam = totRam / 1024;
 
             mb = totRam / 1024.0;
 
@@ -1465,7 +1762,7 @@ public class SystemTweaksFragment extends Fragment {
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
-            // Streams.close(reader);
+
         }
 
         return mb;

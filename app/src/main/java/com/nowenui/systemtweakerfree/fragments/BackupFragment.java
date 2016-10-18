@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -114,8 +114,12 @@ public class BackupFragment extends Fragment {
                         if (f.exists() && f.isDirectory()) {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
                                 RootTools.getShell(true).add(command1);
@@ -126,10 +130,14 @@ public class BackupFragment extends Fragment {
                         } else {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "mkdir /sdcard/SystemTweakerFREE",
                                     "mkdir /sdcard/SystemTweakerFREE/backups",
                                     "cp /system/build.prop /sdcard/SystemTweakerFREE/backups/buildprop.backup",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
                                 RootTools.getShell(true).add(command1);
@@ -173,13 +181,17 @@ public class BackupFragment extends Fragment {
                         if (f.exists() && f.isDirectory()) {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "rm -r /sdcard/SystemTweakerFREE/backups/init.d",
                                     "mkdir /sdcard/SystemTweakerFREE",
                                     "mkdir /sdcard/SystemTweakerFREE/backups",
                                     "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
                                     "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
                                     "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
 
                                 RootTools.getShell(true).add(command1);
@@ -191,12 +203,17 @@ public class BackupFragment extends Fragment {
                         } else {
                             Command command2 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "mkdir /sdcard/SystemTweakerFREE",
                                     "mkdir /sdcard/SystemTweakerFREE/backups",
                                     "mkdir /sdcard/SystemTweakerFREE/backups/init.d",
                                     "cp /system/etc/init.d/* /sdcard/SystemTweakerFREE/backups/init.d",
                                     "dos2unix /sdcard/SystemTweakerFREE/backups/init.d/*",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                            );
                             try {
                                 RootTools.getShell(true).add(command2);
                                 Toast.makeText(getActivity(), R.string.backupsucc, Toast.LENGTH_SHORT).show();
@@ -260,10 +277,14 @@ public class BackupFragment extends Fragment {
                         if (f.exists()) {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "rm /system/build.prop",
                                     "cp /sdcard/SystemTweakerFREE/backups/buildprop.backup /system/build.prop",
                                     "chmod 644 /system/build.prop",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();
                                 RootTools.getShell(true).add(command1);
@@ -350,11 +371,15 @@ public class BackupFragment extends Fragment {
                         if (f.exists() && f.isDirectory()) {
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "rm /system/etc/init.d/*",
                                     "cp /sdcard/SystemTweakerFREE/backups/init.d/* /system/etc/init.d/",
                                     "chmod 755 /system/etc/init.d",
                                     "chmod 777 /system/etc/init.d/*",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                             );
                             try {
                                 Toast.makeText(getActivity(), R.string.vosst, Toast.LENGTH_SHORT).show();

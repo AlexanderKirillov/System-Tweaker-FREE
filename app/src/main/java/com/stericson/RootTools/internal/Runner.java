@@ -20,14 +20,14 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools.internal;
+package com.stericson.roottools.internal;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.RootTools;
 
 import java.io.IOException;
 

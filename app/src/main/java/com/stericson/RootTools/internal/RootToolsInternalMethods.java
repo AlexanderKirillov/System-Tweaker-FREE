@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools.internal;
+package com.stericson.roottools.internal;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,14 +31,14 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
-import com.stericson.RootShell.RootShell;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.Constants;
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.containers.Mount;
-import com.stericson.RootTools.containers.Permissions;
-import com.stericson.RootTools.containers.Symlink;
+import com.stericson.rootshell.RootShell;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.Constants;
+import com.stericson.roottools.RootTools;
+import com.stericson.roottools.containers.Mount;
+import com.stericson.roottools.containers.Permissions;
+import com.stericson.roottools.containers.Symlink;
 
 import java.io.File;
 import java.io.FileReader;

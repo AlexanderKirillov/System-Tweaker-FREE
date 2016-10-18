@@ -20,23 +20,23 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools;
+package com.stericson.roottools;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.stericson.RootShell.RootShell;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.containers.Mount;
-import com.stericson.RootTools.containers.Permissions;
-import com.stericson.RootTools.containers.Symlink;
-import com.stericson.RootTools.internal.Remounter;
-import com.stericson.RootTools.internal.RootToolsInternalMethods;
-import com.stericson.RootTools.internal.Runner;
+import com.stericson.rootshell.RootShell;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.containers.Mount;
+import com.stericson.roottools.containers.Permissions;
+import com.stericson.roottools.containers.Symlink;
+import com.stericson.roottools.internal.Remounter;
+import com.stericson.roottools.internal.RootToolsInternalMethods;
+import com.stericson.roottools.internal.Runner;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -564,7 +564,19 @@ public final class RootTools {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
-        return RootShell.isAccessGiven();
+        return RootShell.isAccessGiven(0, 3);
+    }
+
+    /**
+     * Control how many time of retries should request
+     *
+     * @param timeout The timeout
+     * @param retries The number of retries
+     * @return <code>true</code> if your app has been given root access.
+     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
+     */
+    public static boolean isAccessGiven(int timeout, int retries) {
+        return RootShell.isAccessGiven(timeout, retries);
     }
 
     /**

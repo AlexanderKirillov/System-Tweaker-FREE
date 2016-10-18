@@ -19,12 +19,12 @@
  * See each License for the specific language governing permissions and
  * limitations under that License.
  */
-package com.stericson.RootShell.execution;
+package com.stericson.rootshell.execution;
 
 import android.content.Context;
 
-import com.stericson.RootShell.RootShell;
-import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.rootshell.RootShell;
+import com.stericson.rootshell.exceptions.RootDeniedException;
 
 import java.io.BufferedReader;
 import java.io.EOFException;
@@ -156,7 +156,7 @@ public class Shell {
     };
     /**
      * Runnable to monitor the responses from the open shell.
-     * <p/>
+     * <p>
      * This include the output and error stream
      */
     private Runnable output = new Runnable() {
@@ -603,6 +603,7 @@ public class Shell {
 
         while (this.isCleaning) {
             //Don't add commands while cleaning
+            ;
         }
 
         command.resetCommand();
@@ -700,7 +701,7 @@ public class Shell {
 
     /**
      * From libsuperuser.
-     * <p/>
+     * <p>
      * <p>
      * Detects the version of the su binary installed (if any), if supported
      * by the binary. Most binaries support two different version numbers,
@@ -786,7 +787,7 @@ public class Shell {
 
     /**
      * From libsuperuser.
-     * <p/>
+     * <p>
      * Detect if SELinux is set to enforcing, caches result
      *
      * @return true if SELinux set to enforcing, or false in the case of
@@ -881,14 +882,14 @@ public class Shell {
         }
     }
 
-    public enum ShellType {
+    public static enum ShellType {
         NORMAL,
         ROOT,
         CUSTOM
     }
 
     //this is only used with root shells
-    public enum ShellContext {
+    public static enum ShellContext {
         NORMAL("normal"), //The normal context...
         SHELL("u:r:shell:s0"), //unprivileged shell (such as an adb shell)
         SYSTEM_SERVER("u:r:system_server:s0"), // system_server, u:r:system:s0 on some firmwares
@@ -899,7 +900,7 @@ public class Shell {
 
         private String value;
 
-        ShellContext(String value) {
+        private ShellContext(String value) {
             this.value = value;
         }
 

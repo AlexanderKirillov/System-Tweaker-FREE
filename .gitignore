@@ -6,3 +6,13 @@
 .DS_Store
 /build
 /captures
+.gitignore
+.idea/
+app/
+build.gradle
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+import-summary.txt
+settings.gradle

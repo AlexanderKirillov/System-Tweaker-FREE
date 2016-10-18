@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.RootTools;
+package com.stericson.roottools;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -32,10 +32,10 @@ import android.os.StrictMode;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootShell.execution.Shell;
-import com.stericson.RootTools.containers.Permissions;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.rootshell.execution.Shell;
+import com.stericson.roottools.containers.Permissions;
 
 import java.io.IOException;
 import java.util.List;

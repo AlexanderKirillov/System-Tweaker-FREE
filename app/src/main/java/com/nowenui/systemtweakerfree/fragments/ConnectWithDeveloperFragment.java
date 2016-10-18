@@ -1,6 +1,5 @@
 package com.nowenui.systemtweakerfree.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -72,7 +71,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
                     public void run() {
                         isClicked = false;
                     }
-                }, 1000);
+                }, 3000);
                 EditText android = (EditText) view.findViewById(R.id.android);
                 EditText email = (EditText) view.findViewById(R.id.email);
                 EditText connect = (EditText) view.findViewById(R.id.connect);
@@ -142,7 +141,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
             final CountDownLatch latch = new CountDownLatch(1);
 
-            MailSend m = new MailSend("xxxxx", "password");
+            MailSend m = new MailSend("XXXXXX@gmail.com", "XXXXXXXXXXXXX");
             String[] toArr = {"NowenUI@bk.ru"};
             m.setTo(toArr);
             m.setFrom("User");

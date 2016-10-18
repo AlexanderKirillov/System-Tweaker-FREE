@@ -3,6 +3,8 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +19,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
 import github.nisrulz.easydeviceinfo.base.EasyDeviceMod;
 import github.nisrulz.easydeviceinfo.base.EasyDisplayMod;
 import github.nisrulz.easydeviceinfo.base.EasyIdMod;
 
-
 public class AboutFragment extends Fragment {
 
+    public String k, r;
     private String BatteryHealth;
 
     public static AboutFragment newInstance(Bundle bundle) {
@@ -36,6 +39,28 @@ public class AboutFragment extends Fragment {
         }
 
         return messagesFragment;
+    }
+
+    public static String getFileSystem(File path) {
+        try {
+            Process mount = Runtime.getRuntime().exec("mount");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+            mount.waitFor();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] split = line.split("\\s+");
+                for (int i = 0; i < split.length - 1; i++) {
+                    if (!split[i].equals("/") && path.getAbsolutePath().startsWith(split[i]))
+                        return split[i + 1];
+                }
+            }
+            reader.close();
+            mount.destroy();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -81,7 +106,6 @@ public class AboutFragment extends Fragment {
         return sb.toString();
     }
 
-
     public synchronized String getCPUName() {
         String CPUName = "";
 
@@ -100,7 +124,6 @@ public class AboutFragment extends Fragment {
         return CPUName;
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
@@ -115,6 +138,7 @@ public class AboutFragment extends Fragment {
         TextView tv3 = (TextView) view.findViewById(R.id.textviewabout3);
         TextView tv4 = (TextView) view.findViewById(R.id.textviewabout4);
         TextView tv5 = (TextView) view.findViewById(R.id.textviewabout5);
+        final TextView tv6 = (TextView) view.findViewById(R.id.filesystems);
 
         Button button = (Button) view.findViewById(R.id.button);
         button.setBackgroundResource(R.drawable.roundbuttoncal);
@@ -126,11 +150,6 @@ public class AboutFragment extends Fragment {
         button2.setTextColor(Color.WHITE);
         button2.setEnabled(false);
 
-        Button button3 = (Button) view.findViewById(R.id.button3);
-        button3.setBackgroundResource(R.drawable.roundbuttoncal);
-        button3.setTextColor(Color.WHITE);
-        button3.setEnabled(false);
-
         Button button4 = (Button) view.findViewById(R.id.button4);
         button4.setBackgroundResource(R.drawable.roundbuttoncal);
         button4.setTextColor(Color.WHITE);
@@ -141,7 +160,49 @@ public class AboutFragment extends Fragment {
         button5.setTextColor(Color.WHITE);
         button5.setEnabled(false);
 
+        Button button6 = (Button) view.findViewById(R.id.button6);
+        button6.setBackgroundResource(R.drawable.roundbuttoncal);
+        button6.setTextColor(Color.WHITE);
+        button6.setEnabled(false);
+
+        Button fsbutt = (Button) view.findViewById(R.id.fsbutt);
+        fsbutt.setBackgroundResource(R.drawable.roundbuttoncal);
+        fsbutt.setTextColor(Color.WHITE);
+        fsbutt.setEnabled(false);
+
         Resources res = getResources();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Process mount = Runtime.getRuntime().exec("mount");
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+                    mount.waitFor();
+
+                    String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        String[] split = line.split("\\s+");
+                        for (int i = 0; i < split.length - 1; i++) {
+                            if (split[i].contentEquals(extPath) ||
+                                    split[i].contains("system") ||
+                                    split[i].contains("_system"))   // Add wildcards to match against here
+                            {
+                                String strMount = split[i];
+                                String strFileSystem = split[i + 1];
+                                k = strFileSystem;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 900);
 
 
         tv1.setText(res.getString(R.string.yourdevice) + " "
@@ -171,6 +232,16 @@ public class AboutFragment extends Fragment {
         tv5.setText(res.getString(R.string.resolution) + " "
                 + easyDisplayMod.getResolution() + "\n" + "• DPI: "
                 + easyDisplayMod.getDensity() + "\n");
+        final Handler handler2 = new Handler();
+        handler2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tv6.setText("/data: " + getFileSystem(Environment.getDataDirectory()) + "\n"
+                        + "/system: " + k + "\n"
+                        + "/cache: " + getFileSystem(Environment.getDownloadCacheDirectory()) + "\n");
+            }
+        }, 900);
+
     }
 
 }

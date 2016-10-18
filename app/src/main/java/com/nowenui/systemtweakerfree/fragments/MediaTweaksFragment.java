@@ -16,9 +16,9 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -139,9 +139,13 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.enc.jpeg.quality/d' /system/build.prop",
                                                                           "echo \"ro.media.enc.jpeg.quality=100\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -163,8 +167,12 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.enc.jpeg.quality/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -220,11 +228,15 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.dec.jpeg.memcap/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.enc.hprof.vid.bps/d' /system/build.prop",
                                                                           "echo \"ro.media.dec.jpeg.memcap=8000000\" >> /system/build.prop",
                                                                           "echo \"ro.media.enc.hprof.vid.bps=8000000\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -246,9 +258,13 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.dec.jpeg.memcap/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.enc.hprof.vid.bps/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -304,9 +320,13 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.amr.wideband/d' /system/build.prop",
                                                                           "echo \"ro.ril.enable.amr.wideband=1\" >> /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -328,8 +348,12 @@ public class MediaTweaksFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.amr.wideband/d' /system/build.prop",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
@@ -389,6 +413,8 @@ public class MediaTweaksFragment extends Fragment {
                                                         if (RootTools.isAccessGiven()) {
                                                             Command command1 = new Command(0,
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-player/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-meta/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-scan/d' /system/build.prop",
@@ -401,7 +427,9 @@ public class MediaTweaksFragment extends Fragment {
                                                                     "echo \"media.stagefright.enable-http=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-rtsp=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-record=false\" >> /system/build.prop",
-                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                             try {
                                                                 RootTools.getShell(true).add(command1);
                                                                 Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -423,13 +451,17 @@ public class MediaTweaksFragment extends Fragment {
                                                         if (RootTools.isAccessGiven()) {
                                                             Command command1 = new Command(0,
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-player/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-meta/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-scan/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-http/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-rtsp/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-record/d' /system/build.prop",
-                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                             );
                                                             try {
                                                                 RootTools.getShell(true).add(command1);
@@ -489,6 +521,8 @@ public class MediaTweaksFragment extends Fragment {
                                                         if (RootTools.isAccessGiven()) {
                                                             Command command1 = new Command(0,
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.flash/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.flashMinV/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.torchIntensity/d' /system/build.prop",
@@ -497,7 +531,9 @@ public class MediaTweaksFragment extends Fragment {
                                                                     "echo \"ro.media.capture.flashMinV=3300000\" >> /system/build.prop",
                                                                     "echo \"ro.media.capture.torchIntensity=65\" >> /system/build.prop",
                                                                     "echo \"ro.media.capture.flashIntensity=100\" >> /system/build.prop",
-                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                             try {
                                                                 RootTools.getShell(true).add(command1);
                                                                 Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
@@ -519,11 +555,15 @@ public class MediaTweaksFragment extends Fragment {
                                                         if (RootTools.isAccessGiven()) {
                                                             Command command1 = new Command(0,
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.flash/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.flashMinV/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.torchIntensity/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.media.capture.flashIntensity/d' /system/build.prop",
-                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                             );
                                                             try {
                                                                 RootTools.getShell(true).add(command1);

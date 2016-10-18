@@ -1,4 +1,4 @@
-package com.stericson.RootTools;
+package com.stericson.roottools;
 
 public class Constants {
     public static final String TAG = "RootTools v4.2";

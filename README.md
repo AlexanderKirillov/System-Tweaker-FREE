@@ -1,8 +1,8 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 2.0.0</b></i>
+### <i><b>Current version: 2.1.0</b></i>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/lOkKQwXCvemse)
+### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/OcL7-s84x4sHX)
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
@@ -30,7 +30,8 @@ Speeding up your device has never been so easy! With this program you can really
 * jaredrummler: [AndroidDeviceNames](https://github.com/jaredrummler/AndroidDeviceNames)
 * nisrulz: [EasyDeviceInfo](https://github.com/nisrulz/easydeviceinfo)
 * akexorcist: [DeviceInformation](https://github.com/akexorcist/DeviceInformation)
-* castorflex: [SmoothProgressBar] (https://github.com/castorflex/SmoothProgressBar)
+* castorflex: [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar)
+* scijoker: [Spinner2](https://github.com/scijoker/spinner2)
 
 ## How to report a bug
 * A detailed description of the bug
@@ -39,9 +40,10 @@ Speeding up your device has never been so easy! With this program you can really
 And send all to NowenUI@bk.ru
 
 
-##Video Review (PRO version)
+##Video Review (PRO version))](
 
 [![Review [russian]](http://img.youtube.com/vi/fQhEU1_3jJw/0.jpg)](https://www.youtube.com/watch?v=fQhEU1_3jJw)
+[![Review2 [russian]](http://img.youtube.com/vi/x-Zn8sd_ZpA/0.jpg)](https://youtu.be/x-Zn8sd_ZpA)
 
 ## License
 

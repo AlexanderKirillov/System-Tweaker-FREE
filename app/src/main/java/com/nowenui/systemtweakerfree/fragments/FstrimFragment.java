@@ -19,9 +19,9 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.RootShell.exceptions.RootDeniedException;
-import com.stericson.RootShell.execution.Command;
-import com.stericson.RootTools.RootTools;
+import com.stericson.rootshell.exceptions.RootDeniedException;
+import com.stericson.rootshell.execution.Command;
+import com.stericson.roottools.RootTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,9 +126,13 @@ public class FstrimFragment extends Fragment {
 
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "cp /data/data/com.nowenui.systemtweakerfree/files/fstrim /system/bin/fstrim",
                                     "chmod 777 /system/bin/fstrim",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 RootTools.getShell(true).add(command1);
                                 Toast.makeText(getActivity(), R.string.fileinstall, Toast.LENGTH_SHORT).show();
@@ -173,8 +177,12 @@ public class FstrimFragment extends Fragment {
 
                             Command command1 = new Command(0,
                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                     "rm -f /system/bin/fstrim",
-                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                             try {
                                 RootTools.getShell(true).add(command1);
                                 Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
@@ -223,8 +231,12 @@ public class FstrimFragment extends Fragment {
                             if (RootTools.isAccessGiven()) {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /system... OK!", Toast.LENGTH_SHORT).show();
@@ -244,8 +256,12 @@ public class FstrimFragment extends Fragment {
                             if (RootTools.isAccessGiven()) {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /data... OK!", Toast.LENGTH_SHORT).show();
@@ -265,8 +281,12 @@ public class FstrimFragment extends Fragment {
                             if (RootTools.isAccessGiven()) {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /cache");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /cache... OK!", Toast.LENGTH_SHORT).show();
@@ -287,10 +307,18 @@ public class FstrimFragment extends Fragment {
                             if (RootTools.isAccessGiven()) {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data");
                                 try {
                                     RootTools.getShell(true).add(command1);
@@ -313,10 +341,18 @@ public class FstrimFragment extends Fragment {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /cache");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /system & /cache... OK!", Toast.LENGTH_SHORT).show();
@@ -337,10 +373,18 @@ public class FstrimFragment extends Fragment {
                                 Command command1 = new Command(0,
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /cache");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /data & /cache... OK!", Toast.LENGTH_SHORT).show();
@@ -362,12 +406,24 @@ public class FstrimFragment extends Fragment {
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /cache",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox fstrim -v /data",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount data",
-                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache");
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /cache",
+                                        "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /cache");
                                 try {
                                     RootTools.getShell(true).add(command1);
                                     Toast.makeText(getActivity(), "fstrim /data & /system & /cache... OK!", Toast.LENGTH_SHORT).show();
@@ -413,10 +469,13 @@ public class FstrimFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/70fstrim /system/etc/init.d/70fstrim",
                                                                           "chmod 777 /system/etc/init.d/70fstrim",
-                                                                          "dos2unix /system/etc/init.d/70fstrim",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system");
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
                                                                       Toast.makeText(getActivity(), R.string.ok, Toast.LENGTH_SHORT).show();
@@ -437,8 +496,12 @@ public class FstrimFragment extends Fragment {
                                                               if (RootTools.isAccessGiven()) {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
                                                                           "rm -f /system/etc/init.d/70fstrim",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system"
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
