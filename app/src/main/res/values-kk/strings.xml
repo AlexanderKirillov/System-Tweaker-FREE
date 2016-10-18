@@ -1,0 +1,322 @@
+<resources>
+    <string name="app_name">System Tweaker FREE</string>
+    <string name="root">ROOT ПРИСУТСТВУЕТ!</string>
+    <string name="initd">INIT.D РАБОТАЕТ!</string>
+    <string name="busybox">BUSYBOX V1.24.2 \n(ИЗ ПАКЕТА ПРОГРАММЫ)!</string>
+    <string name="xposed">XPOSED УСТАНОВЛЕН!</string>
+    <string name="rootbad">ROOT НЕ ФУНКЦИОНИРУЕТ!</string>
+    <string name="problems">имеются проблемы</string>
+    <string name="initdbad">INIT.D НЕ ФУНКЦИОНИРУЕТ! </string>
+    <string name="busyboxbad">BUSYBOX НЕ ФУНКЦИОНИРУЮТ!</string>
+    <string name="hello">Добро пожаловать в программу\nSystem Tweaker FREE!!!\n</string>
+    <string name="vozmozhonosti">С помощью данной программы Вы сможете ускорить Ваше устройство, увеличить время жизни устройства от одного заряда батареи\n</string>
+    <string name="before">Перед использованием программы:</string>
+     <string name="beforewarning">1) Сделайте резервные копии всей системы и пользовательского раздела (желательно, если установлено кастомное рекавери, то через него)\n
+         2) Сделайте бекапы файла build.prop и папки init.d с помощью соответствующей утилиты, встроенной в эту программу\n
+         3) Имейте в виду, что все твики необходимо применять с умом, большое количество твиков может просто замедлить систему и даже вызвать ее неработоспособность (и придется перепрошивать устройство)</string>
+    <string name="cauton">Помните, что всю ответственность за действия со своим устройством несете только Вы!</string>
+    <string name="cal">Калибровать</string>
+    <string name="calinfo">Если кнопка неактивна, убедитесь в выполнении обоих условий выполнения калибровки (100% уровень заряда батареи и подключение зарядки).\n\nПроцесс калибровки включает в себя удаление следующих файлов из раздела /data/system/ :\n- batterystats.bin\n- batterystats-daily.xml\n- batterystats-checkin.bin</string>
+    <string name="batterylevel">Уровень заряда</string>
+    <string name="charger">Зарядка подключена?</string>
+    <string name="need">Необходимы Root права, установленный и рабочий busybox</string>
+    <string name="cautonbattery">ВНИМАНИЕ! КАЛИБРОВКА МОЖЕТ ПРИВЕСТИ К ПЛОХИМ ПОСЛЕДСТВИЯМ! ДЕЛАЙТЕ ТОЛЬКО НА СВОЙ СТРАХ И РИСК</string>
+    <string name="calibrate">Калибровка батареи осуществляется только если Вы имеете проблемы с низкой энергоэффективностью устройства без объективных причин (например, вздутие батареи), неправильным отображением заряда батареи. Также калибровку батареи стоит сделать в случае устновки новой прошивки с полным бросом данных. \nПросто так калибровать батарею нет смысла, это может нанести вред устройству или батарее!\n\nНо если Вы все же решились делать калибровку (конечно, на свой страх и риск), то следуйте инструкции ниже:\n1) Полностью зарядите свое устройство\n2) Не отключая с зарядки выполните калибровку батареи путем нажатия соответствующей кнопки ниже.</string>
+    <string name="calsucess">Калиброка выполнена!</string>
+    <string name="reboot">Перезагрузка</string>
+    <string name="errordev">ОШИБКА! ПОЖАЛУЙСТА СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ!</string>
+    <string name="erroroot">ОШИБКА! НЕТ ROOT ДОСТУПА</string>
+    <string name="errobusybox">ОШИБКА! НЕОБХОДИМ BUSYBOX!</string>
+    <string name="delettweaks">Твики удалены!</string>
+    <string name="backupsucc">Бэкап успешно сделан!</string>
+    <string name="error">Ошибка!</string>
+    <string name="lastbackup">Последний бэкап был сделан:  </string>
+    <string name="vosst">Успешно восстановлено!</string>
+    <string name="backupfuck">Бэкап еще не сделан, нечего восстанавливать :(</string>
+    <string name="yasno">Ясно</string>
+    <string name="backup">Резервное копирование</string>
+    <string name="buildpropbackup">Бэкап build.prop</string>
+    <string name="cautonbackup">Обратите внимание, что даты обновляются только после обновления страницы. То есть если Вы сделали бэкап- перезайдите на эту страницу и дата установится на верную!</string>
+    <string name="initdbackup">Бэкап папки init.d</string>
+    <string name="restore">Восстановление</string>
+    <string name="restorebuildprop">Восстановление build.prop</string>
+    <string name="restoreinit.d">Восстановление папки init.d</string>
+    <string name="foundbackup">Найти файлы резервого копирования (бэкапа) вы можете в папке: /sdcard/SystemTweakerFREE/backups</string>
+    <string name="batterysection">В данном разделе содержатся твики, с помощью которых можно увеличить время автономной работы устройства.\n</string>
+    <string name="firstbatterytweak">Твик сервисов гугл \nИсправляет чрезмерное использование батареи сервисами гугла</string>
+    <string name="secondbatterytweak">Улучшение энергоэффективности\nИсправляет чрезмерное использование батареи виртуальной машиной Android</string>
+    <string name="thirdbatterytweak">Увеличение интервала автосканирования сетей Wifi\nУвеличивает время работы от батареи</string>
+    <string name="fourhbatterytweak">Экономия питания при использовании Wifi-модуля \nПозволяет немного сэкономить заряд батареи</string>
+    <string name="fifthbatterytweak">Включить Power Collapse\nЭтот параметр позволяет системе переходить в глубокий сон при выключенном экране</string>
+    <string name="sixthbatterytweak">Включить Power Supply</string>
+    <string name="sevenbatterytweak">Включить улучшенное управление сенсорами во время сна</string>
+    <string name="eithtbatterytweak">Отключить логгирование системы \nОтключение логгирования позволит сэкономить заряд аккумулятора, так как система не будет постоянно собирать логи\n</string>
+    <string name="tweakenabled">Твик применен!</string>
+    <string name="tweakdisabled">Твик отключен!</string>
+    <string name="internettweakswelcome">В данном разделе содержатся твики, с помощью которых можно увеличить стабильность и скорость работы интернета.\n</string>
+    <string name="firstinternettweak">Твики интернета\nУлучшение работы сетей WiFi/3G/2G/4G, повышение скорости загрузки файлов, улучшение стабильности</string>
+    <string name="secondinternettweak">Увеличение скорости интернета\nУскорение работы 3G/4G, изменение значений TCP в лучшую сторону</string>
+    <string name="thirdinternettweak">Google DNS\nИзменение DNS серверов на гугловские (8.8.8.8, 8.8.4.4)</string>
+    <string name="forthinternettweak">Fast Dormancy\nВключение данной функции может съэкономить заряд батареи устройства и будет меньше загружать вышки оператора. Включайте только если Ваш оператор поддерживает эту функцию!</string>
+    <string name="fifthinternettweaks">Поддержка IPv6</string>
+    <string name="sixinternettweaks">Поддержка IPv4</string>
+    <string name="glavnays">Главная страница</string>
+    <string name="soglasenie">Соглашение</string>
+    <string name="infoabout">Информация об устрой.</string>
+    <string name="calbattery">Калибровка батареи</string>
+    <string name="backupandrestore">Центр резерв. и восст.</string>
+    <string name="batterytweaks">Твики батареи</string>
+    <string name="internettweaks">Твики интернета</string>
+    <string name="systemtweaks">Системные твики</string>
+    <string name="mediatweaks">Твики медиа</string>
+    <string name="varioustweaks">Прочие твики</string>
+    <string name="connect">Сообщить об ошибке</string>
+    <string name="aboutapp">О программе</string>
+    <string name="exit">Выход</string>
+    <string name="main">Основное</string>
+    <string name="tweaks">Твики и утилиты</string>
+    <string name="prochee">Прочее</string>
+    <string name="yourdevice">• Ваше устройство:</string>
+    <string name="model">• Модель:</string>
+    <string name="serial">• Серийный номер:</string>
+    <string name="cod">• Кодовое имя устройства: </string>
+    <string name="android">• Версия Android: </string>
+    <string name="boot">• Версия загрузчика: </string>
+    <string name="radio">• Версия радиомодуля: </string>
+    <string name="rom">• Версия прошивки: </string>
+    <string name="csc">• Активный CSC-код: </string>
+    <string name="language">• Активный язык: </string>
+    <string name="rootprava">• Наличие Root: </string>
+    <string name="sdk">• Версия SDK:</string>
+    <string name="processor">• Процессор: </string>
+    <string name="processortype">• Тип процессора:</string>
+    <string name="batthealth">• Здоровье батареи: </string>
+    <string name="chargerconn">• Зарядка подключена:  </string>
+    <string name="batterytype">• Тип батареи: </string>
+    <string name="voltage">• Напряжение: </string>
+    <string name="batterytemp">• Температура батареи: </string>
+    <string name="levelbatt">• Текущий заряд: </string>
+    <string name="resolution">• Разрешение: </string>
+    <string name="goodbatterystatus">хорошее</string>
+    <string name="processorwo">Процессор</string>
+    <string name="memory">Память</string>
+    <string name="batt">Батарея</string>
+    <string name="screen">Экран</string>
+    <string name="excist">присутствует</string>
+    <string name="noexcist">отсутствует</string>
+    <string name="warn">Данные твики могут работать не на всех устройствах!\n</string>
+    <string name="variostweaks">В данном разделе содержатся различные прочие твики.\n</string>
+    <string name="disableboot">Отключение загрузочной анимации</string>
+    <string name="adb">Убрать иконку откладки в статусбаре</string>
+    <string name="onnectwithdev">На этой странице Вы можете отправить письмо разработчику. Я смогу Вам помочь в случае неудачного использования функций программы, могу проконсультировать и обьяснить значение твиков\n\nЧтобы связаться со мной, заполните поле "Текст письма" и нажмите кнопку "Отправить". Ваше устройство предложит выбрать почтовое приложение для отправки письма, выберите нужное приложение и отправьте мне письмо. Если у Вас на устройстве не установлен почтовый клиент, то Вы можете связаться со мной с любого устройства по почтовому адресу: NowenUI@bk.ru</string>
+    <string name="text">Текст письма</string>
+    <string name="sendletter">Отправить</string>
+    <string name="aboutappinfo">Данная программа позволит настроить Ваше устройство под себя, поможет развить максимальную производительность и в то же время поможет увеличить время автономной работы Вашего девайса\n</string>
+    <string name="author">Автором программы является независимый разработчик Александр Кириллов (NowenUI)\n</string>
+    <string name="libraries">Использованные библиотеки: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- SmoothProgressBar by castorflex\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n- Spinner2 by scijoker\n</string>
+    <string name="site">Официальный сайт: NowenUI.com</string>
+    <string name="opensite">Нажмите для открытия сайта</string>
+    <string name="agreement">Прежде чем приступать к использованию программы, Вы должны ознакомится с соглашением об использовании\n\n1) Разработчик программы не несет ответственности за непредсказуемый результат использования программы\n\n2) Да, из пункта 1 вы должны были понять, что мы не несем ответственности за поломанные устройства, убитые батареи, сгоревшие платы и т.п\n\n3) Все возможности программы являются ознакомительными, их наличие не значит их обязательное применение\n\n4) Вы не можете использовать программу в своих целях (в т.ч и коммерческих), или же какую-либо часть кода программы без согласования с разработчиком, но имейте в виду пункт 5\n\n5) Все возможности, представленные в программе (твики, технология калибровки батареи, технология ускорения одним щелчком и пр.) являются достоянием общественности (т.е полностью открыты), Вы можете использовать их в своих целях (в т.ч и комерческих)</string>
+    <string name="systemteweaks">В данном разделе содержатся твики, с помощью которых можно увеличить стабильность и скорость работы системы, а также настроить ее по своему вкусу.\n</string>
+    <string name="systemone">Фиксированное внесение лаунчера в память\nПри включении этой опции лаунчер перестанет делать постоянные перерисовки, будет работать быстро и плавно (если Ваше устройство имеет достаточное кол-во ОЗУ</string>
+    <string name="systemtwo">Устранение некоторых ошибок в приложениях</string>
+    <string name="systemthree">Аппаратное ускорение отрисовки интерфейса, улучшение реакции сенсора дисплея\nИнтерфейс прорисовывается не с помощью CPU, а с помощью GPU. Если Ваше устройство имеет мощный GPU, то включение этой опции может существенно повысить плавность и производительность интерфейса</string>
+    <string name="systemfour">Увеличение скорости/отзывчивости при прокрутке</string>
+    <string name="systemfive">Оптимизация разделов (zipalign) при загрузке и каждую неделю\nПовышает производительность системы и приложений</string>
+    <string name="systemsix">Оптимизация базы данных SQLite при загрузке и каждую неделю\nПовышает производительность системы и приложений</string>
+    <string name="fstrim">FSTRIM- специальная утилита, которая ускоряет работу устройства путем выполнения операции TRIM на устройствах памяти\n</string>
+    <string name="beforestrim">Сначала, если требуется, установите библиотеку по работе с Fstrim, потом чтобы сделать FSTRIM, выберите нужные разделы и нажмите кнопку &quot;FSTRIM&quot;\n\n</string>
+    <string name="installfstrim">Установить библиотеку работы с fstrim\nВыполняется только один раз</string>
+    <string name="statusinfo">Статус кнопки обновляется только после перезагрузки страницы</string>
+    <string name="fstrimboot">Выполнять fstrim всех разделов при загрузке системы</string>
+    <string name="fstrimlibok">Необходимые библиотеки уже установлены. \nУстановка не требуется, просто пользуйтесь</string>
+    <string name="fileinstall">Необходимые файлы установлены!</string>
+    <string name="ok">Применено!</string>
+    <string name="delete">Выключено!</string>
+    <string name="mediaserver">MediaServer - это системная служба, которая постоянно сканирует карту памяти (если имеется) и внутреннюю память на наличие медиафайлов. Выполняйте отключение службы только когда испытываете проблемы, такие как уменьшение времени автономной работы устройства, лаги интерфейса и т.п </string>
+    <string name="stopmediascanner">Остановить MediaScanner</string>
+    <string name="startmediascanner">Запустить MediaScanner</string>
+    <string name="stopmediaserver">Остановить MediaServer</string>
+    <string name="bootmediaserver">Отключить MediaServer при загрузке (необходима поддержка init.d)</string>
+    <string name="bootmediascanner">Отключить MediaScanner при загрузке (необходима поддержка init.d)</string>
+    <string name="sttoppedmediaserver">MediaServer остановлен!</string>
+    <string name="sttoppedmediascanner">MediaScanner остановлен!</string>
+    <string name="startpedmediaserver">MediaScannner запущен!</string>
+    <string name="mediatweakshello">В данном разделе содержатся твики, с помощью которых можно увеличить качество фото, видео, улучшить качество потокового видео!\n</string>
+    <string name="mediaone">Улучшение качества изображений до 100%</string>
+    <string name="mediatwo">Улучшение качества съемки фото и видео до 100%</string>
+    <string name="mediathree">Увеличить качество получаемой и передаваемой речи в мобильных сетях путем включения функции AMR Wideband</string>
+    <string name="mediafour">Ускорение работы потокового видео</string>
+    <string name="mediafive">Улучшение качества вспышки и фонарика</string>
+    <string name="delstrim">Удалить библиотеку FSTRIM из системы</string>
+    <string name="helloatr">Приветствуем!</string>
+    <string name="ponatno">Понятно!</string>
+    <string name="rebootactionbar">Перезагрузить устройство?)</string>
+    <string name="close">Нажите кнопку "назад" еще раз для выхода из приложения</string>
+    <string name="rebootmanager">Менеджер выкл./перез.</string>
+    <string name="reboot1dialog">Вы точно хотите сделать полную перезагрузку Вашего устройства?)</string>
+    <string name="reboothello">На данной странице Вы можете выключить или перезагрузить Ваше устройство в нужном режиме\n</string>
+    <string name="hotreboot">Быстрая перезагрузка</string>
+    <string name="shutdown">Выключение</string>
+    <string name="rebootrec">Перезагрузка в рекавери</string>
+    <string name="rebootbottloader">Перезагрузка в бутлоадер</string>
+    <string name="shutdownconf">Вы точно хотите выключить свое устройство?)</string>
+    <string name="hotrebootconf">Вы точно хотите сделать быструю перезагрузку?)</string>
+    <string name="rebootrecovconf">Вы точно хотите перезагрузиться в рекавери?)</string>
+    <string name="rebootbootloaderdialog">Вы точно хотите перезагрузиться в бутлоадер?)</string>
+    <string name="rootbusybox">Приложению требуются Root права! Если они у Вас установлены- перезапустите программу, проверка должна пройти успешно!\n\nИнструкцию по установке Root Вы можете найти в теме 4PDA или XDA Вашего устройства!</string>
+    <string name="okinstall">Ясно, сейчас установлю</string>
+    <string name="licensecheckbox">Вы согласны с соглашением</string>
+    <string name="ext4tweak">Оптимизировать работу файловой системы EXT4 при каждой загрузке  (используйте только если Ваше устройство имет соответствующую файловую систему)</string>
+    <string name="ram">Режим\n использов. \nRAM</string>
+    <string name="displayfix">Улучшить качество изображения на дисплее\nОсуществляется путем системной калибровки </string>
+    <string name="otherapps">Другие наши приложения:</string>
+    <string name="onec">Нажмите на кнопку, чтобы ускорить работу Вашего устройства</string>
+    <string name="tweakabout">Информация о твике</string>
+    <string name="inet1">[ТВИКИ BUILD.PROP: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
+                \n\nnet.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
+                \n\nnet.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576
+                \n\nnet.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576 ]\n\nДанный пункт позволяет увеличить скорость и стабильность интернета путем применения увеличенных буферов передачи данных</string>
+    <string name="inet2">[ТВИК BUILD.PROP:\n\nro.ril.hsxpa=2
+\n\nro.ril.hep=1
+\n\nro.ril.enable.dtm=1
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a53=1
+\n\nro.ril.enable.3g.prefix=1
+\n\nro.ril.gprsclass=10
+\n\nro.ril.hsupa.category=7
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a52=1
+\n\nro.ril.set.mtu1472=1
+\n\npersist.cust.tel.eons=1\n\nТВИК INIT.D: 05InternetTweak.\n\nВключает в себя следующий код:\n\necho "0" > /proc/sys/net/ipv4/tcp_timestamps;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_reuse;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_sack;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_recycle;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_window_scaling;
+\n\necho "5" > /proc/sys/net/ipv4/tcp_keepalive_probes;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_keepalive_intvl;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_fin_timeout;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_dsack
+\n\necho "1" > /proc/sys/net/ipv4/tcp_moderate_rcvbuf
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
+\n\necho "1" > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses\n\nЕсли Вы его применили, то он расположен в папке /system/etc/init.d]\n\nПозволяет специальным образом настроить текущий режим TCP оптимальными параметрами для всех устройств, а также применить специальные твики build.prop для улучшенной работы 3G и 4G!</string>
+  <string name="inet3">[ТВИК BUILD.PROP: \n\nnet.dns2=8.8.4.4
+               \n\nnet.rmnet0.dns1=8.8.8.8
+                 \n\nnet.rmnet0.dns2=8.8.4.4
+               \n\nnet.ppp0.dns1=8.8.8.8
+                \n\nnet.ppp0.dns2=8.8.4.4
+               \n\nnet.wlan0.dns1=8.8.8.8
+                \n\nnet.wlan0.dns2=8.8.4.4
+               \n\nnet.eth0.dns1=8.8.8.8
+               \n\nnet.eth0.dns2=8.8.4.4
+                \n\nnet.gprs.dns1=8.8.8.8
+               \n\nnet.gprs.dns2=8.8.4.4 ]\n\nПрименяет следующие DNS серверы: 8.8.8.8 и 8.8.4.4. Позволяет увеличить скорость открытия веб-страниц и улучшить стабильность!</string>
+
+    <string name="inet4">[ТВИК BUILD.PROP: \nro.config.hw_fast_dormancy=1]\n\nВключает режим Fast Dormancy! Существует технология Network Controlled Fast Dormancy. Если сеть оператора ее поддерживает, то (теоретически) это экономит вашу батарейку и меньше загружает вышки оператора. Но если сеть оператора ее не поддерживает или поддерживает некорректно, то батарейку это не экономит, плюс могут наблюдаться проблемы с передачей данных</string>
+    <string name="inet5">[ТВИК BUILD.PROP: \npersist.telephony.support.ipv6=1]\n\nПринудительно включает поддержку IPv6 протокола передачи данных</string>
+    <string name="inet6">[ТВИК BUILD.PROP: \npersist.telephony.support.ipv4=1]\n\nПринудительно включает поддержку IPv4 протокола передачи данных</string>
+    <string name="inet7">[РЕЖИМ TCP: \nустанавливает нужный режим TCP в файл /proc/sys/net/ipv4/tcp_congestion_control ] \n\nТвик позволяет изменять стандартный алгоритм контроля насыщения TCP (TCP Congrestion control), который регулирует размер TCP-окна на основе множества параметров, чтобы сделать поток пакетов более ровным и достичь наивысшей скорости передачи данных. Начиная с версии 2.6.19, ядро Linux  по умолчанию использует эффективный алгоритм CUBIC, который также обычно применяется и в стандартных ядрах Android. Проблема только в том, что CUBIC эффективен в проводных сетях с высокой скоростью передачи данных, тогда как для 3G- и Wi-Fi-сетей гораздо лучшим выбором будет алгоритм Westwood(+). Также сущетвуют другие режимы, например reno, которые тоже намного эффективней стандартного cubic</string>
+    <string name="battery1">[ТВИК INIT.D ПОД НАЗВАНИЕМ 05FixGoogleServicedrain\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет избавиться от вэйклоков устройства сервисами Google путем... включения тех-же сервисов Google. Да, парадокс, но твик действительно работает и позволяет увеличить энергоэффективность Вашего устройства!</string>
+ <string name="battery2">[ТВИК INIT.D ПОД НАЗВАНИЕМ 00BatteryImprove\n\nСодержит в себе следующий код:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
+\n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем настройки отдельных параметров для отложенного сброса «грязных» буферов VM.</string>
+    <string name="battery3">[ТВИК BUILD.PROP:\nwifi.supplicant_scan_interval=220 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем увеличения интервала автосканирования Wifi сетей (до 220 ms). Учтите, что автоподключение к Wifi сети в фоне может происходить чуть дольше.</string>
+    <string name="battery4">[ТВИК BUILD.PROP:\nro.ril.disable.power.collapse=0\n\nro.vold.umsdirtyratio=20\n\npm.sleep_mode=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения режима Power Collapse и настройки режима сна. Т.е эти параметры принудительно переводят телефон в режиме ожидания в глубокий сон, что позволяет съэкономить заряд батареи</string>
+    <string name="battery5">[ТВИК BUILD.PROP:\n\npower_supply.wakeup=enable ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения режима контроля и предотвращения просыпания устройства технологией Power Supply. \n\nВНИМАНИЕ! ВОЗМОЖНО ПОЯВЛЕНИЕ ПРОБЛЕМ С ФОНОВЫМ ВОСПРОИЗВЕДЕНИЕМ МУЗЫКИ (И НЕ ТОЛЬКО) ПРИ ВЫКЛЮЧЕННОМ ЭКРАНЕ!</string>
+    <string name="battery6">[ТВИК BUILD.PROP:\nro.ril.sensor.sleep.control=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения спящего режима для сенсоров устройства, когда устройство находится в глубоком сне</string>
+    <string name="battery7">[ТВИК BUILD.PROP:\nro.mot.eri.losalert.delay=1000 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем увеличения задержки оповещения прерывания обслуживания</string>
+    <string name="battery8">[ТВИК BUILD.PROP:\n\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем отключения собирания логов системой (по-умолчанию система регулярно собирает логи, что плохо сказывается на батареи)</string>
+    <string name="sys1">[ТВИК BUILD.PROP:\nro.HOME_APP_ADJ=1] \n\nТвик позволяет закрепить лаунчер в оперативной памяти, что позволяет исключить перерисовки, перезагрузки лаунчера. Используйте только если Ваше устройство имеет кол-во оперативной памяти > 1GB (иначе девас может начать тормозить)</string>
+    <string name="sys2">[ТВИК INIT.D ПОД НАЗВАНИЕМ display\n\nСодержит в себе следующий код:\n\nsetprop ro.qcom.ad 1
+\n\nsetprop ro.qcom.ad.calib.data /system/etc/ad_calib.cfg\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d. \nТакже применяется новый файл ad_calib.cfg, который и содержит в себе настройки дисплея] \n\nТвик позволяет увеличить качество изображения на дисплее путем применения специального профиля экрана</string>
+    <string name="sys3">[ТВИК BUILD.PROP:\nro.kernel.android.checkjni=0 ] \n\nТвик позволяет исправить некоторые ошибки в приложениях путем отключения их определения</string>
+    <string name="sys4">[ТВИК BUILD.PROP:\n\ndebug.composition.type=gpu\n\ndebug.sf.hw=1\n\ndebug.performance.tuning=1\n\ndebug.egl.profiler=1\n\ndebug.egl.hw=1\n\ndebug.enabletr=true
+                                                                             \n\ndebug.overlayui.enable=1
+                                                                              \n\ndebug.qctwa.preservebuf=1
+                                                                              \n\ndev.pm.dyn_samplingrate=1
+                                                                              \n\nro.fb.mode=1
+                                                                              \n\nro.sf.compbypass.enable=0
+                                                                             \n\nА ТАКЖЕ ТВИК INIT.D ПОД НАЗВАНИЕМ 81GPU_rendering ] \n\nТвик позволяет принудительно использовать GPU для операций отрисовки, улучшает плавность, отзывчивость тача, улучшает качество воспроизводимого видео, но может садить батарею активнее. Используйте только если Ваше устройство имеет мощный GPU! Иначе могут возникнуть лаги!</string>
+    <string name="sys5">[ТВИК BUILD.PROP:\n\nwindowsmgr.max_events_per_sec=150\n\nro.min_pointer_dur=8\n\nro.max.fling_velocity=12000\n\nro.min.fling_velocity=8000 ] \n\nТвик позволяет увеличить плавность скроллинга списков, путем настройки соответствующих параметров</string>
+    <string name="sys6">[ТВИК INIT.D ПОД НАЗВАНИЕМ 93zipalign\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать приложения при каждой загрузке и каждую неделю, это позволит увеличить скорость открытия и плавность работы всех приложений</string>
+    <string name="sys7">[ТВИК INIT.D ПОД НАЗВАНИЕМ 11sqlite\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать базы данных при каждой загрузке и каждую неделю, это позволит увеличить скорость работы системы и приложений, использующих SQLite</string>
+    <string name="sys8">[ТВИК INIT.D ПОД НАЗВАНИЕМ ext4\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать ФС EXT4 путем оптимизации журналов, используя утилиту tune2fs. Используйте только Ваше устройство имеет ФС EXT4, иначе могут возникнуть проблемы!</string>
+    <string name="sys9">[ТВИК INIT.D ПОД НАЗВАНИЯМИ: ram_balanced, ram_multitasking, ram_gaming (в зависимости от выбранного режима)\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик позволяет оптимизировать работу оперативной памяти в зависимости от выбранного режима путем применения оптимальных параметров MinFree, Debug Values, LowMemoryKiller!</string>
+    <string name="sys10">[ТВИК INIT.D ПОД НАЗВАНИЯМИ: oom_enable и oom_disable (в зависимости от выбранного параметра)\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nOOM Killer — это способ ядра решить проблему, когда памяти недостаточно. Известно, что виртуальной памяти может быть бесконечно много (в пределах адресации), а вот физической — вполне конечное число. Иногда процессы системы съедают ее всю, и системе надо кого‑то убить, чтобы продолжить работу. Текущая реализация OOM Killer в Linux/ Android стремится выбрать наименее важный процесс. Он выбирает среди всех процессов, кроме init и kernel threads, самый негодный (badness) и убивает его, освобождая память.</string>
+    <string name="sys12">[BUILD.PROP TWEAK:\nro.config.low_ram=true]  \n\nТвик позволяет включить режим малого количества RAM памяти для приложений и системы! ВНИМАНИЕ! РАБОТАЕТ НЕ НА ВСЕХ ПРОШИВКАХ, ВКЛЮЧЕНИЕ ДАННОЙ ФУНКЦИИ МОЖЕТ УХУДШИТЬ ВИЗУАЛЬНЫЕ ЭФФЕКТЫ (ДЛЯ ВОЗВРАЩЕНИЯ КРАСИВЫХ ВИЗУАЛЬНЫХ ЭФФЕКТОВ ПРИ ВКЛЮЧЕННОМ РЕЖИМЕ ИСПОЛЬЗУЙТЕ СООТВЕТСТВУЮЩИЙ ПОДТВИК), МОГУТ НЕ РАБОТАТЬ НЕКОТОРЫЕ ФУНКЦИИ ПРИЛОЖЕНИЙ (НАПРИМЕР, ПОИСК OK GOOGLE C ЗАБЛОКИРОВАННОГО ЭКРАНА). ОТКЛЮЧЕНИЕ ЭТОЙ ФУНКЦИИ ПОЗВОЛИТ РАСШИРИТЬ ФУНКЦИОНАЛЬНОСТЬ И КАЧЕСТВО ВИЗУАЛЬНЫХ ЭФФЕКТОВ СИСТЕМЫ И ПРОГРАММ В УЩЕРБ ПРОИЗВОДИТЕЛЬНОСТИ!</string>
+    <string name="sys13">[BUILD.PROP TWEAK:\npersist.sys.force_highendgfx=true]  \n\nТвик работает вкупе с твиком ro.config.low_ram=true , позволяет при включенном режиме увеличенной производительности для устройств с малым кол-вом RAM делать визуальные эффекты такими, как без применения такового твика (т.е красивыми). Может уменьшить действенность функции выше (LOW RAM Mode), так как может снизить производительность! </string>
+    <string name="med1">[ТВИК BUILD.PROP:\nro.media.enc.jpeg.quality=100 ] \n\nТвик позволяет принудительно установить качество JPEG 100%</string>
+    <string name="med2">[ТВИК BUILD.PROP:\n\nro.media.dec.jpeg.memcap=8000000\n\nro.media.enc.hprof.vid.bps=8000000 ] \n\nТвик устанавливает максимальный порог качества съемки фото и видео, которое только и может выжать из себя камера</string>
+    <string name="med3">[ТВИК BUILD.PROP:\nro.ril.enable.amr.wideband=1 ] \n\nТвик включает функцию AMR WideBand. Т.е улучшает качество передаваемой и принимаемой речи во время разговора, т.е убирает шумы и эхо. Может поддерживаться не всеми устройствами!</string>
+    <string name="med4">[ТВИК BUILD.PROP:\n\nmedia.stagefright.enable-player=true\n\nmedia.stagefright.enable-meta=true\n\nmedia.stagefright.enable-scan=true\n\nmedia.stagefright.enable-http=true\n\nmedia.stagefright.enable-rtsp=true\n\nmedia.stagefright.enable-record=false ] \n\nТвик позволяет увеличить качество воспроизведения потокового видео путем включения различных параметров StageFright</string>
+    <string name="med5">[ТВИК BUILD.PROP:\n\nro.media.capture.flash=led\n\nro.media.capture.flashMinV=3300000\n\nro.media.capture.torchIntensity=65\n\nro.media.capture.flashIntensity=100 ] \n\nТвик непосредственно воздействует на параметры работы модуля вспышки.
+В данном случае- увеличивает интенсивность и минимальный порог свечения
+(а именно- для вспышки устанавливает интенсивность 100, а для фонарика - 65)</string>
+
+    <string name="al1">[ТВИК BUILD.PROP:\ndebug.sf.nobootanimation=1 ] \n\nТвик отключает загрузочную анимацию. Работает не на всех устройствах.</string>
+    <string name="al2">[ТВИК BUILD.PROP:\npersist.adb.notify=0 ] \n\nТвик убирает иконку отладки ADB из статусбара. Работает не на всех устройствах.</string>
+    <string name="al3">[ТВИК INIT.D ПОД НАЗВАНИЕМ quick_power\n\nСодержит в себе следующий код:\n\nsetprop ro.config.hw_quickpoweron true\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик ускоряет загрузку системы</string>
+    <string name="arttext">ART Fix\nУвеличивает скорость работы системы и приложений</string>
+    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=speed\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nТвик увеличивает скорость работы системы и приложений путем изменения режима dex2oat, также на Вашем устройстве больше не будет исчезать память, и возможно уменьшение времени оптимизации приложений после очистки кешей!</string>
+    <string name="att">ВНИМАНИЕ!</string>
+    <string name="atttext">Dalvik cache будет очищен. Продолжить?</string>
+    <string name="perftweak">Улучшение отзывчивости системы</string>
+    <string name="perf">[ТВИК BUILD.PROP:\n\npersist.sys.use_dithering=0
+\n\npersist.sys.use_16bpp_alpha=1
+\n\npersist.service.lgospd.enable=0\n\npersist.service.pcsync.enable=0\n\nro.vold.umsdirtyratio=1\n\n
+        touch.pressure.scale=0.001\n\n ТВИК INIT.D ПОД НАЗВАНИЕМ BOOST\n\nСодержит в себе следующий код:
+\n\nbusybox sysctl -w vm.drop_caches=3
+\n\nbusybox sysctl -w vm.dirty_ratio = 1
+\n\nbusybox sysctl -w vm.dirty_background_ratio = 1 \n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nТвик увеличивает производительность системы путем отключения сглаживания, происходит увеличения скорости скроллинга (Fling Velocity) и пр. Также повышает отзывчивость системы при длительных операциях записи на диск (данные сбрасываются понемногу и почти сразу, позволяя дисковому планировщику чаще обрабатывать запросы записи других приложений), позволяет использовать больше ОЗУ приложениям (освобождается место, занимаемое дисковыми буферами. Да, процессы могут использовать память, выделенную под грязные данные и без этого, но эти данные сперва всё равно надо сбрасывать на диск, на что уйдёт время). Также повысит сохранность данных при неожиданном выключении устройства. \n\nВНИМАНИЕ! Твик не рекомендуется владельцам медленных карт памяти. Также повысится нагрузка на карту памяти.\n\nЗа твик и его описание спасибо\n A$teroid!</string>
+    <string name="rebootdalvik">Твик применен! \n\nНам пришлось очистить Dalvik cache.\n\nТребуется перезагрузить устройство!</string>
+    <string name="rebootdalvikdis">Твик отключен\n\nНам пришлось очистить Dalvik cache.\n\nТребуется перезагрузить устройство!</string>
+    <string name="touchtweak">Твик тачскрина\nУлучшение работы тачскрина путем настройки специальных параметров</string>
+    <string name="tw">[ТВИК INIT.D ПОД НАЗВАНИЕМ touch\n\nСодержит в себе следующий код: \n\necho 7025 > /sys/class/touch/switch/set_touchscreen\n\necho 8002 > /sys/class/touch/switch/set_touchscreen\n\necho 11001 > /sys/class/touch/switch/set_touchscreen\n\necho 13030 > /sys/class/touch/switch/set_touchscreen\n\necho 14005 > /sys/class/touch/switch/set_touchscreen\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d ] \n\nВключение данной функции увеличит качество и скорость работы тачскрина</string>
+
+    <string name="sucessreboot">Успешно! Рекомендуется перезагрузить устройство!</string>
+
+    <string-array name="rom">
+        <item>(не выбрано)</item>
+        <item>Стоковая</item>
+        <item>Кастомная</item>
+    </string-array>
+    <string name="context">На данной странице Вы можете напрямую сообщить разработчику о наличии проблемы, или же можете предложить идею для совершенствования программы!</string>
+    <string name="androidversion">Версия Android:</string>
+    <string name="roma">Кастомная или стоковая прошивка?</string>
+    <string name="textbug">Текст письма (подробное описание проблемы или предложения):</string>
+    <string name="sentsucess">Успешно отправлено!</string>
+    <string name="senterror">ОШИБКА! СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ!</string>
+    <string name="pola">НЕОБХОДИМО ЗАПОЛНИТЬ ВСЕ ПОЛЯ!</string>
+    <string name="busy1">Информация о busybox</string>
+    <string name="busy2">BUSYBOX 1.24.2 ARM \n\nРасположен в папке: \n/data/data/com.nowenui.systemtweakerfree/files/\n\n При деинсталяции программы - удаляется!</string>
+    <string name="init1">Информация о init.d</string>
+    <string name="init2">Init.d нужен для выполнения твиков при загрузке. Программа при запуске определяет, работает ли init.d или нет, если не работает, то активирует поддержку путем следующих действий:\n1) Модифицирует файл /system/etc/install-recovery.sh\n2) Добавляет файл /system/bin/sysinit\n3) Создает директорию init.d в папке /system/etc/</string>
+    <string name="ramflag">Увеличение производительности устройств с малым кол-вом RAM\nПозволяет ограничивать фоновые процессы, некоторые приложения ограничат свою функциональность и также отключаются красивости интерфейса\nТвик работает на устройствах с оперативной памятью менее 1024 MB и на базе Android 4.4 и выше\nМожет действительно работать не на всех устройствах</string>
+    <string name="ramflageffect">Принудительно использовать высококачественные графические эффекты при включенном режиме малого кол-ва RAM</string>
+    <string name="pro">PRO версия</string>
+    <string-array name="ramlist">
+        <item>(стандарт)</item>
+        <item>Игровой</item>
+        <item>Сбалансированный</item>
+        <item>Многозадачность</item>
+    </string-array>
+    <string name="var1">Ускорить загрузку системы</string>
+    <string name="disable">Отключено!</string>
+    <string name="sovets">Советы</string>
+    <string name="rebootdialog">Рекомендуется сделать перезагрузку прямо сейчас. \n\nВы хотите перезагрузить Ваше устройство?\n\n</string>
+    <string name="yes">ДА</string>
+    <string name="no">НЕТ</string>
+    <string name="heapoptomize">Оптимизация heap и среды исполнения\nТвик позволяет ускорить работу устройства, но применяйте с осторожностью, на некоторых устройствах возможно появление проблем с производительностью и многозадачностью.</string>
+ <string name="heaptizer">[ТВИК BUILD.PROP:\n\ndalvik.vm.heapsize={значение применяется в зависимости от кол-ва RAM}
+\n\ndalvik.vm.heaptargetutilization=0.75
+\n\ndalvik.vm.heapgrowthlimit={значение применяется в зависимости от кол-ва RAM}\n\ndalvik.vm.check-dex-sum=false\n\ndalvik.vm.checkjni=false\n\n
+        dalvik.vm.execution-mode=jit] \n\nТвик увеличивает производительность системы и приложений путем применения оптимальных значений HEAP-SIZE для Вашего устройства (вычисляется в соответствии с количеством RAM). Также выполняются различные твики среды исполнения, а именно отключаются различные проверки параметров, принудительно включается режим JIT. \n\nВНИМАНИЕ! ОПАСНЫЙ ТВИК! НА НЕКОТОРЫХ УСТРОЙСТВАХ ВОЗМОЖНО ПОЯВЛЕНИЕ РАЗЛИЧНЫХ ПРОБЛЕМ! ПРИМЕНЯЙТЕ С ОСТОРОЖНОСТЬЮ!</string>
+    <string name="andr7">Твики для Android 7.X.X\nУвеличение производительности устройств путем настройки JIT</string>
+    <string name="and7tizer">[ТВИК BUILD.PROP:\n\ndalvik.vm.jitthreshold=15000
+\n\ndalvik.vm.usejitprofiles=true
+\n\ndalvik.vm.jitprithreadweight=750\n\ndalvik.vm.jittransitionweight=1500] \n\nТвик увеличивает производительность системы и приложений путем применения оптимальных значений JIT компилятора</string>
+
+    <string name="fs">Файловые системы</string>
+</resources>

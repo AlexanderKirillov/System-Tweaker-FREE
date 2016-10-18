@@ -1,0 +1,21 @@
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
+
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
+
+$busybox mount -o remount,noatime,nobh,nodiratime,nodelalloc,commit=60,noauto_da_alloc,barrier=0 /cache /cache
+$busybox mount -o remount,noatime,nodiratime,delalloc,commit=60,noauto_da_alloc,barrier=0 /data /data
+$busybox mount -o remount,noatime,nodiratime /dev
+$busybox mount -o remount,noatime,nodiratime /proc
+$busybox mount -o remount,noatime,nodiratime /sys
+$busybox mount -o remount,noatime,nodiratime /system;
+
+$busybox fstrim -v /cache;
+$busybox fstrim -v /data;
+$busybox fstrim -v /system;

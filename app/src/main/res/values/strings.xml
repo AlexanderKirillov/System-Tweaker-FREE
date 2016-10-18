@@ -1,0 +1,330 @@
+<resources>
+    <string name="app_name">System Tweaker FREE</string>
+
+    <string name="root">ROOT WORKING!</string>
+    <string name="initd">INIT.D WORKING!</string>
+    <string name="busybox">BUSYBOX V1.24.2 \n(FROM THIS PROGRAM)!!</string>
+    <string name="xposed">XPOSED INSTALLED!</string>
+    <string name="rootbad">NO ROOT</string>
+    <string name="initdbad">NO INIT.D </string>
+    <string name="busyboxbad">NO BUSYBOX</string>
+    <string name="hello">Welcome to\nSystem Tweaker FREE!!!\n</string>
+    <string name="vozmozhonosti">With this programm you can speed up your device and improve powersaving!\n</string>
+    <string name="before">Before using this programm:</string>
+    <string name="beforewarning">1) Make system and data backups using custom recovery (if you can make it)\n
+        2) Make build.prop file and init.d folder backups using utility, which presents in this programm\n
+        3)You must understand that tweaks should be installed with the mind, because many installed tweaks can cause conflicts!</string>
+    <string name="cauton">Understand, that you solely responsible for any damage device!</string>
+    <string name="cal">CALIBRATE</string>
+    <string name="calinfo">If button "CALIBRATE" not active, verify the implementation of both the calibration terms (100% battery level and connected power).\n\nCalibrate process includes deleting files from /data/system/:\n- batterystats.bin\n- batterystats-daily.xml\n- batterystats-checkin.bin</string>
+    <string name="batterylevel">Battery Level</string>
+    <string name="charger">Charger connected?</string>
+    <string name="need">Root, busybox is required</string>
+    <string name="cautonbattery">ATTENTION! CALIBRATION MAY DAMAGE THE BATTERY OR THE DEVICE!  DO ONLY AT YOUR OWN RISK</string>
+    <string name="calibrate">You can make battery calibration only if you have problems with low energy efficiency devices without objective reasons (e.g., battery swelling), incorrectly shows the battery level. Also you can make calibrate when you reinstalled ROM on your device. \nPlease do not make battery calibration just like that, because you can damage your device or battery\n\nBut if you do decide to do the calibration (of course, at your own risk), follow the instructions below:\n1) Fully charge your device\n2) Without stopping to charge the device, perform the calibration by pressing the appropriate button below.</string>
+    <string name="calsucess">Calibration successful!</string>
+    <string name="reboot">Reboot</string>
+    <string name="rebootdialog">It is recommended to reboot now. \n\nDo you want to reboot your device? \n\n</string>
+    <string name="errordev">ERROR! PLEASE CONNECT WITH DEVELOPER</string>
+    <string name="erroroot">ERROR! YOU HAVENT ROOT!</string>
+    <string name="errobusybox">ERROR! BUSYBOX IS NEEDED!</string>
+    <string name="delettweaks">Tweaks deleted!</string>
+    <string name="backupsucc">Backup successfully created!</string>
+    <string name="error">Error!</string>
+    <string name="lastbackup">Last backup was created: </string>
+    <string name="vosst">Successfully restored!</string>
+    <string name="backupfuck">Backup not found :(</string>
+    <string name="yasno">I understand</string>
+    <string name="backup">Backup</string>
+    <string name="buildpropbackup">build.prop backup</string>
+    <string name="cautonbackup">Please note, that the dates are updated only after the page is refreshing. That is, if you did backup - refresh the page and the date is set to the correct!</string>
+    <string name="initdbackup">Init.d folder backup</string>
+    <string name="restore">Restore</string>
+    <string name="restorebuildprop">Restore build.prop</string>
+    <string name="restoreinit.d">Restore init.d folder</string>
+    <string name="foundbackup">You can found backup files in: /sdcard/SystemTweaker/backups</string>
+    <string name="batterysection">This section contains tweaks that can help you increase the battery life of the device.\n</string>
+    <string name="firstbatterytweak">Google Services tweak\nFixes overuse battery of Google services</string>
+    <string name="secondbatterytweak">Improve powersaving\nFixes VM overuse</string>
+    <string name="thirdbatterytweak">Increase WiFi autoscan time\nThis tweak improves powersaving</string>
+    <string name="fourhbatterytweak">Wifi powersaving mode\n</string>
+    <string name="fifthbatterytweak">Enable Power Collapse\nThis option allows system to go into a deep sleep when the screen is off</string>
+    <string name="sixthbatterytweak">Enable Power Supply</string>
+    <string name="sevenbatterytweak">Enable better management of sensors during deepsleep</string>
+    <string name="eithtbatterytweak">Disable system logging\n</string>
+    <string name="tweakenabled">Tweak Enabled!</string>
+    <string name="tweakdisabled">Tweak Disabled</string>
+    <string name="internettweakswelcome">This section contains tweaks that can help you increase the speed and stability of internet.\n</string>
+    <string name="firstinternettweak">Internet Tweaks\nImproving WiFi/3G/2G/4G tweaks, increasing download speed, improving stability</string>
+    <string name="secondinternettweak">Improving internet speed\nChanging the TCP  an other values for the better</string>
+    <string name="thirdinternettweak">Google DNS\nChange DNS to Google (8.8.8.8, 8.8.4.4)</string>
+    <string name="forthinternettweak">Fast Dormancy\nEnabling this feature can increase the speed of the internet, but also reduce powersaving</string>
+    <string name="fifthinternettweaks">IPv6 support</string>
+    <string name="sixinternettweaks">IPv4 support</string>
+    <string name="glavnays">Home</string>
+    <string name="soglasenie">Agreement</string>
+    <string name="infoabout">Device Information</string>
+    <string name="calbattery">Battery Calibration</string>
+    <string name="backupandrestore">Backup and restore</string>
+    <string name="batterytweaks">Battery Tweaks</string>
+    <string name="internettweaks">Internet Tweaks</string>
+    <string name="systemtweaks">System Tweaks</string>
+    <string name="mediatweaks">Media Tweaks</string>
+    <string name="varioustweaks">Other Tweaks</string>
+    <string name="connect">Report a bug</string>
+    <string name="aboutapp">About program</string>
+    <string name="exit">Exit</string>
+    <string name="main">Main</string>
+    <string name="tweaks">Tweaks and utilities</string>
+    <string name="prochee">Other</string>
+    <string name="yourdevice">• Your device: </string>
+    <string name="model">• Model: </string>
+    <string name="serial">• Serial number:</string>
+    <string name="cod">• Device codename: </string>
+    <string name="android">• Android version: </string>
+    <string name="boot">• Bootloader: </string>
+    <string name="radio">• Radio: </string>
+    <string name="rom">• ROM version: </string>
+    <string name="csc">• Active CSC-code: </string>
+    <string name="language">• Active language: </string>
+    <string name="rootprava">• Root: </string>
+    <string name="sdk">• SDK version:</string>
+    <string name="processor">• Processor: </string>
+    <string name="processortype">• Processor type: </string>
+    <string name="batthealth">• Battery health:</string>
+    <string name="chargerconn">• Charger Connected: </string>
+    <string name="batterytype">• Battery type: </string>
+    <string name="voltage">• Voltage: </string>
+    <string name="batterytemp">• Battery temperature: </string>
+    <string name="levelbatt">• Battery level: </string>
+    <string name="resolution">• Screen resolution: </string>
+    <string name="goodbatterystatus">good</string>
+    <string name="problems">having issues</string>
+    <string name="sovets">Sovets</string>
+    <string name="processorwo">Processor</string>
+    <string name="memory">Memory</string>
+    <string name="batt">Battery</string>
+    <string name="screen">Screen</string>
+    <string name="excist">YES</string>
+    <string name="noexcist">NO</string>
+    <string name="warn">These tweaks may not work on all devices!\n</string>
+    <string name="variostweaks">This section includes the different other tweaks\n</string>
+    <string name="disableboot">Disable bootanimation</string>
+    <string name="adb">Remove adb debug icon from statusbar</string>
+    <string name="onnectwithdev">On this page you can send an email to the developer. I can help you if you have problems or questions \n\nTo contact me, please write your message in the field "Text of message" and then click "Send". Your device prompts you to select the mail application to send a message, select the  application, send me an email. If you have not e-mail app on your device, you can contact me with this e-mail: NowenUI@bk.ru</string>
+    <string name="text">Text of message</string>
+    <string name="sendletter">Send</string>
+    <string name="aboutappinfo">This program allows you to customize your device, will help to get the maximum performance and help to increase the battery life of your device\n</string>
+    <string name="author">The author: Alexander Kirillov (NowenUI)\n</string>
+    <string name="libraries">Used libraries: \n- RootTools by Stericson\n- RootShell by Stericson\n- android-gif-drawable\n- SmoothProgressBar by castorflex\n- EasyDeviceInfo by nisrulz\n- AndroidDeviceNames by jaredrummler \n- DeviceInformation by akexorcist\n- Spinner2 by scijoker\n</string>
+    <string name="site">Official Site: NowenUI.com</string>
+    <string name="opensite">Click to open site</string>
+    <string name="agreement">Before using the program, you should read agreement\n\n
+        1) Program developer is not responsible for unpredictable results using the program\n\n
+        2) Yes, you should understand that developer not responsible for the broken devices, dead batteries, etc\n\n
+        3) All the features of the program is for information only, their presence does not mean their using\n\n
+        4) You can not use the program for their own purposes, or any part of the code of the program without the consent of the developer, but bear in mind paragraph 5\n\n
+        5) All of the features, presented in the program (tweaks, battery calibration technology, speed-up technology with one click and etc.), are available to the public, you can use them for their own purposes (for example, commercial purposes)</string>
+    <string name="systemteweaks">This section contains tweaks that can be used to increase the stability and speed of the system and customize it\n</string>
+    <string name="systemone">Force home launcher into memory (use light launchers only)\nUse only if your phone have many free RAM</string>
+    <string name="systemtwo">Fixing some error in applications</string>
+    <string name="systemthree">Render UI with GPU, improving smooth of scrolling\nEnabling this tweak may improve performance and smooth, but only if your GPU is powerful</string>
+    <string name="systemfour">Improving smooth and speed of scrolling</string>
+    <string name="systemfive">Auto-zipalign every boot and every week\nThis tweak improving speed and performance of your phone</string>
+    <string name="systemsix">Auto optimize SQLite every boot and every week\nThis tweak improving speed and performance of your phone</string>
+    <string name="fstrim">FSTRIM- special utility that accelerates the operation of the device by performing the TRIM operation on the memory device\n</string>
+    <string name="beforestrim">Firstly, install a library to work with FSTRIM, then make FSTRIM, select the partition(s) and press &quot;FSTRIM&quot;\n\n</string>
+    <string name="installfstrim">Install fstrim library\n</string>
+    <string name="statusinfo">Button status is updated only after reloading the page</string>
+    <string name="fstrimboot">Make auto-FSTRIM at boot</string>
+    <string name="fstrimlibok">Required libraries are already installed. \nNo installation required, just use</string>
+    <string name="fileinstall">Required files are installed!</string>
+    <string name="ok">Applied!</string>
+    <string name="delete">Disabled!</string>
+    <string name="mediaserver">MediaServer - it is a system service that scans the external memory (if available), and the internal memory of the presence of media. Please make service shutdown only when you have problems with performance or powersave.</string>
+    <string name="stopmediascanner">Stop MediaScanner</string>
+    <string name="startmediascanner">Start MediaScanner</string>
+    <string name="stopmediaserver">Stop MediaServer</string>
+    <string name="bootmediaserver">Disable MediaServer on boot (init.d support is required)</string>
+    <string name="bootmediascanner">Disable MediaScanner on boot (init.d support is required)</string>
+    <string name="sttoppedmediaserver">MediaServer stopped!</string>
+    <string name="sttoppedmediascanner">MediaScanner stopped!</string>
+    <string name="startpedmediaserver">MediaScannner started!</string>
+    <string name="mediatweakshello">This section contains tweaks that can be used to improve photo and video quality\n</string>
+    <string name="mediaone">Improving photo quality up to 100%</string>
+    <string name="mediatwo">Improving the quality of the photo shoot and video up to 100%</string>
+    <string name="mediathree">Increase the quality of receive and transmit speech in mobile networks by including AMR WIDEBAND functions</string>
+    <string name="mediafour">Improve Video Streaming quality</string>
+    <string name="mediafive">Improving flashlight quality </string>
+    <string name="delstrim">Delete FSTRIM library</string>
+    <string name="helloatr">Hello!</string>
+    <string name="ponatno">Understand</string>
+    <string name="rebootactionbar">Reboot device?)</string>
+    <string name="close">Please click BACK again to exit</string>
+    <string name="rebootmanager">Reboot manager</string>
+    <string name="reboothello">On this page you can  shutdown or reboot your device in the selected by you mode\n</string>
+    <string name="hotreboot">Hot reboot</string>
+    <string name="shutdown">Shutdown</string>
+    <string name="rebootrec">Reboot into recovery</string>
+    <string name="rebootbottloader">Reboot into bootloader</string>
+    <string name="shutdownconf">Are you sure want to turn off your device?)</string>
+    <string name="hotrebootconf">Are you sure want to make hot reboot?)</string>
+    <string name="rebootrecovconf">Are you sure want to reboot info recovery?)</string>
+    <string name="rebootbootloaderdialog">Are you sure want to reboot info bootloader?)</string>
+    <string name="rootbusybox">This app requires working ROOT!</string>
+    <string name="okinstall">Ok, i understand</string>
+    <string name="licensecheckbox">You agree with the Agreement</string>
+    <string name="ext4tweak">Optimize EXT4 file system every boot (use only if your device have EXT4 file system)</string>
+    <string name="ram">RAM Mode</string>
+    <string name="displayfix">Improve display quality\nImplemented by the system display calibration </string>
+    <string name="otherapps">Our other apps:</string>
+    <string name="onec">Click on the button to speed up your device</string>
+     <string name="inet1">[BUILD.PROP TWEAK: \n\nnet.tcp.buffersize.default=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960\n\nnet.tcp.buffersize.umts=4096,87380,256960,4096,16384,25696\n\nnet.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
+                \n\nnet.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
+                \n\nnet.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
+                \n\nnet.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576
+                \n\nnet.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576 ]\n\nThis item allows you to increase the speed and stability of the internet through the applying of enhanced buffers</string>
+   <string name="inet2">[BUILD.PROP TWEAK:\n\nro.ril.hsxpa=2
+\n\nro.ril.hep=1
+\n\nro.ril.enable.dtm=1
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a53=1
+\n\nro.ril.enable.3g.prefix=1
+\n\nro.ril.gprsclass=10
+\n\nro.ril.hsupa.category=7
+\n\nro.ril.hsdpa.category=10
+\n\nro.ril.enable.a52=1
+\n\nro.ril.set.mtu1472=1
+\n\npersist.cust.tel.eons=1\n\nINIT.D TWEAK: 05InternetTweak.\n\nCONTAINS:\n\necho "0" > /proc/sys/net/ipv4/tcp_timestamps;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_reuse;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_sack;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_tw_recycle;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_window_scaling;
+\n\necho "5" > /proc/sys/net/ipv4/tcp_keepalive_probes;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_keepalive_intvl;
+\n\necho "30" > /proc/sys/net/ipv4/tcp_fin_timeout;
+\n\necho "1" > /proc/sys/net/ipv4/tcp_dsack
+\n\necho "1" > /proc/sys/net/ipv4/tcp_moderate_rcvbuf
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+\n\necho "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
+\n\necho "1" > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses\n\nIf you apply this tweak, it will be located in /system/etc/init.d ]\n\nIt allows you to configure the current TCP mode by optimal settings for all devices and apply build.prop special tweaks for improved performance 3G and 4G!</string>
+  <string name="inet3">[BUILD.PROP TWEAK: \nnet.dns2=8.8.4.4
+               \n\nnet.rmnet0.dns1=8.8.8.8
+                 \n\nnet.rmnet0.dns2=8.8.4.4
+               \n\nnet.ppp0.dns1=8.8.8.8
+                \n\nnet.ppp0.dns2=8.8.4.4
+               \n\nnet.wlan0.dns1=8.8.8.8
+                \n\nnet.wlan0.dns2=8.8.4.4
+               \n\nnet.eth0.dns1=8.8.8.8
+               \n\nnet.eth0.dns2=8.8.4.4
+                \n\nnet.gprs.dns1=8.8.8.8
+               \n\nnet.gprs.dns2=8.8.4.4 ]\n\nIt applies the following DNS servers: 8.8.8.8 и 8.8.4.4. It allows you to increase the speed of opening web pages and improve the stability!</string>
+
+    <string name="inet4">[BUILD.PROP TWEAK: \nro.config.hw_fast_dormancy=1]\n\nThis tweak enabling Fast Dormancy! If the operator\'s network supports it, then (theoretically) it saves your battery and smaller loads operator\'s towers. But if the network operator does not support or supports incorrectly, the battery is not saves, plus there may be problems with data transmission</string>
+    <string name="inet5">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv6=1]\n\nForce enable IPv6 data communication protocol</string>
+    <string name="inet6">[BUILD.PROP TWEAK: \npersist.telephony.support.ipv4=1]\n\nForce enable IPv data communication protocol</string>
+    <string name="inet7">[TCP MODE: \ninstalling chosen TCP mode in /proc/sys/net/ipv4/tcp_congestion_control ]</string>
+    <string name="battery1">[INIT.D TWEAK: 05FixGoogleServicedrain\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweek allows you to increase the battery lifetime by adjusting the individual settings for delayed "dirty" buffers VM.</string>
+    <string name="battery3">[BUILD.PROP TWEAK:\nwifi.supplicant_scan_interval=220 ] \n\nTweek allows you to increase the battery lifetime by increasing the interval of auto scan Wifi networks (to 220 ms). Note that auto-connect to the saved Wifi networks in the background may be a little longer.</string>
+    <string name="battery4">[BUILD.PROP TWEAK:\nro.ril.disable.power.collapse=0\n\nro.vold.umsdirtyratio=20\n\npm.sleep_mode=1 ] \n\nTweek allows you to increase the battery lifetime by enabling Power Collapse mode and setting the sleep mode.</string>
+    <string name="battery5">[BUILD.PROP TWEAK:\npower_supply.wakeup=enable ] \n\nTweek allows you to increase the battery lifetime by activate controls and to prevent sifting device technology Power Supply. \n\nATTENTION! You may have problems with background music playback (but not only) when the screen off!</string>
+    <string name="battery6">[BUILD.PROP TWEAK:\nro.ril.sensor.sleep.control=1 ] \n\nTweek allows you to increase the battery lifetime by enable sleep mode for device sensors, when the device is in sleep</string>
+    <string name="battery7">[BUILD.PROP TWEAK:\nro.mot.eri.losalert.delay=1000 ] \n\nTweek allows you to increase the battery lifetime by increase the delay interrupt service alerts</string>
+    <string name="battery8">[BUILD.PROP TWEAK:\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1 ] \n\nTweek allows you to increase the battery lifetime by disabling background logcats</string>
+    <string name="sys1">[BUILD.PROP TWEAK:\nro.HOME_APP_ADJ=1] \n\nTweek allows to fix launcher in memory, eliminating repainting, restart launcher. Use only if your device have RAM> 1GB</string>
+    <string name="sys2">[INIT.D TWEAK: display\n\nINCLUDES:\n\nsetprop ro.qcom.ad 1
+\n\nsetprop ro.qcom.ad.calib.data /system/etc/ad_calib.cfg ]\n\nIf you apply this tweak, it will be located in /system/etc/init.d. \nAlso applying new file ad_calib.cfg, and which contains the display settings] \n\nTweek allows you to increase the image quality on the display through the applying of a special screen profile</string>
+    <string name="sys3">[BUILD.PROP TWEAK:\nro.kernel.android.checkjni=0 ] \n\nTweek allows you to fix some bugs in applications by disabling their detection</string>
+    <string name="sys4">[BUILD.PROP TWEAK:\n\ndebug.composition.type=gpu\n\ndebug.sf.hw=1\n\ndebug.performance.tuning=1\n\ndebug.egl.profiler=1\n\ndebug.egl.hw=1\n\ndebug.enabletr=true
+                                                                             \n\ndebug.overlayui.enable=1
+                                                                              \n\ndebug.qctwa.preservebuf=1
+                                                                              \n\ndev.pm.dyn_samplingrate=1
+                                                                              \n\nro.fb.mode=1
+                                                                              \n\nro.sf.compbypass.enable=0
+                                                                              \n\nro.vold.umsdirtyratio=20\n\nINIT.D TWEAK: 81GPU_rendering\n\nINCLUDES:\n\nsysrw
+\n\nrm /system/lib/egl/libGLES_android.so
+\n\nbusybox sed -i \'/0 0 android/d\' /system/lib/egl/egl.cfg
+\n\nsysro ] \n\nTweek allows force using the GPU for rendering operations, this improves the smoothness, improves the quality of the video playing, but can cause battery drain. Use only if your device has a powerful GPU! Otherwise, you may have lags!</string>
+    <string name="sys5">[BUILD.PROP TWEAKS:\n\nwindowsmgr.max_events_per_sec=150 \n\nro.min_pointer_dur=8\n\nro.max.fling_velocity=12000\n\nro.min.fling_velocity=8000] \n\nTweek allows to increase the smoothness of scrolling lists, by setting the corresponding parameter</string>
+    <string name="sys6">[INIT.D TWEAK: 93zipalign\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak optimize applications on every boot, and every week, it will increase the speed of opening and smooth operation of all application</string>
+    <string name="sys7">[INIT.D TWEAK: 11sqlite\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak optimize SQLITE on every boot and each week, this will increase the speed of the system and the applications that use SQLite</string>
+    <string name="sys8">[INIT.D TWEAK: ext4\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak optimizes EXT4 filesystem by varios optimization using tune2fs utility. Use your device only has a FS EXT4, otherwise problems can occur!</string>
+    <string name="sys9">[INIT.D TWEAK: ram_balanced, ram_multitasking, ram_gaming (depending on the selected mode)\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak allows you to optimize memory, depending on the mode selected through the application of optimal parameters MinFree, Debug Values, LowMemoryKiller!</string>
+    <string name="sys10">[INIT.D TWEAK: oom_enable и oom_disable (depending on the selected mode)\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nOOM Killer — It is a way to solve the problem of the nucleus when memory is insufficient. It is known that the virtual memory may be an infinite number (within the addressing), but the physical - it is a finite number. Sometimes the system processes consume it all, and we have a system to kill someone in order to continue working. The current implementation OOM Killer in Linux / Android tends to choose the least important process. He chooses among all processes except init and kernel threads, the most waste (badness) and kills him, freeing up memory.</string>
+    <string name="sys12">[BUILD.PROP TWEAK:\nro.config.low_ram=true]  \n\nTweak enables low RAM mode</string>
+    <string name="med1">[BUILD.PROP TWEAK:\nro.media.enc.jpeg.quality=100 ] \n\nTweak improves JPEG quality to 100%</string>
+    <string name="med2">[BUILD.PROP TWEAK:\n\nro.media.dec.jpeg.memcap=8000000\n\nro.media.enc.hprof.vid.bps=8000000 ] \n\n
+Tweak sets the maximum threshold of quality shooting photos and videos</string>
+    <string name="med3">[BUILD.PROP TWEAK:\nro.ril.enable.amr.wideband=1 ] \n\nThis tweak enabling AMR WideBand. E.g improves the quality of the transmitted and received voice during a call, e.g removes the noise. It may not be supported by all operators!</string>
+    <string name="med4">[BUILD.PROP TWEAK:\n\nmedia.stagefright.enable-player=true\n\nmedia.stagefright.enable-meta=true\n\nmedia.stagefright.enable-scan=true\n\nmedia.stagefright.enable-http=true\n\nmedia.stagefright.enable-rtsp=true\n\nmedia.stagefright.enable-record=false ] \n\nTweak allows to increase the quality of streaming video by incorporating various parameters StageFright</string>
+    <string name="med5">[BUILD.PROP TWEAK:\n\nro.media.capture.flash=led\n\nro.media.capture.flashMinV=3300000\n\nro.media.capture.torchIntensity=65\n\nro.media.capture.flashIntensity=100 ] \n\nTweak directly affects the parameters of the flash module.
+In this case- it increases the intensity and minimum illumination threshold
+(flash- sets the intensity of the 100, and for flashlight - 65)</string>
+
+    <string name="al1">[BUILD.PROP TWEAK:\ndebug.sf.nobootanimation=1 ] \n\nThis tweak disabling bootanimation.</string>
+    <string name="al2">[BUILD.PROP TWEAK:\npersist.adb.notify=0 ] \n\nTweak removes ADB debug icon from statusbar</string>
+    <string name="al3">[INIT.D TWEAK: quick_power\n\INCLUDES:\n\nsetprop ro.config.hw_quickpoweron true\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nThis tweak speeding up system boot!</string>
+    <string name="arttext">ART Fix\nImproves system speed</string>
+    <string name="art">[ТВИК BUILD.PROP:\n\ndalvik.vm.dex2oat-filter=speed\n\ndalvik.vm.image-dex2oat-filter=speed ] \n\nTweak increase system and applications speed by changing the dex2oat mode , also on your device will no longer disappear memory, and it is possible to reduce the time to optimize the application after cleaning caches!</string>
+    <string name="att">ATTENTION!</string>
+    <string name="atttext">Dalvik cache will be cleared. Continue?</string>
+    <string name="perftweak">Performance tweak</string>
+     <string name="perf">[BUILD.PROP TWEAK:
+\n\npersist.sys.use_dithering=0
+\n\npersist.sys.use_16bpp_alpha=1
+\n\npersist.service.lgospd.enable=0\n\npersist.service.pcsync.enable=0\n\n
+         touch.pressure.scale=0.001\n\n \n\nINIT.D :TWEAK BOOST\n\nINCLUDES:
+\n\nbusybox sysctl -w vm.drop_caches=3
+\n\nbusybox sysctl -w vm.dirty_ratio = 1
+\n\nbusybox sysctl -w vm.dirty_background_ratio = 1\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nTweak improves system speed by disabling Dithering, improving scroling speed (Fling Velocity) and etc.</string>
+    <string name="tweakabout">About tweak</string>
+    <string name="rebootdalvik">Tweak applied and we cleared Dalvik cache\n\nReboot device required!</string>
+    <string name="rebootdalvikdis">Tweak disabled and we cleared Dalvik cache\n\nReboot device required!</string>
+    <string name="touchtweak">Touchscreen tweak\nImproves touch quality</string>
+    <string name="tw">[INIT.D TWEAK touch\n\nINCLUDES: \n\necho 7025 > /sys/class/touch/switch/set_touchscreen\n\necho 8002 > /sys/class/touch/switch/set_touchscreen\n\necho 11001 > /sys/class/touch/switch/set_touchscreen\n\necho 13030 > /sys/class/touch/switch/set_touchscreen\n\necho 14005 > /sys/class/touch/switch/set_touchscreen\n\nIf you apply this tweak, it will be located in /system/etc/init.d ] \n\nEnabling this feauture can improve touchscreen speed and quality</string>
+    <string name="sucessreboot">Successful!We recommend to reboot your device!</string>
+    <string-array name="rom">
+        <item>(not chosen)</item>
+        <item>Stock</item>
+        <item>Custom</item>
+    </string-array>
+    <string name="context">On this page you can directly report a bug or suggest an idea !</string>
+    <string name="androidversion">Android version:</string>
+    <string name="roma">Stock or custom rom?</string>
+    <string name="textbug">Message Text (a detailed description of the problem and suggestions):</string>
+    <string name="sentsucess">E-mail sent sucessful!</string>
+    <string name="senterror">ERROR! CONNECT WITH DEVELOPER!</string>
+    <string name="pola">Please complete all fields!</string>
+     <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
+\n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
+    <string name="busy1">About busybox</string>
+    <string name="busy2">BUSYBOX 1.24.2 ARM n\nLocated in /data/data/com.nowenui.systemtweaker/files/busybox</string>
+    <string name="init1">About init.d</string>
+    <string name="init2">Init.d need to apply tweaks at startup. When starting , program detecting whether the init.d work or not, if you do not work, then activates by the following::\n1) Modify /system/etc/install-recovery.sh\n2) Place /system/bin/sysinit\n3) Make init.d directory in  /system/etc/</string>
+    <string name="ramflag">Low RAM flag</string>
+    <string name="ramflageffect">Forced use high-quality graphic effects</string>
+    <string name="sys13">[BUILD.PROP TWEAK:\npersist.sys.force_highendgfx=true]  \n\nTweak improves visual effects when LOW RAM mode is on!</string>
+    <string name="pro">PRO version</string>
+    <string-array name="ramlist">
+        <item>(standart)</item>
+        <item>Gaming</item>
+        <item>Balanced</item>
+        <item>Multitasking</item>
+    </string-array>
+    <string name="var1">Improve system boot</string>
+    <string name="reboot1dialog">Are you sure want to fully reboot your device?)</string>
+    <string name="disable">Disabled!</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="heapoptomize">Heap and runtime optimization</string>
+     <string name="heaptizer">[BUILD.PROP TWEAK:\n\ndalvik.vm.heapsize={}
+\n\ndalvik.vm.heaptargetutilization=0.75
+\n\ndalvik.vm.heapgrowthlimit={}\n\ndalvik.vm.check-dex-sum=false\n\ndalvik.vm.checkjni=false\n\n
+        dalvik.vm.execution-mode=jit] \n\nTweek increases system performance and applications through the use of HEAP-SIZE optimal values for your device. Various tweaks runtime also performed, namely disconnected various scan settings, the JIT mode is activated forcibly. ATTENTION! DANGEROUS TWEAK! On some devices, you may receive various problems! Use with caution!</string>
+    <string name="andr7">Android 7.X.X TWEAKS\nImprove performance through applying optimized JIT values </string>
+     <string name="and7tizer">[BUILD.PROP TWEAK:\n\ndalvik.vm.jitthreshold=15000
+\n\ndalvik.vm.usejitprofiles=true
+\n\ndalvik.vm.jitprithreadweight=750\n\ndalvik.vm.jittransitionweight=1500] \n\nTweak improves system performance and stability through applying optimized JIT values (working only on Android 7.X)</string>
+    <string name="fs">File systems</string>
+</resources>
