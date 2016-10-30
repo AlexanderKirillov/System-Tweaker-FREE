@@ -11,19 +11,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
+import com.onebit.spinner2.Spinner2;
 import com.stericson.rootshell.exceptions.RootDeniedException;
 import com.stericson.rootshell.execution.Command;
 import com.stericson.roottools.RootTools;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
@@ -65,7 +72,7 @@ public class InternetTweaksFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -87,7 +94,6 @@ public class InternetTweaksFragment extends Fragment {
         RootTools.debugMode = false;
 
         View view = inflater.inflate(R.layout.fragment_internettweaks, parent, false);
-
 
         File file2 = new File("/system/build.prop");
 
@@ -148,7 +154,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
@@ -168,21 +174,21 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "echo \"net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576\" >> /system/build.prop",
                                                                           "echo \"net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576\" >> /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -192,7 +198,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.default/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.wifi/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.umts/d' /system/build.prop",
@@ -203,22 +209,22 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.hsdpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.tcp.buffersize.evdo_b/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -275,7 +281,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
@@ -305,21 +311,21 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "chmod 777 /system/etc/init.d/05InternetTweak",
                                                                           "/system/etc/init.d/05InternetTweak",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -329,7 +335,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hsxpa/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.hep/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.ril.enable.dtm/d' /system/build.prop",
@@ -345,22 +351,22 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.cust.tel.eons/d' /system/build.prop",
                                                                           "rm -f /system/etc/init.d/05InternetTweak",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -417,7 +423,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
@@ -443,21 +449,21 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "echo \"net.gprs.dns1=8.8.8.8\" >> /system/build.prop",
                                                                           "echo \"net.gprs.dns2=8.8.4.4\" >> /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -467,7 +473,7 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.rmnet0.dns1/d' /system/build.prop",
@@ -481,22 +487,22 @@ public class InternetTweaksFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns1/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/net.gprs.dns2/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -540,25 +546,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
                                                                           "echo \"ro.config.hw_fast_dormancy=1\" >> /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -568,25 +574,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.hw_fast_dormancy/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -630,25 +636,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
                                                                           "echo \"persist.telephony.support.ipv6=1\" >> /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -658,25 +664,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv6/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -719,25 +725,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
                                                                           "echo \"persist.telephony.support.ipv4=1\" >> /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakenabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -747,25 +753,25 @@ public class InternetTweaksFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/persist.telephony.support.ipv4/d' /system/build.prop",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 

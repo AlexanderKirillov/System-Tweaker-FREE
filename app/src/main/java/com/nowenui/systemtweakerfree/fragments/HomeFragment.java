@@ -38,6 +38,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         TextView textview = (TextView) view.findViewById(R.id.textView);
         TextView textview2 = (TextView) view.findViewById(R.id.textView2);
+        TextView textview10 = (TextView) view.findViewById(R.id.textView10);
         TextView textview11 = (TextView) view.findViewById(R.id.textView11);
 
 
@@ -132,7 +133,9 @@ public class HomeFragment extends Fragment {
 
     public int isInitdSupport() {
         File f = new File("/system/etc/init.d");
-        if ((f.exists()) && (f.isDirectory())) {
+        File f1 = new File("/system/su.d");
+        File f2 = new File("/su/su.d");
+        if ((f.exists()) && (f.isDirectory()) || (f1.exists()) && (f1.isDirectory()) || (f2.exists()) && (f2.isDirectory())) {
             return R.string.initd;
         }
         return R.string.initdbad;

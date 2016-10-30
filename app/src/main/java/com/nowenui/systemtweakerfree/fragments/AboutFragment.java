@@ -2,6 +2,7 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -28,7 +29,7 @@ import github.nisrulz.easydeviceinfo.base.EasyIdMod;
 
 public class AboutFragment extends Fragment {
 
-    public String k, r;
+    public String k, r, l;
     private String BatteryHealth;
 
     public static AboutFragment newInstance(Bundle bundle) {
@@ -41,27 +42,6 @@ public class AboutFragment extends Fragment {
         return messagesFragment;
     }
 
-    public static String getFileSystem(File path) {
-        try {
-            Process mount = Runtime.getRuntime().exec("mount");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
-            mount.waitFor();
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] split = line.split("\\s+");
-                for (int i = 0; i < split.length - 1; i++) {
-                    if (!split[i].equals("/") && path.getAbsolutePath().startsWith(split[i]))
-                        return split[i + 1];
-                }
-            }
-            reader.close();
-            mount.destroy();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -69,14 +49,15 @@ public class AboutFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.about_device, parent, false);
 
+
         EasyBatteryMod easyBatteryMod = new EasyBatteryMod(getContext());
-        int battery_health = easyBatteryMod.getBatteryHealth();
+        @github.nisrulz.easydeviceinfo.base.BatteryHealth int batteryHealth = easyBatteryMod.getBatteryHealth();
         Resources res = getResources();
-        switch (battery_health) {
-            case EasyBatteryMod.HEALTH_GOOD:
+        switch (batteryHealth) {
+            case github.nisrulz.easydeviceinfo.base.BatteryHealth.GOOD:
                 BatteryHealth = res.getString(R.string.goodbatterystatus);
                 break;
-            case EasyBatteryMod.HEALTH_HAVING_ISSUES:
+            case github.nisrulz.easydeviceinfo.base.BatteryHealth.HAVING_ISSUES:
                 BatteryHealth = res.getString(R.string.problems);
                 break;
             default:
@@ -188,11 +169,127 @@ public class AboutFragment extends Fragment {
                         for (int i = 0; i < split.length - 1; i++) {
                             if (split[i].contentEquals(extPath) ||
                                     split[i].contains("system") ||
+                                    split[i].contains("/system") ||
                                     split[i].contains("_system"))   // Add wildcards to match against here
                             {
                                 String strMount = split[i];
                                 String strFileSystem = split[i + 1];
+                                if (strFileSystem.contains("type")) {
+                                    strFileSystem = split[i + 2];
+                                }
                                 k = strFileSystem;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 900);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            final Handler handler2 = new Handler();
+            handler2.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Process mount = Runtime.getRuntime().exec("mount");
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+                        mount.waitFor();
+
+                        String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            String[] split = line.split("\\s+");
+                            for (int i = 0; i < split.length - 1; i++) {
+                                if (split[i].contentEquals(extPath) ||
+                                        split[i].contains("userdata") ||
+                                        split[i].contains("/userdata") ||
+                                        split[i].contains("_userdata"))   // Add wildcards to match against here
+                                {
+                                    String strMount = split[i];
+                                    String strFileSystem = split[i + 2];
+                                    if (strFileSystem.contains("type")) {
+                                        strFileSystem = split[i + 3];
+                                    }
+                                    r = strFileSystem;
+                                }
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 900);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            final Handler handler5 = new Handler();
+            handler5.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Process mount = Runtime.getRuntime().exec("mount");
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+                        mount.waitFor();
+
+                        String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            String[] split = line.split("\\s+");
+                            for (int i = 0; i < split.length - 1; i++) {
+                                if (split[i].contentEquals(extPath) ||
+                                        split[i].contains("data") ||
+                                        split[i].contains("/data") ||
+                                        split[i].contains("_data"))   // Add wildcards to match against here
+                                {
+                                    String strMount = split[i];
+                                    String strFileSystem = split[i + 1];
+                                    if (strFileSystem.contains("type")) {
+                                        strFileSystem = split[i + 2];
+                                    }
+                                    r = strFileSystem;
+                                }
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 900);
+        }
+
+        final Handler handler3 = new Handler();
+        handler3.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Process mount = Runtime.getRuntime().exec("mount");
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mount.getInputStream()));
+                    mount.waitFor();
+
+                    String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        String[] split = line.split("\\s+");
+                        for (int i = 0; i < split.length - 1; i++) {
+                            if (split[i].contentEquals(extPath) ||
+                                    split[i].contains("cache") ||
+                                    split[i].contains("/cache") ||
+                                    split[i].contains("_cache"))   // Add wildcards to match against here
+                            {
+                                String strMount = split[i];
+                                String strFileSystem = split[i + 1];
+                                if (strFileSystem.contains("type")) {
+                                    strFileSystem = split[i + 2];
+                                }
+                                l = strFileSystem;
                             }
                         }
                     }
@@ -232,13 +329,13 @@ public class AboutFragment extends Fragment {
         tv5.setText(res.getString(R.string.resolution) + " "
                 + easyDisplayMod.getResolution() + "\n" + "• DPI: "
                 + easyDisplayMod.getDensity() + "\n");
-        final Handler handler2 = new Handler();
-        handler2.postDelayed(new Runnable() {
+        final Handler handler4 = new Handler();
+        handler4.postDelayed(new Runnable() {
             @Override
             public void run() {
-                tv6.setText("/data: " + getFileSystem(Environment.getDataDirectory()) + "\n"
+                tv6.setText("/data: " + r + "\n"
                         + "/system: " + k + "\n"
-                        + "/cache: " + getFileSystem(Environment.getDownloadCacheDirectory()) + "\n");
+                        + "/cache: " + l + "\n");
             }
         }, 900);
 

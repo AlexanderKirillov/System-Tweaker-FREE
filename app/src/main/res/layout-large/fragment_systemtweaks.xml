@@ -31,6 +31,38 @@
             android:layout_weight="0.01">
 
             <TextView
+                android:id="@+id/textView70"
+                android:layout_width="122dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|top"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical|center|center_horizontal"
+                android:text="OOM Killer"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000" />
+
+            <com.onebit.spinner2.Spinner2
+                android:id="@+id/spinner5"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|top"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.01">
+
+            <TextView
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -125,6 +157,16 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/heapoptomize" />
+
+        <CheckBox
+            android:id="@+id/andrusha7tweaks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/andr7" />
 
         <CheckBox
             android:id="@+id/display_cal"

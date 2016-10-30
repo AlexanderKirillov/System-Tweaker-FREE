@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.stericson.rootshell.exceptions.RootDeniedException;
 import com.stericson.rootshell.execution.Command;
 import com.stericson.roottools.RootTools;
@@ -29,6 +30,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.splash_activity);
 
         copyAssets();
 
@@ -52,35 +55,26 @@ public class SplashActivity extends AppCompatActivity {
                 if (isInitdSupport() == 1) {
                     startMainActivity();
                 } else {
-                    if (RootTools.isAccessGiven()) {
-                        Command command1 = new Command(0,
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount rootfs",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw rootfs",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /rootfs /",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/install-recovery.sh /system/etc/",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/sysinit /system/bin/sysinit",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount rootfs",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro rootfs");
-                        try {
-                            RootTools.getShell(true).add(command1);
-                            startMainActivity();
-                        } catch (IOException | RootDeniedException | TimeoutException ex) {
-                            ex.printStackTrace();
-                            Toast.makeText(getApplicationContext(), R.string.errordev, Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Command command1 = new Command(0,
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/install-recovery.sh /system/etc/",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/sysinit /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
+                    try {
+                        RootTools.getShell(true).add(command1);
+                        startMainActivity();
+                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                        ex.printStackTrace();
+                        new SnackBar.Builder(this).withMessage(getApplicationContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                     }
                 }
             } else {
@@ -89,7 +83,6 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             showDialog(ALERT_DIALOG2);
         }
-        setContentView(R.layout.splash_activity);
     }
 
     @Override
@@ -152,7 +145,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        int SPLASH_TIME_OUT = 2000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -160,11 +152,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, SPLASH_TIME_OUT);
-    }
-
-    public void toast(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+        }, 2000);
     }
 
     public int isInitdSupport() {

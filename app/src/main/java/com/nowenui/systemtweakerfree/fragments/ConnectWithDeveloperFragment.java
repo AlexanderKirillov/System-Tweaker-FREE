@@ -1,5 +1,6 @@
 package com.nowenui.systemtweakerfree.fragments;
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,8 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
 
 import java.util.concurrent.CountDownLatch;
@@ -141,7 +142,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
             final CountDownLatch latch = new CountDownLatch(1);
 
-            MailSend m = new MailSend("XXXXXX@gmail.com", "XXXXXXXXXXXXX");
+            MailSend m = new MailSend("tehnowenui@gmail.com", "kirillov13");
             String[] toArr = {"NowenUI@bk.ru"};
             m.setTo(toArr);
             m.setFrom("User");
@@ -171,10 +172,10 @@ public class ConnectWithDeveloperFragment extends Fragment {
         public void onPostExecute(Wrapper5 w) {
 
             if (w.suc) {
-                Toast.makeText(getActivity(), R.string.sentsucess, Toast.LENGTH_SHORT).show();
+                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sentsucess)).withBackgroundColorId(R.color.textview1good).show();
             }
             if (!w.suc) {
-                Toast.makeText(getActivity(), R.string.senterror, Toast.LENGTH_SHORT).show();
+                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.senterror)).withBackgroundColorId(R.color.textview1bad).show();
             }
 
         }

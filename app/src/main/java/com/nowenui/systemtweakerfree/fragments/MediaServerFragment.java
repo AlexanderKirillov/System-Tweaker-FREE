@@ -1,6 +1,5 @@
 package com.nowenui.systemtweakerfree.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -17,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
 import com.stericson.rootshell.exceptions.RootDeniedException;
 import com.stericson.rootshell.execution.Command;
@@ -69,7 +68,7 @@ public class MediaServerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -113,25 +112,25 @@ public class MediaServerFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaServelKilling /system/etc/init.d/",
                                                                           "chmod 777 /system/etc/init.d/01MediaServelKilling",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -141,25 +140,25 @@ public class MediaServerFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "rm -f /system/etc/init.d/01MediaServelKilling",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.disable, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.disable)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -189,26 +188,26 @@ public class MediaServerFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "cp /data/data/com.nowenui.systemtweakerfree/files/01MediaScannerKilling /system/etc/init.d/01MediaScannerKilling",
                                                                           "chmod 777 /system/etc/init.d/01MediaScannerKilling",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), "OK!", Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
 
 
@@ -218,25 +217,25 @@ public class MediaServerFragment extends Fragment {
                                                                   Command command1 = new Command(0,
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                                                           "rm -f /system/etc/init.d/01MediaScannerKilling",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                                                          "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      Toast.makeText(getActivity(), R.string.tweakdisabled, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
-                                                                      Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                                  new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                               }
 
                                                           } else {
-                                                              Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                                                           }
                                                       }
 
@@ -274,26 +273,26 @@ public class MediaServerFragment extends Fragment {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 android.process.media",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox killall -9 mediaserver",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            Toast.makeText(getActivity(), R.string.sttoppedmediaserver, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
-                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                     }
 
                 } else {
-                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                 }
             }
 
@@ -318,25 +317,25 @@ public class MediaServerFragment extends Fragment {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                 "pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            Toast.makeText(getActivity(), R.string.sttoppedmediascanner, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediascanner)).withBackgroundColorId(R.color.textview1good).show();
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
-                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                     }
 
                 } else {
-                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                 }
             }
 
@@ -361,25 +360,25 @@ public class MediaServerFragment extends Fragment {
                         Command command1 = new Command(0,
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
                                 "pm enable com.android.providers.media/com.android.providers.media.MediaScannerReceiver",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            Toast.makeText(getActivity(), R.string.startpedmediaserver, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.startpedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
-                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                     }
 
                 } else {
-                    Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                 }
             }
 

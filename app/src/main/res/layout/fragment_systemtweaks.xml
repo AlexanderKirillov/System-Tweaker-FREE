@@ -127,6 +127,16 @@
             android:text="@string/heapoptomize" />
 
         <CheckBox
+            android:id="@+id/andrusha7tweaks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/andr7" />
+
+        <CheckBox
             android:id="@+id/display_cal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

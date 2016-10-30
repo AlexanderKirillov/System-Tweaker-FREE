@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
 import com.stericson.rootshell.exceptions.RootDeniedException;
 import com.stericson.rootshell.execution.Command;
@@ -73,18 +73,18 @@ public class BatteryFragment extends Fragment {
                                     if (RootTools.isAccessGiven()) {
                                         Command command1 = new Command(0,
                                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
-                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data", "mount -o rw,remount /data",
                                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                                 "rm -f /data/system/batterystats.bin",
                                                 "rm -f /data/system/batterystats-checkin.bin",
                                                 "rm -f /data/system/batterystats-daily.xml",
                                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
-                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data", "mount -o ro,remount /data",
                                                 "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data"
                                         );
                                         try {
                                             RootTools.getShell(true).add(command1);
-                                            Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
+                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.calsucess)).withBackgroundColorId(R.color.textview1good).show();
                                             new AlertDialog.Builder(v.getContext())
                                                     .setTitle(R.string.reboot)
                                                     .setMessage(R.string.rebootdialog)
@@ -95,18 +95,18 @@ public class BatteryFragment extends Fragment {
                                                                     Command command1 = new Command(0,
                                                                             "reboot");
                                                                     try {
-                                                                        Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.reboot)).withBackgroundColorId(R.color.textview1good).show();
                                                                         RootTools.getShell(true).add(command1);
                                                                     } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                         ex.printStackTrace();
-                                                                        Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                     }
                                                                 } else {
-                                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                                                 }
 
                                                             } else {
-                                                                Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                                             }
                                                         }
                                                     })
@@ -119,14 +119,14 @@ public class BatteryFragment extends Fragment {
                                                     .show();
                                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                                             ex.printStackTrace();
-                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                         }
                                     } else {
-                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                     }
 
                                 } else {
-                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                 }
 
                             } else
@@ -167,17 +167,17 @@ public class BatteryFragment extends Fragment {
                                         if (RootTools.isAccessGiven()) {
                                             Command command1 = new Command(0,
                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /data",
-                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /data", "mount -o rw,remount /data",
                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /data",
                                                     "rm -f /data/system/batterystats.bin",
                                                     "rm -f /data/system/batterystats-checkin.bin",
                                                     "rm -f /data/system/batterystats-daily.xml",
                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /data",
-                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data",
+                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /data", "mount -o ro,remount /data",
                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /data");
                                             try {
                                                 RootTools.getShell(true).add(command1);
-                                                Toast.makeText(getActivity(), R.string.calsucess, Toast.LENGTH_SHORT).show();
+                                                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.calsucess)).withBackgroundColorId(R.color.textview1good).show();
                                                 new AlertDialog.Builder(v.getContext())
                                                         .setTitle(R.string.reboot)
                                                         .setMessage(R.string.rebootdialog)
@@ -188,18 +188,18 @@ public class BatteryFragment extends Fragment {
                                                                         Command command1 = new Command(0,
                                                                                 "reboot");
                                                                         try {
-                                                                            Toast.makeText(getActivity(), R.string.reboot, Toast.LENGTH_SHORT).show();
+                                                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.reboot)).withBackgroundColorId(R.color.textview1good).show();
                                                                             RootTools.getShell(true).add(command1);
                                                                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                             ex.printStackTrace();
-                                                                            Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                                                         }
                                                                     } else {
-                                                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                                                     }
 
                                                                 } else {
-                                                                    Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                                                 }
                                                             }
                                                         })
@@ -212,14 +212,14 @@ public class BatteryFragment extends Fragment {
                                                         .show();
                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                 ex.printStackTrace();
-                                                Toast.makeText(getActivity(), R.string.errordev, Toast.LENGTH_SHORT).show();
+                                                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                                             }
                                         } else {
-                                            Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                         }
 
                                     } else {
-                                        Toast.makeText(getActivity(), R.string.erroroot, Toast.LENGTH_SHORT).show();
+                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
                                     }
 
                                 } else {
@@ -285,7 +285,7 @@ public class BatteryFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })

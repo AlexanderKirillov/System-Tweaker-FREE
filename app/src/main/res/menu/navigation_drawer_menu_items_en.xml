@@ -54,6 +54,7 @@
                 android:id="@+id/navigation_drawer_item8"
                 android:icon="@drawable/media_tweaks"
                 android:title="@string/mediatweaks" />
+
             <item
                 android:id="@+id/navigation_drawer_item15"
                 android:icon="@drawable/varios"

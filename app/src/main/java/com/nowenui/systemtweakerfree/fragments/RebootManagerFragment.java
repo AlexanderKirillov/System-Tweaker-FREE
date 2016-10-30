@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
 import com.stericson.roottools.RootTools;
 
@@ -63,7 +63,7 @@ public class RebootManagerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED! | ROOT НЕОБХОДИМ!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -104,7 +104,7 @@ public class RebootManagerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot -p"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED! | ROOT НЕОБХОДИМ!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -145,7 +145,7 @@ public class RebootManagerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "/data/data/com.nowenui.systemtweakerfree/files/busybox killall system_server"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED! | ROOT НЕОБХОДИМ!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -186,7 +186,7 @@ public class RebootManagerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot recovery"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED! | ROOT НЕОБХОДИМ!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })
@@ -227,7 +227,7 @@ public class RebootManagerFragment extends Fragment {
                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot bootloader"});
                                     proc.waitFor();
                                 } catch (Exception ex) {
-                                    Toast.makeText(getActivity(), "ROOT NEEDED! | ROOT НЕОБХОДИМ!", Toast.LENGTH_SHORT).show();
+                                    new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED! | ROOT НЕОБХОДИМ!").withBackgroundColorId(R.color.textview1bad).show();
                                 }
                             }
                         })

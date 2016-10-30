@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("DIALOGSTART", "535335");
+                            editor.putString("DIALOGSTART", "50484848");
                             editor.commit();
                             dialog.dismiss();
                         }
@@ -321,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, AboutProgramFragment.newInstance(bundle))
                                         .commit();
                                 break;
+
                             case R.id.navigation_drawer_item15:
                                 fragmentTitle = res.getString(R.string.varioustweaks);
                                 getSupportFragmentManager()

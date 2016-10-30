@@ -35,6 +35,7 @@ public class AboutProgramFragment extends Fragment {
 
         textView30 = (TextView) view.findViewById(R.id.textView30);
 
+
         TextView prolink = (TextView) view.findViewById(R.id.prolink);
         prolink.setOnClickListener(new View.OnClickListener() {
             @Override
