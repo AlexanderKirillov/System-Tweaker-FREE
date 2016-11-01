@@ -2,7 +2,7 @@
     <string name="app_name">System Tweaker FREE</string>
     <string name="root">ROOT ПРИСУТСТВУЕТ!</string>
     <string name="initd">INIT.D РАБОТАЕТ!</string>
-    <string name="busybox">BUSYBOX V1.24.2 \n(ИЗ ПАКЕТА ПРОГРАММЫ)!</string>
+    <string name="busybox">BUSYBOX V1.25.1 \n(ИЗ ПАКЕТА ПРОГРАММЫ)!</string>
     <string name="xposed">XPOSED УСТАНОВЛЕН!</string>
     <string name="rootbad">ROOT НЕ ФУНКЦИОНИРУЕТ!</string>
     <string name="problems">имеются проблемы</string>
@@ -227,7 +227,7 @@
     <string name="battery5">[ТВИК BUILD.PROP:\n\npower_supply.wakeup=enable ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения режима контроля и предотвращения просыпания устройства технологией Power Supply. \n\nВНИМАНИЕ! ВОЗМОЖНО ПОЯВЛЕНИЕ ПРОБЛЕМ С ФОНОВЫМ ВОСПРОИЗВЕДЕНИЕМ МУЗЫКИ (И НЕ ТОЛЬКО) ПРИ ВЫКЛЮЧЕННОМ ЭКРАНЕ!</string>
     <string name="battery6">[ТВИК BUILD.PROP:\nro.ril.sensor.sleep.control=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем включения спящего режима для сенсоров устройства, когда устройство находится в глубоком сне</string>
     <string name="battery7">[ТВИК BUILD.PROP:\nro.mot.eri.losalert.delay=1000 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем увеличения задержки оповещения прерывания обслуживания</string>
-    <string name="battery8">[ТВИК BUILD.PROP:\n\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1 ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем отключения собирания логов системой (по-умолчанию система регулярно собирает логи, что плохо сказывается на батареи)</string>
+    <string name="battery8">[ТВИК BUILD.PROP:\n\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1\n\nТакже при применении твика создается файл /system/etc/init.d/logs ] \n\nТвик позволяет увеличить время жизни устройства от одного заряда батареи путем отключения собирания логов системой (по-умолчанию система регулярно собирает логи, что плохо сказывается на батареи)</string>
     <string name="sys1">[ТВИК BUILD.PROP:\nro.HOME_APP_ADJ=1] \n\nТвик позволяет закрепить лаунчер в оперативной памяти, что позволяет исключить перерисовки, перезагрузки лаунчера. Используйте только если Ваше устройство имеет кол-во оперативной памяти > 1GB (иначе девас может начать тормозить)</string>
     <string name="sys2">[ТВИК INIT.D ПОД НАЗВАНИЕМ display\n\nСодержит в себе следующий код:\n\nsetprop ro.qcom.ad 1
 \n\nsetprop ro.qcom.ad.calib.data /system/etc/ad_calib.cfg\n\nЕсли Вы его применили, то он находится в папке /system/etc/init.d. \nТакже применяется новый файл ad_calib.cfg, который и содержит в себе настройки дисплея] \n\nТвик позволяет увеличить качество изображения на дисплее путем применения специального профиля экрана</string>
@@ -290,7 +290,7 @@
     <string name="senterror">ОШИБКА! СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ!</string>
     <string name="pola">НЕОБХОДИМО ЗАПОЛНИТЬ ВСЕ ПОЛЯ!</string>
     <string name="busy1">Информация о busybox</string>
-    <string name="busy2">BUSYBOX 1.24.2 ARM \n\nРасположен в папке: \n/data/data/com.nowenui.systemtweakerfree/files/\n\n При деинсталяции программы - удаляется!</string>
+    <string name="busy2">BUSYBOX 1.25.1 ARM \n\nРасположен в папке: \n/data/data/com.nowenui.systemtweakerfree/files/\n\n При деинсталяции программы - удаляется!</string>
     <string name="init1">Информация о init.d</string>
     <string name="init2">Init.d нужен для выполнения твиков при загрузке. Программа при запуске определяет, работает ли init.d или нет, если не работает, то активирует поддержку путем следующих действий:\n1) Модифицирует файл /system/etc/install-recovery.sh\n2) Добавляет файл /system/bin/sysinit\n3) Создает директорию init.d в папке /system/etc/</string>
     <string name="ramflag">Увеличение производительности устройств с малым кол-вом RAM\nПозволяет ограничивать фоновые процессы, некоторые приложения ограничат свою функциональность и также отключаются красивости интерфейса\nТвик работает на устройствах с оперативной памятью менее 1024 MB и на базе Android 4.4 и выше\nМожет действительно работать не на всех устройствах</string>

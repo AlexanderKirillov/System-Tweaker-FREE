@@ -3,7 +3,7 @@
 
     <string name="root">ROOT WORKING!</string>
     <string name="initd">INIT.D WORKING!</string>
-    <string name="busybox">BUSYBOX V1.24.2 \n(FROM THIS PROGRAM)!!</string>
+    <string name="busybox">BUSYBOX V1.25.1 \n(FROM THIS PROGRAM)!!</string>
     <string name="xposed">XPOSED INSTALLED!</string>
     <string name="rootbad">NO ROOT</string>
     <string name="initdbad">NO INIT.D </string>
@@ -231,7 +231,7 @@
     <string name="battery5">[BUILD.PROP TWEAK:\npower_supply.wakeup=enable ] \n\nTweek allows you to increase the battery lifetime by activate controls and to prevent sifting device technology Power Supply. \n\nATTENTION! You may have problems with background music playback (but not only) when the screen off!</string>
     <string name="battery6">[BUILD.PROP TWEAK:\nro.ril.sensor.sleep.control=1 ] \n\nTweek allows you to increase the battery lifetime by enable sleep mode for device sensors, when the device is in sleep</string>
     <string name="battery7">[BUILD.PROP TWEAK:\nro.mot.eri.losalert.delay=1000 ] \n\nTweek allows you to increase the battery lifetime by increase the delay interrupt service alerts</string>
-    <string name="battery8">[BUILD.PROP TWEAK:\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1 ] \n\nTweek allows you to increase the battery lifetime by disabling background logcats</string>
+    <string name="battery8">[BUILD.PROP TWEAK:\nro.config.nocheckin=1\n\nprofiler.force_disable_err_rpt=1\n\nprofiler.force_disable_ulog=1\n\nAlso when you apply this tweak, file /system/etc/init.d/logs will made ] \n\nTweek allows you to increase the battery lifetime by disabling background logcats</string>
     <string name="sys1">[BUILD.PROP TWEAK:\nro.HOME_APP_ADJ=1] \n\nTweek allows to fix launcher in memory, eliminating repainting, restart launcher. Use only if your device have RAM> 1GB</string>
     <string name="sys2">[INIT.D TWEAK: display\n\nINCLUDES:\n\nsetprop ro.qcom.ad 1
 \n\nsetprop ro.qcom.ad.calib.data /system/etc/ad_calib.cfg ]\n\nIf you apply this tweak, it will be located in /system/etc/init.d. \nAlso applying new file ad_calib.cfg, and which contains the display settings] \n\nTweek allows you to increase the image quality on the display through the applying of a special screen profile</string>
@@ -299,7 +299,7 @@ In this case- it increases the intensity and minimum illumination threshold
      <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
 \n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
     <string name="busy1">About busybox</string>
-    <string name="busy2">BUSYBOX 1.24.2 ARM n\nLocated in /data/data/com.nowenui.systemtweaker/files/busybox</string>
+    <string name="busy2">BUSYBOX 1.25.1 ARM n\nLocated in /data/data/com.nowenui.systemtweaker/files/busybox</string>
     <string name="init1">About init.d</string>
     <string name="init2">Init.d need to apply tweaks at startup. When starting , program detecting whether the init.d work or not, if you do not work, then activates by the following::\n1) Modify /system/etc/install-recovery.sh\n2) Place /system/bin/sysinit\n3) Make init.d directory in  /system/etc/</string>
     <string name="ramflag">Low RAM flag</string>

@@ -653,9 +653,11 @@ public class BatteryTweaksFragment extends Fragment {
         );
 
         checkbox7 = (CheckBox) view.findViewById(R.id.checkBox7);
-        if (text.toString().contains("ro.config.nocheckin=1")
+        String check00 = "/etc/init.d/logs";
+        String check00a = "/system/etc/init.d/logs";
+        if ((text.toString().contains("ro.config.nocheckin=1")
                 && text.toString().contains("profiler.force_disable_err_rpt=1")
-                && text.toString().contains("profiler.force_disable_ulog=1")) {
+                && text.toString().contains("profiler.force_disable_ulog=1") && (new File(Environment.getRootDirectory() + check00).exists() || new File(check00a).exists() || new File(Environment.getRootDirectory() + check00a).exists()))) {
             checkbox7.setChecked(true);
         } else {
             checkbox7.setChecked(false);
@@ -686,18 +688,21 @@ public class BatteryTweaksFragment extends Fragment {
                                                          if (RootTools.isRootAvailable()) {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.nocheckin/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_err_rpt/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_ulog/d' /system/build.prop",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/ro.config.nocheckin/d' /system/build.prop",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/profiler.force_disable_err_rpt/d' /system/build.prop",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/profiler.force_disable_ulog/d' /system/build.prop",
                                                                          "echo \"ro.config.nocheckin=1\" >> /system/build.prop",
                                                                          "echo \"profiler.force_disable_err_rpt=1\" >> /system/build.prop",
                                                                          "echo \"profiler.force_disable_ulog=1\" >> /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
+                                                                         "cp /data/data/com.nowenui.systemtweaker/files/logs /system/etc/init.d/",
+                                                                         "chmod 777 /system/etc/init.d/logs",
+                                                                         "/system/etc/init.d/logs",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,ro /system");
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
@@ -717,15 +722,16 @@ public class BatteryTweaksFragment extends Fragment {
                                                          if (RootTools.isRootAvailable()) {
                                                              if (RootTools.isAccessGiven()) {
                                                                  Command command1 = new Command(0,
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/ro.config.nocheckin=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_err_rpt=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/profiler.force_disable_ulog=1/d' /system/build.prop",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
-                                                                         "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/ro.config.nocheckin=1/d' /system/build.prop",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/profiler.force_disable_err_rpt=1/d' /system/build.prop",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox sed -i '/profiler.force_disable_ulog=1/d' /system/build.prop",
+                                                                         "rm -f /system/etc/init.d/logs",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /proc /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                         "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,ro /system"
                                                                  );
                                                                  try {
                                                                      RootTools.getShell(true).add(command1);
