@@ -19,8 +19,8 @@
             android:gravity="center_vertical|center|center_horizontal"
             android:text="System Tweaker FREE"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ef650f"
-            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="32dp"
             android:textStyle="bold|italic" />
 
         <ImageView
@@ -37,7 +37,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_weight="0.09"
-            android:text="V2.2.2"
+            android:text="V3.0.0"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView

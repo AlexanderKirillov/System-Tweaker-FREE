@@ -18,6 +18,18 @@
             android:text="@string/internettweakswelcome"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingBottom="10dp"
+            android:text="@string/nowe"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
         <CheckBox
             android:id="@+id/checkBox10"
             android:layout_width="match_parent"
@@ -25,7 +37,9 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/firstinternettweak" />
+            android:text="@string/firstinternettweak"
+            android:theme="@style/BrandedCheckBox" />
+
 
         <CheckBox
             android:id="@+id/checkBox11"
@@ -34,7 +48,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/secondinternettweak" />
+            android:text="@string/secondinternettweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox12"
@@ -42,7 +57,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/thirdinternettweak" />
+            android:text="@string/thirdinternettweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox13"
@@ -50,7 +66,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/forthinternettweak" />
+            android:text="@string/forthinternettweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox14"
@@ -58,7 +75,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/fifthinternettweaks" />
+            android:text="@string/fifthinternettweaks"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox15"
@@ -66,7 +84,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/sixinternettweaks" />
+            android:text="@string/sixinternettweaks"
+            android:theme="@style/BrandedCheckBox" />
 
 
     </LinearLayout>

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("DIALOGSTART", "50484848");
+                            editor.putString("DIALOGSTART", "46543");
                             editor.commit();
                             dialog.dismiss();
                         }

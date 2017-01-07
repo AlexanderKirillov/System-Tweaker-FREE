@@ -11,7 +11,7 @@ $busybox mount -o remount,rw /system
 $busybox sed -i '/dalvik.vm.dex2oat-filter/d' /system/build.prop
 $busybox sed -i '/dalvik.vm.image-dex2oat-filter/d' /system/build.prop
 
-echo "dalvik.vm.dex2oat-filter=speed" >> /system/build.prop
+echo "dalvik.vm.dex2oat-filter=interpret-only" >> /system/build.prop
 echo "dalvik.vm.image-dex2oat-filter=speed" >> /system/build.prop
 
 rm -rf /data/dalvik-cache

@@ -17,13 +17,26 @@
             android:text="@string/batterysection"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingBottom="10dp"
+            android:text="@string/nowe"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/firstbatterytweak" />
+            android:text="@string/firstbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -31,7 +44,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/secondbatterytweak" />
+            android:text="@string/secondbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox3"
@@ -39,7 +53,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/thirdbatterytweak" />
+            android:text="@string/thirdbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox4"
@@ -47,7 +62,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/fifthbatterytweak" />
+            android:text="@string/fifthbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox5"
@@ -55,7 +71,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/sixthbatterytweak" />
+            android:text="@string/sixthbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox6"
@@ -63,7 +80,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/sevenbatterytweak" />
+            android:text="@string/sevenbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox7"
@@ -71,7 +89,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/eithtbatterytweak" />
+            android:text="@string/eithtbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
 
 
     </LinearLayout>

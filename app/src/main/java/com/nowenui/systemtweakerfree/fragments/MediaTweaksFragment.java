@@ -16,9 +16,9 @@ import android.widget.CompoundButton;
 
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -380,6 +380,8 @@ public class MediaTweaksFragment extends Fragment {
         if (text.toString().contains("media.stagefright.enable-player=true")
                 && text.toString().contains("media.stagefright.enable-meta=true")
                 && text.toString().contains("media.stagefright.enable-scan=true")
+                && text.toString().contains("media.stagefright.enable-aac=true")
+                && text.toString().contains("media.stagefright.enable-qcp=true")
                 && text.toString().contains("media.stagefright.enable-http=true")
                 && text.toString().contains("media.stagefright.enable-rtsp=true")
                 && text.toString().contains("media.stagefright.enable-record=false")) {
@@ -415,6 +417,8 @@ public class MediaTweaksFragment extends Fragment {
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-aac/d' /system/build.prop",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-qcp/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-player/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-meta/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-scan/d' /system/build.prop",
@@ -424,6 +428,8 @@ public class MediaTweaksFragment extends Fragment {
                                                                     "echo \"media.stagefright.enable-player=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-meta=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-scan=true\" >> /system/build.prop",
+                                                                    "echo \"media.stagefright.enable-aac=true\" >> /system/build.prop",
+                                                                    "echo \"media.stagefright.enable-qcp=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-http=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-rtsp=true\" >> /system/build.prop",
                                                                     "echo \"media.stagefright.enable-record=false\" >> /system/build.prop",
@@ -453,6 +459,8 @@ public class MediaTweaksFragment extends Fragment {
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-aac/d' /system/build.prop",
+                                                                    "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-qcp/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-player/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-meta/d' /system/build.prop",
                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox sed -i '/media.stagefright.enable-scan/d' /system/build.prop",

@@ -1,12 +1,12 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 2.2.0</b></i>
+### <i><b>Current version: 3.0.0</b></i>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/5QMFmIEFxr7xx)
+### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/2jozZ7t037VpDY)
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
-##PRO version (0,99 $): [Google Play](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
+##PRO version (0,99 $): [Google Play](https://play.google.com/store/apps/details?id=com.nowenui.systemtweaker)
 
 ## Description
 Speeding up your device has never been so easy! With this program you can really speed up your device, increase powersaving and etc!
@@ -30,7 +30,6 @@ Speeding up your device has never been so easy! With this program you can really
 * jaredrummler: [AndroidDeviceNames](https://github.com/jaredrummler/AndroidDeviceNames)
 * nisrulz: [EasyDeviceInfo](https://github.com/nisrulz/easydeviceinfo)
 * akexorcist: [DeviceInformation](https://github.com/akexorcist/DeviceInformation)
-* castorflex: [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar)
 * scijoker: [Spinner2](https://github.com/scijoker/spinner2)
 * MrEngineer13 [SnackBar](https://github.com/MrEngineer13/SnackBar)
 
@@ -48,6 +47,6 @@ And send all to NowenUI@bk.ru
 
 ## License
 
-    Copyright (C) 2016 Alexander Kirillov <NowenUI@bk.ru>
+    Copyright (C) 2016-2017 Alexander Kirillov <NowenUI@bk.ru>
     
     System Tweaker FREE is open source project, you can use this sources as you want

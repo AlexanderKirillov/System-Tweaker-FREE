@@ -18,54 +18,55 @@
             android:text="@string/fstrim"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/beforestrim"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <Button
-            android:id="@+id/install"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="@string/installfstrim" />
-
-        <TextView
-            android:id="@+id/textView9"
+        <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="-10dp"
-            android:gravity="center_vertical|center|center_horizontal"
-            android:text="@string/statusinfo"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="10dp" />
+            android:src="@drawable/ssd" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:paddingTop="10dp"
+            android:text="@string/beforestrim"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.43"
+            android:paddingBottom="10dp"
+            android:text="@string/fstrimzhel"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
 
         <CheckBox
             android:id="@+id/system"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
-            android:text="/system" />
+            android:text="/system"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.02"
-            android:text="/data" />
+            android:text="/data"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/cache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
-            android:text="/cache" />
+            android:text="/cache"
+            android:theme="@style/BrandedCheckBox" />
 
         <Button
             android:id="@+id/fstrimbutton"
@@ -80,14 +81,8 @@
             android:id="@+id/bootfstrim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fstrimboot" />
+            android:text="@string/fstrimboot"
+            android:theme="@style/BrandedCheckBox" />
 
-        <Button
-            android:id="@+id/deletefstrim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="@string/delstrim" />
     </LinearLayout>
 </ScrollView>

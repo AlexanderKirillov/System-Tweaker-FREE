@@ -1,4 +1,4 @@
-package com.stericson.rootshell.execution;
+package com.stericson.RootShell.execution;
 
 import android.content.Context;
 

@@ -17,12 +17,22 @@
             android:text="@string/systemteweaks"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingBottom="10dp"
+            android:text="@string/nowe"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="@android:color/darker_gray" />
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -64,7 +74,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/perftweak" />
+            android:text="@string/perftweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <View
             android:layout_width="match_parent"
@@ -79,7 +90,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/ramflag" />
+            android:text="@string/ramflag"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/lowrameffects"
@@ -89,7 +101,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/ramflageffect" />
+            android:text="@string/ramflageffect"
+            android:theme="@style/BrandedCheckBox" />
 
 
         <View
@@ -104,17 +117,20 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/systemthree" />
+            android:text="@string/systemthree"
+            android:theme="@style/BrandedCheckBox" />
+
 
         <CheckBox
             android:id="@+id/artfix"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/arttext" />
+            android:text="@string/arttext"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/heaptweak"
@@ -124,7 +140,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/heapoptomize" />
+            android:text="@string/heapoptomize"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/andrusha7tweaks"
@@ -134,7 +151,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/andr7" />
+            android:text="@string/andr7"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/display_cal"
@@ -144,7 +162,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/displayfix" />
+            android:text="@string/displayfix"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox22"
@@ -152,7 +171,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/systemfour" />
+            android:text="@string/systemfour"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/touchtweak"
@@ -161,7 +181,8 @@
             android:checked="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/touchtweak" />
+            android:text="@string/touchtweak"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox23"
@@ -169,7 +190,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/systemfive" />
+            android:text="@string/systemfive"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox30"
@@ -177,15 +199,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/systemsix" />
-
-        <CheckBox
-            android:id="@+id/ext4tweak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:paddingTop="10dp"
-            android:text="@string/ext4tweak" />
+            android:text="@string/systemsix"
+            android:theme="@style/BrandedCheckBox" />
 
     </LinearLayout>
 </ScrollView>

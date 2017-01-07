@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.rootshell.exceptions;
+package com.stericson.RootShell.exceptions;
 
 public class RootDeniedException extends Exception {
 

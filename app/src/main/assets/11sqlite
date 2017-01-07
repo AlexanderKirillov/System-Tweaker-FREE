@@ -2,44 +2,42 @@
 
 busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
 
-RUN_EVERY=604800
+echo "";
+echo "*********************************************";
+echo "Optimizing and defragging your database files (*.db)";
+echo "*********************************************";
+echo "";
 
-if [ -e $LOG_FILE ]; then
-    LASTRUN=`stat -t $LOG_FILE | $busybox awk '{print $14}'`
-else
-    LASTRUN=0
+for i in \
+`$busybox find /data -iname "*.db"`; 
+do \
+	/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'VACUUM;'; 
+	/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'REINDEX;'; 
+done;
+
+if [ -d "/dbdata" ]; then
+	for i in \
+	`$busybox find /dbdata -iname "*.db"`; 
+	do \
+		/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'VACUUM;'; 
+		/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'REINDEX;'; 
+	done;
 fi;
 
-CURRDATE=`date +%s`
 
-INTERVAL=$(expr $CURRDATE - $LASTRUN)
-
-if [ $INTERVAL -gt $RUN_EVERY ];
-then
-    if [ -e $LOG_FILE ]; then
-        rm $LOG_FILE;
-    fi;
-        
-    echo "SQLite database VACUUM and REINDEX started at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE;
-
-    for i in `$busybox find /d* -iname "*.db"`; do
-        /system/xbin/sqlite3 $i 'VACUUM;';
-        resVac=$?
-        if [ $resVac == 0 ]; then
-            resVac="SUCCESS";
-        else
-            resVac="ERRCODE-$resVac";
-        fi;
-        
-        /system/xbin/sqlite3 $i 'REINDEX;';
-        resIndex=$?
-        if [ $resIndex == 0 ]; then
-            resIndex="SUCCESS";
-        else
-            resIndex="ERRCODE-$resIndex";
-        fi;
-        echo "Database $i:  VACUUM=$resVac  REINDEX=$resIndex" | tee -a $LOG_FILE;
-    done
-      
-    echo "SQLite database VACUUM and REINDEX finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE;
+if [ -d "/datadata" ]; then
+	for i in \
+	`$busybox find /datadata -iname "*.db"`; 
+	do \
+		/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'VACUUM;'; 
+		/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'REINDEX;'; 
+	done;
 fi;
+
+
+for i in \
+`$busybox find /sdcard -iname "*.db"`; 
+do \
+	/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'VACUUM;'; 
+	/data/data/com.nowenui.systemtweakerfree/files/sqlite3 $i 'REINDEX;'; 
+done;

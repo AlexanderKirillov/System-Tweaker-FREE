@@ -1,5 +1,5 @@
 /* 
- * This file is part of the RootTools Project: http://code.google.com/p/roottools/
+ * This file is part of the RootTools Project: http://code.google.com/p/RootTools/
  *  
  * Copyright (c) 2012 Stephen Erickson, Chris Ravenscroft, Dominik Schuermann, Adam Shanks
  *  
@@ -20,23 +20,23 @@
  * limitations under that License.
  */
 
-package com.stericson.roottools;
+package com.stericson.RootTools;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.stericson.rootshell.RootShell;
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.rootshell.execution.Shell;
-import com.stericson.roottools.containers.Mount;
-import com.stericson.roottools.containers.Permissions;
-import com.stericson.roottools.containers.Symlink;
-import com.stericson.roottools.internal.Remounter;
-import com.stericson.roottools.internal.RootToolsInternalMethods;
-import com.stericson.roottools.internal.Runner;
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.containers.Mount;
+import com.stericson.RootTools.containers.Permissions;
+import com.stericson.RootTools.containers.Symlink;
+import com.stericson.RootTools.internal.Remounter;
+import com.stericson.RootTools.internal.RootToolsInternalMethods;
+import com.stericson.RootTools.internal.Runner;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -224,10 +224,11 @@ public final class RootTools {
 
     /**
      * @param binaryName String that represent the binary to find.
+     * @param singlePath boolean that represents whether to return a single path or multiple.
      * @return <code>List<String></code> containing the paths the binary was found at.
      */
-    public static List<String> findBinary(String binaryName) {
-        return RootShell.findBinary(binaryName);
+    public static List<String> findBinary(String binaryName, boolean singlePath) {
+        return RootShell.findBinary(binaryName, singlePath);
     }
 
     /**
@@ -564,7 +565,7 @@ public final class RootTools {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
-        return RootShell.isAccessGiven(0, 3);
+        return RootShell.isAccessGiven();
     }
 
     /**
@@ -576,7 +577,7 @@ public final class RootTools {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven(int timeout, int retries) {
-        return RootShell.isAccessGiven(timeout, retries);
+        return RootShell.isAccessGiven();
     }
 
     /**

@@ -19,6 +19,18 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingBottom="10dp"
+            android:text="@string/nowe"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
@@ -34,19 +46,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:checked="false"
-            android:text="@string/var1" />
+            android:text="@string/var1"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/disableboot" />
+            android:text="@string/disableboot"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/adb" />
+            android:text="@string/adb"
+            android:theme="@style/BrandedCheckBox" />
 
 
     </LinearLayout>

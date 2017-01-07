@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootTools.RootTools;
 
 
 public class RebootManagerFragment extends Fragment {

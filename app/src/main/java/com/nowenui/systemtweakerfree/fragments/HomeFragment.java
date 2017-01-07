@@ -1,6 +1,7 @@
 package com.nowenui.systemtweakerfree.fragments;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -38,13 +39,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         TextView textview = (TextView) view.findViewById(R.id.textView);
         TextView textview2 = (TextView) view.findViewById(R.id.textView2);
-        TextView textview10 = (TextView) view.findViewById(R.id.textView10);
         TextView textview11 = (TextView) view.findViewById(R.id.textView11);
 
 
         if (SplashActivity.checksu == 1) {
             textview.setText(R.string.root);
-            textview.setBackgroundResource(R.color.textview1good);
+            textview.setBackgroundColor(Color.parseColor("#116062"));
             textview.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
         } else {
@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
 
         if (SplashActivity.checkbusy == 1) {
             textview2.setText(R.string.busybox);
-            textview2.setBackgroundResource(R.color.textview1good);
+            textview2.setBackgroundColor(Color.parseColor("#116062"));
             textview2.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
             textview2.setOnTouchListener(new View.OnTouchListener() {
@@ -95,35 +95,9 @@ public class HomeFragment extends Fragment {
 
         textview11.setText(isInitdSupport());
         if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("INIT.D РАБОТАЕТ!")) {
-            textview11.setBackgroundResource(R.color.textview1good);
+            textview11.setBackgroundColor(Color.parseColor("#116062"));
             textview11.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
-            textview11.setOnTouchListener(new View.OnTouchListener() {
-                long oldTime = 0;
-
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        if (System.currentTimeMillis() - oldTime < 300) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setTitle(R.string.init1)
-                                    .setMessage(R.string.init2)
-                                    .setIcon(R.drawable.info).setCancelable(true)
-                                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alert = builder.create();
-                            alert.show();
-                        }
-                        oldTime = System.currentTimeMillis();
-
-                    }
-                    return true;
-                }
-            });
         } else {
             textview11.setBackgroundResource(R.color.textview1bad);
             textview11.setCompoundDrawablesWithIntrinsicBounds(
@@ -133,9 +107,7 @@ public class HomeFragment extends Fragment {
 
     public int isInitdSupport() {
         File f = new File("/system/etc/init.d");
-        File f1 = new File("/system/su.d");
-        File f2 = new File("/su/su.d");
-        if ((f.exists()) && (f.isDirectory()) || (f1.exists()) && (f1.isDirectory()) || (f2.exists()) && (f2.isDirectory())) {
+        if ((f.exists()) && (f.isDirectory())) {
             return R.string.initd;
         }
         return R.string.initdbad;

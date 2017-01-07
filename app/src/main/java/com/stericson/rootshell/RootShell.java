@@ -19,14 +19,14 @@
  * See each License for the specific language governing permissions and
  * limitations under that License.
  */
-package com.stericson.rootshell;
+package com.stericson.RootShell;
 
 
 import android.util.Log;
 
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.rootshell.execution.Shell;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class RootShell {
     // # Public Variables #
     // --------------------
 
-    public static final String version = "RootShell v1.3";
+    public static final String version = "RootShell v1.4";
     public static boolean debugMode = false;
     /**
      * Setting this to false will disable the handler that is used
@@ -132,6 +132,7 @@ public class RootShell {
             commandWait(RootShell.getShell(false), command);
 
         } catch (Exception e) {
+            RootShell.log("Exception: " + e);
             return false;
         }
 
@@ -143,11 +144,22 @@ public class RootShell {
 
         result.clear();
 
+        command = new Command(0, false, cmdToExecute + file) {
+            @Override
+            public void commandOutput(int id, String line) {
+                RootShell.log(line);
+                result.add(line);
+
+                super.commandOutput(id, line);
+            }
+        };
+
         try {
             RootShell.getShell(true).add(command);
             commandWait(RootShell.getShell(true), command);
 
         } catch (Exception e) {
+            RootShell.log("Exception: " + e);
             return false;
         }
 
@@ -167,18 +179,20 @@ public class RootShell {
 
     /**
      * @param binaryName String that represent the binary to find.
+     * @param singlePath boolean that represents whether to return a single path or multiple.
      * @return <code>List<String></code> containing the locations the binary was found at.
      */
-    public static List<String> findBinary(final String binaryName) {
-        return findBinary(binaryName, null);
+    public static List<String> findBinary(String binaryName, boolean singlePath) {
+        return findBinary(binaryName, null, singlePath);
     }
 
     /**
      * @param binaryName  <code>String</code> that represent the binary to find.
      * @param searchPaths <code>List<String></code> which contains the paths to search for this binary in.
+     * @param singlePath  boolean that represents whether to return a single path or multiple.
      * @return <code>List<String></code> containing the locations the binary was found at.
      */
-    public static List<String> findBinary(final String binaryName, List<String> searchPaths) {
+    public static List<String> findBinary(final String binaryName, List<String> searchPaths, boolean singlePath) {
 
         final List<String> foundPaths = new ArrayList<String>();
 
@@ -215,12 +229,16 @@ public class RootShell {
                     }
                 };
 
-                RootShell.getShell(false).add(cc);
+                cc = RootShell.getShell(false).add(cc);
                 commandWait(RootShell.getShell(false), cc);
 
+                if (foundPaths.size() > 0 && singlePath) {
+                    break;
+                }
             }
 
             found = !foundPaths.isEmpty();
+
         } catch (Exception e) {
             RootShell.log(binaryName + " was not found, more information MAY be available with Debugging on.");
         }
@@ -237,6 +255,11 @@ public class RootShell {
                 if (RootShell.exists(path + binaryName)) {
                     RootShell.log(binaryName + " was found here: " + path);
                     foundPaths.add(path);
+
+                    if (foundPaths.size() > 0 && singlePath) {
+                        break;
+                    }
+
                 } else {
                     RootShell.log(binaryName + " was NOT found here: " + path);
                 }
@@ -337,18 +360,6 @@ public class RootShell {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
-        return isAccessGiven(0, 3);
-    }
-
-    /**
-     * Control how many time of retries should request
-     *
-     * @param timeout The timeout
-     * @param retries The number of retries
-     * @return <code>true</code> if your app has been given root access.
-     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
-     */
-    public static boolean isAccessGiven(int timeout, int retries) {
         final Set<String> ID = new HashSet<String>();
         final int IAG = 158;
 
@@ -387,17 +398,17 @@ public class RootShell {
     }
 
     /**
-     * @return <code>true</code> if BusyBox was found.
+     * @return <code>true</code> if BusyBox or Toybox was found.
      */
     public static boolean isBusyboxAvailable() {
-        return (findBinary("busybox")).size() > 0;
+        return (findBinary("busybox", true)).size() > 0 || (findBinary("toybox", true)).size() > 0;
     }
 
     /**
      * @return <code>true</code> if su was found.
      */
     public static boolean isRootAvailable() {
-        return (findBinary("su")).size() > 0;
+        return (findBinary("su", true)).size() > 0;
     }
 
     /**

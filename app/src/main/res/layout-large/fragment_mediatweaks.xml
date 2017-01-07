@@ -7,7 +7,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="match_parent"
@@ -17,13 +18,26 @@
             android:text="@string/mediatweakshello"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingBottom="10dp"
+            android:text="@string/nowe"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
         <CheckBox
             android:id="@+id/checkBox17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/mediaone" />
+            android:text="@string/mediaone"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox18"
@@ -31,7 +45,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/mediatwo" />
+            android:text="@string/mediatwo"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox19"
@@ -39,7 +54,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/mediathree" />
+            android:text="@string/mediathree"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/ch21"
@@ -47,7 +63,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/mediafour" />
+            android:text="@string/mediafour"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/ch22"
@@ -55,7 +72,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/mediafive" />
+            android:text="@string/mediafive"
+            android:theme="@style/BrandedCheckBox" />
 
     </LinearLayout>
 </ScrollView>

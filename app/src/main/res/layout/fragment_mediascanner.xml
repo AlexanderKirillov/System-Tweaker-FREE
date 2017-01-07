@@ -88,7 +88,8 @@
             android:layout_marginTop="10dp"
             android:layout_weight="0.04"
             android:checked="false"
-            android:text="@string/bootmediaserver" />
+            android:text="@string/bootmediaserver"
+            android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
             android:id="@+id/checkBox32"
@@ -99,7 +100,8 @@
             android:layout_marginTop="-15dp"
             android:layout_weight="0.04"
             android:checked="false"
-            android:text="@string/bootmediascanner" />
+            android:text="@string/bootmediascanner"
+            android:theme="@style/BrandedCheckBox" />
 
 
     </LinearLayout>

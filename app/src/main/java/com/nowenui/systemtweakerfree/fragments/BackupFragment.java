@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,7 +87,48 @@ public class BackupFragment extends Fragment {
 
         RootTools.debugMode = false;
 
-        View view = inflater.inflate(R.layout.backup_device, parent, false);
+        final View view = inflater.inflate(R.layout.backup_device, parent, false);
+
+        final String gettext = getResources().getString(R.string.lastbackup);
+
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(500);
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    final File file = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
+                                    final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+
+                                    textViewbackupbuild = (TextView) view.findViewById(R.id.textViewbackupbuild);
+
+                                    textViewbackupbuild.setText(gettext + " " + sdf.format(file.lastModified()));
+
+
+                                    final File file1 = new File("/sdcard/SystemTweakerFREE/backups/init.d");
+                                    final SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+
+                                    textViewbackupinitd = (TextView) view.findViewById(R.id.textViewbackupinitd);
+
+
+                                    textViewbackupinitd.setText(gettext + " " + sdf1.format(file1.lastModified()));
+
+                                }
+                            });
+                        }
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
+
 
         backup_build = (Button) view.findViewById(R.id.backup_build);
         backup_build.setBackgroundResource(R.drawable.roundbuttoncal);
@@ -153,6 +194,41 @@ public class BackupFragment extends Fragment {
                 } else {
                     new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                 }
+                final String gettext = getResources().getString(R.string.lastbackup);
+
+
+                final File file = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
+                final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+
+                textViewbackupbuild = (TextView) view.findViewById(R.id.textViewbackupbuild);
+
+                if (getActivity() == null)
+                    return;
+
+                Thread t = new Thread() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            while (!isInterrupted()) {
+                                Thread.sleep(500);
+                                if (getActivity() != null) {
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            textViewbackupbuild.setText(gettext + " " + sdf.format(file.lastModified()));
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                };
+
+                t.start();
+
+
             }
         });
 
@@ -229,27 +305,41 @@ public class BackupFragment extends Fragment {
                 } else {
                     new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
                 }
+
+                final File file1 = new File("/sdcard/SystemTweakerFREE/backups/init.d");
+                final SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+
+                textViewbackupinitd = (TextView) view.findViewById(R.id.textViewbackupinitd);
+
+                if (getActivity() == null)
+                    return;
+
+                Thread t = new Thread() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            while (!isInterrupted()) {
+                                Thread.sleep(1000);
+                                if (getActivity() != null) {
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            textViewbackupinitd.setText(gettext + " " + sdf1.format(file1.lastModified()));
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                };
+
+                t.start();
+
+
             }
         });
-
-        String gettext = getResources().getString(R.string.lastbackup);
-
-
-        File file = new File("/sdcard/SystemTweakerFREE/backups/buildprop.backup");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-
-        textViewbackupbuild = (TextView) view.findViewById(R.id.textViewbackupbuild);
-
-        textViewbackupbuild.setText(gettext + " " + sdf.format(file.lastModified()));
-
-
-        File file1 = new File("/sdcard/SystemTweakerFREE/backups/init.d");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-
-        textViewbackupinitd = (TextView) view.findViewById(R.id.textViewbackupinitd);
-
-
-        textViewbackupinitd.setText(gettext + " " + sdf1.format(file1.lastModified()));
 
 
         repair_build = (Button) view.findViewById(R.id.repair_build);

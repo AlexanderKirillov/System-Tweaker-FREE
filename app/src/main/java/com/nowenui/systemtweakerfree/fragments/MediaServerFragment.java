@@ -1,10 +1,13 @@
 package com.nowenui.systemtweakerfree.fragments;
 
+
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,9 +22,9 @@ import android.widget.CompoundButton;
 
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -120,7 +123,20 @@ public class MediaServerFragment extends Fragment {
                                                                           "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
+                                                                      final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                      dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                      dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                      dialog.setIndeterminate(false);
+                                                                      dialog.setCancelable(false);
+                                                                      dialog.show();
+
+                                                                      Handler handler = new Handler();
+                                                                      handler.postDelayed(new Runnable() {
+                                                                          public void run() {
+                                                                              dialog.dismiss();
+                                                                              new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
+                                                                          }
+                                                                      }, 4000);
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
                                                                       new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -148,7 +164,20 @@ public class MediaServerFragment extends Fragment {
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.disable)).withBackgroundColorId(R.color.textview1good).show();
+                                                                      final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                      dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                      dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                      dialog.setIndeterminate(false);
+                                                                      dialog.setCancelable(false);
+                                                                      dialog.show();
+
+                                                                      Handler handler = new Handler();
+                                                                      handler.postDelayed(new Runnable() {
+                                                                          public void run() {
+                                                                              dialog.dismiss();
+                                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.disable)).withBackgroundColorId(R.color.textview1good).show();
+                                                                          }
+                                                                      }, 4000);
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
                                                                       new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -197,7 +226,20 @@ public class MediaServerFragment extends Fragment {
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
+                                                                      final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                      dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                      dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                      dialog.setIndeterminate(false);
+                                                                      dialog.setCancelable(false);
+                                                                      dialog.show();
+
+                                                                      Handler handler = new Handler();
+                                                                      handler.postDelayed(new Runnable() {
+                                                                          public void run() {
+                                                                              dialog.dismiss();
+                                                                              new SnackBar.Builder(getActivity()).withMessage("OK!").withBackgroundColorId(R.color.textview1good).show();
+                                                                          }
+                                                                      }, 4000);
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
                                                                       new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -225,7 +267,20 @@ public class MediaServerFragment extends Fragment {
                                                                   );
                                                                   try {
                                                                       RootTools.getShell(true).add(command1);
-                                                                      new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
+                                                                      final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                      dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                      dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                      dialog.setIndeterminate(false);
+                                                                      dialog.setCancelable(false);
+                                                                      dialog.show();
+
+                                                                      Handler handler = new Handler();
+                                                                      handler.postDelayed(new Runnable() {
+                                                                          public void run() {
+                                                                              dialog.dismiss();
+                                                                              new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
+                                                                          }
+                                                                      }, 4000);
                                                                   } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                       ex.printStackTrace();
                                                                       new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -282,7 +337,21 @@ public class MediaServerFragment extends Fragment {
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
+                            final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                            dialog.setIndeterminate(false);
+                            dialog.setCancelable(false);
+                            dialog.show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    dialog.dismiss();
+                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
+                                }
+                            }, 4000);
+
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -325,7 +394,20 @@ public class MediaServerFragment extends Fragment {
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediascanner)).withBackgroundColorId(R.color.textview1good).show();
+                            final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                            dialog.setIndeterminate(false);
+                            dialog.setCancelable(false);
+                            dialog.show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    dialog.dismiss();
+                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sttoppedmediascanner)).withBackgroundColorId(R.color.textview1good).show();
+                                }
+                            }, 4000);
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
@@ -368,7 +450,21 @@ public class MediaServerFragment extends Fragment {
                         );
                         try {
                             RootTools.getShell(true).add(command1);
-                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.startpedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
+                            final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                            dialog.setIndeterminate(false);
+                            dialog.setCancelable(false);
+                            dialog.show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    dialog.dismiss();
+                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.startpedmediaserver)).withBackgroundColorId(R.color.textview1good).show();
+                                }
+                            }, 4000);
+
                         } catch (IOException | RootDeniedException | TimeoutException ex) {
                             ex.printStackTrace();
                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();

@@ -1,6 +1,6 @@
-#!/data/data/com.nowenui.systemtweaker/files/ash
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
 
-busybox=/data/data/com.nowenui.systemtweaker/files/busybox
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
 
 mount -o remount,rw /
 mount -o remount,rw rootfs
@@ -11,4 +11,5 @@ $busybox mount -o remount,rw /system
 
 rm -fr /dev/log/*
 chmod 0644 /system/bin/logd
+$busybox rm -f /dev/log/main
 killall logd

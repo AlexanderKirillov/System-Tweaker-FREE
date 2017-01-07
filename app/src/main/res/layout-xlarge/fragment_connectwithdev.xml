@@ -26,9 +26,11 @@
 
             <EditText
                 android:id="@+id/android"
+                style="@style/EditText"
                 android:layout_width="162dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical" />
+                android:layout_gravity="right|center_vertical"
+                android:theme="@style/EditText" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -79,11 +81,13 @@
 
             <EditText
                 android:id="@+id/email"
+                style="@style/EditText"
                 android:layout_width="157dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:theme="@style/EditText" />
         </FrameLayout>
 
         <TextView
@@ -96,8 +100,10 @@
 
         <EditText
             android:id="@+id/connect"
+            style="@style/EditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/EditText" />
 
         <Button
             android:id="@+id/send"

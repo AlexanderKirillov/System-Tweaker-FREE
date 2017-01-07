@@ -10,10 +10,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.github.mrengineer13.snackbar.SnackBar;
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +23,7 @@ import java.util.concurrent.TimeoutException;
 
 public class SplashActivity extends AppCompatActivity {
     private static final int ALERT_DIALOG2 = 2;
+    private static final int ALERT_DIALOG3 = 3;
     public static int checksu, checkbusy;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -55,27 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (isInitdSupport() == 1) {
                     startMainActivity();
                 } else {
-                    Command command1 = new Command(0,
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/install-recovery.sh /system/etc/",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/etc/install-recovery.sh",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox rm -f /system/bin/sysinit",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox cp /data/data/com.nowenui.systemtweakerfree/files/sysinit /system/bin/sysinit",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 755 /system/bin/sysinit",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mkdir /system/etc/init.d",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox chmod 777 /system/etc/init.d",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
-                    try {
-                        RootTools.getShell(true).add(command1);
-                        startMainActivity();
-                    } catch (IOException | RootDeniedException | TimeoutException ex) {
-                        ex.printStackTrace();
-                        new SnackBar.Builder(this).withMessage(getApplicationContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
-                    }
+                    showDialog(ALERT_DIALOG3);
                 }
             } else {
                 showDialog(ALERT_DIALOG2);
@@ -119,6 +99,24 @@ public class SplashActivity extends AppCompatActivity {
                 builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.error)
                         .setMessage(R.string.rootbusybox)
+                        .setCancelable(false)
+                        .setNegativeButton(R.string.okinstall, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                                System.exit(0);
+                            }
+                        });
+
+                dialog = builder.create();
+                break;
+            case ALERT_DIALOG3:
+                builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.error)
+                        .setMessage("Увы, но мы не обнаружили поддержку init.d. К сожалению, начиная с версии 2.2.3, мы убрали автоматическое включение поддержки init.d по требованию Google. \n\nПожалуйста, отнеситесь с пониманием, включить поддержку init.d Вы можете с помощью приложения Init.d Toogler, которое Вы можете найти в Google Play! Спасибо!")
                         .setCancelable(false)
                         .setNegativeButton(R.string.okinstall, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

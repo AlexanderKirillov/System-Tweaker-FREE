@@ -11,6 +11,47 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="EditText" parent="Widget.AppCompat.EditText">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#116062</item>
+    </style>
+
+    <style name="BrandedCheckBox" parent="AppTheme">
+        <item name="colorAccent">#638a00</item>
+    </style>
+
+    <style name="BrandedSwitch.text" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">11dp</item>
+    </style>
+
+    <style name="MySwitch1" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#FFA07A</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#ffffff</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#ffffff</item>
+    </style>
+
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#638a00</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#808080</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#808080</item>
+    </style>
+
     <style name="Splash" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -21,6 +62,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@android:color/white</item> <!-- Whatever color you want-->
+    </style>
 
     <style name="BaseText" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
@@ -36,5 +80,6 @@
     <style name="BaseText.Small" parent="BaseText">
         <item name="android:textSize">12dip</item>
     </style>
+
 
 </resources>
