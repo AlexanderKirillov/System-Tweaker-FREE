@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         if (this.androidDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             this.androidDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
+            androidDrawerLayout.openDrawer(GravityCompat.START);
             if (doubleBackToExitPressedOnce || getSupportFragmentManager().getBackStackEntryCount() != 0) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);

@@ -90,5 +90,31 @@
             android:layout_marginTop="10dp"
             android:text="@string/restoreinit.d" />
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:text="@string/clear"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#0e801d"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/dalvickclear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/cleardalvik" />
+
+        <Button
+            android:id="@+id/cacheclear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/clearcache" />
+
     </LinearLayout>
 </ScrollView>

@@ -1,8 +1,8 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 3.0.0</b></i>
+### <i><b>Current version: 3.1.0</b></i>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/2jozZ7t037VpDY)
+### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/X3P83dcf3Csf49)
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 

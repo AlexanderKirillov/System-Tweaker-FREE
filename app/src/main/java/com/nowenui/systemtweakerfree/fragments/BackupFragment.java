@@ -532,6 +532,164 @@ public class BackupFragment extends Fragment {
             }
         });
 
+        Button dalvickclear = (Button) view.findViewById(R.id.dalvickclear);
+        dalvickclear.setBackgroundResource(R.drawable.roundbuttoncal);
+        dalvickclear.setTextColor(Color.WHITE);
+        dalvickclear.setTextSize(20);
+        dalvickclear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isClicked) {
+                    return;
+                }
+                isClicked = true;
+                v.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        isClicked = false;
+                    }
+                }, 1000);
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                "rm -rf /data/dalvik-cache",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,ro /system"
+                        );
+                        try {
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.ok)).withBackgroundColorId(R.color.textview1good).show();
+                            RootTools.getShell(true).add(command1);
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle(R.string.reboot)
+                                    .setMessage(R.string.rebootdialog)
+                                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (RootTools.isRootAvailable()) {
+                                                if (RootTools.isAccessGiven()) {
+                                                    Command command1 = new Command(0,
+                                                            "reboot");
+                                                    try {
+                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.reboot)).withBackgroundColorId(R.color.textview1good).show();
+                                                        RootTools.getShell(true).add(command1);
+                                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                        ex.printStackTrace();
+                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                    }
+                                                } else {
+                                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
+                                                }
+
+                                            } else {
+                                                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
+                                            }
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setIcon(R.drawable.warning)
+                                    .show();
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                        }
+                    } else {
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                    }
+
+                } else {
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                }
+            }
+        });
+
+        Button cacheclear = (Button) view.findViewById(R.id.cacheclear);
+        cacheclear.setBackgroundResource(R.drawable.roundbuttoncal);
+        cacheclear.setTextColor(Color.WHITE);
+        cacheclear.setTextSize(20);
+        cacheclear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isClicked) {
+                    return;
+                }
+                isClicked = true;
+                v.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        isClicked = false;
+                    }
+                }, 1000);
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                "rm -rf /cache",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweaker/files/busybox mount -o remount,ro /system"
+                        );
+                        try {
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.ok)).withBackgroundColorId(R.color.textview1good).show();
+                            RootTools.getShell(true).add(command1);
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle(R.string.reboot)
+                                    .setMessage(R.string.rebootdialog)
+                                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (RootTools.isRootAvailable()) {
+                                                if (RootTools.isAccessGiven()) {
+                                                    Command command1 = new Command(0,
+                                                            "reboot");
+                                                    try {
+                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.reboot)).withBackgroundColorId(R.color.textview1good).show();
+                                                        RootTools.getShell(true).add(command1);
+                                                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                        ex.printStackTrace();
+                                                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                    }
+                                                } else {
+                                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
+                                                }
+
+                                            } else {
+                                                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.erroroot)).withBackgroundColorId(R.color.textview1bad).show();
+                                            }
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setIcon(R.drawable.warning)
+                                    .show();
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                        }
+                    } else {
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                    }
+
+                } else {
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                }
+            }
+        });
+
 
         return view;
     }

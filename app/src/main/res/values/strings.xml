@@ -2,7 +2,7 @@
     <string name="app_name">System Tweaker FREE</string>
     <string name="root">ROOT WORKING!</string>
     <string name="initd">INIT.D WORKING!</string>
-    <string name="busybox">BUSYBOX V1.25.1 \n(FROM THIS PROGRAM)!!</string>
+    <string name="busybox">BUSYBOX V1.26.2 \n(FROM THIS PROGRAM)!!</string>
     <string name="xposed">XPOSED INSTALLED!</string>
     <string name="rootbad">NO ROOT</string>
     <string name="initdbad">NO INIT.D </string>
@@ -309,7 +309,7 @@ In this case- it increases the intensity and minimum illumination threshold
      <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
 \n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
     <string name="busy1">About busybox</string>
-    <string name="busy2">BUSYBOX 1.25.1 ARM \nLocated in /data/data/com.nowenui.systemtweakerfree/files/busybox</string>
+    <string name="busy2">BUSYBOX 1.26.2 ARM \nLocated in /data/data/com.nowenui.systemtweakerfree/files/busybox</string>
     <string name="ramflag">Low RAM flag</string>
     <string name="ramflageffect">Forced use high-quality graphic effects</string>
     <string name="sys13">[BUILD.PROP TWEAK:\npersist.sys.force_highendgfx=true]  \n\nTweak improves visual effects when LOW RAM mode is on!</string>
@@ -331,4 +331,8 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="delmusic">Deleted successfuly!</string>
     <string name="rebootdialogmusic">It is recommended to reboot now.\n\nDo you want to restart your device?</string>
     <string name="var1">Improve system boot</string>
+    <string name="clear">Clearing</string>
+    <string name="cleardalvik">Clear dalvik-cache</string>
+    <string name="clearcache">Clear /cache</string>
+    <string name="dang">DANGEROUS TWEAKS!</string>
 </resources>

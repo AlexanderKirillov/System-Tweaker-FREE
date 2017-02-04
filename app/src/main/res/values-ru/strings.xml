@@ -2,7 +2,7 @@
     <string name="app_name">System Tweaker FREE</string>
     <string name="root">ROOT ПРИСУТСТВУЕТ!</string>
     <string name="initd">INIT.D РАБОТАЕТ!</string>
-    <string name="busybox">BUSYBOX V1.25.1 \n(ИЗ ПАКЕТА ПРОГРАММЫ)!</string>
+    <string name="busybox">BUSYBOX V1.26.2 \n(ИЗ ПАКЕТА ПРОГРАММЫ)!</string>
     <string name="xposed">XPOSED УСТАНОВЛЕН!</string>
     <string name="rootbad">ROOT НЕ ФУНКЦИОНИРУЕТ!</string>
     <string name="problems">имеются проблемы</string>
@@ -304,7 +304,7 @@
     <string name="senterror">ОШИБКА! СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ!</string>
     <string name="pola">НЕОБХОДИМО ЗАПОЛНИТЬ ВСЕ ПОЛЯ!</string>
     <string name="busy1">Информация о busybox</string>
-    <string name="busy2">BUSYBOX 1.25.1 ARM \n\nРасположен в папке: \n/data/data/com.nowenui.systemtweakerfree/files/\n\n При деинсталяции программы - удаляется!</string>
+    <string name="busy2">BUSYBOX 1.26.2 ARM \n\nРасположен в папке: \n/data/data/com.nowenui.systemtweakerfree/files/\n\n При деинсталяции программы - удаляется!</string>
     <string name="ramflag">Увеличение производительности устройств с малым кол-вом RAM\nПозволяет ограничивать фоновые процессы, некоторые приложения ограничат свою функциональность и также отключаются красивости интерфейса\nТвик работает на устройствах с оперативной памятью менее 1024 MB и на базе Android 4.4 и выше\nМожет действительно работать не на всех устройствах</string>
     <string name="ramflageffect">Принудительно использовать высококачественные графические эффекты при включенном режиме малого кол-ва RAM</string>
     <string name="heapoptomize">Оптимизация heap и среды исполнения\nТвик позволяет ускорить работу устройства, но применяйте с осторожностью, на некоторых устройствах возможно появление проблем с производительностью и многозадачностью.</string>
@@ -324,4 +324,8 @@
     <string name="fstrimzhel">Рекомендуется применять раз в неделю!</string>
     <string name="nowe">После применения твиков для их полной работоспособности перезагрузите устройство!</string>
     <string name="licensecheckbox">Вы согласны с соглашением</string>
+    <string name="clear">Очистка</string>
+    <string name="cleardalvik">Очистить dalvik-cache</string>
+    <string name="clearcache">Очистить /cache</string>
+    <string name="dang">ОПАСНЫЕ ТВИКИ!</string>
 </resources>
