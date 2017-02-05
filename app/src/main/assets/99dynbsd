@@ -1,0 +1,2 @@
+#!/system/bin/sh
+dynbsd start -3 -h 1

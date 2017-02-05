@@ -1,0 +1,14 @@
+# Enable compression, to make data link quicker.
+# Put or append this file in /system/etc/ppp directory
+# http://forum.xda-developers.com/showthread.php?t=1800351
+# Mohammad Bahathir Hashim (bahathir@gmail.com)
+# GPL
+# 2013
+# Rename this file to "options"
+# Full path to this file must be "/system/etc/ppp/options"
+# SerVB ;)
+
+crtscts
+vj
+bsdcomp
+deflate

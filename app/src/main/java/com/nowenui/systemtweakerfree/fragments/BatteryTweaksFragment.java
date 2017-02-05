@@ -111,6 +111,114 @@ public class BatteryTweaksFragment extends Fragment {
         } catch (IOException e) {
         }
 
+        CheckBox dynbs = (CheckBox) view.findViewById(R.id.dynbs);
+        String check11 = "/etc/init.d/99dynbsd";
+        String check11a = "/system/etc/init.d/99dynbsd";
+        if (new File(Environment.getRootDirectory() + check11).exists() || new File(check11a).exists() || new File(Environment.getRootDirectory() + check11a).exists()) {
+            dynbs.setChecked(true);
+        } else {
+            dynbs.setChecked(false);
+        }
+        dynbs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+                                             @Override
+                                             public void onCheckedChanged(CompoundButton buttonView,
+                                                                          boolean isChecked) {
+                                                 if (isChecked) {
+                                                     if (RootTools.isRootAvailable()) {
+                                                         if (RootTools.isAccessGiven()) {
+                                                             Command command1 = new Command(0,
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                     "cp /data/data/com.nowenui.systemtweakerfree/files/dynbsd /system/xbin/dynbsd",
+                                                                     "chmod 755 /system/xbin/dynbsd",
+                                                                     "cp /data/data/com.nowenui.systemtweakerfree/files/99dynbsd /system/etc/init.d/99dynbsd",
+                                                                     "chmod 777 /system/etc/init.d/99dynbsd",
+                                                                     "/system/etc/init.d/99dynbsd",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                             );
+                                                             try {
+                                                                 RootTools.getShell(true).add(command1);
+                                                                 final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                 dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                 dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                 dialog.setIndeterminate(false);
+                                                                 dialog.setCancelable(false);
+                                                                 dialog.show();
+
+                                                                 Handler handler = new Handler();
+                                                                 handler.postDelayed(new Runnable() {
+                                                                     public void run() {
+                                                                         dialog.dismiss();
+                                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakenabled)).withBackgroundColorId(R.color.textview1good).show();
+                                                                     }
+                                                                 }, 4000);
+
+                                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                 ex.printStackTrace();
+                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                             }
+                                                         } else {
+                                                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                         }
+
+                                                     } else {
+                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                     }
+
+
+                                                 } else {
+                                                     if (RootTools.isRootAvailable()) {
+                                                         if (RootTools.isAccessGiven()) {
+                                                             Command command1 = new Command(0,
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                     "rm -f /system/xbin/dynbsd",
+                                                                     "rm -f /system/etc/init.d/99dynbsd",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                             );
+                                                             try {
+                                                                 RootTools.getShell(true).add(command1);
+                                                                 final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                                                                 dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                                 dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                                                                 dialog.setIndeterminate(false);
+                                                                 dialog.setCancelable(false);
+                                                                 dialog.show();
+
+                                                                 Handler handler = new Handler();
+                                                                 handler.postDelayed(new Runnable() {
+                                                                     public void run() {
+                                                                         dialog.dismiss();
+                                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
+                                                                     }
+                                                                 }, 4000);
+
+                                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                 ex.printStackTrace();
+                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                             }
+                                                         } else {
+                                                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                         }
+
+                                                     } else {
+                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                     }
+                                                 }
+
+                                             }
+                                         }
+
+        );
+
         checkbox = (CheckBox) view.findViewById(R.id.checkBox);
         String check1 = "/etc/init.d/05FixGoogleServicedrain";
         String check1a = "/system/etc/init.d/05FixGoogleServicedrain";

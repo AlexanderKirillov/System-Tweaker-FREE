@@ -3,6 +3,7 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -40,6 +42,7 @@ public class SystemTweaksFragment extends Fragment {
     public Integer heap, grow;
     public String r, k5;
     private CheckBox checkbox21, checkbox22, checkbox23, checkbox30, display_cal, artfix;
+    private boolean isClicked;
 
     public static SystemTweaksFragment newInstance(Bundle bundle) {
         SystemTweaksFragment messagesFragment = new SystemTweaksFragment();
@@ -1529,6 +1532,68 @@ public class SystemTweaksFragment extends Fragment {
                                               }
 
         );
+
+        Button gptweak = (Button) view.findViewById(R.id.gptweak);
+        gptweak.setBackgroundResource(R.drawable.roundbuttoncal);
+        gptweak.setTextColor(Color.WHITE);
+
+        gptweak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClicked) {
+                    return;
+                }
+                isClicked = true;
+                v.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        isClicked = false;
+                    }
+                }, 1000);
+                if (RootTools.isRootAvailable()) {
+                    if (RootTools.isAccessGiven()) {
+                        Command command1 = new Command(0,
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox sqlite3 /data/data/com.android.providers.settings/databases/settings.db \"insert into global (name, value) VALUES('sys_storage_threshold_max_bytes','1048');",
+                                "settings put global sys_storage_threshold_max_bytes 1048",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                        );
+                        try {
+                            RootTools.getShell(true).add(command1);
+                            final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
+                            dialog.setIndeterminate(false);
+                            dialog.setCancelable(false);
+                            dialog.show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    dialog.dismiss();
+                                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.ok)).withBackgroundColorId(R.color.textview1good).show();
+                                }
+                            }, 4000);
+
+                        } catch (IOException | RootDeniedException | TimeoutException ex) {
+                            ex.printStackTrace();
+                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                        }
+                    } else {
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                    }
+
+                } else {
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                }
+            }
+
+        });
 
         TextView textView55 = (TextView) view.findViewById(R.id.textView55);
         textView55.setOnLongClickListener(new View.OnLongClickListener() {

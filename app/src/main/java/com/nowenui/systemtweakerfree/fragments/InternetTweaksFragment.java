@@ -774,6 +774,107 @@ public class InternetTweaksFragment extends Fragment {
 
         );
 
+        final CheckBox checkBox20171 = (CheckBox) view.findViewById(R.id.checkBox20171);
+        String check120171 = "/etc/ppp/options";
+        String check20171a = "/system/etc/ppp/options";
+        if (new File(Environment.getRootDirectory() + check120171).exists() || new File(check20171a).exists() || new File(Environment.getRootDirectory() + check20171a).exists()) {
+            checkBox20171.setChecked(true);
+        } else {
+            checkBox20171.setChecked(false);
+        }
+        checkBox20171.post(new Runnable() {
+            @Override
+            public void run() {
+                checkBox20171.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+                                                             @Override
+                                                             public void onCheckedChanged(CompoundButton buttonView,
+                                                                                          boolean isChecked) {
+
+                                                                 if (isChecked) {
+
+                                                                     if (RootTools.isRootAvailable()) {
+                                                                         if (RootTools.isAccessGiven()) {
+                                                                             Command command1 = new Command(0,
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                                     "mkdir /system/etc/ppp",
+                                                                                     "cp /data/data/com.nowenui.systemtweakerfree/files/options /system/etc/ppp/",
+                                                                                     "chmod 555 /system/etc/ppp/options",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system");
+                                                                             try {
+                                                                                 RootTools.getShell(true).add(command1);
+                                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.ok)).withBackgroundColorId(R.color.textview1good).show();
+                                                                                 new AlertDialog.Builder(getContext())
+                                                                                         .setTitle(R.string.reboot)
+                                                                                         .setMessage(R.string.rebootdialog)
+                                                                                         .setCancelable(false)
+                                                                                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                                                             public void onClick(DialogInterface dialog, int which) {
+                                                                                                 try {
+                                                                                                     Process proc = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
+                                                                                                     proc.waitFor();
+                                                                                                 } catch (Exception ex) {
+                                                                                                     new SnackBar.Builder(getActivity()).withMessage("ROOT NEEDED!").withBackgroundColorId(R.color.textview1bad).show();
+                                                                                                 }
+                                                                                             }
+                                                                                         })
+                                                                                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                                                             public void onClick(DialogInterface dialog, int which) {
+                                                                                                 dialog.dismiss();
+                                                                                             }
+                                                                                         })
+                                                                                         .setIcon(R.drawable.warning)
+                                                                                         .show();
+                                                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                                 ex.printStackTrace();
+                                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                             }
+                                                                         } else {
+                                                                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                         }
+
+                                                                     } else {
+                                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                     }
+                                                                 } else {
+                                                                     if (RootTools.isRootAvailable()) {
+                                                                         if (RootTools.isAccessGiven()) {
+                                                                             Command command1 = new Command(0,
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                                                                                     "rm -f /system/etc/ppp/options",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                                                                                     "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                                                                             );
+                                                                             try {
+                                                                                 RootTools.getShell(true).add(command1);
+                                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.disable)).withBackgroundColorId(R.color.textview1good).show();
+                                                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
+                                                                                 ex.printStackTrace();
+                                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                             }
+                                                                         } else {
+                                                                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                         }
+
+                                                                     } else {
+                                                                         new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+
+                );
+            }
+        });
+
         return view;
     }
 

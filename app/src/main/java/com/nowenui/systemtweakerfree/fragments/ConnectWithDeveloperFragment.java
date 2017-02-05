@@ -142,7 +142,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
             final CountDownLatch latch = new CountDownLatch(1);
 
-            MailSend m = new MailSend("xxxxxxx@gmail.com", "xxxxxxxx");
+            MailSend m = new MailSend("xxxxx@gmail.com", "xxxxxx");
             String[] toArr = {"NowenUI@bk.ru"};
             m.setTo(toArr);
             m.setFrom("User");

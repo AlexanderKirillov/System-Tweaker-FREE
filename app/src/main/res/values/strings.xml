@@ -335,4 +335,9 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="cleardalvik">Clear dalvik-cache</string>
     <string name="clearcache">Clear /cache</string>
     <string name="dang">DANGEROUS TWEAKS!</string>
+    <string name="a2017">Improve 3G stability using compression. \nMay load processor \nIt may not be supported by all devices. </string>
+
+    <string name="b2017">Disabling memory limit and a low memory notification when installing applications in GPlay</string>
+    <string name="c2017">To disable tweak clear \'Storage Settings\' (Settings Provider) data in settings and reboot the device. For tweak we say thank you SmoothDenis</string>
+    <string name="d2017">Dynamic Battery Saving (DynBS)\nIt will help reduce power consumption by reducing unnecessary high processor frequency when these do not need \ nFor tweak say thank igaryasha94</string>
 </resources>

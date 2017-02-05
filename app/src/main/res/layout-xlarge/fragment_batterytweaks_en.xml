@@ -31,6 +31,24 @@
             android:textStyle="bold" />
 
         <CheckBox
+            android:id="@+id/dynbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/d2017"
+            android:theme="@style/BrandedCheckBox" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/firstbatterytweak"
+            android:theme="@style/BrandedCheckBox" />
+
+        <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

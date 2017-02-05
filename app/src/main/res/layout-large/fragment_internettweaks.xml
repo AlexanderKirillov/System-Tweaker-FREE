@@ -52,6 +52,16 @@
             android:theme="@style/BrandedCheckBox" />
 
         <CheckBox
+            android:id="@+id/checkBox20171"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/a2017"
+            android:theme="@style/BrandedCheckBox" />
+
+        <CheckBox
             android:id="@+id/checkBox12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
