@@ -1,16 +1,47 @@
-# System Tweaker <b><i>FREE</i></b>
+![](http://s019.radikal.ru/i638/1707/1a/d37105dfcf35.png)
 
-### <i><b>Current version: 4.0.0</b></i>
+<p align="center">
+  <i><b>Current version: 4.0.0</b></i>
+</p>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/ow5j-XqW3LBHFJ)
-
-[![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
+[![4PDA](http://s.4pda.to/IhH7WppM5BiNVg742YhOtE9HnCGIOv6bNez0yNNTbkFooz2gO2waN6.png)](http://4pda.ru/forum/index.php?showtopic=768857&view=findpost&p=52780864)<br><br>
+[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/ow5j-XqW3LBHFJ)
 
 
 ## Description
 Speeding up your device has never been so easy! With this program you can really speed up your device, increase powersaving and etc!
-This is free version.
+This is free version with limited functionality! If you want many new functions- please bought PRO version in Google Play
 
+Before using the program, make system backup!
+
+<b>x86 devices are not supported!</b>
+
+## Requirements
+- Android 4.0.3+ , ARM
+- Root
+- Init.d support
+- SELinux: Permissive
+
+## Features:
+✪ optimized for all devices based on Android 4.0 and above<br>
+✪ has a lot of settings and functions (see below)<br>
+✪ has a nice Material Design style, beautiful animations<br>
+✪ no ads<br>
+✪ very easy, fast, does not load the system, does not work in the background<br>
+
+## Functions:
+★ Battery Calibration<br>
+★ Shutdown and restart manager<br>
+★ Battery Tweaks<br>
+★ Internet Tweaks<br>
+★ System Tweaks<br>
+★ FSTRIM<br>
+★ MediaServer и MediaScanner control (enabling/disabling) <br>
+★ Media Tweaks<br>
+★ Varios tweaks<br>
+★ Init.d folder and build.prop file backup (but please make backup via custom recovery)<br>
+★ Getting information about the device<br>
+  
 ## Download & Build
 
 1. Clone this repository
@@ -19,7 +50,13 @@ This is free version.
 4. Rebuild project
 5. Done :D
 
-## Used libraries
+## How to request a feature
+Send to NowenUI@bk.ru:
+1. A detailed description of the feature
+2. All kind of information
+3. How to integrate new function
+
+## Credits (Used libraries)
 
 * Stericson: [RootTools](https://github.com/Stericson/RootTools)
 * Stericson: [RootShell](https://github.com/Stericson/RootShell)
@@ -31,26 +68,26 @@ This is free version.
 * nisrulz: [EasyDeviceInfo](https://github.com/nisrulz/easydeviceinfo)
 * akexorcist: [DeviceInformation](https://github.com/akexorcist/DeviceInformation)
 * scijoker: [Spinner2](https://github.com/scijoker/spinner2)
-* MrEngineer13 [SnackBar](https://github.com/MrEngineer13/SnackBar)
-* DreaminginCodeZH [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
-* franmontiel [LocaleChanger](https://github.com/franmontiel/LocaleChanger)
+* MrEngineer13: [SnackBar](https://github.com/MrEngineer13/SnackBar)
+* DreaminginCodeZH: [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
+* franmontiel: [LocaleChanger](https://github.com/franmontiel/LocaleChanger)
 
-## How to report a bug
-* A detailed description of the bug
-* Logcat
+## Screenshots (russian language)
+![](http://s018.radikal.ru/i502/1707/8f/c173f651c40a.png) ![](http://s019.radikal.ru/i623/1707/99/c9f0c4597cc4.png) ![](http://s018.radikal.ru/i515/1707/a7/bbf5fe5190ca.png) ![](http://s018.radikal.ru/i503/1707/e4/68ab938ad4e5.png) ![](http://s018.radikal.ru/i518/1707/65/cd0e1358a69b.png) ![](http://s018.radikal.ru/i502/1707/8e/49dcc944bb0e.png) 
 
-And send all to NowenUI@bk.ru
+## Developed by
 
+[Alexander Kirillov (NowenUI)](https://vk.com/nowenuidev) 
 
 ## License
 
     Copyright (C) 2016-2017 Alexander Kirillov <NowenUI@bk.ru>
-    
-    Licensed under the Apache License, Version 2.0 (the "License");
+
+	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 
-		http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
