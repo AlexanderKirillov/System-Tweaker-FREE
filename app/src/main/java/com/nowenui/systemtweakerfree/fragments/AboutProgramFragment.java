@@ -7,36 +7,40 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.nowenui.systemtweakerfree.R;
 
 public class AboutProgramFragment extends Fragment {
 
-    private TextView textView30, textView31;
     private boolean isClicked;
 
     public static AboutProgramFragment newInstance(Bundle bundle) {
-        AboutProgramFragment priceListFragment = new AboutProgramFragment();
+        AboutProgramFragment AboutProgram = new AboutProgramFragment();
 
         if (bundle != null) {
-            priceListFragment.setArguments(bundle);
+            AboutProgram.setArguments(bundle);
         }
 
-        return priceListFragment;
+        return AboutProgram;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_aboutprogram, parent, false);
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_aboutprogram, parent, false);
+        /////////////////////////////////////////////////
+        ////// Links to our site //////////// ///////////
+        /////////////////////////////////////////////////
 
-        textView30 = (TextView) view.findViewById(R.id.textView30);
+        TextView textView30 = view.findViewById(R.id.textView30);
 
-
-        TextView prolink = (TextView) view.findViewById(R.id.prolink);
+        TextView prolink = view.findViewById(R.id.prolink);
         prolink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,13 +76,12 @@ public class AboutProgramFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("http://NowenUI.com");
+                Uri address = Uri.parse("http://devnowenui.wixsite.com/nowenui");
                 Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                 startActivity(openlink);
             }
         });
-        textView31 = (TextView) view.findViewById(R.id.textView31);
+        TextView textView31 = view.findViewById(R.id.textView31);
 
         textView31.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,156 +97,12 @@ public class AboutProgramFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("http://NowenUI.com");
+                Uri address = Uri.parse("http://devnowenui.wixsite.com/nowenui");
                 Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                 startActivity(openlink);
             }
         });
 
-        TableLayout csms = (TableLayout) view.findViewById(R.id.csms);
-
-        csms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.customsgphonepro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-        TableLayout chtc = (TableLayout) view.findViewById(R.id.chtc);
-
-        chtc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.customonephonepro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-
-        TableLayout mxm = (TableLayout) view.findViewById(R.id.mxm);
-
-        mxm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.sw2.maximusclocks.pro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-        TextView csms1 = (TextView) view.findViewById(R.id.csms1);
-
-
-        csms1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.customsgphonepro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-        TextView chtc1 = (TextView) view.findViewById(R.id.chtc1);
-
-
-        chtc1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.customonephonepro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-        TextView mxm1 = (TextView) view.findViewById(R.id.mxm1);
-
-
-        mxm1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    return;
-                }
-                isClicked = true;
-                v.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isClicked = false;
-                    }
-                }, 1000);
-                Intent intent = new Intent();
-                Uri address = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.sw2.maximusclocks.pro");
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                startActivity(openlink);
-            }
-        });
-
-        return view;
     }
 
 }

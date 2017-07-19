@@ -1,0 +1,33 @@
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
+
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
+
+if [ -e /sys/module/lpm_levels/parameters/sleep_disabled ]; then
+ $busybox echo "0" > /sys/module/lpm_levels/parameters/sleep_disabled;
+fi;
+
+if [ -e /sys/module/pm2/modes/cpu0/power_collapse/suspend_enabled ]; then
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu0/standalone_power_collapse/idle_enabled;
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu1/standalone_power_collapse/idle_enabled;
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu0/standalone_power_collapse/suspend_enabled;
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu1/standalone_power_collapse/suspend_enabled;
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu0/power_collapse/suspend_enabled;
+ $busybox  echo "1" > /sys/module/pm2/modes/cpu0/power_collapse/idle_enabled;
+fi;
+if [ -e /sys/module/pm2/parameters/idle_sleep_mode ]; then
+ $busybox echo "1" > /sys/module/pm2/parameters/idle_sleep_mode;
+fi;
+
+for i in `ls /sys/class/scsi_disk/`; do 
+  cat /sys/class/scsi_disk/$i/write_protect 2>/dev/null | grep 1 >/dev/null
+  if [ $? -eq 0 ]; then
+    echo 'temporary none' > /sys/class/scsi_disk/$i/cache_type
+  fi
+done

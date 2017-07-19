@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,29 +13,25 @@
 
 
         <TextView
-            android:id="@+id/textView33"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fstrim"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ssd" />
 
         <TextView
-            android:id="@+id/textView35"
             android:layout_width="match_parent"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="@string/beforestrim"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.43"
@@ -50,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
             android:text="/system"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/data"
@@ -58,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.02"
             android:text="/data"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/cache"
@@ -66,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
             android:text="/cache"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <Button
             android:id="@+id/fstrimbutton"
@@ -82,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fstrimboot"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,10 @@
         android:icon="@drawable/home"
         android:title="@string/glavnays" />
     <item
+        android:id="@+id/proversion"
+        android:icon="@drawable/star"
+        android:title="PRO Version" />
+    <item
         android:id="@+id/navigation_drawer_item10"
         android:icon="@drawable/warning"
         android:title="@string/soglasenie" />
@@ -14,6 +18,7 @@
                 android:id="@+id/navigation_drawer_item2"
                 android:icon="@drawable/phone"
                 android:title="@string/infoabout" />
+
             <item
                 android:id="@+id/navigation_drawer_item5"
                 android:icon="@drawable/battery"
@@ -39,8 +44,10 @@
                 android:title="@string/batterytweaks" />
             <item
                 android:id="@+id/navigation_drawer_item6"
-                android:icon="@drawable/wifi"
+                android:icon="@drawable/internet"
                 android:title="@string/internettweaks" />
+
+
             <item
                 android:id="@+id/navigation_drawer_item7"
                 android:icon="@drawable/android"
@@ -70,7 +77,7 @@
             <item
                 android:id="@+id/navigation_drawer_item30"
                 android:icon="@drawable/faq"
-                android:title="FAQ и решение проблем" />
+                android:title="@string/faq" />
         </menu>
     </item>
     <item android:title="@string/prochee">
@@ -83,12 +90,17 @@
             <item
                 android:id="@+id/navigation_drawer_item24"
                 android:icon="@drawable/vkcircle"
-                android:title="Наша группа ВК" />
+                android:title="@string/vk" />
 
             <item
                 android:id="@+id/navigation_drawer_item25"
                 android:icon="@drawable/twittercircle"
-                android:title="Наша твиттер" />
+                android:title="@string/twitter" />
+
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/settings"
+                android:title="@string/settings" />
 
             <item
                 android:id="@+id/navigation_drawer_item12"

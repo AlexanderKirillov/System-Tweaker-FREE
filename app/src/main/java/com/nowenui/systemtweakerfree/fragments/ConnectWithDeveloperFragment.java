@@ -1,14 +1,15 @@
 package com.nowenui.systemtweakerfree.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,38 +20,41 @@ import android.widget.Spinner;
 
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
+import com.nowenui.systemtweakerfree.Utility;
+import com.onebit.spinner2.Spinner2;
 
 import java.util.concurrent.CountDownLatch;
-
 
 public class ConnectWithDeveloperFragment extends Fragment {
 
     String androidversion;
     String rom, connecttext, emailtext;
-    private EditText connect;
-    private Button send;
     private boolean isClicked;
 
     public static ConnectWithDeveloperFragment newInstance(Bundle bundle) {
-        ConnectWithDeveloperFragment priceListFragment = new ConnectWithDeveloperFragment();
+        ConnectWithDeveloperFragment ConnectWithDeveloper = new ConnectWithDeveloperFragment();
 
         if (bundle != null) {
-            priceListFragment.setArguments(bundle);
+            ConnectWithDeveloper.setArguments(bundle);
         }
 
-        return priceListFragment;
+        return ConnectWithDeveloper;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_connectwithdev, parent, false);
+        return inflater.inflate(R.layout.fragment_connectwithdev, parent, false);
+    }
 
-        send = (Button) view.findViewById(R.id.send);
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+
+        Button send = view.findViewById(R.id.send);
         send.setBackgroundResource(R.drawable.roundbuttoncal);
         send.setTextColor(Color.WHITE);
         send.setTextSize(20);
 
-        final Spinner spinner12 = (Spinner) view.findViewById(R.id.spinner12);
+        final Spinner2 spinner12 = view.findViewById(R.id.spinner12);
         ArrayAdapter adapter =
                 ArrayAdapter.createFromResource(getActivity(), R.array.rom, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -58,6 +62,9 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
         spinner12.setAdapter(adapter);
 
+        //////////////////////////////////
+        ////// Sending........ ///////////
+        //////////////////////////////////
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,38 +80,57 @@ public class ConnectWithDeveloperFragment extends Fragment {
                         isClicked = false;
                     }
                 }, 3000);
-                EditText android = (EditText) view.findViewById(R.id.android);
-                EditText email = (EditText) view.findViewById(R.id.email);
-                EditText connect = (EditText) view.findViewById(R.id.connect);
+                EditText android = view.findViewById(R.id.android);
+                EditText email = view.findViewById(R.id.email);
+                EditText connect = view.findViewById(R.id.connect);
                 if ((android.getText().toString().matches("")) || (email.getText().toString().matches("")) || (spinner12.getSelectedItem().toString().matches("(не выбрано)")) || (connect.getText().toString().matches(""))) {
-                    new AlertDialog.Builder(getContext())
-                            .setTitle(R.string.error)
-                            .setMessage(R.string.pola)
-                            .setPositiveButton(R.string.yasno, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .setIcon(R.drawable.warning)
-                            .show();
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        new third(getActivity(), view).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    } else {
-                        new third(getActivity(), view).execute();
+                    if (Utility.getTheme(getActivity().getApplicationContext()) == 1) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle(R.string.error)
+                                .setMessage(R.string.pola)
+                                .setPositiveButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setIcon(R.drawable.warning)
+                                .show();
                     }
+                    if (Utility.getTheme(getActivity().getApplicationContext()) == 2) {
+                        new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogDark))
+                                .setTitle(R.string.error)
+                                .setMessage(R.string.pola)
+                                .setPositiveButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setIcon(R.drawable.warning)
+                                .show();
+                    }
+                    if (Utility.getTheme(getActivity().getApplicationContext()) == 3) {
+                        new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack))
+                                .setTitle(R.string.error)
+                                .setMessage(R.string.pola)
+                                .setPositiveButton(R.string.yasno, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setIcon(R.drawable.warning)
+                                .show();
+                    }
+
+                } else {
+                    new third(getActivity(), view).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
 
             }
 
         });
-
-
-        return view;
     }
 
     public class Wrapper5 {
-        boolean suc;
     }
 
     public class third extends AsyncTask<String, Void, Wrapper5> {
@@ -122,16 +148,16 @@ public class ConnectWithDeveloperFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            EditText android = (EditText) rootView.findViewById(R.id.android);
+            EditText android = rootView.findViewById(R.id.android);
             androidversion = "Версия Android: " + android.getText().toString() + "\n";
 
-            EditText email = (EditText) rootView.findViewById(R.id.email);
+            EditText email = rootView.findViewById(R.id.email);
             emailtext = "E-mail для обратной связи: " + email.getText().toString() + "\n";
 
-            Spinner spinner12 = (Spinner) rootView.findViewById(R.id.spinner12);
+            Spinner spinner12 = rootView.findViewById(R.id.spinner12);
             rom = "Прошивка: " + spinner12.getSelectedItem().toString() + "\n";
 
-            connect = (EditText) rootView.findViewById(R.id.connect);
+            EditText connect = rootView.findViewById(R.id.connect);
             connecttext = "Описание проблемы: " + connect.getText().toString() + "\n";
         }
 
@@ -142,27 +168,14 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
             final CountDownLatch latch = new CountDownLatch(1);
 
-            MailSend m = new MailSend("xxxxx@gmail.com", "xxxxxx");
-            String[] toArr = {"NowenUI@bk.ru"};
-            m.setTo(toArr);
-            m.setFrom("User");
-            m.setSubject("System Tweaker FREE (HELP)");
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "System Tweaker FREE (HELP)");
+            intent.putExtra(Intent.EXTRA_TEXT, androidversion + emailtext + rom + connecttext);
+            intent.setData(Uri.parse("mailto:nowenui@bk.ru"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
-            m.setBody(androidversion + emailtext + rom + connecttext);
-
-            try {
-                boolean i = m.send();
-                if (i == true) {
-                    w.suc = true;
-
-                } else {
-                    w.suc = false;
-                }
-
-            } catch (Exception e2) {
-
-                e2.printStackTrace();
-            }
 
             latch.countDown();
             return w;
@@ -170,13 +183,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
 
         @Override
         public void onPostExecute(Wrapper5 w) {
-
-            if (w.suc) {
-                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.sentsucess)).withBackgroundColorId(R.color.textview1good).show();
-            }
-            if (!w.suc) {
-                new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.senterror)).withBackgroundColorId(R.color.textview1bad).show();
-            }
+            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.ok)).withBackgroundColorId(R.color.textview1good).show();
 
         }
     }

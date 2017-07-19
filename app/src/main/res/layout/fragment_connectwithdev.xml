@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,6 @@
 
 
         <TextView
-            android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -22,7 +21,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.11">
+            android:layout_weight="0.11"
+            android:padding="20dp">
 
             <EditText
                 android:id="@+id/android"
@@ -33,7 +33,6 @@
                 android:theme="@style/EditText" />
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="116dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
@@ -46,10 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11">
+            android:layout_weight="0.11"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/textView16"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
@@ -68,15 +67,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11">
+            android:layout_weight="0.11"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/textView38"
                 android:layout_width="116dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:paddingLeft="5dp"
-                android:text="Ваш E-mail для обратной связи"
+                android:text="@string/email"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -91,9 +90,9 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:paddingTop="15dp"
             android:text="@string/textbug"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -103,6 +102,7 @@
             style="@style/EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:theme="@style/EditText" />
 
         <Button

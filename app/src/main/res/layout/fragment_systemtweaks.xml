@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +19,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
@@ -32,7 +32,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="5dp"
             android:background="@android:color/darker_gray" />
+
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -49,8 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_vertical|center|center_horizontal"
                 android:text="@string/ram"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <com.onebit.spinner2.Spinner2
                 android:id="@+id/spinner6"
@@ -60,50 +61,6 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp" />
         </FrameLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <CheckBox
-            android:id="@+id/perfomance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:checked="false"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/perftweak"
-            android:theme="@style/BrandedCheckBox" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <CheckBox
-            android:id="@+id/lowram"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:checked="false"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/ramflag"
-            android:theme="@style/BrandedCheckBox" />
-
-        <CheckBox
-            android:id="@+id/lowrameffects"
-            android:layout_width="262dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:checked="false"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/ramflageffect"
-            android:theme="@style/BrandedCheckBox" />
-
 
         <View
             android:layout_width="match_parent"
@@ -137,6 +94,51 @@
             android:background="@android:color/darker_gray" />
 
         <CheckBox
+            android:id="@+id/perfomance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/perftweak"
+            app:buttonTint="@color/textview1good" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+
+        <CheckBox
+            android:id="@+id/lowram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/ramflag"
+            app:buttonTint="@color/textview1good" />
+
+        <CheckBox
+            android:id="@+id/lowrameffects"
+            android:layout_width="262dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/ramflageffect"
+            app:buttonTint="@color/textview1good" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <CheckBox
             android:id="@+id/checkBox21"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,7 +146,18 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemthree"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
+
+        <CheckBox
+            android:id="@+id/fps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/fpsss"
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/andrusha7tweaks"
@@ -155,7 +168,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/andr7"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
+
 
         <CheckBox
             android:id="@+id/display_cal"
@@ -166,7 +180,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/displayfix"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox22"
@@ -175,7 +189,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemfour"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
+
 
         <CheckBox
             android:id="@+id/touchtweak"
@@ -185,7 +200,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/touchtweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox23"
@@ -194,7 +209,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemfive"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox30"
@@ -203,16 +218,10 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/systemsix"
-            android:theme="@style/BrandedCheckBox" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
+            app:buttonTint="@color/textview1good" />
 
         <TextView
+            android:id="@+id/alert1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
@@ -222,11 +231,6 @@
             android:textColor="#ff0000"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
 
         <CheckBox
             android:id="@+id/artfix"
@@ -237,7 +241,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/arttext"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/heaptweak"
@@ -248,7 +252,17 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/heapoptomize"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
+
+        <CheckBox
+            android:id="@+id/cachetransfer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/cachetr"
+            app:buttonTint="@color/textview1good" />
+
 
     </LinearLayout>
 </ScrollView>

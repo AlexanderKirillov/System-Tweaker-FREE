@@ -614,7 +614,6 @@ public class Shell {
 
         while (this.isCleaning) {
             //Don't add commands while cleaning
-            ;
         }
 
         this.commands.add(command);
@@ -891,14 +890,14 @@ public class Shell {
         }
     }
 
-    public static enum ShellType {
+    public enum ShellType {
         NORMAL,
         ROOT,
         CUSTOM
     }
 
     //this is only used with root shells
-    public static enum ShellContext {
+    public enum ShellContext {
         NORMAL("normal"), //The normal context...
         SHELL("u:r:shell:s0"), //unprivileged shell (such as an adb shell)
         SYSTEM_SERVER("u:r:system_server:s0"), // system_server, u:r:system:s0 on some firmwares
@@ -909,7 +908,7 @@ public class Shell {
 
         private String value;
 
-        private ShellContext(String value) {
+        ShellContext(String value) {
             this.value = value;
         }
 

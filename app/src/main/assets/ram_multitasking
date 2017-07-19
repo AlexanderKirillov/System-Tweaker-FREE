@@ -1,5 +1,7 @@
 #!/data/data/com.nowenui.systemtweakerfree/files/ash
 
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+
 mount -o remount,rw /data
 
 echo "Better multitasking"

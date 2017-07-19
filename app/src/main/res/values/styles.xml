@@ -1,70 +1,89 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
+        <item name="backgroundColor">#ffffff</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#2d2d2d</item>
     </style>
 
-    <style name="EditText" parent="Widget.AppCompat.EditText">
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
+    <style name="AlertTransulent" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
+        <item name="backgroundColor">#2d2d2d</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+
+    <style name="AppTheme.Amoled" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
+        <item name="backgroundColor">#000000</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+
+    <style name="AppTheme.Orange" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#ff8c00</item>
+        <item name="colorPrimaryDark">#cc7000</item>
+        <item name="colorAccent">#ff8c00</item>
+        <item name="backgroundColor">#ffffff</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#2d2d2d</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">#116062</item>
     </style>
 
-    <style name="BrandedCheckBox" parent="AppTheme">
-        <item name="colorAccent">#638a00</item>
+    <style name="EditText" parent="Widget.AppCompat.EditText">
+        <item name="colorAccent">#116062</item>
+        <item name="colorControlNormal">#116062</item>
+        <item name="colorControlActivated">#116062</item>
     </style>
 
-    <style name="BrandedSwitch.text" parent="Theme.AppCompat.Light">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">11dp</item>
+    <style name="AlertDialogDark" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
+        <item name="backgroundColor">#2d2d2d</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#ffffffff</item>
     </style>
 
-    <style name="MySwitch1" parent="Theme.AppCompat.Light">
-        <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">#FFA07A</item>
-
-        <!-- inactive thumb color -->
-        <item name="colorSwitchThumbNormal">#ffffff</item>
-
-        <!-- inactive track color (30% transparency) -->
-        <item name="android:colorForeground">#ffffff</item>
-    </style>
-
-    <style name="MySwitch" parent="Theme.AppCompat.Light">
-        <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">#638a00</item>
-
-        <!-- inactive thumb color -->
-        <item name="colorSwitchThumbNormal">#808080</item>
-
-        <!-- inactive track color (30% transparency) -->
-        <item name="android:colorForeground">#808080</item>
+    <style name="AlertDialogBlack" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
+        <item name="backgroundColor">#000000</item>
+        <item name="android:background">#000000</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#ffffffff</item>
     </style>
 
     <style name="Splash" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="colorPrimary">#116062</item>
+        <item name="colorPrimaryDark">#1C4749</item>
+        <item name="colorAccent">#116062</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.WhiteAccent">
-        <item name="colorAccent">@android:color/white</item> <!-- Whatever color you want-->
-    </style>
 
     <style name="BaseText" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
@@ -72,13 +91,8 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="BaseSpinner">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
     <style name="BaseText.Small" parent="BaseText">
-        <item name="android:textSize">12dip</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 

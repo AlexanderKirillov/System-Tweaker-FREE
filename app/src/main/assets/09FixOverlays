@@ -1,0 +1,25 @@
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
+
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
+
+
+(while :
+do
+    sf=$(service list | grep -c "SurfaceFlinger")
+
+    if [ $sf -eq 1 ]
+    then
+        service call SurfaceFlinger 1008 i32 1
+        break
+    else
+        sleep 2
+    fi
+done
+) &

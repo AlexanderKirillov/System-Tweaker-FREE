@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,16 +13,15 @@
 
 
         <TextView
-            android:id="@+id/textView33"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:gravity="center_vertical|center|center_horizontal"
             android:text="@string/mediaserver"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
         <TableLayout
-            android:id="@+id/csms"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -89,7 +89,7 @@
             android:layout_weight="0.04"
             android:checked="false"
             android:text="@string/bootmediaserver"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox32"
@@ -101,7 +101,7 @@
             android:layout_weight="0.04"
             android:checked="false"
             android:text="@string/bootmediascanner"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
 
     </LinearLayout>

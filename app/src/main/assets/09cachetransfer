@@ -1,0 +1,17 @@
+#!/data/data/com.nowenui.systemtweakerfree/files/ash
+
+busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+$busybox mount -o remount,rw /
+$busybox mount -o remount,rw rootfs
+$busybox mount -o remount,rw /system
+
+
+if [ ! -d /cache/dalvik-cache ]
+then
+$busybox rm -rf /cache/dalvik-cache /data/dalvik-cache
+mkdir /cache/dalvik-cache /data/dalvik-cache
+fi

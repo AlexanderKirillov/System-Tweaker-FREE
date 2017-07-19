@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +19,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
@@ -29,7 +29,6 @@
             android:textColor="#ff0000"
             android:textStyle="bold" />
 
-
         <CheckBox
             android:id="@+id/dynbs"
             android:layout_width="match_parent"
@@ -37,7 +36,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/d2017"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
+
 
         <CheckBox
             android:id="@+id/checkBox"
@@ -46,7 +46,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/firstbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -55,7 +55,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/secondbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox3"
@@ -64,7 +64,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/thirdbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox4"
@@ -73,7 +73,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/fifthbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox5"
@@ -82,7 +82,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/sixthbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox6"
@@ -91,7 +91,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/sevenbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
         <CheckBox
             android:id="@+id/checkBox7"
@@ -100,7 +100,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/eithtbatterytweak"
-            android:theme="@style/BrandedCheckBox" />
+            app:buttonTint="@color/textview1good" />
 
 
     </LinearLayout>

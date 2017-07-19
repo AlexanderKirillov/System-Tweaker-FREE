@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#116062</color>
     <color name="colorPrimaryDark">#1C4749</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="textview1good">#116062</color>
     <color name="textview1bad">#f80000</color>
+    <color name="tint">#ffffff</color>
+
 </resources>

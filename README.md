@@ -1,15 +1,15 @@
 # System Tweaker <b><i>FREE</i></b>
 
-### <i><b>Current version: 3.1.0</b></i>
+### <i><b>Current version: 4.0.0</b></i>
 
-### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/X3P83dcf3Csf49)
+### <i>Download APK (FREE version):</i> [Yandex Disk](https://yadi.sk/d/ow5j-XqW3LBHFJ)
 
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/nowenui)
 
-##PRO version (0,99 $): [Google Play](https://play.google.com/store/apps/details?id=com.nowenui.systemtweaker)
 
 ## Description
 Speeding up your device has never been so easy! With this program you can really speed up your device, increase powersaving and etc!
+This is free version.
 
 ## Download & Build
 
@@ -32,6 +32,8 @@ Speeding up your device has never been so easy! With this program you can really
 * akexorcist: [DeviceInformation](https://github.com/akexorcist/DeviceInformation)
 * scijoker: [Spinner2](https://github.com/scijoker/spinner2)
 * MrEngineer13 [SnackBar](https://github.com/MrEngineer13/SnackBar)
+* DreaminginCodeZH [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
+* franmontiel [LocaleChanger](https://github.com/franmontiel/LocaleChanger)
 
 ## How to report a bug
 * A detailed description of the bug
@@ -40,13 +42,18 @@ Speeding up your device has never been so easy! With this program you can really
 And send all to NowenUI@bk.ru
 
 
-##Video Reviews (PRO version)
-
-[![Review [russian]](http://img.youtube.com/vi/fQhEU1_3jJw/0.jpg)](https://www.youtube.com/watch?v=fQhEU1_3jJw)
-[![Review2 [russian]](http://img.youtube.com/vi/x-Zn8sd_ZpA/0.jpg)](https://youtu.be/x-Zn8sd_ZpA)
-
 ## License
 
     Copyright (C) 2016-2017 Alexander Kirillov <NowenUI@bk.ru>
     
-    System Tweaker FREE is open source project, you can use this sources as you want
+    Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.

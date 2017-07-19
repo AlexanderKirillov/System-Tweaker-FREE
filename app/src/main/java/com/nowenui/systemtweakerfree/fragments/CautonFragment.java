@@ -13,26 +13,27 @@ public class CautonFragment extends Fragment {
 
 
     public static CautonFragment newInstance(Bundle bundle) {
-        CautonFragment priceListFragment = new CautonFragment();
+        CautonFragment Cauton = new CautonFragment();
 
         if (bundle != null) {
-            priceListFragment.setArguments(bundle);
+            Cauton.setArguments(bundle);
         }
 
-        return priceListFragment;
+        return Cauton;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_cauton, parent, false);
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cauton, parent, false);
-
-        CheckBox cau = (CheckBox) view.findViewById(R.id.cau);
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+        CheckBox cau = view.findViewById(R.id.cau);
         if (cau.isChecked()) {
             cau.setEnabled(false);
         }
-
-        return view;
     }
 
 }

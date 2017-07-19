@@ -19,6 +19,10 @@ public class MemInfo {
         this.context = context;
     }
 
+    ////////////////////////////////////////
+    ////// Get RAM size in MB /////////////
+    ///////////////////////////////////////
+
     public long getTotalRAM() {
         long total_memory_in_Mbs = 0;
         if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
@@ -40,6 +44,9 @@ public class MemInfo {
         return total_memory_in_Mbs;
     }
 
+    ////////////////////////////////////////////
+    ////// Get Internal memory size ////////////
+    ///////////////////////////////////////////
     public long getTotalInternalMemorySize() {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
