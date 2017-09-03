@@ -712,7 +712,7 @@
                         android:layout_toEndOf="@+id/textView18"
                         android:layout_toRightOf="@+id/textView18"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text=" устанавливаю твик\службу, а после перезагрузки страницы статус не обновляется и как-будто ничего не установилось"
+                        android:text=" устанавливаю твик/службу, а после перезагрузки страницы статус не обновляется и как-будто ничего не установилось"
                         android:textSize="18sp" />
                 </RelativeLayout>
 

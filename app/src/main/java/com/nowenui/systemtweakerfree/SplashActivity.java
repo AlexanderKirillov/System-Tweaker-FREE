@@ -271,6 +271,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        copyAssets();
+
         setContentView(R.layout.splash_activity);
         final TextView status = (TextView) findViewById(R.id.status);
 
@@ -356,8 +358,6 @@ public class SplashActivity extends AppCompatActivity {
                 verify();
             }
         }
-
-        copyAssets();
 
     }
 
