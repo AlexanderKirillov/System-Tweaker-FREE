@@ -3,10 +3,12 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -141,11 +143,18 @@ public class FstrimFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-
         Button fstrimbutton = view.findViewById(R.id.fstrimbutton);
         final CheckBox system = view.findViewById(R.id.system);
         final CheckBox data = view.findViewById(R.id.data);
         final CheckBox cache = view.findViewById(R.id.cache);
+
+        one = null;
+        two = null;
+        three = null;
+        four = null;
+        sysonly = null;
+        dataonly = null;
+        cacheonly = null;
 
         ////////////////////////////////
         ////// FSTRIM option ///////////
@@ -188,6 +197,7 @@ public class FstrimFragment extends Fragment {
                             public void commandOutput(int id, final String line) {
                                 super.commandOutput(id, line);
                                 sysonly += line + "\n";
+
                             }
                         };
                         try {
@@ -207,26 +217,29 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(sysonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (sysonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(sysonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        sysonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            sysonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
+
                                     }
                                 }, 4000);
                             }
@@ -244,26 +257,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(sysonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (sysonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(sysonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        sysonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            sysonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -281,26 +296,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(sysonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (sysonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(sysonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        sysonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            sysonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -352,26 +369,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(dataonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (dataonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(dataonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        dataonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            dataonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -389,26 +408,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(dataonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (dataonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(dataonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        dataonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            dataonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -426,26 +447,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(dataonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (sysonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(dataonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        dataonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            dataonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -497,26 +520,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(cacheonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (cacheonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(cacheonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        cacheonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            cacheonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -534,26 +559,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(cacheonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (cacheonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(cacheonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        cacheonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            cacheonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -571,26 +598,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(cacheonly.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (cacheonly != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(cacheonly.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        cacheonly = null;
-                                                        d.cancel();
-                                                    }
+                                                            cacheonly = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -647,26 +676,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(one.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (one != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(one.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        one = null;
-                                                        d.cancel();
-                                                    }
+                                                            one = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -684,26 +715,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(one.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (one != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(one.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        one = null;
-                                                        d.cancel();
-                                                    }
+                                                            one = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -721,26 +754,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /system... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(one.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (one != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(one.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        one = null;
-                                                        d.cancel();
-                                                    }
+                                                            one = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -798,26 +833,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(two.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (two != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(two.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        two = null;
-                                                        d.cancel();
-                                                    }
+                                                            two = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -835,26 +872,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(two.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (two != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(two.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        two = null;
-                                                        d.cancel();
-                                                    }
+                                                            two = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -872,26 +911,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /system & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(two.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (two != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(two.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        two = null;
-                                                        d.cancel();
-                                                    }
+                                                            two = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -948,26 +989,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(three.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (three != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(three.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        three = null;
-                                                        d.cancel();
-                                                    }
+                                                            three = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -985,26 +1028,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(three.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (three != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(three.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        three = null;
-                                                        d.cancel();
-                                                    }
+                                                            three = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -1022,26 +1067,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /data & /cache... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(three.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (three != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(three.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        three = null;
-                                                        d.cancel();
-                                                    }
+                                                            three = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -1105,26 +1152,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache & /system & /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(four.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        getContext());
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (four != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(four.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            getContext());
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        four = null;
-                                                        d.cancel();
-                                                    }
+                                                            four = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -1142,26 +1191,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache & /system & /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(four.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (four != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(four.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        four = null;
-                                                        d.cancel();
-                                                    }
+                                                            four = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -1179,26 +1230,28 @@ public class FstrimFragment extends Fragment {
                                     public void run() {
                                         dialog.dismiss();
                                         new SnackBar.Builder(getActivity()).withMessage("fstrim /cache & /system & /data... OK!").withBackgroundColorId(R.color.textview1good).show();
-                                        final Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                StringBuilder sb = new StringBuilder(four.trim());
-                                                sb.delete(0, 4);
-                                                final AlertDialog.Builder db = new AlertDialog.Builder(
-                                                        new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                db.setMessage(sb);
-                                                db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface d, int arg1) {
+                                        if (four != null) {
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder sb = new StringBuilder(four.trim());
+                                                    sb.delete(0, 4);
+                                                    final AlertDialog.Builder db = new AlertDialog.Builder(
+                                                            new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
+                                                    db.setMessage(sb);
+                                                    db.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface d, int arg1) {
 
-                                                        four = null;
-                                                        d.cancel();
-                                                    }
+                                                            four = null;
+                                                            d.cancel();
+                                                        }
 
-                                                });
-                                                db.show();
-                                            }
-                                        }, 0);
+                                                    });
+                                                    db.show();
+                                                }
+                                            }, 0);
+                                        }
                                     }
                                 }, 4000);
                             }
@@ -1220,6 +1273,12 @@ public class FstrimFragment extends Fragment {
         CheckBox bootfstrim = view.findViewById(R.id.bootfstrim);
         String check20 = "/etc/init.d/70fstrim";
         String check20a = "/system/etc/init.d/70fstrim";
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            bootfstrim.setEnabled(false);
+        } else {
+            bootfstrim.setEnabled(true);
+        }
         if (new File(Environment.getRootDirectory() + check20).exists() || new File(check20a).exists() || new File(Environment.getRootDirectory() + check20a).exists()) {
             bootfstrim.setChecked(true);
         } else {

@@ -167,7 +167,7 @@ public class HomeFragment extends Fragment {
         ////// Check init.d support ///////////
         ///////////////////////////////////////
         textview11.setText(isInitdSupport());
-        if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("INIT.D РАБОТАЕТ!")) {
+        if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("ПАПКА INIT.D ПРИСУТСТВУЕТ!")) {
             textview11.setBackgroundResource(R.drawable.roundbuttonmaingood);
             textview11.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);

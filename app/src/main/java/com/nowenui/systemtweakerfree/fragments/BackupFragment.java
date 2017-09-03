@@ -2,8 +2,10 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -288,7 +290,15 @@ public class BackupFragment extends Fragment {
         ////// Backup init.d folder /////////////
         /////////////////////////////////////////
         Button backup_init = view.findViewById(R.id.backup_init);
-        backup_init.setBackgroundResource(R.drawable.roundbuttoncal);
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            backup_init.setEnabled(false);
+            backup_init.setBackgroundResource(R.drawable.roundbuttonfuck);
+        } else {
+            backup_init.setEnabled(true);
+            backup_init.setBackgroundResource(R.drawable.roundbuttoncal);
+        }
+
         backup_init.setTextColor(Color.WHITE);
         backup_init.setTextSize(15);
         backup_init.setOnClickListener(new View.OnClickListener() {
@@ -577,7 +587,14 @@ public class BackupFragment extends Fragment {
         ////// Init.d restore ///////////
         /////////////////////////////////
         Button repair_init = view.findViewById(R.id.repair_init);
-        repair_init.setBackgroundResource(R.drawable.roundbuttoncal);
+        if (mSharedPreference.contains("skipnitd")) {
+            repair_init.setEnabled(false);
+            repair_init.setBackgroundResource(R.drawable.roundbuttonfuck);
+        } else {
+            repair_init.setBackgroundResource(R.drawable.roundbuttoncal);
+            repair_init.setEnabled(true);
+        }
+
         repair_init.setTextColor(Color.WHITE);
         repair_init.setTextSize(15);
         repair_init.setOnClickListener(new View.OnClickListener() {

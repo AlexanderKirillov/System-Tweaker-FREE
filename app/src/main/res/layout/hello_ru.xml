@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="Здравствуйте! Спасибо за установку бесплатной версии программы System Tweaker! Имейте в виду, что Вы используете ограниченную версию приложения, в PRO варианте доступно более 20 новых функций, например: улучшение звука, Bravia Engine Installer, WiFi Passwords, Kernel Tweaks, совершенно новые твики и многое другое!"
+            android:text="Здравствуйте! Cпасибо за скачивание данной программы! Не забывайте, что это ограниченная версия! Если Вы хотите получить новые функции и поддержать разработчика - пожалуйста купите PRO версию в GP."
             android:textSize="18sp"
             android:textStyle="italic" />
 
@@ -65,43 +65,6 @@
                 android:weightSum="1">
 
 
-                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="left"
-                        android:gravity="center"
-                        android:paddingBottom="6dp"
-                        android:text="1)"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="193dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_gravity="right"
-                        android:layout_toEndOf="@+id/textView12"
-                        android:layout_toRightOf="@+id/textView12"
-                        android:gravity="center_vertical|center|center_horizontal"
-                        android:text="Твики не будут полноценно работать после удаления программы"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -133,7 +96,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="2)"
+                        android:text="1)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -183,7 +146,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="3)"
+                        android:text="2)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -232,7 +195,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="4)"
+                        android:text="3)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -282,7 +245,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="5)"
+                        android:text="4)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -332,7 +295,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="6)"
+                        android:text="5)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -382,7 +345,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="7)"
+                        android:text="6)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />

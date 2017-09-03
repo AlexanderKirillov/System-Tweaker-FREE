@@ -2,10 +2,12 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -139,10 +141,17 @@ public class MediaServerFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         setRetainInstance(true);
 
+
         /////////////////////////////////////////////////////
         ////// Init.d MediaServer killing script ////////////
         ////////////////////////////////////////////////////
         CheckBox checkbox31 = view.findViewById(R.id.checkBox31);
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox31.setEnabled(false);
+        } else {
+            checkbox31.setEnabled(true);
+        }
         String check17 = "/etc/init.d/01MediaServelKilling";
         String check17a = "/system/etc/init.d/01MediaServelKilling";
         if (new File(Environment.getRootDirectory() + check17).exists() || new File(check17a).exists() || new File(Environment.getRootDirectory() + check17a).exists()) {
@@ -308,6 +317,11 @@ public class MediaServerFragment extends Fragment {
         ////// Init.d MediaScanner killing script ////////////
         /////////////////////////////////////////////////////
         CheckBox checkbox32 = view.findViewById(R.id.checkBox32);
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox32.setEnabled(false);
+        } else {
+            checkbox32.setEnabled(true);
+        }
         String check18 = "/etc/init.d/01MediaScannerKilling";
         String check18a = "/system/etc/init.d/01MediaScannerKilling";
         if (new File(Environment.getRootDirectory() + check18).exists() || new File(check18a).exists() || new File(Environment.getRootDirectory() + check18a).exists()) {

@@ -1,8 +1,10 @@
 package com.nowenui.systemtweakerfree.fragments;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.mrengineer13.snackbar.SnackBar;
 import com.jaredrummler.android.device.DeviceName;
 import com.nowenui.systemtweakerfree.R;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,6 +25,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeoutException;
 
 import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
 import github.nisrulz.easydeviceinfo.base.EasyDeviceMod;
@@ -181,6 +188,115 @@ public class AboutDeviceFragment extends Fragment {
         button6.setBackgroundResource(R.drawable.roundbuttoncal);
         button6.setTextColor(Color.WHITE);
         button6.setEnabled(false);
+
+        Button button7 = view.findViewById(R.id.button7);
+        button7.setBackgroundResource(R.drawable.roundbuttoncal);
+        button7.setTextColor(Color.WHITE);
+        button7.setEnabled(false);
+
+        final Button buttoncheck = view.findViewById(R.id.buttoncheck);
+        buttoncheck.setBackgroundResource(R.drawable.roundbuttongood);
+        buttoncheck.setTextColor(Color.WHITE);
+
+        final Button buttoncheckremove = view.findViewById(R.id.buttoncheckremove);
+        buttoncheckremove.setBackgroundResource(R.drawable.roundbuttongood);
+        buttoncheckremove.setTextColor(Color.WHITE);
+
+        final TextView statusik = view.findViewById(R.id.statusik);
+
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            buttoncheck.setEnabled(false);
+            buttoncheck.setText(R.string.cant);
+            buttoncheck.setBackgroundResource(R.drawable.roundbuttonfuck);
+            statusik.setVisibility(View.GONE);
+            buttoncheckremove.setVisibility(View.GONE);
+        } else {
+            buttoncheck.setEnabled(true);
+        }
+
+        buttoncheckremove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttoncheckremove.setEnabled(false);
+                buttoncheckremove.setVisibility(View.GONE);
+                buttoncheck.setVisibility(View.VISIBLE);
+
+                if (RootTools.isAccessGiven()) {
+                    Command command1 = new Command(0,
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                            "rm -f /system/SystemTweaker/checkinit",
+                            "rm -f /system/etc/init.d/88checkinit",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                    );
+                    try {
+                        RootTools.getShell(true).add(command1);
+                        statusik.setVisibility(View.GONE);
+                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                        ex.printStackTrace();
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                    }
+                } else {
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                }
+            }
+
+        });
+
+
+        ////////////////////////////////////////////
+        ////// CHECK INIT.D ////////////////////////
+        ///////////////////////////////////////////
+        buttoncheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttoncheck.setEnabled(false);
+                buttoncheck.setVisibility(View.GONE);
+                buttoncheckremove.setVisibility(View.VISIBLE);
+
+                if (RootTools.isAccessGiven()) {
+                    Command command1 = new Command(0,
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
+                            "rm -f /system/SystemTweaker/checkinit",
+                            "cp /data/data/com.nowenui.systemtweakerfree/files/88checkinit /system/etc/init.d/",
+                            "chmod 777 /system/etc/init.d/88checkinit",
+                            "reboot",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
+                            "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
+                    );
+                    try {
+                        RootTools.getShell(true).add(command1);
+
+                    } catch (IOException | RootDeniedException | TimeoutException ex) {
+                        ex.printStackTrace();
+                        new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
+                    }
+                } else {
+                    new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
+                }
+            }
+
+        });
+
+
+        if (new File("/system/SystemTweaker/checkinit").exists()) {
+            statusik.setText("INIT.D  WORKING GOOD!");
+            statusik.setTextColor(Color.GREEN);
+            statusik.setTextSize(20);
+            buttoncheck.setVisibility(View.GONE);
+        } else {
+            statusik.setText(R.string.statusssl);
+            statusik.setTextColor(Color.RED);
+            statusik.setTextSize(20);
+            buttoncheckremove.setVisibility(View.GONE);
+        }
 
         ///////////////////////////////////////////////
         ////// Push all information to user ///////////

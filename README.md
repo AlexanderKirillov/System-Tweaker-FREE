@@ -1,11 +1,9 @@
-![](http://s019.radikal.ru/i638/1707/1a/d37105dfcf35.png)
-
 <p align="center">
-  <i><b>Current version: 4.0.0</b></i>
+  <i><b>Current version: 4.1.0</b></i>
 </p>
 
 [![4PDA](http://s.4pda.to/IhH7WppM5BiNVg742YhOtE9HnCGIOv6bNez0yNNTbkFooz2gO2waN6.png)](http://4pda.ru/forum/index.php?showtopic=768857&view=findpost&p=52780864)<br><br>
-[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/ow5j-XqW3LBHFJ)
+[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/Evl5UNTL3MZzc5)
 
 
 ## Description
@@ -54,7 +52,7 @@ Before using the program, make system backup!
 Send to NowenUI@bk.ru:
 1. A detailed description of the feature
 2. All kind of information
-3. How to integrate new function
+3. How to integrate new function :D
 
 ## Credits (Used libraries)
 

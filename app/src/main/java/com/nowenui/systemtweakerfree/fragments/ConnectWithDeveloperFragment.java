@@ -21,7 +21,6 @@ import android.widget.Spinner;
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.nowenui.systemtweakerfree.R;
 import com.nowenui.systemtweakerfree.Utility;
-import com.onebit.spinner2.Spinner2;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -54,7 +53,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
         send.setTextColor(Color.WHITE);
         send.setTextSize(20);
 
-        final Spinner2 spinner12 = view.findViewById(R.id.spinner12);
+        final Spinner spinner12 = view.findViewById(R.id.spinner12);
         ArrayAdapter adapter =
                 ArrayAdapter.createFromResource(getActivity(), R.array.rom, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,6 +130,7 @@ public class ConnectWithDeveloperFragment extends Fragment {
     }
 
     public class Wrapper5 {
+        boolean suc;
     }
 
     public class third extends AsyncTask<String, Void, Wrapper5> {

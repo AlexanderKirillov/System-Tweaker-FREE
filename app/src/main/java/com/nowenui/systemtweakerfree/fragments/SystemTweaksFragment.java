@@ -185,6 +185,11 @@ public class SystemTweaksFragment extends Fragment {
         ///// Dangerous tweak: ART Tweak /////
         /////////////////////////////////////
         CheckBox artfix = view.findViewById(R.id.artfix);
+        if (mSharedPreference.contains("skipnitd")) {
+            artfix.setEnabled(false);
+        } else {
+            artfix.setEnabled(true);
+        }
         if (mSharedPreference.contains("ALERTCHECK")) {
             artfix.setVisibility(View.VISIBLE);
         } else {
@@ -615,7 +620,11 @@ public class SystemTweaksFragment extends Fragment {
         CheckBox cachetransfer = view.findViewById(R.id.cachetransfer);
         String c10 = "/etc/init.d/09cachetransfer";
         String c10a = "/system/etc/init.d/09cachetransfer";
-
+        if (mSharedPreference.contains("skipnitd")) {
+            cachetransfer.setEnabled(false);
+        } else {
+            cachetransfer.setEnabled(true);
+        }
         if (mSharedPreference.contains("ALERTCHECK")) {
             cachetransfer.setVisibility(View.VISIBLE);
         } else {
@@ -713,8 +722,8 @@ public class SystemTweaksFragment extends Fragment {
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                            "/data/data/com.nowenui.systemtweakerfree/files/busybox sqlite3 /data/data/com.android.providers.settings/databases/settings.db \"insert into global (name, value) VALUES('sys_storage_threshold_max_bytes','1048');",
                             "settings put global sys_storage_threshold_max_bytes 1048",
+                            "settings put secure sys_storage_threshold_max_bytes 1048",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,ro /system"
@@ -923,6 +932,11 @@ public class SystemTweaksFragment extends Fragment {
         CheckBox display_cal = view.findViewById(R.id.display_cal);
         String check10 = "/etc/init.d/display";
         String check10a = "/system/etc/init.d/display";
+        if (mSharedPreference.contains("skipnitd")) {
+            display_cal.setEnabled(false);
+        } else {
+            display_cal.setEnabled(true);
+        }
         if (new File(Environment.getRootDirectory() + check10).exists() || new File(check10a).exists() || new File(Environment.getRootDirectory() + check10a).exists()) {
             display_cal.setChecked(true);
         } else {
@@ -1038,6 +1052,11 @@ public class SystemTweaksFragment extends Fragment {
         ////// GPU Tweaks ///////////
         /////////////////////////////
         CheckBox checkbox21 = view.findViewById(R.id.checkBox21);
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox21.setEnabled(false);
+        } else {
+            checkbox21.setEnabled(true);
+        }
         String ch21 = "/system/etc/init.d/81GPU_rendering";
         if (text.toString().contains("debug.composition.type=gpu")
                 && text.toString().contains("debug.sf.hw=1")
@@ -1389,6 +1408,11 @@ public class SystemTweaksFragment extends Fragment {
         ////// TouchScreen Tweak //////////
         //////////////////////////////////
         CheckBox touchtweak = view.findViewById(R.id.touchtweak);
+        if (mSharedPreference.contains("skipnitd")) {
+            touchtweak.setEnabled(false);
+        } else {
+            touchtweak.setEnabled(true);
+        }
         String check44 = "/etc/init.d/touch";
         String check44a = "/system/etc/init.d/touch";
         if (new File(Environment.getRootDirectory() + check44).exists() || new File(check44a).exists() || new File(Environment.getRootDirectory() + check44a).exists()) {
@@ -1503,6 +1527,11 @@ public class SystemTweaksFragment extends Fragment {
         ////// Boost & Performance tweak //////////
         //////////////////////////////////////////
         CheckBox perfomance = view.findViewById(R.id.perfomance);
+        if (mSharedPreference.contains("skipnitd")) {
+            perfomance.setEnabled(false);
+        } else {
+            perfomance.setEnabled(true);
+        }
         String check64 = "/etc/init.d/boost";
         String check64a = "/system/etc/init.d/boost";
         if (text.toString().contains("persist.service.lgospd.enable=0")
@@ -1994,6 +2023,11 @@ public class SystemTweaksFragment extends Fragment {
         ////// Zipalign Tweak //////////
         ///////////////////////////////
         CheckBox checkbox23 = view.findViewById(R.id.checkBox23);
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox23.setEnabled(false);
+        } else {
+            checkbox23.setEnabled(true);
+        }
         String check11 = "/etc/init.d/93zipalign";
         String check11a = "/system/etc/init.d/93zipalign";
         if (new File(Environment.getRootDirectory() + check11).exists() || new File(check11a).exists() || new File(Environment.getRootDirectory() + check11a).exists()) {
@@ -2211,6 +2245,11 @@ public class SystemTweaksFragment extends Fragment {
         ////// SQLite Tweaks //////////
         //////////////////////////////
         CheckBox checkbox30 = view.findViewById(R.id.checkBox30);
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox30.setEnabled(false);
+        } else {
+            checkbox30.setEnabled(true);
+        }
         String check12 = "/etc/init.d/11sqlite";
         String check12a = "/system/etc/init.d/11sqlite";
         if (new File(Environment.getRootDirectory() + check12).exists() || new File(check12a).exists() || new File(Environment.getRootDirectory() + check12a).exists()) {
@@ -2478,8 +2517,12 @@ public class SystemTweaksFragment extends Fragment {
         ////// RAM MODE Tweak ////////////
         /////////////////////////////////
         final Spinner2 spinner6 = view.findViewById(R.id.spinner6);
-
-        ArrayAdapter adapter3 =
+        if (mSharedPreference.contains("skipnitd")) {
+            spinner6.setEnabled(false);
+        } else {
+            spinner6.setEnabled(true);
+        }
+        ArrayAdapter<CharSequence> adapter3 =
                 ArrayAdapter.createFromResource(getActivity(), R.array.ramlist, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -2511,6 +2554,7 @@ public class SystemTweaksFragment extends Fragment {
 
 
         }
+
         String fucks10 = "/etc/init.d/ram_balanced";
         String fucks10a = "/system/etc/init.d/ram_balanced";
         if (new File(Environment.getRootDirectory() + fucks10).exists() || new File(fucks10a).exists() || new File(Environment.getRootDirectory() + fucks10a).exists()) {
@@ -2707,6 +2751,7 @@ public class SystemTweaksFragment extends Fragment {
                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.errordev)).withBackgroundColorId(R.color.textview1bad).show();
                             }
                         }
+
                     }
                 });
             }

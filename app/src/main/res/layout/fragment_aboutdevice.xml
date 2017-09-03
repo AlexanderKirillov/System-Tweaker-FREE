@@ -77,5 +77,43 @@
             android:text=""
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Init.d support checker" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/initdinfo"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/buttoncheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/checkinitd" />
+
+
+        <Button
+            android:id="@+id/buttoncheckremove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/clearinitd" />
+
+
+        <TextView
+            android:id="@+id/statusik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </LinearLayout>
 </ScrollView>

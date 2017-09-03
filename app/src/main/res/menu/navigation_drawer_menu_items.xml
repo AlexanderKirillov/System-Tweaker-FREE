@@ -4,10 +4,12 @@
         android:id="@+id/navigation_drawer_item1"
         android:icon="@drawable/home"
         android:title="@string/glavnays" />
+
     <item
         android:id="@+id/proversion"
         android:icon="@drawable/star"
         android:title="PRO Version" />
+
     <item
         android:id="@+id/navigation_drawer_item10"
         android:icon="@drawable/warning"
@@ -18,7 +20,6 @@
                 android:id="@+id/navigation_drawer_item2"
                 android:icon="@drawable/phone"
                 android:title="@string/infoabout" />
-
             <item
                 android:id="@+id/navigation_drawer_item5"
                 android:icon="@drawable/battery"
@@ -46,7 +47,6 @@
                 android:id="@+id/navigation_drawer_item6"
                 android:icon="@drawable/internet"
                 android:title="@string/internettweaks" />
-
 
             <item
                 android:id="@+id/navigation_drawer_item7"

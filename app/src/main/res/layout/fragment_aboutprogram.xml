@@ -36,7 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_weight="0.09"
-            android:text="V4.0.0"
+            android:text="V4.1.0"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -148,6 +148,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -188,6 +189,18 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/roundbuttonmainbefore"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:text="PiracyChecker by Javier Santos"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="match_parent"

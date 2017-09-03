@@ -178,6 +178,7 @@ public class SettingsFragment extends Fragment {
             alerttweaks.setChecked(false);
         }
 
+
         alerttweaks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 

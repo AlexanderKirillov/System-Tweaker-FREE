@@ -3,9 +3,11 @@ package com.nowenui.systemtweakerfree.fragments;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -167,6 +169,13 @@ public class BatteryTweaksFragment extends Fragment {
         } else {
             checkbox.setChecked(false);
         }
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox.setEnabled(false);
+        } else {
+            checkbox.setEnabled(true);
+        }
+
         checkbox.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {
                 if (Utility.getTheme(getActivity().getApplicationContext()) == 1) {
@@ -307,57 +316,6 @@ public class BatteryTweaksFragment extends Fragment {
                                                                 new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
                                                             } catch (IOException | RootDeniedException | TimeoutException ex) {
                                                                 ex.printStackTrace();
-                                                                if (Utility.getTheme(getActivity().getApplicationContext()) == 1) {
-
-                                                                    final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
-                                                                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                                                                    dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
-                                                                    dialog.setIndeterminate(false);
-                                                                    dialog.setCancelable(false);
-                                                                    dialog.show();
-
-                                                                    Handler handler = new Handler();
-                                                                    handler.postDelayed(new Runnable() {
-                                                                        public void run() {
-                                                                            dialog.dismiss();
-                                                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
-                                                                        }
-                                                                    }, 6000);
-                                                                }
-                                                                if (Utility.getTheme(getActivity().getApplicationContext()) == 2) {
-
-                                                                    final ProgressDialog dialog = new ProgressDialog(new ContextThemeWrapper(getContext(), R.style.AlertDialogDark));
-                                                                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                                                                    dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
-                                                                    dialog.setIndeterminate(false);
-                                                                    dialog.setCancelable(false);
-                                                                    dialog.show();
-
-                                                                    Handler handler = new Handler();
-                                                                    handler.postDelayed(new Runnable() {
-                                                                        public void run() {
-                                                                            dialog.dismiss();
-                                                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
-                                                                        }
-                                                                    }, 6000);
-                                                                }
-                                                                if (Utility.getTheme(getActivity().getApplicationContext()) == 3) {
-
-                                                                    final ProgressDialog dialog = new ProgressDialog(new ContextThemeWrapper(getContext(), R.style.AlertDialogBlack));
-                                                                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                                                                    dialog.setMessage(getContext().getResources().getString(R.string.speedmessage));
-                                                                    dialog.setIndeterminate(false);
-                                                                    dialog.setCancelable(false);
-                                                                    dialog.show();
-
-                                                                    Handler handler = new Handler();
-                                                                    handler.postDelayed(new Runnable() {
-                                                                        public void run() {
-                                                                            dialog.dismiss();
-                                                                            new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.tweakdisabled)).withBackgroundColorId(R.color.textview1good).show();
-                                                                        }
-                                                                    }, 6000);
-                                                                }
                                                             }
                                                         } else {
                                                             new SnackBar.Builder(getActivity()).withMessage(getContext().getResources().getString(R.string.error)).withBackgroundColorId(R.color.textview1bad).show();
@@ -381,6 +339,11 @@ public class BatteryTweaksFragment extends Fragment {
             checkbox2.setChecked(true);
         } else {
             checkbox2.setChecked(false);
+        }
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox2.setEnabled(false);
+        } else {
+            checkbox2.setEnabled(true);
         }
         checkbox2.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {
@@ -494,6 +457,11 @@ public class BatteryTweaksFragment extends Fragment {
             dynbs.setChecked(true);
         } else {
             dynbs.setChecked(false);
+        }
+        if (mSharedPreference.contains("skipnitd")) {
+            dynbs.setEnabled(false);
+        } else {
+            dynbs.setEnabled(true);
         }
         dynbs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -785,6 +753,11 @@ public class BatteryTweaksFragment extends Fragment {
             checkbox4.setChecked(true);
         } else {
             checkbox4.setChecked(false);
+        }
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox4.setEnabled(false);
+        } else {
+            checkbox4.setEnabled(true);
         }
         checkbox4.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {
@@ -1147,6 +1120,11 @@ public class BatteryTweaksFragment extends Fragment {
             checkbox7.setChecked(true);
         } else {
             checkbox7.setChecked(false);
+        }
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox7.setEnabled(false);
+        } else {
+            checkbox7.setEnabled(true);
         }
         checkbox7.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {

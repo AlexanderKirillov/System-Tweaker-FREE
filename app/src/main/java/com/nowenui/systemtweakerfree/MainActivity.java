@@ -381,7 +381,6 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, AboutProgramFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
                             case R.id.navigation_drawer_item15:
                                 fragmentTitle = res.getString(R.string.varioustweaks);
                                 getSupportFragmentManager()
@@ -414,30 +413,15 @@ public class MainActivity extends AppCompatActivity {
                                         .replace(R.id.content, MediaServerFragment.newInstance(bundle))
                                         .commit();
                                 break;
-
                             case R.id.navigation_drawer_item24:
                                 fragmentTitle = "System Tweaker FREE";
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
+                                        Intent vk = new Intent();
                                         Uri address = Uri.parse("http://vk.com/nowenui_official_group");
                                         Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                                         startActivity(openlink);
-                                    }
-                                }, 300);
-
-                                menuItem.setChecked(false);
-
-                                break;
-
-                            case R.id.navigation_drawer_item25:
-                                fragmentTitle = "System Tweaker FREE";
-                                Handler handler2 = new Handler();
-                                handler2.postDelayed(new Runnable() {
-                                    public void run() {
-                                        Uri addresstwi = Uri.parse("https://twitter.com/intent/user?user_id=4771768877");
-                                        Intent openlinktwi = new Intent(Intent.ACTION_VIEW, addresstwi);
-                                        startActivity(openlinktwi);
                                     }
                                 }, 300);
 
@@ -451,6 +435,23 @@ public class MainActivity extends AppCompatActivity {
                                 handler3.postDelayed(new Runnable() {
                                     public void run() {
                                         Uri addresstwi = Uri.parse("https://play.google.com/store/apps/details?id=com.nowenui.systemtweaker");
+                                        Intent openlinktwi = new Intent(Intent.ACTION_VIEW, addresstwi);
+                                        startActivity(openlinktwi);
+                                    }
+                                }, 300);
+
+                                menuItem.setChecked(false);
+
+                                break;
+
+
+                            case R.id.navigation_drawer_item25:
+                                fragmentTitle = "System Tweaker FREE";
+                                Handler handler2 = new Handler();
+                                handler2.postDelayed(new Runnable() {
+                                    public void run() {
+                                        Intent twitter = new Intent();
+                                        Uri addresstwi = Uri.parse("https://twitter.com/intent/user?user_id=4771768877");
                                         Intent openlinktwi = new Intent(Intent.ACTION_VIEW, addresstwi);
                                         startActivity(openlinktwi);
                                     }

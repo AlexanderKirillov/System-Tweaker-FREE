@@ -20,6 +20,10 @@ public class SystemTweakerFREE extends Application {
 
     @Override
     public void onCreate() {
+
+        ////////////////////////////////////////
+        ////// Check theme and apply ///////////
+        ////////////////////////////////////////
         super.onCreate();
         LocaleChanger.initialize(getApplicationContext(), SUPPORTED_LOCALES);
 

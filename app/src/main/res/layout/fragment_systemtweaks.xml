@@ -32,7 +32,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="@android:color/darker_gray" />
 
 
@@ -92,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
+
 
         <CheckBox
             android:id="@+id/perfomance"
@@ -169,7 +169,6 @@
             android:paddingTop="10dp"
             android:text="@string/andr7"
             app:buttonTint="@color/textview1good" />
-
 
         <CheckBox
             android:id="@+id/display_cal"

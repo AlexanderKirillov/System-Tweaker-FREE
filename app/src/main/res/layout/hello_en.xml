@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="Welcome to System Tweaker FREE"
+            android:text="Welcome to System Tweaker PRO"
             android:textColor="@color/textview1bad"
             android:textSize="25dp"
             android:textStyle="bold|italic" />
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="Hello! Thanks for installing free version of System Tweaker application!\nThis version has limited in functionality, and all other major functions of the program present in the PRO version"
+            android:text="Hello! Thanks for downloading FREE version of System Tweaker!"
             android:textSize="18sp"
             android:textStyle="italic" />
 
@@ -73,33 +73,6 @@
                     android:weightSum="1">
 
 
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="left"
-                        android:gravity="center"
-                        android:paddingBottom="6dp"
-                        android:text="1)"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="193dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_gravity="right"
-                        android:layout_toEndOf="@+id/textView12"
-                        android:layout_toRightOf="@+id/textView12"
-                        android:gravity="center_vertical|center|center_horizontal"
-                        android:text="Tweaks will not work properly after the program is uninstalled"
-                        android:textSize="18sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -133,7 +106,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="2)"
+                        android:text="1)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -183,7 +156,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="3)"
+                        android:text="2)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -232,7 +205,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="4)"
+                        android:text="3)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -282,7 +255,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="5)"
+                        android:text="4)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -332,7 +305,7 @@
                         android:layout_gravity="left"
                         android:gravity="center"
                         android:paddingBottom="6dp"
-                        android:text="6)"
+                        android:text="5)"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -361,7 +334,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical|center_horizontal|center"
-            android:text="Also, when you click the \'OK\' button, you acknowledge that after opening the application you read the licensing agreement and automatically agreed with it!"
+            android:text="Also, when you click the \ 'OK \' button, you acknowledge that after opening the application you read the licensing agreement and automatically agreed with it!"
             android:textSize="18sp"
             android:textStyle="italic" />
 

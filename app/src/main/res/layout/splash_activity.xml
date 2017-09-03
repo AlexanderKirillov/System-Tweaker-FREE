@@ -69,7 +69,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:gravity="right"
-        android:text="V4.0.0"
+        android:text="V4.1.0"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#ffffff"
         android:textSize="20sp"

@@ -4,7 +4,7 @@
     <string name="settingstile">Settings</string>
     <string name="root">ROOT WORKING!</string>
     <string name="initd">INIT.D WORKING!</string>
-    <string name="busybox">BUSYBOX V1.26.2 \n(FROM THIS PROGRAM)!!</string>
+    <string name="busybox">BUSYBOX V1.27.2 \n(FROM THIS PROGRAM)!!</string>
     <string name="rootbad">NO ROOT</string>
     <string name="initdbad">NO INIT.D </string>
     <string name="busyboxbad">NO BUSYBOX</string>
@@ -110,7 +110,7 @@
     <string name="systemthree">Render UI with GPU, improving smooth of scrolling\nEnabling this tweak may improve performance and smooth, but only if your GPU is powerful</string>
     <string name="systemfour">Improving smooth and speed of scrolling</string>
     <string name="systemfive">Auto-zipalign\nThis tweak improving speed and performance of your phone</string>
-    <string name="systemsix">Auto optimize SQLite\nThis tweak improving speed and performance of your phone</string>
+    <string name="systemsix">Auto-optimize SQLite\nThis tweak improving speed and performance of your phone</string>
     <string name="fstrim">FSTRIM- special utility that accelerates the operation of the device by performing the TRIM operation on the memory device\n</string>
     <string name="beforestrim">Select the partition(s) and press &quot;FSTRIM&quot;\n\n</string>
     <string name="fstrimboot">Make auto-FSTRIM at boot</string>
@@ -275,7 +275,7 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
 \n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
     <string name="busy1">About busybox</string>
-    <string name="busy2">BUSYBOX 1.26.2 ARM \nLocated in /data/data/com.nowenui.systemtweakerfree/files/busybox</string>
+    <string name="busy2">BUSYBOX 1.27.2 ARM \nLocated in /data/data/com.nowenui.systemtweakerfree/files/busybox</string>
     <string name="ramflag">Low RAM flag</string>
     <string name="ramflageffect">Forced use high-quality graphic effects</string>
     <string name="sys13">[BUILD.PROP TWEAK:\npersist.sys.force_highendgfx=true]  \n\nTweak improves visual effects when LOW RAM mode is on!</string>
@@ -308,8 +308,7 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="initderror"> Sorry, but we do not found init.d support. We removed the automatic init.d enabler at Google\'s request.
         \n\nYou can enable init.d support in two ways:\n\n
 1) Using Universal init.d application or init.d scripts application. You can find it in Google Play\n\n 2) If you have a custom recovery installed, then you can go into it and flash the file located: \n
-/sdcard/SystemTweaker/initd.zip. With it, you easily and quickly activate init.d support.\n\n
-AThanks for your attention! </string>
+/sdcard/SystemTweakerFREE/initd.zip. With it, you easily and quickly activate init.d support.\n\n If you want to use the program without init.d support - press on the \'SKIP\' или \'DO NOT SHOW AGAIN\'. In this case the init.d tweaks will be unavailable and the functionality of the program will be limited!\n\nThanks for your attention! </string>
     <string name="faq">FAQ (only russian lang.)</string>
     <string name="vk">Our VK group</string>
     <string name="twitter">Our twitter</string>
@@ -321,6 +320,7 @@ AThanks for your attention! </string>
     <string name="themedark">Dark</string>
     <string name="unlocktweaks">Unlock potentially dangerous tweaks that can broke your firmware\nRecommended for experts</string>
     <string name="email">Your e-mail</string>
+    <string name="lic">Unfortunately, APK check failed! The application should not be modified or rebuilted \n\nIf you have any problems, please contact to NowenUI@bk.ru\n\nThank you very much for your understanding!</string>
 
     <string name="before1">Make system and data backups using custom recovery (if you can make it)</string>
     <string name="before2">Make build.prop file and init.d folder backups using utility, which presents in this programm</string>
@@ -330,7 +330,7 @@ AThanks for your attention! </string>
     <string name="agree2">2) Yes, you should understand that developer not responsible for the broken devices, dead batteries, etc</string>
     <string name="agree3">3) All the features of the program is for information only, their presence does not mean their using</string>
     <string name="agree4">4) You can not use the program for their own purposes, or any part of the code of the program without the consent of the developer, but bear in mind paragraph 5</string>
-    <string name="agree5">5) All of the features, presented in the program (tweaks, battery calibration technology, etc.), are available to the public, you can use them for their own purposes (for example, commercial purposes)</string>
+    <string name="agree5">5) All of the features, presented in the program (tweaks, battery calibration technology, speed-up technology with one click and etc.), are available to the public, you can use them for their own purposes (for example, commercial purposes)</string>
     <string name="cal1">1) Fully charge your device</string>
     <string name="cal2">2) Press on the button \'Calibrate\'</string>
     <string name="selinux">Note that SELinux have status: Enforcing. For the correct working of the program you must change the status to Permissive. Otherwise, a lot of functions of the program will work incorrectly, tweaks will not work. Instructions for disabling can be found on the Internet.</string>
@@ -340,9 +340,16 @@ AThanks for your attention! </string>
     <string name="spcheck1">Root checking...</string>
     <string name="spcheck2">Init.d checking...</string>
     <string name="spcheck3">Initialing interface...</string>
+    <string name="spcheck4">Checking APK...</string>
     <string name="spcheck5">Service checking...</string>
     <string name="languageset">Select the language of the program:</string>
     <string name="enlanguage">English (US)</string>
     <string name="rulanguage">Russian</string>
     <string name="mostthanks">Thanks to: \n1) Wamus\n2) A$teroid\n3) Tokha Antokha\n4) Frost41\n5) SmoothDenis</string>
+    <string name="initdinfo">This section is made for the purpose of real testing of init.d support by your device (Note that when you start the program, programm checking /system/etc/init.d folder). This is necessary in order to recognize the cause of incorrect work of tweaks / programm. \n\nTo check, click on the button below, after that your device will automatically reboot. After 5 minutes after the reboot, go here and at the bottom of the page you will see the status of the work init.d.</string>
+    <string name="checkinitd">Check init.d support!</string>
+    <string name="clearinitd">Clear status!</string>
+    <string name="cant">NOT AVAILABLE</string>
+    <string name="statusssl">NOT INSPECTED OR INIT.D NOT SUPPORTED!</string>
+
 </resources>

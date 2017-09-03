@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:padding="10dp"
+            android:text="@string/initderror"
+            android:textSize="15dp"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/rebootrec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/roundbuttoncal"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="REBOOT INTO RECOVERY"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/skippp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/roundbuttoncal"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="@string/skip"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/skipppandsave"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/roundbuttoncal"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="@string/notshow"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/exitttt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/roundbuttoncal"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="@string/exit"
+            android:textColor="#ffffff" />
+
+
+    </LinearLayout>
+
+</ScrollView>

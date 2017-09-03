@@ -56,7 +56,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@color/textview1bad"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -105,7 +105,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="О:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/textview1bad"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -162,7 +162,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -225,7 +225,7 @@
                         android:layout_toEndOf="@+id/textView7"
                         android:layout_toRightOf="@+id/textView7"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text="переустановите Root права с помощью кастомного рекавери и архива с SuperSU, отключите SELinux, если не поможет, то сообщите разработчику!"
+                        android:text="переустановите Root права с помощью кастомного рекавери и архива с SuperSU, если не поможет, то сообщите разработчику! Также удостоверьтесь, что статус SELinux установлен на значении Permissive"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -268,7 +268,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -332,7 +332,7 @@
                         android:layout_toEndOf="@+id/textView9"
                         android:layout_toRightOf="@+id/textView9"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text='если на Вашем устройстве установлены и работают Root права, то просто закройте программу и откройте снова. В этот раз все должно быть корректно! Учтите, что с Magisk Root приложение может работать некорректно! Если ошибка продолжает появляться, очистите данные SuperSU в диспетчере приложений и переустановите System Tweaker FREE.  Если и это не поможет, то переустановите Root права с помощью кастомного рекавери и архива с SuperSU! Если же на Вашем устройстве нет Root, то информацию о том, как получить Root права, Вы можете узнать в теме "Прошивки" Вашего устройства на 4pda или xda'
+                        android:text='если на Вашем устройстве установлены и работают Root права, то просто закройте программу и откройте снова. В этот раз все должно быть корректно! Учтите, что с Magisk приложение может работать некорректно! Если ошибка продолжает появляться, очистите данные SuperSU в диспетчере приложений и переустановите System Tweaker PRO. Если и это не поможет, то переустановите Root права с помощью кастомного рекавери и архива с SuperSU! Если же на Вашем устройстве нет Root, то информацию о том, как получить Root права, Вы можете узнать в теме "Прошивки" Вашего устройства на 4pda или xda'
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -375,7 +375,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -484,7 +484,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -498,7 +498,7 @@
                         android:layout_toEndOf="@+id/textView13"
                         android:layout_toRightOf="@+id/textView13"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text="  применяю твик, вроде бы как он установился, а программа выдает \'ОШИБКА\' или \'ОШИБКА. СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ'\"
+                        android:text="  применяю твик, вроде бы как он установился, а программа выдает \'ОШИБКА\' или \'ОШИБКА. СВЯЖИТЕСЬ С РАЗРАБОТЧИКОМ\'"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -591,7 +591,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -655,7 +655,7 @@
                         android:layout_toEndOf="@+id/textView17"
                         android:layout_toRightOf="@+id/textView17"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text=' устанавливаю твик/службу, а после перезагрузки страницы статус не обновляется и как-будто ничего не установилось\n(например, устанавливаю твик, обновляю страницу, а статус установки не меняется и отображается красным цветом)'
+                        android:text="сами Вы не сможете исправить эту проблему, напишите мне письмо на NowenUI@bk.ru с указанием проблемы и скриншотами"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -698,7 +698,7 @@
                         android:gravity="center"
                         android:paddingBottom="6dp"
                         android:text="В:"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -712,7 +712,7 @@
                         android:layout_toEndOf="@+id/textView18"
                         android:layout_toRightOf="@+id/textView18"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text="  открываю программу и вижу, что есть ошибки в интерфейсе (наезжание элементов, обрезанный текст и т.п)"
+                        android:text=" устанавливаю твик\службу, а после перезагрузки страницы статус не обновляется и как-будто ничего не установилось"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -762,7 +762,7 @@
                         android:layout_toEndOf="@+id/textView14"
                         android:layout_toRightOf="@+id/textView14"
                         android:gravity="center_vertical|center|center_horizontal"
-                        android:text=' возможно проблема состоит в монтировании системы, попробуйте выйти и зайти в программу и попробовать установить нужный Вам элемент, если не поможет - перезагрузите устройство. Если и это не поможет, напишите мне на почту NowenUI@bk.ru с описанием проблемы и конфигурацией устройства'
+                        android:text=' возможно проблема состоит в монтировании системы, попробуйте выйти и зайти в программу и попробовать установить нужный Вам элемент, если не поможет - проверьте статус работы SELinux (должен быть Permissive) и перезагрузите устройство. Если и это не поможет, напишите мне на почту NowenUI@bk.ru с описанием проблемы и конфигурацией устройства'
                         android:textSize="18sp" />
                 </RelativeLayout>
 

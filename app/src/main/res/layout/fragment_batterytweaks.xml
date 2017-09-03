@@ -57,6 +57,7 @@
             android:text="@string/secondbatterytweak"
             app:buttonTint="@color/textview1good" />
 
+
         <CheckBox
             android:id="@+id/checkBox3"
             android:layout_width="match_parent"

@@ -1,6 +1,7 @@
-#!/data/data/com.nowenui.systemtweakerfree/files/ash
+#!/system/SystemTweaker/ash
 
-busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+busybox=/system/SystemTweaker/busybox
+
 mount -o remount,rw /
 mount -o remount,rw rootfs
 mount -o remount,rw /system

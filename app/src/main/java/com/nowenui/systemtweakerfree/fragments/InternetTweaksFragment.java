@@ -2,8 +2,10 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -26,14 +28,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class InternetTweaksFragment extends Fragment {
-
-    private static final String PRE_PATH = "/proc/sys/net/ipv4/";
-    private Scanner file_scanner;
 
     public static InternetTweaksFragment newInstance(Bundle bundle) {
         InternetTweaksFragment InternetTweaks = new InternetTweaksFragment();
@@ -139,6 +136,8 @@ public class InternetTweaksFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         ////////////////////////////////////////
         ////// build.prop -> String ////////////
@@ -310,7 +309,6 @@ public class InternetTweaksFragment extends Fragment {
 
         );
 
-
         ///////////////////////////////////////////////////////////////////
         ////// Improving internet speed ///////////////////////////////////
         ////// Changing the TCP  an other values for the better ///////////
@@ -334,6 +332,11 @@ public class InternetTweaksFragment extends Fragment {
             checkbox11.setChecked(true);
         } else {
             checkbox11.setChecked(false);
+        }
+        if (mSharedPreference.contains("skipnitd")) {
+            checkbox11.setEnabled(false);
+        } else {
+            checkbox11.setEnabled(true);
         }
         checkbox11.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View arg0) {

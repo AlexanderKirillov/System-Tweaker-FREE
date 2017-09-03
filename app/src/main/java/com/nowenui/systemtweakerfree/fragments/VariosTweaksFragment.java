@@ -2,8 +2,10 @@ package com.nowenui.systemtweakerfree.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -271,6 +273,12 @@ public class VariosTweaksFragment extends Fragment {
         ////// Quick Boot Tweak ////////////
         ///////////////////////////////////
         CheckBox quickboot = view.findViewById(R.id.quickboot);
+        final SharedPreferences mSharedPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (mSharedPreference.contains("skipnitd")) {
+            quickboot.setEnabled(false);
+        } else {
+            quickboot.setEnabled(true);
+        }
         String check16 = "/etc/init.d/quick_power";
         String check16a = "/system/etc/init.d/quick_power";
         if (new File(Environment.getRootDirectory() + check16).exists() || new File(check16a).exists() || new File(Environment.getRootDirectory() + check16a).exists()) {
@@ -494,6 +502,11 @@ public class VariosTweaksFragment extends Fragment {
         CheckBox appnalozenie = view.findViewById(R.id.appnalozenie);
         String c11 = "/etc/init.d/09FixOverlays";
         String c11a = "/system/etc/init.d/09FixOverlays";
+        if (mSharedPreference.contains("skipnitd")) {
+            appnalozenie.setEnabled(false);
+        } else {
+            appnalozenie.setEnabled(true);
+        }
         if (new File(Environment.getRootDirectory() + c11).exists() || new File(c11a).exists() || new File(Environment.getRootDirectory() + c11a).exists()) {
             appnalozenie.setChecked(true);
         } else {

@@ -1,6 +1,6 @@
-#!/data/data/com.nowenui.systemtweakerfree/files/ash
+#!/system/SystemTweaker/ash
 
-busybox=/data/data/com.nowenui.systemtweakerfree/files/busybox
+busybox=/system/SystemTweaker/busybox
 
 #Zipalign /Data 
 
@@ -20,10 +20,10 @@ do
 		if [ $APK -ot $ZIPALIGNDB ] && [ $(grep "$DIR/$APK" $ZIPALIGNDB|wc -l) -gt 0 ]; then
 			echo "Already checked: $DIR/$APK" 
 		else
-			ZIPCHECK=`/data/data/com.nowenui.systemtweakerfree/files/zipalign -c -v 4 $APK | grep FAILED | wc -l`
+			ZIPCHECK=`/system/SystemTweaker/zipalign -c -v 4 $APK | grep FAILED | wc -l`
 			if [ $ZIPCHECK == "1" ]; then
 				echo "Now aligning: $DIR/$APK" 
-				/data/data/com.nowenui.systemtweakerfree/files/zipalign -f 4 $APK /data/local/$APK
+				/system/SystemTweaker/zipalign -f 4 $APK /data/local/$APK
 				rc = "$?"
 				if [ $rc -eq 0 ]; then
 					if [ -e "/data/local/$APK" ]; then
