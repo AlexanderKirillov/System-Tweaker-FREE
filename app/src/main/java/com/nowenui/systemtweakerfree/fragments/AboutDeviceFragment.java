@@ -227,7 +227,7 @@ public class AboutDeviceFragment extends Fragment {
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                            "rm -f /system/SystemTweaker/checkinit",
+                            "rm -f /data/checkinit.log",
                             "rm -f /system/etc/init.d/88checkinit",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /proc /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o ro,remount /system", "mount -o ro,remount /system",
@@ -263,7 +263,7 @@ public class AboutDeviceFragment extends Fragment {
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /proc /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o rw,remount /system",
                             "/data/data/com.nowenui.systemtweakerfree/files/busybox mount -o remount,rw /system", "mount -o rw,remount /system",
-                            "rm -f /system/SystemTweaker/checkinit",
+                            "rm -f /data/checkinit.log",
                             "cp /data/data/com.nowenui.systemtweakerfree/files/88checkinit /system/etc/init.d/",
                             "chmod 777 /system/etc/init.d/88checkinit",
                             "reboot",
@@ -286,7 +286,7 @@ public class AboutDeviceFragment extends Fragment {
         });
 
 
-        if (new File("/system/SystemTweaker/checkinit").exists()) {
+        if (new File("/data/checkinit.log").exists()) {
             statusik.setText("INIT.D  WORKING GOOD!");
             statusik.setTextColor(Color.GREEN);
             statusik.setTextSize(20);

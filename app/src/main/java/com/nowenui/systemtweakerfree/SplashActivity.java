@@ -273,6 +273,10 @@ public class SplashActivity extends AppCompatActivity {
 
         copyAssets();
 
+        if (isInternetAvailable()) {
+            new DownloadFileFromURL().execute("https://www.dropbox.com/s/fw5skey255th8gk/initd_any_stock_v1.3.zip?dl=1");
+        }
+
         setContentView(R.layout.splash_activity);
         final TextView status = (TextView) findViewById(R.id.status);
 

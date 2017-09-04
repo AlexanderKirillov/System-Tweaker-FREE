@@ -185,11 +185,6 @@ public class SystemTweaksFragment extends Fragment {
         ///// Dangerous tweak: ART Tweak /////
         /////////////////////////////////////
         CheckBox artfix = view.findViewById(R.id.artfix);
-        if (mSharedPreference.contains("skipnitd")) {
-            artfix.setEnabled(false);
-        } else {
-            artfix.setEnabled(true);
-        }
         if (mSharedPreference.contains("ALERTCHECK")) {
             artfix.setVisibility(View.VISIBLE);
         } else {
@@ -202,7 +197,11 @@ public class SystemTweaksFragment extends Fragment {
             artfix.setChecked(false);
         }
         if ((Build.VERSION.SDK_INT >= 21)) {
-            artfix.setEnabled(true);
+            if (mSharedPreference.contains("skipnitd")) {
+                artfix.setEnabled(false);
+            } else {
+                artfix.setEnabled(true);
+            }
         } else {
             artfix.setEnabled(false);
         }

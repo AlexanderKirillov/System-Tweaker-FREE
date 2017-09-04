@@ -1,29 +1,4 @@
-#!/system/SystemTweaker/ash
+#!/system/bin/sh
 
-busybox=/system/SystemTweaker/busybox
-
-mount -o remount,rw / 2>/dev/null
-mount -o remount,rw / / 2>/dev/null
-mount -o remount,rw rootfs 2>/dev/null
-mount -o remount,rw /system 2>/dev/null
-mount -o remount,rw /system /system 2>/dev/null
-$busybox mount -o remount,rw / 2>/dev/null
-$busybox mount -o remount,rw / / 2>/dev/null
-$busybox mount -o remount,rw rootfs 2>/dev/null
-$busybox mount -o remount,rw /system 2>/dev/null
-$busybox mount -o remount,rw /system /system 2>/dev/null
-
-$busybox echo "Checking init.d support..."
-
-$busybox echo "true" > /system/SystemTweaker/checkinit
-
-mount -o remount,ro / 2>/dev/null
-mount -o remount,ro / / 2>/dev/null
-mount -o remount,ro rootfs 2>/dev/null
-mount -o remount,ro /system 2>/dev/null
-mount -o remount,ro /system /system 2>/dev/null
-$busybox mount -o remount,ro / 2>/dev/null
-$busybox mount -o remount,ro / / 2>/dev/null
-$busybox mount -o remount,ro rootfs 2>/dev/null
-$busybox mount -o remount,ro /system 2>/dev/null
-$busybox mount -o remount,ro /system /system 2>/dev/null
+echo "Checking init.d support..."
+echo "true" > /data/checkinit.log
