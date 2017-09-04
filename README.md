@@ -1,9 +1,9 @@
 <p align="center">
-  <i><b>Current version: 4.1.0</b></i>
+  <i><b>Current version: 4.1.1</b></i>
 </p>
 
 [![4PDA](http://s.4pda.to/IhH7WppM5BiNVg742YhOtE9HnCGIOv6bNez0yNNTbkFooz2gO2waN6.png)](http://4pda.ru/forum/index.php?showtopic=768857&view=findpost&p=52780864)<br><br>
-[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/Evl5UNTL3MZzc5)
+[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/rJzUDRq_3MbmQn)
 
 
 ## Description
