@@ -1,18 +1,18 @@
-/* 
+/*
  * This file is part of the RootShell Project: http://code.google.com/p/RootShell/
- *  
+ *
  * Copyright (c) 2014 Stephen Erickson, Chris Ravenscroft
- *  
+ *
  * This code is dual-licensed under the terms of the Apache License Version 2.0 and
  * the terms of the General Public License (GPL) Version 2.
  * You may use this code according to either of these licenses as is most appropriate
  * for your project on a case-by-case basis.
- * 
+ *
  * The terms of each license can be found in the root directory of this project's repository as well as at:
- * 
+ *
  * * http://www.apache.org/licenses/LICENSE-2.0
  * * http://www.gnu.org/licenses/gpl-2.0.txt
- *  
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under these Licenses is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -614,6 +614,7 @@ public class Shell {
 
         while (this.isCleaning) {
             //Don't add commands while cleaning
+            ;
         }
 
         this.commands.add(command);
@@ -890,14 +891,14 @@ public class Shell {
         }
     }
 
-    public enum ShellType {
+    public static enum ShellType {
         NORMAL,
         ROOT,
         CUSTOM
     }
 
     //this is only used with root shells
-    public enum ShellContext {
+    public static enum ShellContext {
         NORMAL("normal"), //The normal context...
         SHELL("u:r:shell:s0"), //unprivileged shell (such as an adb shell)
         SYSTEM_SERVER("u:r:system_server:s0"), // system_server, u:r:system:s0 on some firmwares
@@ -908,7 +909,7 @@ public class Shell {
 
         private String value;
 
-        ShellContext(String value) {
+        private ShellContext(String value) {
             this.value = value;
         }
 

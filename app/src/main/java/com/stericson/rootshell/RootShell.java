@@ -1,18 +1,18 @@
-/* 
+/*
  * This file is part of the RootShell Project: http://code.google.com/p/RootShell/
- *  
+ *
  * Copyright (c) 2014 Stephen Erickson, Chris Ravenscroft
- *  
+ *
  * This code is dual-licensed under the terms of the Apache License Version 2.0 and
  * the terms of the General Public License (GPL) Version 2.
  * You may use this code according to either of these licenses as is most appropriate
  * for your project on a case-by-case basis.
- * 
+ *
  * The terms of each license can be found in the root directory of this project's repository as well as at:
- * 
+ *
  * * http://www.apache.org/licenses/LICENSE-2.0
  * * http://www.gnu.org/licenses/gpl-2.0.txt
- *  
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under these Licenses is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +43,7 @@ public class RootShell {
     // # Public Variables #
     // --------------------
 
-    public static final String version = "RootShell v1.4";
+    public static final String version = "RootShell v1.6";
     public static boolean debugMode = false;
     /**
      * Setting this to false will disable the handler that is used
@@ -360,6 +360,18 @@ public class RootShell {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
+        return isAccessGiven(0, 3);
+    }
+
+    /**
+     * Control how many time of retries should request
+     *
+     * @param timeout The timeout
+     * @param retries The number of retries
+     * @return <code>true</code> if your app has been given root access.
+     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
+     */
+    public static boolean isAccessGiven(int timeout, int retries) {
         final Set<String> ID = new HashSet<String>();
         final int IAG = 158;
 
@@ -377,8 +389,9 @@ public class RootShell {
                 }
             };
 
-            Shell.startRootShell().add(command);
-            commandWait(Shell.startRootShell(), command);
+            Shell shell = Shell.startRootShell(timeout, retries);
+            shell.add(command);
+            commandWait(shell, command);
 
             //parse the userid
             for (String userid : ID) {
@@ -398,10 +411,21 @@ public class RootShell {
     }
 
     /**
-     * @return <code>true</code> if BusyBox or Toybox was found.
+     * @return <code>true</code> if BusyBox was found.
      */
     public static boolean isBusyboxAvailable() {
-        return (findBinary("busybox", true)).size() > 0 || (findBinary("toybox", true)).size() > 0;
+        return isBusyboxAvailable(false);
+    }
+
+    /**
+     * @return <code>true</code> if BusyBox or Toybox was found.
+     */
+    public static boolean isBusyboxAvailable(boolean includeToybox) {
+        if (includeToybox) {
+            return (findBinary("busybox", true)).size() > 0 || (findBinary("toybox", true)).size() > 0;
+        } else {
+            return (findBinary("busybox", true)).size() > 0;
+        }
     }
 
     /**
@@ -566,7 +590,7 @@ public class RootShell {
     // # Public Methods #
     // --------------------
 
-    public enum LogLevel {
+    public static enum LogLevel {
         VERBOSE,
         ERROR,
         DEBUG,

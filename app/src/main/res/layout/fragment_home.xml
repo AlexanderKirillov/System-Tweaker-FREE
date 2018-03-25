@@ -54,7 +54,7 @@
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_alignEnd="@+id/textView10"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -121,70 +121,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical|center|center_horizontal"
             android:text="@string/before"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#a80e0e"
-            android:textSize="18sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/numberone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:paddingLeft="20dip"
-            android:paddingRight="20dip"
-            android:text="@string/before1"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:id="@+id/numbertwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:paddingLeft="20dip"
-            android:paddingRight="20dip"
-            android:text="@string/before2"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:id="@+id/numberthree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:paddingLeft="20dip"
-            android:paddingRight="20dip"
-            android:text="@string/before3"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,7 +131,6 @@
             android:gravity="center_vertical|center|center_horizontal"
             android:text="@string/cauton"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#c70a0a"
             android:textStyle="bold" />
 
     </LinearLayout>

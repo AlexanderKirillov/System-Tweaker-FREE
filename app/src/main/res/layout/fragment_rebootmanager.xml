@@ -20,24 +20,24 @@
 
         <Button
             android:id="@+id/reboot_1"
-            android:layout_width="205dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="@string/reboot" />
 
         <Button
             android:id="@+id/reboot_hot"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="@string/hotreboot" />
 
         <Button
             android:id="@+id/shutdown"
-            android:layout_width="205dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="@string/shutdown" />
@@ -45,16 +45,16 @@
         <Button
             android:id="@+id/rebootrecovery"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="209dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="@string/rebootrec" />
 
         <Button
             android:id="@+id/rebootbootloader"
-            android:layout_width="209dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="@string/rebootbottloader" />

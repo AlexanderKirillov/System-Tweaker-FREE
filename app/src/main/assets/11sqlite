@@ -1,6 +1,6 @@
-#!/system/SystemTweaker/ash
+#!/system/SystemTweakerFREE/ash
 
-busybox=/system/SystemTweaker/busybox
+busybox=/system/SystemTweakerFREE/busybox
 
 echo "";
 echo "*********************************************";
@@ -11,16 +11,16 @@ echo "";
 for i in \
 `$busybox find /data -iname "*.db"`; 
 do \
-	/system/SystemTweaker/sqlite3 $i 'VACUUM;'; 
-	/system/SystemTweaker/sqlite3 $i 'REINDEX;'; 
+	/system/SystemTweakerFREE/sqlite3 $i 'VACUUM;'; 
+	/system/SystemTweakerFREE/sqlite3 $i 'REINDEX;'; 
 done;
 
 if [ -d "/dbdata" ]; then
 	for i in \
 	`$busybox find /dbdata -iname "*.db"`; 
 	do \
-		/system/SystemTweaker/sqlite3 $i 'VACUUM;'; 
-		/system/SystemTweaker/sqlite3 $i 'REINDEX;'; 
+		/system/SystemTweakerFREE/sqlite3 $i 'VACUUM;'; 
+		/system/SystemTweakerFREE/sqlite3 $i 'REINDEX;'; 
 	done;
 fi;
 
@@ -29,8 +29,8 @@ if [ -d "/datadata" ]; then
 	for i in \
 	`$busybox find /datadata -iname "*.db"`; 
 	do \
-		/system/SystemTweaker/sqlite3 $i 'VACUUM;'; 
-		/system/SystemTweaker/sqlite3 $i 'REINDEX;'; 
+		/system/SystemTweakerFREE/sqlite3 $i 'VACUUM;'; 
+		/system/SystemTweakerFREE/sqlite3 $i 'REINDEX;'; 
 	done;
 fi;
 
@@ -38,6 +38,6 @@ fi;
 for i in \
 `$busybox find /sdcard -iname "*.db"`; 
 do \
-	/system/SystemTweaker/sqlite3 $i 'VACUUM;'; 
-	/system/SystemTweaker/sqlite3 $i 'REINDEX;'; 
+	/system/SystemTweakerFREE/sqlite3 $i 'VACUUM;'; 
+	/system/SystemTweakerFREE/sqlite3 $i 'REINDEX;'; 
 done;

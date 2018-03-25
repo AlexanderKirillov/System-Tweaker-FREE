@@ -44,17 +44,6 @@ public class HomeFragment extends Fragment {
         TextView textview11 = view.findViewById(R.id.textView11);
         TextView sel = view.findViewById(R.id.sel);
 
-        TextView numberone = view.findViewById(R.id.numberone);
-        TextView numbertwo = view.findViewById(R.id.numbertwo);
-        TextView numberthree = view.findViewById(R.id.numberthree);
-
-        numberone.setBackgroundResource(R.drawable.roundbuttonmainbefore);
-        numberone.setTextSize(15);
-        numbertwo.setBackgroundResource(R.drawable.roundbuttonmainbefore);
-        numbertwo.setTextSize(15);
-        numberthree.setBackgroundResource(R.drawable.roundbuttonmainbefore);
-        numberthree.setTextSize(15);
-
 
         //////////////////////////////////
         ////// Check SuperUser ///////////
@@ -167,7 +156,7 @@ public class HomeFragment extends Fragment {
         ////// Check init.d support ///////////
         ///////////////////////////////////////
         textview11.setText(isInitdSupport());
-        if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("ПАПКА INIT.D ПРИСУТСТВУЕТ!")) {
+        if (textview11.getText().toString().contains("INIT.D WORKING!") || textview11.getText().toString().contains("ПАПКА INIT.D \nПРИСУТСТВУЕТ!")) {
             textview11.setBackgroundResource(R.drawable.roundbuttonmaingood);
             textview11.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.successs, 0, 0, 0);
@@ -179,8 +168,9 @@ public class HomeFragment extends Fragment {
     }
 
     public int isInitdSupport() {
-        File f = new File("/system/etc/init.d");
-        if ((f.exists()) && (f.isDirectory())) {
+        File sud = new File("/system/su.d");
+        File initd = new File("/system/etc/init.d");
+        if ((initd.exists()) && (initd.isDirectory()) || (sud.exists()) && (sud.isDirectory())) {
             return R.string.initd;
         }
         return R.string.initdbad;

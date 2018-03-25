@@ -36,7 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_weight="0.09"
-            android:text="V4.1.1"
+            android:text="V4.2.0"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:gravity="center_vertical|center|center_horizontal"
-            android:text="PRO VERSION"
+            android:text="LINK TO PRO VERSION"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#d52626"
             android:textSize="30dp"

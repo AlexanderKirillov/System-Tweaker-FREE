@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">System Tweaker FREE</string>
+    <string name="app_name">System Tweaker PRO</string>
     <string name="prefs_theme_key">theme</string>
     <string name="settingstile">Settings</string>
     <string name="root">ROOT WORKING!</string>
@@ -8,11 +8,12 @@
     <string name="rootbad">NO ROOT</string>
     <string name="initdbad">NO INIT.D </string>
     <string name="busyboxbad">NO BUSYBOX</string>
-    <string name="hello">Welcome to\nSystem Tweaker FREE!!!\n</string>
+    <string name="hello">Welcome to\nSystem Tweaker PRO!!!\n</string>
     <string name="before">Before using this programm:</string>
     <string name="cauton">Understand, that you solely responsible for any damage device!</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="reboot">Reboot</string>
     <string name="cal">CALIBRATE</string>
     <string name="calinfo">If button "CALIBRATE" not active, verify the implementation of both the calibration terms (100% battery level and connected power).\n\nCalibrate process includes deleting files from /data/system/:\n- batterystats.bin\n- batterystats-daily.xml\n- batterystats-checkin.bin</string>
     <string name="batterylevel">Battery Level</string>
@@ -20,7 +21,8 @@
     <string name="cautonbattery">ATTENTION! CALIBRATION MAY DAMAGE THE BATTERY OR THE DEVICE!  DO ONLY AT YOUR OWN RISK</string>
     <string name="calibrate">You can make battery calibration only if you have problems with low energy efficiency devices without objective reasons (e.g., battery swelling), incorrectly shows the battery level. Also you can make calibrate when you reinstalled ROM on your device. \nPlease do not make battery calibration just like that, because you can damage your device or battery\n\nBut if you do decide to do the calibration (of course, at your own risk), follow the instructions below:</string>
     <string name="calsucess">Calibration successful!</string>
-    <string name="reboot">Reboot</string>
+    <string name="cal1">1) Fully charge your device</string>
+    <string name="cal2">2) Press on the button \'Calibrate\'</string>
     <string name="rebootdialog">It is recommended to reboot now. \n\nDo you want to reboot your device? \n\n</string>
     <string name="errordev">ERROR! PLEASE CONNECT WITH DEVELOPER</string>
     <string name="erroroot">ERROR! YOU HAVENT ROOT!</string>
@@ -110,7 +112,7 @@
     <string name="systemthree">Render UI with GPU, improving smooth of scrolling\nEnabling this tweak may improve performance and smooth, but only if your GPU is powerful</string>
     <string name="systemfour">Improving smooth and speed of scrolling</string>
     <string name="systemfive">Auto-zipalign\nThis tweak improving speed and performance of your phone</string>
-    <string name="systemsix">Auto-optimize SQLite\nThis tweak improving speed and performance of your phone</string>
+    <string name="systemsix">Auto optimize SQLite\nThis tweak improving speed and performance of your phone</string>
     <string name="fstrim">FSTRIM- special utility that accelerates the operation of the device by performing the TRIM operation on the memory device\n</string>
     <string name="beforestrim">Select the partition(s) and press &quot;FSTRIM&quot;\n\n</string>
     <string name="fstrimboot">Make auto-FSTRIM at boot</string>
@@ -150,11 +152,11 @@
     <string name="licensecheckbox">You agree with the Agreement</string>
     <string-array name="ramlist">
         <item>(standart)</item>
-        <item>Gaming</item>
         <item>Balanced</item>
         <item>Multitasking</item>
+        <item>Gaming</item>
     </string-array>
-    <string name="ram">RAM Mode</string>
+    <string name="ram">Device\n usage \nmode</string>
     <string name="displayfix">Improve display quality\nImplemented by the system display calibration </string>
     <string name="var1">Improve system boot</string>
     <string name="reboot1dialog">Are you sure want to fully reboot your device?)</string>
@@ -275,7 +277,7 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="battery2">[INIT.D TWEAK: 00BatteryImprove\n\nINCLUDES:\n\necho "500" > /proc/sys/vm/dirty_expire_centisecs
 \n\necho "1000" > /proc/sys/vm/dirty_writeback_centisecs\n\nIf you apply this tweak, file located in /system/etc/init.d ] \n\nTweak allows you to increase the battery lifetime by adjusting the individual settings for "dirty" buffers VM.</string>
     <string name="busy1">About busybox</string>
-    <string name="busy2">BUSYBOX 1.27.2 ARM \nLocated in /data/data/com.nowenui.systemtweakerfree/files/busybox</string>
+    <string name="busy2">BUSYBOX 1.27.2 ARM \nLocated in /data/data/com.nowenui.systemtweaker/files/busybox</string>
     <string name="ramflag">Low RAM flag</string>
     <string name="ramflageffect">Forced use high-quality graphic effects</string>
     <string name="sys13">[BUILD.PROP TWEAK:\npersist.sys.force_highendgfx=true]  \n\nTweak improves visual effects when LOW RAM mode is on!</string>
@@ -299,7 +301,7 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="b2017">Disabling memory limit and a low memory notification when installing applications in GPlay</string>
     <string name="c2017">To disable tweak clear \'Storage Settings\' (Settings Provider) data in settings and reboot the device. For tweak we say thank you SmoothDenis</string>
     <string name="dang">DANGEROUS TWEAKS!</string>
-    <string name="d2017">Dynamic Battery Saving (DynBS)\nIt will help reduce power consumption by reducing unnecessary high processor frequency when these do not need \ nFor tweak say thank igaryasha94</string>
+    <string name="d2017">Dynamic Battery Saving (DynBS)</string>
     <string name="clear">Clearing</string>
     <string name="cleardalvik">Clear dalvik-cache</string>
     <string name="clearcache">Clear /cache</string>
@@ -308,7 +310,7 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="initderror"> Sorry, but we do not found init.d support. We removed the automatic init.d enabler at Google\'s request.
         \n\nYou can enable init.d support in two ways:\n\n
 1) Using Universal init.d application or init.d scripts application. You can find it in Google Play\n\n 2) If you have a custom recovery installed, then you can go into it and flash the file located: \n
-/sdcard/SystemTweakerFREE/initd.zip. With it, you easily and quickly activate init.d support.\n\n If you want to use the program without init.d support - press on the \'SKIP\' или \'DO NOT SHOW AGAIN\'. In this case the init.d tweaks will be unavailable and the functionality of the program will be limited!\n\nThanks for your attention! </string>
+/sdcard/SystemTweaker/initd.zip. With it, you easily and quickly activate init.d support.\n\n If you want to use the program without init.d support - press on the \'SKIP\' или \'DO NOT SHOW AGAIN\'. In this case the init.d tweaks will be unavailable and the functionality of the program will be limited!\n\nThanks for your attention! </string>
     <string name="faq">FAQ (only russian lang.)</string>
     <string name="vk">Our VK group</string>
     <string name="twitter">Our twitter</string>
@@ -322,17 +324,11 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="email">Your e-mail</string>
     <string name="lic">Unfortunately, APK check failed! The application should not be modified or rebuilted \n\nIf you have any problems, please contact to NowenUI@bk.ru\n\nThank you very much for your understanding!</string>
 
-    <string name="before1">Make system and data backups using custom recovery (if you can make it)</string>
-    <string name="before2">Make build.prop file and init.d folder backups using utility, which presents in this programm</string>
-    <string name="before3">You must understand that tweaks should be installed with the mind, because many installed tweaks can cause conflicts</string>
-
     <string name="agree1">1) Program developer is not responsible for unpredictable results using the program</string>
     <string name="agree2">2) Yes, you should understand that developer not responsible for the broken devices, dead batteries, etc</string>
     <string name="agree3">3) All the features of the program is for information only, their presence does not mean their using</string>
     <string name="agree4">4) You can not use the program for their own purposes, or any part of the code of the program without the consent of the developer, but bear in mind paragraph 5</string>
     <string name="agree5">5) All of the features, presented in the program (tweaks, battery calibration technology, speed-up technology with one click and etc.), are available to the public, you can use them for their own purposes (for example, commercial purposes)</string>
-    <string name="cal1">1) Fully charge your device</string>
-    <string name="cal2">2) Press on the button \'Calibrate\'</string>
     <string name="selinux">Note that SELinux have status: Enforcing. For the correct working of the program you must change the status to Permissive. Otherwise, a lot of functions of the program will work incorrectly, tweaks will not work. Instructions for disabling can be found on the Internet.</string>
     <string name="skip">Skip</string>
     <string name="notshow">Do not show again</string>
@@ -351,5 +347,4 @@ In this case- it increases the intensity and minimum illumination threshold
     <string name="clearinitd">Clear status!</string>
     <string name="cant">NOT AVAILABLE</string>
     <string name="statusssl">NOT INSPECTED OR INIT.D NOT SUPPORTED!</string>
-
 </resources>

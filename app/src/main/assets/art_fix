@@ -1,6 +1,6 @@
-#!/system/SystemTweaker/ash
+#!/system/SystemTweakerFREE/ash
 
-busybox=/system/SystemTweaker/busybox
+busybox=/system/SystemTweakerFREE/busybox
 
 mount -o rw,remount /system
 mount -o rw,remount /data

@@ -1,4 +1,4 @@
-#!/system/SystemTweaker/ash
+#!/system/SystemTweakerFREE/ash
 
 mount -o remount,rw /data
 

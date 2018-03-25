@@ -1,6 +1,6 @@
-#!/system/SystemTweaker/ash
+#!/system/SystemTweakerFREE/ash
 
-busybox=/system/SystemTweaker/busybox
+busybox=/system/SystemTweakerFREE/busybox
 
 #Zipalign /Data 
 
@@ -20,10 +20,10 @@ do
 		if [ $APK -ot $ZIPALIGNDB ] && [ $(grep "$DIR/$APK" $ZIPALIGNDB|wc -l) -gt 0 ]; then
 			echo "Already checked: $DIR/$APK" 
 		else
-			ZIPCHECK=`/system/SystemTweaker/zipalign -c -v 4 $APK | grep FAILED | wc -l`
+			ZIPCHECK=`/system/SystemTweakerFREE/zipalign -c -v 4 $APK | grep FAILED | wc -l`
 			if [ $ZIPCHECK == "1" ]; then
 				echo "Now aligning: $DIR/$APK" 
-				/system/SystemTweaker/zipalign -f 4 $APK /data/local/$APK
+				/system/SystemTweakerFREE/zipalign -f 4 $APK /data/local/$APK
 				rc = "$?"
 				if [ $rc -eq 0 ]; then
 					if [ -e "/data/local/$APK" ]; then

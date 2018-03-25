@@ -1,9 +1,9 @@
 <p align="center">
-  <i><b>Current version: 4.1.1</b></i>
+  <i><b>Current version: 4.2.0</b></i>
 </p>
 
 [![4PDA](http://s.4pda.to/IhH7WppM5BiNVg742YhOtE9HnCGIOv6bNez0yNNTbkFooz2gO2waN6.png)](http://4pda.ru/forum/index.php?showtopic=768857&view=findpost&p=52780864)<br><br>
-[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/rJzUDRq_3MbmQn)
+[![Yandex](http://lbp-insurance.com/picture_library/download.jpg)](https://yadi.sk/d/CCz8-XLJ3TkCro)
 
 
 ## Description
@@ -17,7 +17,7 @@ Before using the program, make system backup!
 ## Requirements
 - Android 4.0.3+ , ARM
 - Root
-- Init.d support
+- Init.d\su.d support
 - SELinux: Permissive
 
 ## Features:
@@ -70,16 +70,13 @@ Send to NowenUI@bk.ru:
 * DreaminginCodeZH: [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
 * franmontiel: [LocaleChanger](https://github.com/franmontiel/LocaleChanger)
 
-## Screenshots (russian language)
-![](http://s018.radikal.ru/i502/1707/8f/c173f651c40a.png) ![](http://s019.radikal.ru/i623/1707/99/c9f0c4597cc4.png) ![](http://s018.radikal.ru/i515/1707/a7/bbf5fe5190ca.png) ![](http://s018.radikal.ru/i503/1707/e4/68ab938ad4e5.png) ![](http://s018.radikal.ru/i518/1707/65/cd0e1358a69b.png) ![](http://s018.radikal.ru/i502/1707/8e/49dcc944bb0e.png) 
-
 ## Developed by
 
 [Alexander Kirillov (NowenUI)](https://vk.com/nowenuidev) 
 
 ## License
 
-    Copyright (C) 2016-2017 Alexander Kirillov <NowenUI@bk.ru>
+    Copyright (C) 2016-2018 Alexander Kirillov <NowenUI@bk.ru>
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
